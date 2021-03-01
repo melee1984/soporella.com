@@ -1,0 +1,40 @@
+.container-fluid {
+	padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.padding-10 {
+	padding: 10px;
+}
+.padding-20 {
+	padding: 20px;
+}
+.padding-30 {
+	padding: 30px;
+}
+.banner-1 {
+	background-color: #d2d2d242;
+    padding: 29px 0 55px 0;
+    .carousel-caption {
+    	background: none !important;
+    }
+    h2 {
+    	font-size: 42px;
+    }
+}
+
+.jumbotron  {
+	background-color: #edf1f9 !important;
+
+	p {
+	    margin-bottom: 15px;
+	    font-size: 14px;
+	    font-weight: 200;
+	    margin-top: 11px;
+	}
+}
+
+.tab-single {
+    margin-bottom: 40px;
+    min-height: 315px;
+}

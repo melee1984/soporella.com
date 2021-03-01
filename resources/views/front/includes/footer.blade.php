@@ -61,6 +61,7 @@
   </div>
 </div>
 <!--Footer-->
+
 <div id="footer" class="container-fluid">
   <div class="row">
     <div class="container">
@@ -71,12 +72,10 @@
         </div>
         <div id="social" class="col-lg-6 text-right">
           <ul>
-
             <li><a target="_blank" href="https://www.facebook.com/Soporella-1342011235913453/"><img src="{{asset('theme2018/images/facebook.png')}}" alt="Facebook"/></a></li>
             <li><a target="_blank" href="https://twitter.com/Soporella_UAE"><img src="{{asset('theme2018/images/twitter.png')}}" alt="Twitter"/></a></li>
             <li><a target="_blank" href="https://www.youtube.com/channel/UC-2-IBVvaVy8ZUX74PJB17w"><img src="{{asset('theme2018/images/youtube.png')}}" alt="YouTube"/></a></li>
             <li><a target="_blank" href="https://www.instagram.com/soporella_uae/"><img src="{{asset('theme2018/images/instagram.png')}}" alt="Instagram"/></a></li>
-
           </ul>
         </div>
       </div>
