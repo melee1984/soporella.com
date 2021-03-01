@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
 	    	[
 	    		'id' => 1,
 	    		'name' => 'Super Admin',
-	            'email' => 'admin',
+	            'email' => 'admin@soporella.com',
 	    		'password' => Hash::make('admin'),
 	            'email_verified_at' => \Carbon\Carbon::now(),
 	    		'created_at' => \Carbon\Carbon::now(),
