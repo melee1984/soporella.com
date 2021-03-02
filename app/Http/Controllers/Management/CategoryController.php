@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Categories;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index() 
     {	
-    	$categories = Categories::orderby('sorting', 'desc')->get();
+    	$categories = Category::orderby('sorting', 'desc')->get();
 
 		return view('management.pages.category', compact('categories'));
 	}

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Attractions;
+use App\Attraction;
 use App\TopAttraction;
 
 
@@ -15,7 +15,7 @@ class TopAttractionSeeder extends Seeder
      */
     public function run()
     {
-        $attractions = Attractions::take(5)->get();
+        $attractions = Attraction::take(5)->get();
 
          foreach ($attractions as $attraction) {
             TopAttraction::create(array('attraction_id' => $attraction->id));

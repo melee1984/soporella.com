@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Categories;
+use App\Category;
 
 
 class CategoriesSeeder extends Seeder
@@ -52,7 +52,7 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
          foreach ($this->categories as $category) {
-            Categories::create($category);
+            Category::create($category);
         }
     }
 }

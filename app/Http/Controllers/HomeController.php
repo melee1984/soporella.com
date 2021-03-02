@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Promotion;
+use Cache;
 
 class HomeController extends Controller
 {
@@ -21,14 +23,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('front.pages.home');
+    public function index() 
+    {   
+        $promotions = Cache::remember('promotions', 30, function () {
+            return Promotion::take(10)->get();
+        });
+
+        return view('front.pages.home', compact('promotions'));
+
     }
 
-    public function displayByTheme() {
-
-        echo "ThemePack";
-        die();
+    public function displayByTheme() 
+    {
+        return view('front.pages.listing');
     }
 }

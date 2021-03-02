@@ -8,13 +8,14 @@ class TopAttraction extends Model
 {
 	protected $table = 'top_attractions';
 	protected $fillable = ['attraction_id', 'sorting'];
+	public $timestamps = true;
 
 	/**
 	 * Display Top Attractions 
 	 */
-	
 	public function attraction()
     {
-        return $this->hasMany('Attractions', 'id', 'attraction_id');
+        return $this->hasMany('App\Attraction', 'attraction_id', 'id');
     }
+
 }

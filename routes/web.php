@@ -23,7 +23,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 // Display by Theme Category Type
 
-Route::get('/{cagegoryType}', 'HomeController@displayByTheme')->name('home');
 /* Dashboard */
 Route::post('/dashboard/login/submit', 'Management\DashboardController@validateLogin')
 	->name('dashboard.login.submit');
@@ -37,7 +36,6 @@ Route::group(['middleware' => 'admin'], function() {
 	// Attractions 
 	Route::get('/dashboard/attraction', 'Management\AttractionController@index')->name('dashboard.management.attraction');
 	Route::get('/dashboard/attraction/{attraction}', 'Management\AttractionController@show')->name('dashboard.management.edit');
-	
 	// promotions
 	Route::get('/dashboard/promotions', 'Management\PromotionController@index')->name('dashboard.management.promotions');
 	// coupoons
@@ -56,3 +54,7 @@ Route::group(['middleware' => 'admin'], function() {
 		->name('dashboard.logout');
 
 });
+
+
+Route::get('/{cagegoryType}', 'HomeController@displayByTheme')->name('home');
+

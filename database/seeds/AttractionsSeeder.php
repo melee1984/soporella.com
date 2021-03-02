@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Attractions; 
+use App\Attraction; 
 
 class AttractionsSeeder extends Seeder
 {
@@ -52,7 +52,7 @@ class AttractionsSeeder extends Seeder
     public function run()
     {
          foreach ($this->attractions as $attractions) {
-            Attractions::create($attractions);
+            Attraction::create($attractions);
         }
     }
 }

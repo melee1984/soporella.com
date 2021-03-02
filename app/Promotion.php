@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SuggestedAttraction extends Model
+class Promotion extends Model
 {
-    protected $table = 'suggestion_attractions';
+    protected $table = 'promotions';
 	protected $fillable = ['attraction_id', 'sorting'];
     public $timestamps = true;
 
@@ -14,8 +14,8 @@ class SuggestedAttraction extends Model
      * Relationship iwth the category attraction mapping 
      * @return object
      */
-    public function attractions()
+    public function attraction()
     {
-        return $this->hasMany('App\Attraction', 'attraction_id', 'id');
+        return $this->belongsTo('App\Attraction', 'attraction_id', 'id');
     }
 }

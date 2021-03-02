@@ -17,89 +17,30 @@
     <div class="item active">
       	
       	<div class="row tab-content">
+
+      		@foreach($promotions as $promotion) 
+
 			<div class="col-lg-3 tab-single" >                 
-			 <a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-	                    <img src="https://soporella.com/assets/images/activity/thumbnail/soporella-burj-khalifa-1.jpg" alt="At the Top &amp; Sky at Burj Khalifa" class="img-responsive">
-	                  </a>
-	                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">At the Top &amp; Sky at Burj Khali...</a></h4>
-	                  <p>"At the Top &amp; Sky" are observation decks of the world’s tallest building and from the<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">... more</a></p>
-	                  <a class="buy" href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">Buy Tickets</a>
+				<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
+					<img src="{{ asset('products/images/'.$promotion->attraction->photo) }}" alt="{{ $promotion->attraction->title }}" class="img-responsive">
+				</a>
+	                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">{{ $promotion->attraction->title }}</a></h4>
+	                  <p>{{ Str::words($promotion->attraction->description, 20) }} <a href=""> more</a></p>
+	                  <a class="buy" href="{{ URL::to('promotion/'.$promotion->attraction->slug) }}">Buy Tickets</a>
 			</div>
-
-			<div class="col-lg-3 tab-single">                 
-				 <a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-		                    <img src="https://soporella.com/assets/images/activity/thumbnail/soporella-burj-khalifa-1.jpg" alt="At the Top &amp; Sky at Burj Khalifa" class="img-responsive">
-		                  </a>
-		                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">At the Top &amp; Sky at Burj Khali...</a></h4>
-		                  <p>"At the Top &amp; Sky" are observation decks of the world’s tallest building and from the<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">... more</a></p>
-		                  <a class="buy" href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">Buy Tickets</a>
-			</div>
-			
-			<div class="col-lg-3 tab-single">                 
-				 <a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-		                    <img src="https://soporella.com/assets/images/activity/thumbnail/soporella-bollywood-parks-3.jpg" alt="At the Top &amp; Sky at Burj Khalifa" class="img-responsive">
-		                  </a>
-		                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">At the Top &amp; Sky at Burj Khali...</a></h4>
-		                  <p>"At the Top &amp; Sky" are observation decks of the world’s tallest building and from the<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">... more</a></p>
-		                  <a class="buy" href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">Buy Tickets</a>
-			</div>
-
-			<div class="col-lg-3 tab-single">                 
-				 <a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-		                    <img src="https://soporella.com/assets/images/activity/thumbnail/soporella-bollywood-parks-3.jpg" alt="At the Top &amp; Sky at Burj Khalifa" class="img-responsive">
-		                  </a>
-		                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">At the Top &amp; Sky at Burj Khali...</a></h4>
-		                  <p>"At the Top &amp; Sky" are observation decks of the world’s tallest building and from the<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">... more</a></p>
-		                  <a class="buy" href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">Buy Tickets</a>
-			</div>
+			@endforeach
 
 		</div>
 
-
     </div>
 
-    <div class="item">
-     		
-     		<div class="row tab-content">
-			<div class="col-lg-3 tab-single" >                 
-			 <a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-	                    <img src="https://soporella.com/assets/images/activity/thumbnail/soporella-burj-khalifa-1.jpg" alt="At the Top &amp; Sky at Burj Khalifa" class="img-responsive">
-	                  </a>
-	                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">At the Top &amp; Sky at Burj Khali...</a></h4>
-	                  <p>"At the Top &amp; Sky" are observation decks of the world’s tallest building and from the<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">... more</a></p>
-	                  <a class="buy" href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">Buy Tickets</a>
-			</div>
-
-			<div class="col-lg-3 tab-single">                 
-				 <a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-		                    <img src="https://soporella.com/assets/images/activity/thumbnail/soporella-burj-khalifa-1.jpg" alt="At the Top &amp; Sky at Burj Khalifa" class="img-responsive">
-		                  </a>
-		                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">At the Top &amp; Sky at Burj Khali...</a></h4>
-		                  <p>"At the Top &amp; Sky" are observation decks of the world’s tallest building and from the<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">... more</a></p>
-		                  <a class="buy" href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">Buy Tickets</a>
-			</div>
+  <!--   <div class="item">
+     	<div class="row tab-content">
 			
-			<div class="col-lg-3 tab-single">                 
-				 <a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-		                    <img src="https://soporella.com/assets/images/activity/thumbnail/yas-waterworld-05.jpg" alt="At the Top &amp; Sky at Burj Khalifa" class="img-responsive">
-		                  </a>
-		                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">At the Top &amp; Sky at Burj Khali...</a></h4>
-		                  <p>"At the Top &amp; Sky" are observation decks of the world’s tallest building and from the<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">... more</a></p>
-		                  <a class="buy" href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">Buy Tickets</a>
-			</div>
-
-			<div class="col-lg-3 tab-single">                 
-				 <a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-		                    <img src="https://soporella.com/assets/images/activity/thumbnail/yas-waterworld-05.jpg" alt="At the Top &amp; Sky at Burj Khalifa" class="img-responsive">
-		                  </a>
-		                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">At the Top &amp; Sky at Burj Khali...</a></h4>
-		                  <p>"At the Top &amp; Sky" are observation decks of the world’s tallest building and from the<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">... more</a></p>
-		                  <a class="buy" href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">Buy Tickets</a>
-			</div>
-		</div>
+		</div>	
     </div>
-
-   
+ -->
+  
   </div>
 
   <!-- Left and right controls -->

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use  App\Attractions;
+use  App\Attraction;
 
 class AttractionController extends Controller
 {
@@ -16,7 +16,7 @@ class AttractionController extends Controller
      */
     public function index() 
     {	
-    	$attractions = Attractions::paginate(50);
+    	$attractions = Attraction::paginate(50);
 
 		return view('management.pages.attraction', compact('attractions'));
     }
@@ -26,7 +26,7 @@ class AttractionController extends Controller
      * @param  Attractions $attraction [description]
      * @return [type]                  [description]
      */
-    public function show(Attractions $attraction) 
+    public function show(Attraction $attraction) 
     {
 
     	return view('management.pages.attractions.edit', compact('attraction'));
