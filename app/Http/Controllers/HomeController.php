@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Promotion;
 use Cache;
+use URL;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,10 @@ class HomeController extends Controller
         $promotions = Cache::remember('promotions', 30, function () {
             return Promotion::take(10)->get();
         });
+
+        foreach($promotions as $promotion) {
+            $promotion->attraction->pageUrl = URL::to('promotion/'.$promotion->attraction->slug);
+        }
 
         return view('front.pages.home', compact('promotions'));
 

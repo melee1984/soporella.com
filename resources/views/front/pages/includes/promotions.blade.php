@@ -15,23 +15,18 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      	
       	<div class="row tab-content">
-
       		@foreach($promotions as $promotion) 
-
-			<div class="col-lg-3 tab-single" >                 
-				<a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa">
-					<img src="{{ asset('products/images/'.$promotion->attraction->photo) }}" alt="{{ $promotion->attraction->title }}" class="img-responsive">
-				</a>
-	                  <h4><a href="https://soporella.com/top/at-the-top-and-sky-at-burj-khalifa" title="At the Top &amp; Sky at Burj Khalifa">{{ $promotion->attraction->title }}</a></h4>
-	                  <p>{{ Str::words($promotion->attraction->description, 20) }} <a href=""> more</a></p>
-	                  <a class="buy" href="{{ URL::to('promotion/'.$promotion->attraction->slug) }}">Buy Tickets</a>
-			</div>
+				<div class="col-lg-3 tab-single" >                 
+					<a href="{{ $promotion->attraction->pageUrl }}">
+						<img src="{{ asset('products/images/'.$promotion->attraction->photo) }}" alt="{{ $promotion->attraction->title }}" class="img-responsive">
+					</a>
+	                  <h4><a href="{{ $promotion->attraction->pageUrl }}" title="At the Top &amp; Sky at Burj Khalifa">{{ $promotion->attraction->title }}</a></h4>
+	                  <p>{{ Str::words($promotion->attraction->description, 20) }} <a href="{{ $promotion->attraction->pageUrl }}"> more</a></p>
+	                  <a class="buy" href="{{ $promotion->attraction->pageUrl }}">Buy Tickets</a>
+				</div>
 			@endforeach
-
 		</div>
-
     </div>
 
   <!--   <div class="item">
