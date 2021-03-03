@@ -8,6 +8,7 @@ class CategoryAttractionMapping extends Model
 {
     protected $table = 'category_attraction_mapping';
     protected $fillable = ['attraction_id', 'category_id'];
+    public $timestamps = false;
 
     /**
      * Get the relation attractions 

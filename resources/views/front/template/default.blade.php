@@ -5,6 +5,7 @@
     @include('front.includes.meta')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
 </head>
   <body>
@@ -14,8 +15,10 @@
         @include('front.includes.nav')
         @include('front.includes.slide2')
     </div>
-
-    @yield('content')
+    
+    <div id="app">
+        @yield('content')
+    </div>
 
     @include('front.includes.footer')
     @include('front.includes.js')

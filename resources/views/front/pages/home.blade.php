@@ -10,8 +10,11 @@
 		  <p><a class="btn buy" href="#" role="button">Learn more</a></p>
 	</div>
 
-	@include('front.pages.includes.promotions')
-	@include('front.pages.includes.topattractions')
+	@include('front.pages.includes.display', 
+		['title' => 'Promotions', 'attractions' => $promotions])
+	@include('front.pages.includes.display', 
+		['title' => 'Top Attractions', 'attractions' => $topAttractions])
+
 	@include('front.pages.includes.youmightvisits')
 
 </div>

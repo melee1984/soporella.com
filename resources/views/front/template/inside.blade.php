@@ -14,7 +14,9 @@
         @include('front.includes.nav')
     </div>
 
-    @yield('content')
+    <div id="app">
+        @yield('content')    
+    </div>
 
     @include('front.includes.footer')
     @include('front.includes.js')

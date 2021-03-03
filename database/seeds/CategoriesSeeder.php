@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Category;
+use App\Models\Category\CategoryAttractionMapping;
 
 
 class CategoriesSeeder extends Seeder
@@ -51,8 +52,11 @@ class CategoriesSeeder extends Seeder
 
     public function run()
     {
-         foreach ($this->categories as $category) {
+        foreach ($this->categories as $category) {
             Category::create($category);
         }
+
+        CategoryAttractionMapping::create(array('attraction_id' => 1, 'category_id' => 1));
+        CategoryAttractionMapping::create(array('attraction_id' => 2, 'category_id' => 1));
     }
 }

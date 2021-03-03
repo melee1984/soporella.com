@@ -32,7 +32,7 @@ class AttractionsSeeder extends Seeder
             'description' => "HeliDubai is the premier helicopter service provider in the UAE, offering a wide range of services from tours, corporate and VIP transfers, private he	HeliDubai is the premier helicopter service provider in the UAE, offering a wide range of services from tours, corporate and VIP transfers, private helicopter charter and specializing in aerial filming and photography. Coupled with a worldwide reputation and a range of services.",
             'active' => true,
             'slug' => 'heli-dubai',
-            'photo' => 'helidubai-01.jpeg',
+            'photo' => 'helidubai-01.jpg',
         ],
         [
             'title' => 'Wild Wadi Waterpark',

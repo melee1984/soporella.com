@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Promotion;
+use App\TopAttraction;
+
 use Cache;
 use URL;
 
@@ -27,17 +29,27 @@ class HomeController extends Controller
     public function index() 
     {   
         $promotions = Cache::remember('promotions', 30, function () {
-            return Promotion::take(10)->get();
+            $promotions = Promotion::take(8)->get();
+            foreach($promotions as $promotion) {
+                $promotion->populateAttractionPageURL();
+                $promotion->populateAttractionImage();
+            }
+            return $promotions;
         });
 
-        foreach($promotions as $promotion) {
-            $promotion->attraction->pageUrl = URL::to('promotion/'.$promotion->attraction->slug);
-        }
+         $topAttractions = Cache::remember('promotions', 30, function () {
+            $topAttractions = TopAttraction::take(8)->get();
+            foreach($topAttractions as $attractions) {
+                $attractions->populateAttractionPageURL();
+                $attractions->populateAttractionImage();
+            }
+            return $topAttractions;
+        });
 
-        return view('front.pages.home', compact('promotions'));
+        return view('front.pages.home', compact('promotions', 'topAttractions'));
 
     }
-
+    
     public function displayByTheme() 
     {
         return view('front.pages.listing');
