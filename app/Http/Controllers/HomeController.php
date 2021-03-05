@@ -46,7 +46,17 @@ class HomeController extends Controller
             return $topAttractions;
         });
 
-        return view('front.pages.home', compact('promotions', 'topAttractions'));
+        $suggestionAttractions = Cache::remember('promotions', 30, function () {
+            $suggestionAttractions = TopAttraction::take(8)->get();
+            foreach($suggestionAttractions as $attractions) {
+                $attractions->populateAttractionPageURL();
+                $attractions->populateAttractionImage();
+            }
+            return $suggestionAttractions;
+        });
+
+
+        return view('front.pages.home', compact('promotions', 'topAttractions', 'suggestionAttractions'));
 
     }
     

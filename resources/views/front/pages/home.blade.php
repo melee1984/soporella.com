@@ -14,7 +14,6 @@
 		['title' => 'Promotions', 'attractions' => $promotions])
 	@include('front.pages.includes.display', 
 		['title' => 'Top Attractions', 'attractions' => $topAttractions])
-
 	@include('front.pages.includes.youmightvisits')
 
 </div>
