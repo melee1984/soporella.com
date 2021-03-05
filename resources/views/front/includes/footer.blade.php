@@ -8,7 +8,7 @@
         <div id="quick" class="col-lg-4">
           <h3>{{ trans('messages.FOOTER_QL_LABEL') }}</h3>
           <ul>
-            <li><a href="{{URL::to('about-us')}}">{{ trans('messages.FOOTER_QL_ABOUT_US') }}</a></li>
+            <li><a href="{{ route('aboutus') }}">{{ trans('messages.FOOTER_QL_ABOUT_US') }}</a></li>
               <li><a href="{{URL::to('sell-tickets-with-us')}}">{{ trans('messages.FOOTER_QL_SELL_TICKET') }}</a></li>
               <li><a href="{{URL::to('disclaimer')}}">
                 {{ trans('messages.DISCLAIMER') }}
