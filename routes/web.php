@@ -21,6 +21,16 @@ Auth::routes();
 
 /* Dashboard */
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/about-us', 'PageController@aboutus')->name('aboutus');
+Route::get('/sell-tickets-with-us', 'HomeController@sellticketwithus')->name('sellticketwithus');
+Route::get('/disclaimer', 'HomeController@disclaimer')->name('disclaimer');
+Route::get('/terms-and-condition', 'HomeController@termsandconditions')->name('termsandconditions');
+Route::get('/privacy-policy', 'HomeController@primvacypolicy')->name('primvacypolicy');
+Route::get('/shipping-and-return-policy', 'HomeController@shippingandreturnpolicy')->name('shippingandreturnpolicy');
+Route::get('/contact-us', 'HomeController@contactus')->name('home');Route::get('/', 'HomeController@termsandconditions')->name('contactus');
+Route::get('/sitemap', 'HomeController@contactus')->name('home');Route::get('/', 'HomeController@sitemap')->name('sitemap');
+
+
 // Display by Theme Category Type
 
 /* Dashboard */

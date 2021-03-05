@@ -30,8 +30,8 @@
         <div id="accept" class="col-lg-2">
           <h3>{{ trans('messages.FOOTER_WE_ACCEPT') }}</h3>
           <ul>
-            <li><img src="{{ asset('theme2018/images/visa.png') }}" alt="Visa"></li>
-            <li><img src="{{ asset('theme2018/images/mastercard.png') }}" alt="Mastercard"></li>
+            <li><img src="{{ asset('theme/images/visa.png') }}" alt="Visa"></li>
+            <li><img src="{{ asset('theme/images/mastercard.png') }}" alt="Mastercard"></li>
           </ul>
         </div>
         <!--Trusted-->
@@ -72,10 +72,10 @@
         </div>
         <div id="social" class="col-lg-6 text-right">
           <ul>
-            <li><a target="_blank" href="https://www.facebook.com/Soporella-1342011235913453/"><img src="{{asset('theme2018/images/facebook.png')}}" alt="Facebook"/></a></li>
-            <li><a target="_blank" href="https://twitter.com/Soporella_UAE"><img src="{{asset('theme2018/images/twitter.png')}}" alt="Twitter"/></a></li>
-            <li><a target="_blank" href="https://www.youtube.com/channel/UC-2-IBVvaVy8ZUX74PJB17w"><img src="{{asset('theme2018/images/youtube.png')}}" alt="YouTube"/></a></li>
-            <li><a target="_blank" href="https://www.instagram.com/soporella_uae/"><img src="{{asset('theme2018/images/instagram.png')}}" alt="Instagram"/></a></li>
+            <li><a target="_blank" href="https://www.facebook.com/Soporella-1342011235913453/"><img src="{{asset('theme/images/facebook.png')}}" alt="Facebook"/></a></li>
+            <li><a target="_blank" href="https://twitter.com/Soporella_UAE"><img src="{{asset('theme/images/twitter.png')}}" alt="Twitter"/></a></li>
+            <li><a target="_blank" href="https://www.youtube.com/channel/UC-2-IBVvaVy8ZUX74PJB17w"><img src="{{asset('theme/images/youtube.png')}}" alt="YouTube"/></a></li>
+            <li><a target="_blank" href="https://www.instagram.com/soporella_uae/"><img src="{{asset('theme/images/instagram.png')}}" alt="Instagram"/></a></li>
           </ul>
         </div>
       </div>
