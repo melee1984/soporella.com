@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.Event = new Vue();
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +20,11 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// 
+import totalcount from './components/TotalItemCount.vue';
+
+Vue.component('cart-total', totalcount);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

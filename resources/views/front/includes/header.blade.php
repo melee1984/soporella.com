@@ -16,8 +16,7 @@
           <li><a href="{{ URL::to('/logout') }}">Logout</a></li>
         @endif
         <li>
-          <a href="{{URL::to('shopping-cart/basket')}}">{{trans('messages.HEADER_LABEL_MY_TICKET')}} (
-            <span id="tickets_no"> 12 </span>)</a>
+          <cart-total></cart-total>
         </li>
         <li>
           <a href="#">
