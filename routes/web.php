@@ -71,5 +71,3 @@ Route::get('/visit/{attraction:slug}', 'AttractionController@index')->name('page
 Route::get('/top/{attraction:slug}', 'AttractionController@index')->name('page.top');
 Route::get('/{category:slug}', 'HomeController@category')->name('page.category');
 Route::get('/{category:slug}/{attraction:slug}', 'AttractionController@index')->name('page.attraction');
-
-
