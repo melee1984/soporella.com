@@ -8,6 +8,8 @@ use App\TopAttraction;
 
 use Cache;
 use URL;
+use App\Category;
+use App\Campaign;
 
 class HomeController extends Controller
 {
@@ -31,7 +33,6 @@ class HomeController extends Controller
         $promotions = Cache::remember('promotions', 30, function () {
             $promotions = Promotion::take(8)->get();
             foreach($promotions as $promotion) {
-                $promotion->populateAttractionPageURL();
                 $promotion->populateAttractionImage();
             }
             return $promotions;
@@ -40,7 +41,6 @@ class HomeController extends Controller
          $topAttractions = Cache::remember('promotions', 30, function () {
             $topAttractions = TopAttraction::take(8)->get();
             foreach($topAttractions as $attractions) {
-                $attractions->populateAttractionPageURL();
                 $attractions->populateAttractionImage();
             }
             return $topAttractions;
@@ -49,19 +49,31 @@ class HomeController extends Controller
         $suggestionAttractions = Cache::remember('promotions', 30, function () {
             $suggestionAttractions = TopAttraction::take(8)->get();
             foreach($suggestionAttractions as $attractions) {
-                $attractions->populateAttractionPageURL();
                 $attractions->populateAttractionImage();
             }
             return $suggestionAttractions;
         });
 
+        $menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
 
-        return view('front.pages.home', compact('promotions', 'topAttractions', 'suggestionAttractions'));
+        $campaigns = Cache::remember('campaigns', 5, function () {
+            $campaigns = Campaign::inRandomOrder()->take(1)->get();
+             foreach($campaigns as $attractions) {
+                $attractions->populateAttractionImage();
+            }
+            return $campaigns;
+        });
+
+        return view('front.pages.home', compact('menus', 'campaigns', 'promotions', 'topAttractions', 'suggestionAttractions'));
 
     }
     
-    public function displayByTheme() 
-    {
+    public function category(Category $category) 
+    {   
+        dd($category->attractionsMapping);
+
         return view('front.pages.listing');
     }
 }

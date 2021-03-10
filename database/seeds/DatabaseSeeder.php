@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TopAttractionSeeder::class);
         $this->call(PromotionSeeder::class);
         $this->call(SuggestiveAttractionSeeder::class);
-        
+        $this->call(CampaignSeeder::class);
     }}
 

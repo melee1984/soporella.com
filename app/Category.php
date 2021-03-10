@@ -21,5 +21,23 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Category\CategoryAttractionMapping', 'category_id', 'id');
     }
+    /**
+     * Menu with active status 
+     * @param  [type] $query [description]
+     * @return object with filtered 
+     */
+    public function scopeForMenu($query)
+    {
+        return $query->where('is_menu', 1);
+    }
+     /**
+     * Menu with active status 
+     * @param  [type] $query [description]
+     * @return object with filtered 
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
 
 }

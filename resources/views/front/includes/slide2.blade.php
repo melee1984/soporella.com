@@ -1,16 +1,18 @@
 <div class="banner-1">
   <div class="container">
+      @foreach($campaigns as $campaign)
       <div class="row">
         <div class="col-md-6 text-center">
-            <img src="https://soporella.com/assets/images/activity/thumbnail/12.jpg" class="img-responsive">
+            <img src="{{ $campaign->attraction->photo }}" class="img-responsive">
         </div>    
         <div class="col-md-6 text-center">
             <div class="carousel-caption">
-              <h2>IMG Worlds of Adventure Winter Festive 20% Promotion</h2>
-              <p>on all Fast Track options. Valid from 25th November 2019 – 31st December 2019.</p>
-              <a class="buy" href="https://soporella.com/top/img-worlds-of-adventure">Buy Tickets</a>
+              <h2>{{ $campaign->title }}</h2>
+              <p>{{ $campaign->description }}</p>
+              <a class="buy" href="{{ route('page.promotion', $campaign->attraction) }}">Buy Tickets</a>
             </div>
         </div>    
       </div>
+      @endforeach 
     </div>
 </div>

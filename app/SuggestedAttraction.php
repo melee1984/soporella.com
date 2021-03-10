@@ -26,7 +26,7 @@ class SuggestedAttraction extends Model
      * @return return templated page URL contract in the object
      */
     public function scopePopulateAttractionPageURL($query) {
-        return $this->attraction->pageUrl = URL::to($this->attraction->slug);
+        return $this->attraction->pageUrl = URL::to('visit/'.$this->attraction->slug);
     }
     /**
      * Populate Photo asset url 

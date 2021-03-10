@@ -30,6 +30,8 @@ Route::get('/shipping-and-return-policy', 'PageController@shippingandreturnpolic
 Route::get('/contact-us', 'PageController@contactus')->name('contactus');
 Route::get('/sitemap', 'PageController@sitemap')->name('sitemap');
 
+Route::get('/promotions', 'PromotionsController@index')->name('promotions');
+
 
 // Display by Theme Category Type
 
@@ -56,7 +58,6 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('/dashboard/campaign', 'Management\CategoryController@index')->name('dashboard.management.categories');
 	// campaign
 	Route::get('/dashboard/settings', 'Management\CategoryController@index')->name('dashboard.management.categories');
-
 	// user 
 	Route::get('/dashboard/users', 'Management\UsersController@index')->name('dashboard.management.user');
 	//. Logout
@@ -65,6 +66,9 @@ Route::group(['middleware' => 'admin'], function() {
 
 });
 
-
-Route::get('/{cagegoryType}', 'HomeController@displayByTheme')->name('home');
+Route::get('/{category:slug}', 'HomeController@category')->name('page.category');
+Route::get('/{catgory:slug}/{attraction:slug}', 'AttractionController@index')->name('page.attraction');
+Route::get('/promotion/{attraction:slug}', 'AttractionController@index')->name('page.promotion');
+Route::get('/visit/{attraction:slug}', 'AttractionController@index')->name('page.visit');
+Route::get('/top/{attraction:slug}', 'AttractionController@index')->name('page.top');
 

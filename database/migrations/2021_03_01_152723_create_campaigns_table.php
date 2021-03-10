@@ -15,6 +15,8 @@ class CreateCampaignsTable extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title', 250);
+            $table->text('description');
             $table->bigInteger('attraction_id')->unsigned()->nullable();
             $table->foreign('attraction_id')->references('id')->on('attractions')->onUpdate('RESTRICT')->onDelete('CASCADE');
             $table->tinyInteger('sorting')->nullable();

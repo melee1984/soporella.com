@@ -20,7 +20,6 @@ class Promotion extends Model
         return $this->belongsTo('App\Attraction', 'attraction_id', 'id');
     }
 
-
     /* Extra function */
     /**
      * Populate Page URL for the Attractions 
