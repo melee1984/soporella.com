@@ -17,9 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesSeeder::class);
         $this->call(TopAttractionSeeder::class);
         
-        // $this->call(VisitSeeder::class);
-        // $this->call(CampaignSeeder::class);
-
+        $this->call(VisitSeeder::class);
+        $this->call(CampaignSeeder::class);
         $this->call(PromotionSeeder::class);
         
     }
