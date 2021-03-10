@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/lang/{locale}', function($locale) {
+	session()->put('locale', $locale);
+	return redirect()->back();
+});
+
 Auth::routes();
 
 /* Dashboard */

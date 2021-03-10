@@ -22,3 +22,4 @@ class DatabaseSeeder extends Seeder
     }
 }
 // php artisan make:seeder VisitSeeder
+// php artisan make:seeder CountrySeeder

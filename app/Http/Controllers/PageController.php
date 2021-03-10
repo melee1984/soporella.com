@@ -11,8 +11,12 @@ class PageController extends Controller
      * @return return view
      */
     public function aboutus() 
-    {
-    	return view('front.pages.aboutus');
+    {   
+        $menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+    	return view('front.pages.aboutus', compact('menus'));
     }
     /**
      * About us 
@@ -20,7 +24,11 @@ class PageController extends Controller
      */
     public function sellticketwithus() 
     {
-    	return view('front.pages.sellticketwithus');
+    	$menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+        return view('front.pages.sellticketwithus', compact('menus'));
     }
     /**
      * About us 
@@ -28,7 +36,11 @@ class PageController extends Controller
      */
     public function disclaimer() 
     {
-    	return view('front.pages.disclaimer');
+    	$menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+        return view('front.pages.disclaimer', compact('menus'));
     }
     /**
      * terms and conditions 
@@ -36,7 +48,11 @@ class PageController extends Controller
      */
     public function termsandconditions() 
     {
-    	return view('front.pages.termsandconditions');
+        $menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+        return view('front.pages.termsandconditions', compact('menus'));
     }
     /**
      * privacy policy
@@ -44,7 +60,11 @@ class PageController extends Controller
      */
     public function primvacypolicy() 
     {
-    	return view('front.pages.primvacypolicy');
+    	$menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+        return view('front.pages.primvacypolicy', compact('menus'));
     }
     /**
      * shipping and return policy 
@@ -52,7 +72,11 @@ class PageController extends Controller
      */
     public function shippingandreturnpolicy() 
     {
-    	return view('front.pages.shippingandreturnpolicy');
+    	$menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+        return view('front.pages.shippingandreturnpolicy', compact('menus'));
     }
     /**
      * contactus 
@@ -60,7 +84,11 @@ class PageController extends Controller
      */
     public function contactus() 
     {
-    	return view('front.pages.contactus');
+    	$menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+        return view('front.pages.contactus', compact('menus'));
     }
     /**
      * Sitemap 
@@ -68,7 +96,11 @@ class PageController extends Controller
      */
     public function sitemap() 
     {
-    	return view('front.pages.sitemap');
+    	$menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+        return view('front.pages.sitemap', compact('menus'));
     }
        
 }
