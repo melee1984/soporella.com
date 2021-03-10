@@ -1,12 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 use App\Attraction;
 use App\SuggestedAttraction;
 
-
-class SuggestiveAttractionSeeder extends Seeder
+class VisitSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +13,9 @@ class SuggestiveAttractionSeeder extends Seeder
      */
     public function run()
     {
-       $attractions = Attraction::take(6)->get();
+       	$attractions = Attraction::take(6)->get();
 
-         foreach ($attractions as $attraction) {
+        foreach ($attractions as $attraction) {
             SuggestedAttraction::create(array('attraction_id' => $attraction->id));
         }
     }
