@@ -16,9 +16,11 @@ class DatabaseSeeder extends Seeder
         $this->call(AttractionsSeeder::class);
         $this->call(CategoriesSeeder::class);
         $this->call(TopAttractionSeeder::class);
-        $this->call(PromotionSeeder::class);
         $this->call(VisitSeeder::class);
         $this->call(CampaignSeeder::class);
+        
+        $this->call(PromotionSeeder::class);
+        
     }
 }
 // php artisan make:seeder VisitSeeder
