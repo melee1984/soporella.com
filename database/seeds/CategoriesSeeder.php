@@ -11,37 +11,44 @@ class CategoriesSeeder extends Seeder
         [
             'title' => 'Waterparks',
             'active' => 1,
-            'slug' => 'waterparks'
+            'slug' => 'waterparks',
+            'is_menu' => 1
         ],
          [
             'title' => 'Themeparks',
             'active' => 1,
-            'slug' => 'themeparks'
+            'slug' => 'themeparks', 
+            'is_menu' => 1
         ],
          [
             'title' => 'Sports',
             'active' => 1,
-            'slug' => 'sports'
+            'slug' => 'sports',
+            'is_menu' => 1
         ],
          [
             'title' => 'Sightseeing',
             'active' => 1,
-            'slug' => 'sightseeing'
+            'slug' => 'sightseeing',
+            'is_menu' => 1
         ],
          [
             'title' => 'Family',
             'active' => 1,
-            'slug' => 'family'
+            'slug' => 'family',
+            'is_menu' => 1
         ],
          [
             'title' => 'Culture',
             'active' => 1,
-            'slug' => 'culture'
+            'slug' => 'culture',
+            'is_menu' => 1
         ],
         [
             'title' => 'Adventure',
             'active' => 1,
-            'slug' => 'adventure'
+            'slug' => 'adventure',
+            'is_menu' => 1
         ],
     ];
 
