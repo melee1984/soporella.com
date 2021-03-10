@@ -31,8 +31,8 @@
     </div>
     <!--Language-->
     <div id="country" class="col-lg-1 col-xs-4 padding-l0 text-right">
-      <a href="#"><img class="img-responsive" src="{{asset('theme/images/flags/eng_flag.svg')}}" alt="English" /></a>
-      <a href="#"><img class="img-responsive" src="{{asset('theme/images/flags/german_flag.svg')}}" alt="German" /></a>
+      <a href="{{ URL::to('lang/en') }}"><img class="img-responsive" src="{{asset('theme/images/flags/eng_flag.svg')}}" alt="English" /></a>
+      <a href="{{ URL::to('lang/de') }}"><img class="img-responsive" src="{{asset('theme/images/flags/german_flag.svg')}}" alt="German" /></a>
     </div>
     <!--Hamburger-->
     <div class="col-xs-2 visible-xs text-right">
