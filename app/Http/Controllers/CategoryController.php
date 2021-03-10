@@ -16,6 +16,9 @@ class CategoryController extends Controller
      */
     public function index(Category $category) 
     {   
+    	echo "SMAO";
+    	die();
+    	
         $menus = Cache::remember('menus', 30, function () {
             return Category::forMenu()->active()->get();
         });
