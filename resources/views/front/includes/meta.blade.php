@@ -11,6 +11,7 @@
 <meta name="description" content="Book tours, attractions, activities and other places to visit in Dubai and the rest of the UAE with no booking Fees! Call +971 4 3910350  book here.">
 <meta name="author" content="">
 <meta name="keywords" content="Places to visit in Dubai">
+<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
 <title>Soporella - Your Ticketing Outlet</title>
 

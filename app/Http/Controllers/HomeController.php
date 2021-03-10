@@ -75,8 +75,15 @@ class HomeController extends Controller
     
     public function category(Category $category) 
     {   
-        dd($category->attractionsMapping);
+        $menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
 
-        return view('front.pages.listing');
+        foreach($category->attractionsMapping as $attractions) {
+            $attractions->attraction->photo = asset('products/images/'.$attractions->attraction->photo);
+            $attractions->attraction->pageUrl = route('page.attraction', [$category->slug, $attractions->attraction]);
+        }
+        
+        return view('front.pages.listing', compact('menus', 'category'));
     }
 }

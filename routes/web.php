@@ -70,6 +70,6 @@ Route::get('/promotion/{attraction:slug}', 'AttractionController@index')->name('
 Route::get('/visit/{attraction:slug}', 'AttractionController@index')->name('page.visit');
 Route::get('/top/{attraction:slug}', 'AttractionController@index')->name('page.top');
 Route::get('/{category:slug}', 'HomeController@category')->name('page.category');
-Route::get('/{catgory:slug}/{attraction:slug}', 'AttractionController@index')->name('page.attraction');
+Route::get('/{category:slug}/{attraction:slug}', 'AttractionController@index')->name('page.attraction');
 
 

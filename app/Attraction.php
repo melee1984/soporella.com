@@ -14,5 +14,13 @@ class Attraction extends Model
 	public $timestamps = true;
 	protected $fillable = ['title', 'short_description', 'description', 'active', 'photo', 'slug'];
 
-	
+	/**
+     * Populate Photo asset url 
+     * @param  object 
+     * @return return tempalted url for photo
+     */
+    public function scopePopulateAttractionImage($query) {
+        return $this->attraction->photo = asset('products/images/'.$this->attraction->photo);
+    }
+    
 }
