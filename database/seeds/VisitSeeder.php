@@ -13,10 +13,10 @@ class VisitSeeder extends Seeder
      */
     public function run()
     {
-       	$attractions = Attraction::take(6)->get();
+       	// $attractions = Attraction::take(6)->get();
 
-        foreach ($attractions as $attraction) {
-            SuggestedAttraction::create(array('attraction_id' => $attraction->id));
-        }
+        // foreach ($attractions as $attraction) {
+        //     SuggestedAttraction::create(array('attraction_id' => $attraction->id));
+        // }
     }
 }
