@@ -72,22 +72,5 @@ class HomeController extends Controller
         return view('front.pages.home', compact('menus', 'campaigns', 'promotions', 'topAttractions', 'suggestionAttractions'));
 
     }
-    /**
-     * Category Display 
-     * @param  Category $category [description]
-     * @return [type]             [description]
-     */
-    public function category(Category $category) 
-    {   
-        $menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
-        });
-
-        foreach($category->attractionsMapping as $attractions) {
-            $attractions->attraction->photo = asset('products/images/'.$attractions->attraction->photo);
-            $attractions->attraction->pageUrl = route('page.attraction', [$category->slug, $attractions->attraction]);
-        }
-        
-        return view('front.pages.listing', compact('menus', 'category'));
-    }
+   
 }
