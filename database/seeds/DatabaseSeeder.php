@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesSeeder::class);
         $this->call(TopAttractionSeeder::class);
         $this->call(PromotionSeeder::class);
-        $this->call(SuggestiveAttractionSeeder::class);
         $this->call(CampaignSeeder::class);
+        $this->call(SuggestiveAttractionSeeder::class);
     }}
 
