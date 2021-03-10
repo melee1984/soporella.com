@@ -13,7 +13,7 @@ class CountrySeeder extends Seeder
             'flag' => 'eng_flag.svg'
         ],
         [
-            'title' => 'de',
+            'country_code' => 'de',
             'active' => 1,
             'flag' => 'german_flag.svg'
         ],
