@@ -22,5 +22,6 @@ class Attraction extends Model
     public function scopePopulateAttractionImage($query) {
         return $this->attraction->photo = asset('products/images/'.$this->attraction->photo);
     }
-    
+
+
 }

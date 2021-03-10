@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Attraction;
 use App\Category;
+use App\Attraction;
+use Cache;
 
 class AttractionController extends Controller
 {
-	public function index(Category $category, Attraction $attraction) 
+	public function show($category, Attraction $attraction) 
     {   
-       return view('front.pages.listing', compact('attraction'));
+		$menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+			
+		return view('front.pages.inside', compact('menus', 'attraction'));
     }
     /**
      * [inside description]
@@ -19,7 +24,11 @@ class AttractionController extends Controller
      */
     public function inside(Attraction $attraction) 
     {   
-       return view('front.pages.inside', compact('attraction'));
+       $menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+
+       return view('front.pages.inside', compact('attraction', 'menus'));
     }
 
     

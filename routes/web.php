@@ -71,8 +71,9 @@ Route::group(['middleware' => 'admin'], function() {
 
 });
 
-Route::get('/promotion/{attraction:slug}', 'AttractionController@inside')->name('page.promotion');
-Route::get('/visit/{attraction:slug}', 'AttractionController@inside')->name('page.visit');
-Route::get('/top/{attraction:slug}', 'AttractionController@inside')->name('page.top');
-Route::get('/{category:slug}', 'CategoryController@index')->name('page.category');
-Route::get('/{category:slug}/{attraction:slug}', 'AttractionController@index')->name('page.attraction');
+Route::get('promotion/{attraction:slug}', 'AttractionController@inside')->name('page.promotion');
+Route::get('visit/{attraction:slug}', 'AttractionController@inside')->name('page.visit');
+Route::get('top/{attraction:slug}', 'AttractionController@inside')->name('page.top');
+Route::get('{category:slug}/{attraction:slug}', 'AttractionController@show')->name('page.attraction');
+Route::get('{category:slug}', 'CategoryController@index')->name('page.category');
+
