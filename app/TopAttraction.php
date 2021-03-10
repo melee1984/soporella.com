@@ -25,7 +25,7 @@ class TopAttraction extends Model
      * @return return templated page URL contract in the object
      */
     public function scopePopulateAttractionPageURL($query) {
-        return $this->attraction->pageUrl = URL::to('top/'.$this->attraction->slug);
+        return $this->attraction->pageUrl = route('page.top', $this->attraction);
     }
     /**
      * Populate Photo asset url 

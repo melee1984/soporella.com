@@ -33,6 +33,7 @@ class HomeController extends Controller
         $promotions = Cache::remember('promotions', 30, function () {
             $promotions = Promotion::take(8)->get();
             foreach($promotions as $promotion) {
+                $promotion->populateAttractionPageURL();
                 $promotion->populateAttractionImage();
             }
             return $promotions;
@@ -41,6 +42,7 @@ class HomeController extends Controller
          $topAttractions = Cache::remember('promotions', 30, function () {
             $topAttractions = TopAttraction::take(8)->get();
             foreach($topAttractions as $attractions) {
+                $attractions->populateAttractionPageURL();
                 $attractions->populateAttractionImage();
             }
             return $topAttractions;
@@ -49,6 +51,7 @@ class HomeController extends Controller
         $suggestionAttractions = Cache::remember('promotions', 30, function () {
             $suggestionAttractions = TopAttraction::take(8)->get();
             foreach($suggestionAttractions as $attractions) {
+                $attractions->populateAttractionPageURL();
                 $attractions->populateAttractionImage();
             }
             return $suggestionAttractions;

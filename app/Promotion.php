@@ -27,7 +27,7 @@ class Promotion extends Model
      * @return return templated page URL contract in the object
      */
     public function scopePopulateAttractionPageURL($query) {
-        return $this->attraction->pageUrl = URL::to('promotion/'.$this->attraction->slug);
+        return $this->attraction->pageUrl = route('page.promotion', $this->attraction);
     }
     /**
      * Populate Photo asset url 
