@@ -11,7 +11,7 @@
 	</div>
 
 	@include('front.pages.includes.display', 
-		['title' => 'Promotions', 'attractions' => $category->attractionsMapping])
+		['title' => $category->title , 'attractions' => $category->attractionsMapping])
 
 </div>
 
