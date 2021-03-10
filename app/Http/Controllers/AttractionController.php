@@ -8,10 +8,8 @@ use App\Category;
 
 class AttractionController extends Controller
 {
-     public function index(Category $category, Attraction $attraction) 
+	public function index(Category $category, Attraction $attraction) 
     {   
-        dd($attraction);
-
         return view('front.pages.listing');
     }
 }
