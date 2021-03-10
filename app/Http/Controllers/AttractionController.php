@@ -10,6 +10,9 @@ class AttractionController extends Controller
 {
 	public function index(Category $category, Attraction $attraction) 
     {   
+        echo "Attracytion";
+        die();
+        
         return view('front.pages.listing');
     }
 }
