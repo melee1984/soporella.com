@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Cache;
+use App\Category;
+
 class PageController extends Controller
 {
     /**
