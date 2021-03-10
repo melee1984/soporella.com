@@ -16,6 +16,12 @@ class CampaignSeeder extends Seeder
             'attraction_id' => 2,
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'
         ],
+
+        [
+            'title' => 'Testing Title 3',
+            'attraction_id' => 3,
+            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'
+        ],
          
     ];
     
