@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Cache;
+use App\Category;
+
 class LoginController extends Controller
 {
     /*
@@ -27,6 +30,17 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function showLoginForm()
+    {
+        $menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+            
+        return view('auth.login', compact('menus'));
+
+    }
+
 
     /**
      * Create a new controller instance.

@@ -18,7 +18,11 @@ class CreateAttractionsTable extends Migration
             $table->string('title', 150);
             $table->string('photo', 150)->nullable();
             $table->string('short_description', 250)->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->text('availability')->nullable();
+            $table->text('redemption')->nullable();
+            $table->text('policy')->nullable();
+            $table->text('about')->nullable();
             $table->boolean('active');
             $table->string('slug', 250);
             $table->softDeletes();

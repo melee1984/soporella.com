@@ -37,6 +37,8 @@ Route::get('/sitemap', 'PageController@sitemap')->name('sitemap');
 
 Route::get('/promotions', 'PromotionsController@index')->name('promotions');
 
+Route::get('/shopping-cart/basket', 'Shopping\CartController@index')->name('shopping.basket');
+
 
 // Display by Theme Category Type
 

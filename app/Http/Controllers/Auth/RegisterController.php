@@ -9,6 +9,11 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
+use Cache;
+use App\Category;
+
+
 class RegisterController extends Controller
 {
     /*
@@ -41,7 +46,16 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
+    public function showRegistrationForm()
+    {
+        $menus = Cache::remember('menus', 30, function () {
+            return Category::forMenu()->active()->get();
+        });
+            
+        return view('auth.register', compact('menus'));
+    }
+
+   /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data

@@ -79,30 +79,15 @@
       <div class="row">
         <div class="col-lg-12">
           <h3>Ticket Details</h3>
-          <div id="displayRateDescription">
-          	
-          </div>   
+          <p>-</p>
           <hr>
           <h3>Availability</h3>
-	       <p>We require advance bookings due to the high volume of visitors.&nbsp;Tickets will only be booked upon receiving a confirmation email from Soporella.</p>
+	         <p>{{ $attraction->availability }}</p>
 
           <hr>
           <h3>Redemption</h3>        
-                        <p>Entry passes, incl. all other bookings will be confirmed electronically after you completed the purchase process. The relevant entry pass will be sent to you electronically after the purchase process is completed. It is therefore imperative that your e-mail address is correctly inserted.</p>
-<p>Should a destination allow only confirmations but not an actual entry pass(es), you will receive such confirmation electronically. This electronic confirmation has to be converted on the day of your visit to an entry pass at the allocated area at the destination itself.&nbsp;</p>
-                        <hr>
-          <h3>About At the Top &amp; Sky at Burj Khalifa</h3>
-            <p>Burj Khalifa is the building that everyone talks about and is a true icon representing the growth of Dubai. "At the Top &amp; Sky" are observation decks of the world’s tallest building and from there, you will experience first-hand this modern architectural and engineering marvel and know at last what it is like to see the world from such a lofty height.</p>
-<p>Begin your vertical ascent to the observation deck in a high-speed elevator, travelling up to 10 meters per second. As the doors open, floor-to-ceiling glass walls provide a breath-taking unobstructed 360-degree view of the city, desert and ocean. By night, sparkling lights and stars compete for your attention as the sky and city blend into one.</p>
-<p>Special telescopes provide virtual time-travel visions of the scenes beyond and below. You’ll see close-up real-time views as well as the past and the future, by day and by night. You can also walk the entire perimeter for more complete views. If you wish, adventure outside onto the open-air terrace to enjoy another perspective of the expansive views below.</p>   
-          <hr>    
-
-          <h3 style="display: none;">Disclaimer</h3> 
-          <p style="display: none;">
-            <a class="img-pdf" href="https://soporella.com/assets/images/company/disclaimer"><img src="https://image.flaticon.com/icons/svg/303/303902.svg" width="58px" alt="Dislaimer">
-            </a>
-          </p>
-
+          <p>{{ $attraction->redemption }}</p>
+       
         </div>
       </div>
     </div>
