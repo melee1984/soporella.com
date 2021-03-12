@@ -38353,13 +38353,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("span", [
-    _c("a", { attrs: { href: "#" }, on: { click: _vm.addCart } }, [
-      _vm._v(" My Tickets ("),
-      _c("span", { attrs: { id: "tickets_no" } }, [
-        _vm._v(" " + _vm._s(_vm.item_count) + " ")
-      ]),
-      _vm._v(")\n  ")
-    ])
+    _c(
+      "a",
+      { attrs: { href: "shopping-cart/basket" }, on: { click: _vm.addCart } },
+      [
+        _vm._v(" My Tickets ("),
+        _c("span", { attrs: { id: "tickets_no" } }, [
+          _vm._v(" " + _vm._s(_vm.item_count) + " ")
+        ]),
+        _vm._v(")\n  ")
+      ]
+    )
   ])
 }
 var staticRenderFns = []
