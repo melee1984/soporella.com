@@ -38355,9 +38355,7 @@ var render = function() {
   return _c("span", [
     _c("a", { attrs: { href: "shopping-cart/basket" } }, [
       _vm._v(" My Tickets ("),
-      _c("span", { attrs: { id: "tickets_no" } }, [
-        _vm._v(" " + _vm._s(_vm.item_count) + " ")
-      ]),
+      _c("span", [_vm._v(" " + _vm._s(_vm.item_count) + " ")]),
       _vm._v(")\n  ")
     ])
   ])

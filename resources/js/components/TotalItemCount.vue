@@ -1,6 +1,6 @@
 <template>
   <span>
-    <a href="shopping-cart/basket"> My Tickets (<span id="tickets_no"> {{ item_count }} </span>)
+    <a href="shopping-cart/basket"> My Tickets (<span> {{ item_count }} </span>)
     </a>
   </span>
  </template>
