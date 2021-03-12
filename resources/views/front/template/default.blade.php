@@ -14,12 +14,7 @@
             <div class="container-fluid">
                 @include('front.includes.header')
                 @include('front.includes.nav')
-
-                @section('slide')
-                        
-                @show
-
-                
+                @section('slide') @show
             </div>
         </div>
         

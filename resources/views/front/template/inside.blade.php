@@ -13,12 +13,10 @@
             @include('front.includes.header')
             @include('front.includes.nav')
         </div>
-        
         @yield('content')    
      </div> 
-
-    @include('front.includes.footer')
-    @include('front.includes.js')
+      @include('front.includes.footer')
+      @include('front.includes.js')
     
   </body>
 

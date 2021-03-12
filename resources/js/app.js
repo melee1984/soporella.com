@@ -9,6 +9,10 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.Event = new Vue();
 
+import VueMyToasts from 'vue-my-toasts'
+import 'vue-my-toasts/dist/vue-my-toasts.css'
+import BootstrapComponent from "vue-my-toasts/src/components/toasts/BootstrapComponent";
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -32,6 +36,17 @@ Vue.component('cart-total', totalcount);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.use(VueMyToasts, {
+	component: BootstrapComponent,
+	options: {
+	    width: '400px',
+	    position: 'top-right',
+	    padding: '1rem',
+  }
+})
+
 const app = new Vue({
     el: '#app',
 });
+
+
