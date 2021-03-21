@@ -3,7 +3,6 @@
     <a href="/shopping-cart/basket"> My Tickets (<span> {{ item_count }} </span>)</a>
   </span>
  </template>
-
 <script>
     export default {
       data() {
