@@ -38482,7 +38482,24 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-lg-8 col-lg-pull-4" }, [
           _vm.attraction.video != ""
-            ? _c("div", { staticClass: "row" }, [_vm._m(1)])
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-lg-12" }, [
+                  _c("div", { staticClass: "video" }, [
+                    _c("iframe", {
+                      attrs: {
+                        frameborder: "0",
+                        border: "0",
+                        width: "750",
+                        height: "422",
+                        src:
+                          "https://www.youtube.com/embed/" +
+                          _vm.attraction.video +
+                          "?autoplay=1&showinfo=0&controls=0&rel=0"
+                      }
+                    })
+                  ])
+                ])
+              ])
             : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -38588,25 +38605,6 @@ var staticRenderFns = [
             ])
           ])
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-12" }, [
-      _c("div", { staticClass: "video" }, [
-        _c("iframe", {
-          attrs: {
-            frameborder: "0",
-            border: "0",
-            width: "750",
-            height: "422",
-            src:
-              "https://www.youtube.com/embed/XuMpPaft_WI?autoplay=1&showinfo=0&controls=0&rel=0"
-          }
-        })
       ])
     ])
   }

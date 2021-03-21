@@ -63,7 +63,7 @@
         <div class="col-lg-12">
           	<!--YouTube-->
 			<div class="video">
-              <iframe frameborder="0" border="0" width="750" height="422" src="https://www.youtube.com/embed/XuMpPaft_WI?autoplay=1&amp;showinfo=0&amp;controls=0&amp;rel=0"></iframe>
+              <iframe frameborder="0" border="0" width="750" height="422" :src="'https://www.youtube.com/embed/'+attraction.video+'?autoplay=1&amp;showinfo=0&amp;controls=0&amp;rel=0'"></iframe>
             </div>
         </div>
       </div>
