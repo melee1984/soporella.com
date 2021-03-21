@@ -2078,7 +2078,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      item_count: 1
+      item_count: 0
     };
   },
   mounted: function mounted() {

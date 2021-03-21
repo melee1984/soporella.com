@@ -8,7 +8,7 @@
     export default {
       data() {
         return {
-            item_count: 1,
+            item_count: 0,
         }
       },
       mounted() {
