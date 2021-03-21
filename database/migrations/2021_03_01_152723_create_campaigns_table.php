@@ -20,6 +20,9 @@ class CreateCampaignsTable extends Migration
             $table->bigInteger('attraction_id')->unsigned()->nullable();
             $table->foreign('attraction_id')->references('id')->on('attractions')->onUpdate('RESTRICT')->onDelete('CASCADE');
             $table->tinyInteger('sorting')->nullable();
+            $table->tinyInteger('active')->default(0);
+            $table->tinyInteger('display_option')->nullable();
+            $table->string('discount_string', 250);
             $table->timestamps();
         });
     }
