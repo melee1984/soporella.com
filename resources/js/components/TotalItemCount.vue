@@ -1,7 +1,6 @@
 <template>
   <span>
-    <a href="shopping-cart/basket"> My Tickets (<span> {{ item_count }} </span>)
-    </a>
+    <a href="/shopping-cart/basket"> My Tickets (<span> {{ item_count }} </span>)</a>
   </span>
  </template>
 
@@ -14,9 +13,6 @@
       },
       mounted() {
         console.log('Mounted Basket Basket Count');
-
-        
-
       },
       created() {
         Event.$on('ItemCount', (cartItemCount) => {

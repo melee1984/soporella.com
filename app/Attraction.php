@@ -12,7 +12,7 @@ class Attraction extends Model
 
 	protected $table = 'attractions';
 	public $timestamps = true;
-	protected $fillable = ['title', 'short_description', 'description', 'active', 'photo', 'slug'];
+	protected $fillable = ['title', 'short_description', 'description', 'active', 'photo', 'slug', 'redemption', 'availability'];
 
 	/**
      * Populate Photo asset url 

@@ -23,6 +23,7 @@ class CreateAttractionsTable extends Migration
             $table->text('redemption')->nullable();
             $table->text('policy')->nullable();
             $table->text('about')->nullable();
+            $table->text('video')->nullable();
             $table->boolean('active');
             $table->string('slug', 250);
             $table->softDeletes();
