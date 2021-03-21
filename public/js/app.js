@@ -2041,10 +2041,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2055,7 +2051,11 @@ __webpack_require__.r(__webpack_exports__);
   props: ['attraction'],
   mounted: function mounted() {},
   created: function created() {},
-  methods: {}
+  methods: {
+    addCart: function addCart() {
+      this.$toasts.error("Adding cart isn't available yet");
+    }
+  }
 });
 
 /***/ }),
@@ -38523,7 +38523,33 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "col-lg-4 col-lg-push-8 tickets" }, [
+          _c("div", { staticClass: "sticky" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-6" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6 ticket-submit" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    staticClass: "form-control disabled",
+                    attrs: { type: "submit", value: "Add to Cart" },
+                    on: { click: _vm.addCart }
+                  })
+                ])
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-lg-8 col-lg-pull-4" }, [
           _vm.attraction.video != ""
@@ -38573,9 +38599,9 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(1),
+              _vm._m(5),
               _vm._v(" "),
-              _vm._m(2)
+              _vm._m(6)
             ])
           ])
         ]),
@@ -38612,7 +38638,7 @@ var render = function() {
         _c("br"),
         _c("br"),
         _vm._v(" "),
-        _vm._m(3)
+        _vm._m(7)
       ])
     ]
   )
@@ -38622,73 +38648,66 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4 col-lg-push-8 tickets" }, [
-      _c("div", { staticClass: "sticky" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-12" })
-        ]),
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-12" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-12 ticket-date" }, [
+        _c("h4", [_vm._v("When are you going?")]),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-12 ticket-date" }, [
-            _c("h4", [_vm._v("When are you going?")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                staticClass: "calendario form-control hasDatepicker",
-                attrs: {
-                  type: "date",
-                  name: "departure",
-                  placeholder: "mm/dd/yyyy",
-                  id: "departure"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "action_error_calendario hide" }, [
-                _vm._v("Please select date")
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-12 ticket-type" }, [
-            _c("h4", [_vm._v("Choose Ticket Type")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _vm._v(
-                "\n            displaying attraction variant here \n            "
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", {
-            staticClass: "priceRateDisplay",
-            attrs: { id: "att-drops" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", {
-            staticClass: "priceRateDisplay",
-            attrs: { id: "subLevel" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-6" }),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "calendario form-control hasDatepicker",
+            attrs: {
+              type: "date",
+              name: "departure",
+              placeholder: "mm/dd/yyyy",
+              id: "departure"
+            }
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-6 ticket-submit" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                staticClass: "form-control disabled",
-                attrs: { type: "submit", value: "Add to Cart" }
-              })
-            ])
+          _c("div", { staticClass: "action_error_calendario hide" }, [
+            _vm._v("Please select date")
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-12 ticket-type" }, [
+        _c("h4", [_vm._v("Choose Ticket Type")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _vm._v(
+            "\n            displaying attraction variant here \n            "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "priceRateDisplay", attrs: { id: "att-drops" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "priceRateDisplay", attrs: { id: "subLevel" } })
     ])
   },
   function() {

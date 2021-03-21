@@ -51,7 +51,7 @@
           <div class="col-lg-6"></div>
           <div class="col-lg-6 ticket-submit">
             <div class="form-group">
-              <input type="submit" class="form-control disabled" value="Add to Cart">
+              <input type="submit" class="form-control disabled" v-on:click="addCart" value="Add to Cart">
             </div>
           </div>
         </div>
@@ -129,10 +129,6 @@
 </div>
 
 
-
-
-
-
 </template>
 
 <script>
@@ -151,6 +147,11 @@
        
       },
       methods: {
+      	addCart: function() {
+
+      		 this.$toasts.error("Adding cart isn't available yet");
+
+      	}
 
       }
 
