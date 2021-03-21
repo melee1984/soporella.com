@@ -34,6 +34,7 @@ We then ask the ticket holder to print out their E-ticket and present it along w
             'photo' => 'ferrari-world-06.jpg',
             'video' =>'',
             'redemption' => 'Entry passes, incl. all other bookings will be confirmed electronically after you completed the purchase process. The relevant entry pass will be sent to you electronically after the purchase process is completed. It is therefore imperative that your e-mail address is correctly inserted. ',
+            'availability' => '',
         ],
         [
             'title' => 'HeliDubai',

@@ -2001,10 +2001,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isSubmit: fals
+      isSubmit: false,
+      pageUrl: MAINURL
     };
   },
   props: ['attraction'],
@@ -38504,32 +38549,70 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-lg-12" }, [
-              _c("h3", [_vm._v("Ticket Details")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Ticket Information Here")]),
-              _vm._v(" "),
-              !_vm.attraction.availability
-                ? _c("section", [
-                    _c("hr"),
-                    _vm._v(" "),
-                    _c("h3", [_vm._v("Availability")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.attraction.availability))])
+              _c(
+                "div",
+                {
+                  staticClass: "carousel slide",
+                  attrs: { id: "myCarousel", "data-ride": "carousel" }
+                },
+                [
+                  _c("div", { staticClass: "carousel-inner" }, [
+                    _c("div", { staticClass: "item" }, [
+                      _c("img", {
+                        staticClass: "img-responsive",
+                        attrs: {
+                          src:
+                            _vm.pageUrl +
+                            "/products/images/" +
+                            _vm.attraction.photo,
+                          alt: _vm.attraction.title
+                        }
+                      })
+                    ])
                   ])
-                : _vm._e(),
+                ]
+              ),
               _vm._v(" "),
-              !_vm.attraction.redemption
-                ? _c("section", [
-                    _c("hr"),
-                    _vm._v(" "),
-                    _c("h3", [_vm._v("Redemption")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.attraction.redemption))])
-                  ])
-                : _vm._e()
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2)
             ])
           ])
-        ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("h3", [_vm._v("Ticket Details")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("Ticket Information Here")]),
+            _vm._v(" "),
+            _vm.attraction.availability != ""
+              ? _c("section", [
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("Availability")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.attraction.availability))])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            !_vm.attraction.redemption
+              ? _c("section", [
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("Redemption")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.attraction.redemption))])
+                ])
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _vm._m(3)
       ])
     ]
   )
@@ -38607,6 +38690,91 @@ var staticRenderFns = [
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "left carousel-control",
+        attrs: { href: "#myCarousel", "data-slide": "prev" }
+      },
+      [
+        _c("span", { staticClass: "glyphicon glyphicon-menu-left" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "right carousel-control",
+        attrs: { href: "#myCarousel", "data-slide": "next" }
+      },
+      [
+        _c("span", { staticClass: "glyphicon glyphicon-menu-right" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "container", attrs: { id: "promotions" } },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("h3", [_vm._v("You might also be interested in...")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-3 promo-single" }, [
+            _c("h4", [_vm._v(" Yas Waterworld")]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "https://soporella.com/others/yas-waterworld",
+                  title: "Yas Waterworld"
+                }
+              },
+              [
+                _c("img", {
+                  staticClass: "img-responsive",
+                  attrs: {
+                    src:
+                      "https://soporella.com/assets/images/activity/thumbnail/yas-waterworld-05.jpg",
+                    alt: "Yas Waterworld"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "buy",
+                attrs: { href: "https://soporella.com/others/yas-waterworld" }
+              },
+              [_vm._v("Buy Tickets")]
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

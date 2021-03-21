@@ -67,12 +67,32 @@
             </div>
         </div>
       </div>
+       <div class="row">
+        <div class="col-lg-12">
+          	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="item">
+                      <img :src="pageUrl+'/products/images/'+attraction.photo" :alt="attraction.title" class="img-responsive">
+                    </div>
+                </div>
+              </div>
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-menu-right"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+        </div>
+      </div>
       <!--Details-->
       <div class="row">
         <div class="col-lg-12">
           <h3>Ticket Details</h3>
           <p>Ticket Information Here</p>
-	      <section v-if="!attraction.availability">
+	      <section v-if="attraction.availability!=''">
 	          <hr>
 	          <h3>Availability</h3>        
 	          <p>{{ attraction.availability }}</p>
@@ -82,12 +102,36 @@
           	<h3>Redemption</h3>        
           	<p>{{ attraction.redemption }}</p>
           </section>
-
         </div>
       </div>
+
+      <hr><br><br>
+      <div id="promotions" class="container">
+  		  <div class="row">
+		    <div class="col-lg-12">
+		      <h3>You might also be interested in...</h3>
+		    </div>
+		  </div>
+		  <!--List-->
+		  <div class="row">
+				<div class="col-lg-3 promo-single">
+		          <h4> Yas Waterworld</h4>
+		          <a href="https://soporella.com/others/yas-waterworld" title="Yas Waterworld">
+		          		<img src="https://soporella.com/assets/images/activity/thumbnail/yas-waterworld-05.jpg" alt="Yas Waterworld" class="img-responsive"></a>
+		          	<a class="buy" href="https://soporella.com/others/yas-waterworld">Buy Tickets</a>
+		        </div>
+		       
+		      </div>
+		</div>
+
     </div>
   </div>
 </div>
+
+
+
+
+
 
 </template>
 
@@ -95,7 +139,8 @@
     export default {
       data() {
         return {
-           isSubmit: fals
+           isSubmit: false,
+           pageUrl: MAINURL,
         }
       },
       props: ['attraction'],
