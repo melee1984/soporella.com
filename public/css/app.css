@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=K2D:200,300,700);.container-fluid {
+@import url(https://fonts.googleapis.com/css?family=K2D:200,300,700);@import url(https://fonts.googleapis.com/icon?family=Material+Icons);.container-fluid {
   padding-right: 0 !important;
   padding-left: 0 !important;
 }
@@ -47,5 +47,29 @@
 #page.attraction .disabled {
   backgroud: #737373;
   color: #b9b9b9;
+}
+
+#page.attraction .inactive {
+  background: #b94955 !important;
+}
+
+.lead .buy {
+  color: #FFF !important;
+}
+
+#page .checkout a.buy {
+  color: #dedede;
+}
+
+#page .payment {
+  cursor: pointer;
+}
+
+#page .payment .selected {
+  background: #e71d3a;
+}
+
+#page .payment .selected .caption {
+  color: #fff;
 }
 

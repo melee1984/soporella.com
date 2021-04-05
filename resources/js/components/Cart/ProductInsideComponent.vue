@@ -22,7 +22,7 @@
             <div class="col-lg-12 ticket-date">
               <h4>When are you going?</h4>
               <div class="form-group">
-                <input type="date" class="calendario form-control hasDatepicker" name="departure" placeholder="mm/dd/yyyy" id="departure">
+                <input type="date" class="calendario form-control hasDatepicker" v-model="field.calendar" name="departure" placeholder="mm/dd/yyyy" id="departure">
                 <div class="action_error_calendario hide">Please select date</div>
               </div>
             </div>
@@ -32,26 +32,35 @@
           <div class="col-lg-12 ticket-type">
             <h4>Choose Ticket Type</h4>
             <div class="form-group">
-            <!-- <select class="form-control">
-            	<option value="0">Select</option>
-            </select> -->
-            displaying attraction variant here 
+              <select class="form-control" v-model="field.chooseTicket"  @change="fetchTimings($event, $event.target.selectedIndex)">>
+              	<option value="">Select</option>
+                <option v-for="rate in attraction.rates" :value="rate.id">{{ rate.title }}</option>
+              </select> 
             </div>
           </div>
         </div>
         <!--Adult/Junior-->
         <div class="row">
-            <div id="att-drops" class="priceRateDisplay"></div>
+            <div id="att-drops" class="priceRateDisplay">
+              <div v-for="(detail, index) in rateDetailsArray.details" class="col-lg-6 ticket-age">
+                  <h4>{{ detail.title }}</h4>
+                  <h5 class="ticket-price">{{ detail.price }} {{ detail.currency }}</h5>
+                  <div class="form-group">
+                      <input type="number" min="0" class="form-control" placeholder="0" value="1" :key="index" v-model="detail.qty">
+                  </div>
+              </div>
+            </div>
         </div>
-        <div class="row">
-           <div class="priceRateDisplay" id="subLevel"></div>
-        </div>
+
         <!--Submit-->
         <div class="row">
           <div class="col-lg-6"></div>
           <div class="col-lg-6 ticket-submit">
-            <div class="form-group">
-              <input type="submit" class="form-control disabled" v-on:click="addCart" value="Add to Cart">
+            <div class="form-group" v-if="formOkay">
+              <input type="submit" class="form-control" v-on:click="addCart" value="Add to Cart" >
+            </div>
+            <div class="form-group" v-if="!formOkay">
+              <input type="submit" class="form-control inactive" value="Add to Cart" >
             </div>
           </div>
         </div>
@@ -113,16 +122,16 @@
 		    </div>
 		  </div>
 		  <!--List-->
-		  <div class="row">
-				<div class="col-lg-3 promo-single">
-		          <h4> Yas Waterworld</h4>
-		          <a href="https://soporella.com/others/yas-waterworld" title="Yas Waterworld">
-		          		<img src="https://soporella.com/assets/images/activity/thumbnail/yas-waterworld-05.jpg" alt="Yas Waterworld" class="img-responsive"></a>
-		          	<a class="buy" href="https://soporella.com/others/yas-waterworld">Buy Tickets</a>
-		        </div>
-		       
-		      </div>
-		</div>
+		  
+        <div class="row">
+  				   <div v-for="interested in attraction.interested_in" class="col-lg-3 promo-single">
+  		          <h4>{{ interested.attraction.title }}</h4>
+  		          <a :href="interested.attraction.pageUrl" :title="interested.attraction.title">
+  		          		<img :src="interested.attraction.photo" :alt="interested.attraction.title" class="img-responsive"></a>
+  		          	<a class="buy" :href="interested.attraction.pageUrl">Buy Tickets</a>
+  		        </div>
+        </div>
+  		</div>
 
     </div>
   </div>
@@ -135,24 +144,65 @@
     export default {
       data() {
         return {
-           isSubmit: false,
-           pageUrl: MAINURL,
+          field: {
+            chooseTicket: "",
+            calendar: "mm/dd/yyyy",
+            qties: {},
+          },
+          rateHeader: this.attraction,
+          isSubmit: false,
+          pageUrl: MAINURL,
+          rateDetailsArray: {},
         }
       },
       props: ['attraction'],
-      mounted() {
-        
-      },
-      created() {
-       
-      },
+      computed: {
+            formOkay: function () {
+              if (!this.field.chooseTicket)  {
+                return false;
+              }
+              else if(!this.field.calendar) {
+                return false;
+              }
+              else if(this.field.calendar == "mm/dd/yyyy"){
+                return false;
+              }
+
+              return true;
+            }
+        },
       methods: {
       	addCart: function() {
+          this.formOkay = false;
+          var obj = {};
+          obj = this.rateDetailsArray.details;
 
-      		 this.$toasts.error("Adding cart isn't available yet");
+          axios.post('/api/cart/add/'+this.rateHeader.id+'/submit', {qty: obj, date: this.field.calendar}).then((response) => {
+              if (response.data.status) {
+                this.$toasts.success(response.data.message);
+                this.formOkay = true;
+                Event.$emit('refreshBasket');
+              }
+              else {
+                this.$toasts.error(response.data.message);
+              }
+            }).catch((errors) => {
+                this.$toasts.error(response.data.message);
+            }); 
+      	},
+        validate: function() {
 
-      	}
+          return true;
 
+        },
+        fetchTimings: function(event, selectedIndex) {
+          if (selectedIndex == 0) {
+            this.rateDetailsArray = {};
+            return;
+          }
+          this.rateDetailsArray = this.rateHeader.rates[selectedIndex-1];
+
+        },
       }
 
     }

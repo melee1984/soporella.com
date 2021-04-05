@@ -28,9 +28,13 @@ import BootstrapComponent from "vue-my-toasts/src/components/toasts/BootstrapCom
 // 
 import totalcount from './components/TotalItemCount.vue';
 import productpage from './components/Cart/ProductInsideComponent.vue';
+import checkout from './components/Cart/CheckoutComponent.vue';
+import basket from './components/Shopping/BasketComponent.vue';
 
 Vue.component('cart-total', totalcount);
 Vue.component('product-page', productpage);
+Vue.component('basket-page', basket);
+Vue.component('checkout-page', checkout);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -40,9 +40,13 @@ class Kernel extends HttpKernel
              \App\Http\Middleware\Localization::class,
         ],
         'api' => [
-            'throttle:60,1',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\Localization::class,
+             \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            'throttle:100,1',
+            'bindings',
         ],
         'admin' => [
             \App\Http\Middleware\isAdmin::class,
@@ -50,6 +54,8 @@ class Kernel extends HttpKernel
         ],
     ];
 
+
+    
     /**
      * The application's route middleware.
      *

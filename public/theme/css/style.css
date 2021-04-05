@@ -1630,3 +1630,572 @@ ul.step-anchor {
 	width: 50%;
 }
 }
+
+
+/**=====================
+     Reset css start
+==========================**/
+.font-roboto {
+  font-family: Roboto, sans-serif; }
+
+/*====== Padding css starts ======*/
+.p-0 {
+  padding: 0px; }
+
+.p-5 {
+  padding: 5px; }
+
+.p-10 {
+  padding: 10px; }
+
+.p-15 {
+  padding: 15px; }
+
+.p-20 {
+  padding: 20px; }
+
+.p-25 {
+  padding: 25px; }
+
+.p-30 {
+  padding: 30px; }
+
+.p-35 {
+  padding: 35px; }
+
+.p-40 {
+  padding: 40px; }
+
+.p-45 {
+  padding: 45px; }
+
+.p-50 {
+  padding: 50px; }
+
+/*====== Padding css ends ======*/
+/*====== Padding-left css starts ======*/
+.p-l-0 {
+  padding-left: 0px; }
+
+.p-l-5 {
+  padding-left: 5px; }
+
+.p-l-10 {
+  padding-left: 10px; }
+
+.p-l-15 {
+  padding-left: 15px; }
+
+.p-l-20 {
+  padding-left: 20px; }
+
+.p-l-25 {
+  padding-left: 25px; }
+
+.p-l-30 {
+  padding-left: 30px; }
+
+.p-l-35 {
+  padding-left: 35px; }
+
+.p-l-40 {
+  padding-left: 40px; }
+
+.p-l-45 {
+  padding-left: 45px; }
+
+.p-l-50 {
+  padding-left: 50px; }
+
+/*====== Padding-left css ends ======*/
+/*====== Padding-top css starts ======*/
+.p-t-0 {
+  padding-top: 0px !important; }
+
+.p-t-5 {
+  padding-top: 5px !important; }
+
+.p-t-10 {
+  padding-top: 10px !important; }
+
+.p-t-15 {
+  padding-top: 15px !important; }
+
+.p-t-20 {
+  padding-top: 20px !important; }
+
+.p-t-25 {
+  padding-top: 25px !important; }
+
+.p-t-30 {
+  padding-top: 30px !important; }
+
+.p-t-35 {
+  padding-top: 35px !important; }
+
+.p-t-40 {
+  padding-top: 40px !important; }
+
+.p-t-45 {
+  padding-top: 45px !important; }
+
+.p-t-50 {
+  padding-top: 50px !important; }
+
+/*====== Padding-top css ends ======*/
+/*====== Padding-bottom css starts ======*/
+.p-b-0 {
+  padding-bottom: 0px !important; }
+
+.p-b-5 {
+  padding-bottom: 5px !important; }
+
+.p-b-10 {
+  padding-bottom: 10px !important; }
+
+.p-b-15 {
+  padding-bottom: 15px !important; }
+
+.p-b-20 {
+  padding-bottom: 20px !important; }
+
+.p-b-25 {
+  padding-bottom: 25px !important; }
+
+.p-b-30 {
+  padding-bottom: 30px !important; }
+
+.p-b-35 {
+  padding-bottom: 35px !important; }
+
+.p-b-40 {
+  padding-bottom: 40px !important; }
+
+.p-b-45 {
+  padding-bottom: 45px !important; }
+
+.p-b-50 {
+  padding-bottom: 50px !important; }
+
+/*====== Padding-bottom css ends ======*/
+/*====== Padding-right css starts ======*/
+.p-r-0 {
+  padding-right: 0px; }
+
+.p-r-5 {
+  padding-right: 5px; }
+
+.p-r-10 {
+  padding-right: 10px; }
+
+.p-r-15 {
+  padding-right: 15px; }
+
+.p-r-20 {
+  padding-right: 20px; }
+
+.p-r-25 {
+  padding-right: 25px; }
+
+.p-r-30 {
+  padding-right: 30px; }
+
+.p-r-35 {
+  padding-right: 35px; }
+
+.p-r-40 {
+  padding-right: 40px; }
+
+.p-r-45 {
+  padding-right: 45px; }
+
+.p-r-50 {
+  padding-right: 50px; }
+
+/*====== Padding-right css ends ======*/
+/*====== Margin css starts ======*/
+.m-0 {
+  margin: 0px !important; }
+
+.m-5 {
+  margin: 5px !important; }
+
+.m-10 {
+  margin: 10px !important; }
+
+.m-15 {
+  margin: 15px !important; }
+
+.m-20 {
+  margin: 20px !important; }
+
+.m-25 {
+  margin: 25px !important; }
+
+.m-30 {
+  margin: 30px !important; }
+
+.m-35 {
+  margin: 35px !important; }
+
+.m-40 {
+  margin: 40px !important; }
+
+.m-45 {
+  margin: 45px !important; }
+
+.m-50 {
+  margin: 50px !important; }
+
+/*====== Margin css ends ======*/
+/*====== Margin-top css starts ======*/
+.m-t-0 {
+  margin-top: 0px !important; }
+
+.m-t-5 {
+  margin-top: 5px !important; }
+
+.m-t-10 {
+  margin-top: 10px !important; }
+
+.m-t-15 {
+  margin-top: 15px !important; }
+
+.m-t-20 {
+  margin-top: 20px !important; }
+
+.m-t-25 {
+  margin-top: 25px !important; }
+
+.m-t-30 {
+  margin-top: 30px !important; }
+
+.m-t-35 {
+  margin-top: 35px !important; }
+
+.m-t-40 {
+  margin-top: 40px !important; }
+
+.m-t-45 {
+  margin-top: 45px !important; }
+
+.m-t-50 {
+  margin-top: 50px !important; }
+
+/*====== Margin-top css ends ======*/
+/*====== Margin-Bottom css starts ======*/
+.m-b-0 {
+  margin-bottom: 0px !important; }
+
+.m-b-5 {
+  margin-bottom: 5px !important; }
+
+.m-b-10 {
+  margin-bottom: 10px !important; }
+
+.m-b-15 {
+  margin-bottom: 15px !important; }
+
+.m-b-20 {
+  margin-bottom: 20px !important; }
+
+.m-b-25 {
+  margin-bottom: 25px !important; }
+
+.m-b-30 {
+  margin-bottom: 30px !important; }
+
+.m-b-35 {
+  margin-bottom: 35px !important; }
+
+.m-b-40 {
+  margin-bottom: 40px !important; }
+
+.m-b-45 {
+  margin-bottom: 45px !important; }
+
+.m-b-50 {
+  margin-bottom: 50px !important; }
+
+/*====== Margin-Bottom css ends ======*/
+/*====== Margin-left css starts ======*/
+.m-l-0 {
+  margin-left: 0px !important; }
+
+.m-l-5 {
+  margin-left: 5px !important; }
+
+.m-l-10 {
+  margin-left: 10px !important; }
+
+.m-l-15 {
+  margin-left: 15px !important; }
+
+.m-l-20 {
+  margin-left: 20px !important; }
+
+.m-l-25 {
+  margin-left: 25px !important; }
+
+.m-l-30 {
+  margin-left: 30px !important; }
+
+.m-l-35 {
+  margin-left: 35px !important; }
+
+.m-l-40 {
+  margin-left: 40px !important; }
+
+.m-l-45 {
+  margin-left: 45px !important; }
+
+.m-l-50 {
+  margin-left: 50px !important; }
+
+/*====== Margin-left css ends ======*/
+/*====== Margin-right css starts ======*/
+.m-r-0 {
+  margin-right: 0px; }
+
+.m-r-5 {
+  margin-right: 5px; }
+
+.m-r-10 {
+  margin-right: 10px; }
+
+.m-r-15 {
+  margin-right: 15px; }
+
+.m-r-20 {
+  margin-right: 20px; }
+
+.m-r-25 {
+  margin-right: 25px; }
+
+.m-r-30 {
+  margin-right: 30px; }
+
+.m-r-35 {
+  margin-right: 35px; }
+
+.m-r-40 {
+  margin-right: 40px; }
+
+.m-r-45 {
+  margin-right: 45px; }
+
+.m-r-50 {
+  margin-right: 50px; }
+
+/*====== Margin-right css ends ======*/
+/*====== Border-radius css starts ======*/
+.b-r-0 {
+  border-radius: 0px !important; }
+
+.b-r-1 {
+  border-radius: 1px !important; }
+
+.b-r-2 {
+  border-radius: 2px !important; }
+
+.b-r-3 {
+  border-radius: 3px !important; }
+
+.b-r-4 {
+  border-radius: 4px !important; }
+
+.b-r-5 {
+  border-radius: 5px !important; }
+
+.b-r-6 {
+  border-radius: 6px !important; }
+
+.b-r-7 {
+  border-radius: 7px !important; }
+
+.b-r-8 {
+  border-radius: 8px !important; }
+
+.b-r-9 {
+  border-radius: 9px !important; }
+
+.b-r-10 {
+  border-radius: 10px !important; }
+
+/*====== Border-radius css ends ======*/
+/*====== Font-size css starts ======*/
+.f-12 {
+  font-size: 12px !important; }
+
+.f-14 {
+  font-size: 14px !important; }
+
+.f-16 {
+  font-size: 16px !important; }
+
+.f-18 {
+  font-size: 18px !important; }
+
+.f-20 {
+  font-size: 20px !important; }
+
+.f-22 {
+  font-size: 22px !important; }
+
+.f-24 {
+  font-size: 24px !important; }
+
+.f-26 {
+  font-size: 26px !important; }
+
+.f-28 {
+  font-size: 28px !important; }
+
+.f-30 {
+  font-size: 30px !important; }
+
+.f-32 {
+  font-size: 32px !important; }
+
+.f-34 {
+  font-size: 34px !important; }
+
+.f-36 {
+  font-size: 36px !important; }
+
+.f-38 {
+  font-size: 38px !important; }
+
+.f-40 {
+  font-size: 40px !important; }
+
+.f-42 {
+  font-size: 42px !important; }
+
+.f-44 {
+  font-size: 44px !important; }
+
+.f-46 {
+  font-size: 46px !important; }
+
+.f-48 {
+  font-size: 48px !important; }
+
+.f-50 {
+  font-size: 50px !important; }
+
+.f-52 {
+  font-size: 52px !important; }
+
+.f-54 {
+  font-size: 54px !important; }
+
+.f-56 {
+  font-size: 56px !important; }
+
+.f-58 {
+  font-size: 58px !important; }
+
+.f-60 {
+  font-size: 60px !important; }
+
+.f-62 {
+  font-size: 62px !important; }
+
+.f-64 {
+  font-size: 64px !important; }
+
+.f-66 {
+  font-size: 66px !important; }
+
+.f-68 {
+  font-size: 68px !important; }
+
+.f-70 {
+  font-size: 70px !important; }
+
+.f-72 {
+  font-size: 72px !important; }
+
+.f-74 {
+  font-size: 74px !important; }
+
+.f-76 {
+  font-size: 76px !important; }
+
+.f-78 {
+  font-size: 78px !important; }
+
+.f-80 {
+  font-size: 80px !important; }
+
+.f-82 {
+  font-size: 82px !important; }
+
+.f-84 {
+  font-size: 84px !important; }
+
+.f-86 {
+  font-size: 86px !important; }
+
+.f-88 {
+  font-size: 88px !important; }
+
+.f-90 {
+  font-size: 90px !important; }
+
+.f-92 {
+  font-size: 92px !important; }
+
+.f-94 {
+  font-size: 94px !important; }
+
+.f-96 {
+  font-size: 96px !important; }
+
+.f-98 {
+  font-size: 98px !important; }
+
+.f-100 {
+  font-size: 100px !important; }
+
+/*====== Font-size css ends ======*/
+/*====== Font-weight css starts ======*/
+.f-w-100 {
+  font-weight: 100; }
+
+.f-w-300 {
+  font-weight: 300; }
+
+.f-w-500 {
+  font-weight: 500; }
+
+.f-w-400 {
+  font-weight: 400; }
+
+.f-w-600 {
+  font-weight: 600; }
+
+.f-w-700 {
+  font-weight: 700; }
+
+.f-w-900 {
+  font-weight: 900; }
+
+/*====== Font-weight css ends ======*/
+/*====== Font-style css starts ======*/
+.f-s-normal {
+  font-style: normal; }
+
+.f-s-italic {
+  font-style: italic; }
+
+.f-s-oblique {
+  font-style: oblique; }
+
+.f-s-initial {
+  font-style: initial; }
+
+.f-s-inherit {
+  font-style: inherit; }
+  

@@ -16,7 +16,6 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
-
     /**
      * The attributes that are mass assignable.
      *
@@ -32,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'sms_code', 'email_verified_at', 'created_at', 'api_token', 'updated_at', 'provider', 'provider_id'
     ];
 
     /**

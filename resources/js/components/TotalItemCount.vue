@@ -11,14 +11,23 @@
         }
       },
       mounted() {
-        console.log('Mounted Basket Basket Count');
+        this.fetchData();
       },
       created() {
-        Event.$on('ItemCount', (cartItemCount) => {
-           this.setItemCount(cartItemCount);
+        Event.$on('refreshBasket', () => {
+           this.fetchData();
         });
       },
       methods: {
+        fetchData: function() {
+          var self = this;
+          axios.get('/api/cart/summary').then(function (response) {
+            self.item_count = response.data.summary.totalQty;
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+        },
         setItemCount: function(cartItemCount) {
           this.item_count = cartItemCount;
         },

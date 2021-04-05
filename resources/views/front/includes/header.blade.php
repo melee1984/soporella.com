@@ -12,8 +12,10 @@
           <li><a href="{{ URL::to('/login') }}">{{trans('messages.HEADER_TITLE_LOGIN')}}</a></li>
           <li><a href="{{ URL::to('register') }}">{{trans('messages.HEADER_TITLE_REGISTER')}}</a></li>
         @else 
-          <li><a href="{{ URL::to('/my-account') }}">{{trans('messages.HEADER_TITLE_MY_ACCOUNT')}}</a></li>
-          <li><a href="{{ URL::to('/logout') }}">Logout</a></li>
+          <li><a href="{{ route('profile.dashboard') }}">{{trans('messages.HEADER_TITLE_MY_ACCOUNT')}}</a></li>
+
+           <li><a href="{{ route('user.logout') }}">Logout</a></li>
+          
         @endif
         <li>
           <cart-total></cart-total>

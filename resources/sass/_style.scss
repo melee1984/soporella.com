@@ -33,7 +33,6 @@
 	    margin-top: 11px;
 	}
 }
-
 .tab-single {
     margin-bottom: 40px;
     min-height: 315px;
@@ -44,4 +43,39 @@
 		backgroud:#737373;
 		color: #b9b9b9;
 	}
+}
+
+#page.attraction {
+	.inactive {
+	 	background: #b94955 !important;
+	}
+}
+
+.lead {
+	.buy {
+		color: #FFF !important;
+	}
+}
+
+#page {
+	.checkout {
+		a.buy { color: #dedede; }
+
+		#checkout-basket {
+
+		}
+	}
+	.payment {
+	    
+	    cursor: pointer;
+
+		.selected {
+			background: #e71d3a;
+			
+			.caption {
+				color: #fff;
+			}
+		}
+	}
+	
 }
