@@ -62,7 +62,6 @@ class ProfileController extends Controller
                     ->whereNotNull('submitted_at') 
                     ->orderBy('created_at', 'asc')->get();
 
-       
        foreach($orders as $cart) {
 
 

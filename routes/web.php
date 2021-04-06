@@ -75,6 +75,10 @@ Route::group(['middleware' => 'admin'], function() {
 
 	// Main Dashboard 
 	Route::get('/dashboard', 'Management\DashboardController@index')->name('dashboard.management.dashboard');
+	Route::get('/dashboard/order/{cart:ref_no}', 'Management\DashboardController@view')->name('dashboard.order.view');
+	Route::get('/dashboard/orders', 'Management\DashboardController@list')->name('dashboard.order.list');
+
+	
 	// Attractions 
 	Route::get('/dashboard/attraction', 'Management\AttractionController@index')->name('dashboard.management.attraction');
 	Route::get('/dashboard/attraction/{attraction}', 'Management\AttractionController@show')->name('dashboard.management.edit');

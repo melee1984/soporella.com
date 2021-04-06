@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+
+use App\Models\Shopping\Cart;
+
 class DashboardController extends Controller
 {
     
@@ -69,6 +72,31 @@ class DashboardController extends Controller
      */
     public function index() 
     {
-    	return view('management.pages.dashboard');
+    	
+        $orders = Cart::whereUserId(Auth::User()->id)
+                    ->whereNotNull('submitted_at') 
+                    ->orderBy('created_at', 'asc')->get();
+
+    	return view('management.pages.dashboard', compact('orders'));
+
+    }
+    /**
+     * [view description]
+     * @param  Cart   $cart [description]
+     * @return [type]       [description]
+     */
+    public function view(Cart $cart) {
+
+    	return view('management.pages.orders.attached', compact('cart'));
+
+    }
+
+    /**
+     * [list description]
+     * @return [type] [description]
+     */
+   	 public function list() 
+    {	
+		return view('management.pages.orders.orders');
     }
 }
