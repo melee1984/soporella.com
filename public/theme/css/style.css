@@ -735,8 +735,8 @@ b, strong {
 }
 #login input[type=submit] {
 	color: #fff;
-    width: 150px;
-    background: #dc112e;
+/*    width: 150px;
+*/    background: #dc112e;
     border: 0;
 }
 #login input[type=submit]:hover {
@@ -838,7 +838,7 @@ b, strong {
 }
 #page.attraction input[type=submit] {
 	color: #fff;
-	font-size: 20px;
+	font-size: 16px;
 	border: 0;
 	background: #dc112e;
 	transition: all 0.5s ease;

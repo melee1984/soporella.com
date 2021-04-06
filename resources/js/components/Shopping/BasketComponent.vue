@@ -18,7 +18,7 @@
             <hr>
           </div>
         
-          <div class="row m-t-15 p-40" v-for="item in cart.details">
+          <div class="row m-t-15 p-40 border-box" v-for="item in cart.details">
               <div class="col-md-2 col-sm-12">
                    <a :href="item.attraction.url" :title="item.attraction.title">
                     <img :src="item.attraction.photo" class="img-responsive"> 
@@ -55,12 +55,11 @@
                          <div class="col-md-12">&nbsp;</div>
                     </div>
               </div>
-              <div class="col-md-2 col-sm-12"><strong>{{ item.variance_total }}</strong></div>
-              <div class="col-md-12 col-sm-12"><hr></div>
+              <div class="col-md-2 col-sm-12 text-center"><strong>{{ item.variance_total }} {{ item.currency }}</strong></div>
           </div>  
         </div>
         
-        <br><br>
+        <br>
         <div class="row" v-if="totalQuantity!=0">
             <div class="col-md-6 col-lg-6 col-xs-12 text-left">
                 <a href="javascript:void(0)" class="btn btn-secondary sw-btn-next">Continue Shopping</a>

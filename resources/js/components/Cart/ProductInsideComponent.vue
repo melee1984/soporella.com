@@ -32,7 +32,7 @@
           <div class="col-lg-12 ticket-type">
             <h4>Choose Ticket Type</h4>
             <div class="form-group">
-              <select class="form-control" v-model="field.chooseTicket"  @change="fetchTimings($event, $event.target.selectedIndex)">>
+              <select class="form-control" id="category" v-model="field.chooseTicket"  @change="fetchTimings($event, $event.target.selectedIndex)">>
               	<option value="">Select</option>
                 <option v-for="rate in attraction.rates" :value="rate.id">{{ rate.title }}</option>
               </select> 
@@ -60,7 +60,7 @@
               <input type="submit" class="form-control" v-on:click="addCart" value="Add to Cart" >
             </div>
             <div class="form-group" v-if="!formOkay">
-              <input type="submit" class="form-control inactive" value="Add to Cart" >
+              <input type="submit" class="form-control inactive"  v-on:click="validate" value="Add to Cart" >
             </div>
           </div>
         </div>
@@ -158,6 +158,9 @@
       props: ['attraction'],
       computed: {
             formOkay: function () {
+
+              this.validate();
+              
               if (!this.field.chooseTicket)  {
                 return false;
               }
@@ -192,7 +195,18 @@
       	},
         validate: function() {
 
-          return true;
+          ('#departure').removeClass('is-invalid')
+          ('#category').removeClass('is-invalid')
+
+          if (field.chooseTicket=="") {
+            $('#departure').addClass('is-invalid')
+          }
+          if(this.field.calendar == "mm/dd/yyyy"){
+              $('#departure').addClass('is-invalid')
+          }
+          if (field.calendar=="") {
+            $('#category').addClass('is-invalid')
+          }
 
         },
         fetchTimings: function(event, selectedIndex) {

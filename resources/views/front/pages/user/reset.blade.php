@@ -1,3 +1,8 @@
+@extends('front.template.inside')
+
+@section('content')
+
+
 <div id="page" class="container">
   <!--Title-->
   <div class="row">
@@ -8,14 +13,20 @@
   <!--Content-->
   <div class="row">
     <div id="login" class="col-lg-8">
-      <div class="errorWithLogin hide  popup_message_error"></div>      <form method="POST" action="https://soporella.com/my-account/settings/submit" accept-charset="UTF-8" id="resetPassword"><input name="_token" type="hidden" value="e3ICMGdVl3g37ZjbsWh41rrhfhGItW25hGc8jRRR">
+      <div class="errorWithLogin hide  popup_message_error"></div>      
+
+      @include('front.includes.error')
+
+      <form method="post" action="{{ route('profile.information.submit') }}" accept-charset="UTF-8" id="resetPassword">
+
+        @csrf
       <div class="form-group">
-        <input class="form-control" type="text" name="changeemail" placeholder="Email Address" value="larry@creativouae.com">
+        <input class="form-control" type="text" name="changeemail" placeholder="Email Address" value="{{ Auth::User()->email }}" disabled="">
       </div>
       <div class="form-group">
         <div class="row">
           <div class="col-lg-6 padding-r0">
-            <input class="form-control" type="password" name="newpassword" placeholder="New Password">
+            <input class="form-control" type="password" name="newpassword" placeholder="New Password" focus>
           </div>
           <div class="col-lg-6">
             <input class="form-control" type="password" name="confirmpassword" placeholder="Confirm Password">
@@ -39,3 +50,5 @@
     </div>
   </div>
 </div>
+
+@endsection

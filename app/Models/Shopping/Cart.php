@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     protected $table = 'cart';
-	protected $fillable = ['user_id', 'session_id', 'fullname', 'mobile','email', 'order_no', 'ref_no','active', 'ip_address', 'processed_at', 'payment_id'];
+	protected $fillable = ['user_id', 'session_id', 'fullname', 'mobile','email', 'order_no', 'ref_no','active', 'ip_address', 'processed_at', 'payment_id', 'submitted_at'];
 	protected $hidden = ['session_id', 'updated_at', 'created_at', 'processed_at', 'sms_code', 'user_id', 'ip_address'];
     public $timestamps = true;
 

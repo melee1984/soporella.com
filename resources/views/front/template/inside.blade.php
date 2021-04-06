@@ -11,7 +11,9 @@
      <div id="app">
         <div class="container-fluid">
             @include('front.includes.header')
-            @include('front.includes.nav')
+            @if (@$menu)
+              @include('front.includes.nav')
+            @endif
         </div>
         @yield('content')    
      </div> 

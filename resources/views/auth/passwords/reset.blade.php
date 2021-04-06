@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('front.template.inside')
 
 @section('content')
-<div class="container">
+
+<div class="container" id="page">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -54,6 +55,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Reset Password') }}
                                 </button>
+
+                               
+                                
                             </div>
                         </div>
                     </form>

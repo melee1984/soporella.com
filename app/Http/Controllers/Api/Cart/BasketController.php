@@ -71,15 +71,20 @@ class BasketController extends Controller
 
 	                    	foreach($request->input('qty') as $list) {
 
-								$attractionRateDetails = AttractionRateDetails::find($list['id']);
-								array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
-                                                    'title' => $attractionRateDetails->title,
-                                                    'price' => $attractionRateDetails->getPrice(),
-                                                    'qty' => $list['qty'],
-                                                    'currency' => $currency
-                                                ));  
-								$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
-								$qty = $qty + $list['qty'];
+	                    		if ($list['qty']!=0) {
+
+	                    			$attractionRateDetails = AttractionRateDetails::find($list['id']);
+									array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
+	                                                    'title' => $attractionRateDetails->title,
+	                                                    'price' => $attractionRateDetails->getPrice(),
+	                                                    'qty' => $list['qty'],
+	                                                    'currency' => $currency
+	                                                ));  
+									$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
+									$qty = $qty + $list['qty'];
+
+	                    		}
+								
 
 							}
 
@@ -113,18 +118,22 @@ class BasketController extends Controller
 
 	            	foreach($request->input('qty') as $list) {
 
-						$attractionRateDetails = AttractionRateDetails::find($list['id']);
+	            		if ($list['qty']!=0) {
 
-						array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
-	                                        'title' => $attractionRateDetails->title,
-	                                        'price' => $attractionRateDetails->getPrice(),
-	                                        'qty' => $list['qty'],
-	                                        'currency' => $currency,
+							$attractionRateDetails = AttractionRateDetails::find($list['id']);
 
-	                                    ));  
+							array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
+		                                        'title' => $attractionRateDetails->title,
+		                                        'price' => $attractionRateDetails->getPrice(),
+		                                        'qty' => $list['qty'],
+		                                        'currency' => $currency,
 
-						$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
-						$qty = $qty + $list['qty'];
+		                                    ));  
+
+							$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
+							$qty = $qty + $list['qty'];
+
+						}
 
 					}
 
@@ -192,7 +201,6 @@ class BasketController extends Controller
 	                                        'currency' => $variance['currency']);
 
 					array_push($variance_updated, $copied_array);
-
 				}
 
 				$detail->variance_converted = $variance_updated;
@@ -221,4 +229,10 @@ class BasketController extends Controller
 
     	return response()->json($data, 200);
     }
+
+    public function delete(Request $request) {
+    	
+    	die();	
+    }
+
 }

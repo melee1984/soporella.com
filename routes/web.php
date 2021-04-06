@@ -60,9 +60,13 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/myaccount', 'User\ProfileController@profile')->name('profile.dashboard');
 	Route::get('/myaccount/tickets', 'User\ProfileController@tickets')->name('profile.tickets');
-	Route::get('/myaccount/information', 'User\ProfileController@tickets')->name('profile.information');
+	Route::get('/myaccount/information', 'User\ProfileController@reset')->name('profile.information');
+
 	Route::get('/myaccount/personal-information', 'User\ProfileController@tickets')->name('profile.personal-information');
 	Route::get('/myaccount/billing-information', 'User\ProfileController@tickets')->name('profile.billing-information');
+
+
+	Route::post('/myaccount/information/submit', 'User\ProfileController@updatePassword')->name('profile.information.submit');
 
 });
 

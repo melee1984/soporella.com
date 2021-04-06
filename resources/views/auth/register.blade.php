@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div id="page" class="container">
     <div class="row">
         <!-- <div class="col-lg-7">
@@ -15,49 +14,50 @@
             <h1>Register</h1> <div class="errorWithLogin hide  popup_message_error"></div>            
             <p>All fields are mandatory.</p>
 
-            <form method="POST" action="" accept-charset="UTF-8" id="formPopupRegistration">
+            @include('front.includes.error')
+
+            <form action="{{ route('register') }}" method="post" accept-charset="UTF-8" id="formPopupRegistration">
 
             @csrf
-
         
            <div class="form-group">
-                <input type="text" name="fullname" placeholder="Full Name" class="form-control">
+                <input type="text" name="name" placeholder="Full Name" class="form-control" class="@error('name') is-invalid @enderror" value="{{ old('name') }}"> 
             </div>
 
             <div class="form-group">
-                <input type="email" name="email" id="email" placeholder="Email Address" class="form-control">
+                <input type="email" name="email" id="email" placeholder="Email Address" class="form-control" class="@error('email') is-invalid @enderror" value="{{ old('email') }}">
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-3">
-                        <input type="tel" name="areacode" placeholder="+971" class="form-control">
+                        <input type="tel" name="areacode" placeholder="+971" class="form-control"  class="@error('areacode') is-invalid @enderror" value="{{ old('areacode') }}">
                     </div>
                     <div class="col-lg-9 padding-l0">
-                        <input type="tel" name="mobile" placeholder="Mobile Number" class="form-control">
+                        <input type="tel" name="mobile" placeholder="Mobile Number" class="form-control"  class="@error('mobile') is-invalid @enderror" value="{{ old('mobile') }}">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="Password" class="form-control">
+                <input type="password" name="password" placeholder="Password" class="form-control"  class="@error('password') is-invalid @enderror" value="{{ old('password') }}" >
             </div>
 
             <div class="form-group">
-                <input class="form-control" type="text" name="street_address" placeholder="Street Building" value="">
+                <input class="form-control" type="text" name="street_address" placeholder="Street Building" class="@error('street_address') is-invalid @enderror" value="{{ old('street_address') }}">
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-6 padding-r0">
-                        <input class="form-control" type="text" name="city" placeholder="City" value="">
+                        <input class="form-control" type="text" name="city" placeholder="City" class="@error('city') is-invalid @enderror" value="{{ old('city') }}">
                     </div>
                     <div class="col-lg-6">
-                        <input class="form-control" type="text" name="postal_code" placeholder="Postal Code" value="">
+                        <input class="form-control" type="text" name="postal_code" placeholder="Postal Code"  class="@error('postal_code') is-invalid @enderror" value="{{ old('postal_code') }}">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-6 padding-r0">
-                        <input class="form-control" type="text" name="state_province" placeholder="State/Province" value="">
+                        <input class="form-control" type="text" name="state_province" placeholder="State/Province" class="@error('state_province') is-invalid @enderror" value="{{ old('state_province') }}">
                     </div>
                     <div class="col-lg-6">
                         <select required="" id="optCountry" name="optCountry" class="form-control">
@@ -316,7 +316,7 @@
 
             </form>
 
-            <p>Already registered? <a href="https://soporella.com/login">Click Here</a>.</p>
+            <p>Already registered? <a href="{{ route('login') }}">Click Here</a>.</p>
 
         </div>
         <div class="col-lg-3"></div>

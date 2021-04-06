@@ -88,7 +88,8 @@ class CheckoutController extends Controller
 			$cart->ref_no = $cart->generateOrderNo();
 			$cart->currency = trans('messages.CURRENCY_SYMBOL');
 			$cart->active = 1;
-			$cart->processed_at = now();
+			$cart->submitted_at = now();
+			// $cart->processed_at = now();
 			$status = $cart->save();
 
 

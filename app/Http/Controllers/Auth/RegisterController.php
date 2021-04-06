@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 use Cache;
 use App\Category;
-
+use Str;
 
 class RegisterController extends Controller
 {
@@ -62,11 +62,16 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {   
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'min:8'],
+            'mobile' => ['required'],
+            'street_address' => ['required'],
+            'city' => ['required'],
+            'postal_code' => ['required'],
+            'state_province' => ['required'],
         ]);
     }
 
@@ -77,10 +82,19 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {   
+        $token = Str::random(60);
+
         return User::create([
-            'name' => $data['name'],
+            'firstname' => $data['name'],
             'email' => $data['email'],
+            'mobile' => $data['areacode'] ." ". $data['mobile'],
+            'street_address' => $data['street_address'],
+            'city' => $data['city'],
+            'postal_code' => $data['postal_code'],
+            'state_province' => $data['state_province'],
+            'optCountry' => $data['optCountry'],
+            'access_token' => hash('sha256', $token),
             'password' => Hash::make($data['password']),
         ]);
     }

@@ -24,7 +24,7 @@
         </div>
         <!-- <div class="box_btn"><a class="buy" href="#">Edit</a></div> -->
         <div class="box_btn">
-          <a href="https://soporella.com/my-account/account-information">
+          <a href="{{ route('profile.information') }}">
             <label class="buy" for="1">Edit</label>
           </a>
         </div>
@@ -37,12 +37,10 @@
 
         </p></div>
         <div class="box_btn">
-          <a href="https://soporella.com/my-account/personal-information">
+          <a href="{{ route('profile.personal-information') }}">
           <label class="buy" for="">Edit</label>
         </a></div>
       </div>
-
-
 
       <div class="box_single">
         <div class="box_txt">

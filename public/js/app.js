@@ -2221,6 +2221,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['attraction'],
   computed: {
     formOkay: function formOkay() {
+      this.validate();
+
       if (!this.field.chooseTicket) {
         return false;
       } else if (!this.field.calendar) {
@@ -2256,7 +2258,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     validate: function validate() {
-      return true;
+      '#departure'.removeClass('is-invalid')('#category').removeClass('is-invalid');
+
+      if (field.chooseTicket == "") {
+        $('#departure').addClass('is-invalid');
+      }
+
+      if (this.field.calendar == "mm/dd/yyyy") {
+        $('#departure').addClass('is-invalid');
+      }
+
+      if (field.calendar == "") {
+        $('#category').addClass('is-invalid');
+      }
     },
     fetchTimings: function fetchTimings(event, selectedIndex) {
       if (selectedIndex == 0) {
@@ -2280,7 +2294,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -39261,6 +39274,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
+                      attrs: { id: "category" },
                       on: {
                         change: [
                           function($event) {
@@ -39374,7 +39388,8 @@ var render = function() {
                   ? _c("div", { staticClass: "form-group" }, [
                       _c("input", {
                         staticClass: "form-control inactive",
-                        attrs: { type: "submit", value: "Add to Cart" }
+                        attrs: { type: "submit", value: "Add to Cart" },
+                        on: { click: _vm.validate }
                       })
                     ])
                   : _vm._e()
@@ -39631,7 +39646,7 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm._l(_vm.cart.details, function(item) {
-              return _c("div", { staticClass: "row m-t-15 p-40" }, [
+              return _c("div", { staticClass: "row m-t-15 p-40 border-box" }, [
                 _c("div", { staticClass: "col-md-2 col-sm-12" }, [
                   _c(
                     "a",
@@ -39783,11 +39798,13 @@ var render = function() {
                   0
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-2 col-sm-12" }, [
-                  _c("strong", [_vm._v(_vm._s(item.variance_total))])
-                ]),
-                _vm._v(" "),
-                _vm._m(0, true)
+                _c("div", { staticClass: "col-md-2 col-sm-12 text-center" }, [
+                  _c("strong", [
+                    _vm._v(
+                      _vm._s(item.variance_total) + " " + _vm._s(item.currency)
+                    )
+                  ])
+                ])
               ])
             })
           ],
@@ -39796,11 +39813,10 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _c("br"),
-    _c("br"),
     _vm._v(" "),
     _vm.totalQuantity != 0
       ? _c("div", { staticClass: "row" }, [
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6 col-lg-6 col-xs-12 text-right" }, [
             _c(
@@ -39844,7 +39860,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _vm.formLogin.loading
                 ? _c("div", { class: "alert " + _vm.formLogin.errorDisplay }, [
@@ -39986,7 +40002,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(3)
+              _vm._m(2)
             ])
           ]
         )
@@ -39995,12 +40011,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 col-sm-12" }, [_c("hr")])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

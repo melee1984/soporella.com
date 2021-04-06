@@ -73,3 +73,7 @@
   color: #fff;
 }
 
+.is-invalid {
+  border: 1px solid #e71f3b !important;
+}
+
