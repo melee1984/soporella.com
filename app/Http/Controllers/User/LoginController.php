@@ -82,6 +82,7 @@ class LoginController extends Controller
           }
           // Update Token
           $postArray = ['api_token' => $this->apiToken];
+
           $login = User::where('email',$request->email)->update($postArray);
 
           if($login) {
@@ -92,7 +93,6 @@ class LoginController extends Controller
           	else {
           		$pageURL = URL::to($request->input('page'));
           	}
-
             return response()->json([
               'status'    =>  1,
               'name'         => $user->firstname . " " . $user->lastname,

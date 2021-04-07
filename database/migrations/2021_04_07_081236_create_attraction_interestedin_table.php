@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTmpShoppingCartDetailsTable extends Migration
+class CreateAttractionInterestedinTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateTmpShoppingCartDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tmp_shopping_cart__details', function (Blueprint $table) {
+        Schema::create('attraction_interestedin', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->bigInteger('tmp_shopping_cart')->unsigned()->nullable();
-            $table->foreign('tmp_shopping_cart')->references('id')->on('tmp_shopping_cart')->onUpdate('RESTRICT')->onDelete('CASCADE');
             $table->bigInteger('attraction_id')->unsigned()->nullable();
-            
-            $table->timestamps();
+            $table->foreign('attraction_id')->references('id')->on('attractions')->onUpdate('RESTRICT')->onDelete('CASCADE');
+
+            $table->bigInteger('reference_id')->unsigned()->nullable();
         });
     }
 
@@ -31,6 +29,6 @@ class CreateTmpShoppingCartDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tmp_shopping_cart__details');
+        Schema::dropIfExists('attraction_interestedin');
     }
 }

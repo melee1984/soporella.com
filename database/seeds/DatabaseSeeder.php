@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CampaignSeeder::class);
         $this->call(VisitSeeder::class);
         $this->call(CountrySeeder::class);
+        $this->call(AttractionHeaderSeeder::class);
+        $this->call(PaymentMethodSeeder::class);
         
     }
 }

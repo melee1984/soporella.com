@@ -68,10 +68,12 @@ Please note that no outside food, drinks and glass are permitted in Wild Wadi Wa
         return $this->attractions;
     }
 
-    public function run()
-    {
-         foreach ($this->attractions as $attractions) {
-            Attraction::create($attractions);
+    public function run() {
+
+         foreach ($this->attractions as $attraction) {
+                  Attraction::create($attraction);
+
         }
+
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AttractionRateDetails extends Model
 {
     protected $table = 'atttraction_item_details';
-    protected $fillable = ['attraction_header_id', 'attraction_detail_id', 'price', 'markdown_price', 'active'];
+    protected $fillable = ['title','attraction_rate_header_id', 'price', 'markdown_price', 'active'];
         protected $hidden = ['updated_at', 'created_at'];
 
     public $timestamps = true;

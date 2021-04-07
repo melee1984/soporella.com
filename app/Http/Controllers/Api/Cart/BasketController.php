@@ -26,7 +26,6 @@ class BasketController extends Controller
         $currency = "AED";
 
         foreach($request->input('qty') as $list) {
-
         	if ($list['qty'] >=1) {
         		$withAddValue = true;
         	}
@@ -37,123 +36,138 @@ class BasketController extends Controller
         }
         else {
 
-        	if ($attraction) {
-	            // 
-	            $cart = Cart::whereSessionId(Session::getID())->first();
+        		
+        	try {
+        		
+        		if ($attraction) {
+		            // 
+		            $cart = Cart::whereSessionId(Session::getID())->first();
 
-	             if (!$cart) {
+		             if (!$cart) {
 
-	                if (Auth::check()) {
+		                if (Auth::check()) {
 
-	                    $cart = new Cart;
-	                    $cart->session_id = Session::getId();
-	                    $cart->user_id = Auth::User()->id;
-	                    $cart->ip_address  = $_SERVER['REMOTE_ADDR'];
-	                    $cart->active = 0;
-	                    $cart->save();
+		                    $cart = new Cart;
+		                    $cart->session_id = Session::getId();
+		                    $cart->user_id = Auth::User()->id;
+		                    $cart->ip_address  = $_SERVER['REMOTE_ADDR'];
+		                    $cart->active = 0;
+		                    $cart->save();
 
-	                }
-	                else {
+		                }
+		                else {
 
-	                    $cart = Cart::updateOrCreate(
-	                        ['session_id' => Session::getId(), 'ip_address' => $_SERVER['REMOTE_ADDR'], 'active' => 0],
-	                        ['session_id' => Session::getId(), 'ip_address' => $_SERVER['REMOTE_ADDR'], 'active' => 0,]
-	                    );
+		                    $cart = Cart::updateOrCreate(
+		                        ['session_id' => Session::getId(), 'ip_address' => $_SERVER['REMOTE_ADDR'], 'active' => 0],
+		                        ['session_id' => Session::getId(), 'ip_address' => $_SERVER['REMOTE_ADDR'], 'active' => 0,]
+		                    );
 
-	                    if ($cart) {
-	                    	
-	                    	// Adding item into the Cart Details table 
-							// Haveing the same functionality this should be refactor
+		                    if ($cart) {
+		                    	
+		                    	// Adding item into the Cart Details table 
+								// Haveing the same functionality this should be refactor
 
-	                    	$sub_total = 0;
-	                    	$data_variance = array();
-	                    	$qty = 0;
+		                    	$sub_total = 0;
+		                    	$data_variance = array();
+		                    	$qty = 0;
 
-	                    	foreach($request->input('qty') as $list) {
+		                    	foreach($request->input('qty') as $list) {
 
-	                    		if ($list['qty']!=0) {
+		                    		if ($list['qty']!=0) {
 
-	                    			$attractionRateDetails = AttractionRateDetails::find($list['id']);
-									array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
-	                                                    'title' => $attractionRateDetails->title,
-	                                                    'price' => $attractionRateDetails->getPrice(),
-	                                                    'qty' => $list['qty'],
-	                                                    'currency' => $currency
-	                                                ));  
-									$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
-									$qty = $qty + $list['qty'];
+		                    			$attractionRateDetails = AttractionRateDetails::find($list['id']);
+										array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
+		                                                    'title' => $attractionRateDetails->title,
+		                                                    'price' => $attractionRateDetails->getPrice(),
+		                                                    'qty' => $list['qty'],
+		                                                    'currency' => $currency
+		                                                ));  
+										$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
+										$qty = $qty + $list['qty'];
 
-	                    		}
-								
+		                    		}
+									
+
+								}
+
+								$cartItem = CartDetails::updateOrCreate(['cart_id'=>$cart->id, 
+																		'attraction_id' => $attraction->id, 'attraction_detail_id' => $attractionRateDetails->id],	
+												[ 
+												'cart_id'=>$cart->id, 
+			                                    'attraction_id' => $attraction->id, 
+			                                    'attraction_detail_id' => $attractionRateDetails->id,
+												'variance_details' => serialize($data_variance),
+			                                    'variance_total' =>  $sub_total,
+			                                    'selected_date' => $request->input('date'),  
+			                                    'total_qty' => $qty
+			                                ]);
+							}
+
+								$data['status'] = 1;
+								$data['message'] = __('Successfully Updated cart');
+
+						}
+
+					}
+					else {
+
+
+						// Adding item into the Cart Details table  
+						// Haveing the same functionality this should be refactor
+						$sub_total = 0;
+		            	$data_variance = array();
+		            	$qty = 0;
+
+		            	foreach($request->input('qty') as $list) {
+
+		            		if ($list['qty']!=0) {
+
+								$attractionRateDetails = AttractionRateDetails::find($list['id']);
+
+								array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
+			                                        'title' => $attractionRateDetails->title,
+			                                        'price' => $attractionRateDetails->getPrice(),
+			                                        'qty' => $list['qty'],
+			                                        'currency' => $currency,
+
+			                                    ));  
+
+								$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
+								$qty = $qty + $list['qty'];
 
 							}
 
-							$cartItem = CartDetails::updateOrCreate(['cart_id'=>$cart->id, 
-																	'attraction_id' => $attraction->id, 'attraction_detail_id' => $attractionRateDetails->id],	
-											[ 
-											'cart_id'=>$cart->id, 
-		                                    'attraction_id' => $attraction->id, 
-		                                    'attraction_detail_id' => $attractionRateDetails->id,
-											'variance_details' => serialize($data_variance),
-		                                    'variance_total' =>  $sub_total,
-		                                    'selected_date' => $request->input('date'),  
-		                                    'total_qty' => $qty
-		                                ]);
 						}
 
-							$data['status'] = 1;
-							$data['message'] = __('Successfully Updated cart');
+						$cartItem = CartDetails::updateOrCreate(['cart_id'=>$cart->id, 
+																'attraction_id' => $attraction->id, 'attraction_detail_id' => $attractionRateDetails->id],	
+										[ 
+										'cart_id'=>$cart->id, 
+		                                'attraction_id' => $attraction->id, 
+		                                'attraction_detail_id' => $attractionRateDetails->id,
+										'variance_details' => serialize($data_variance),
+										'variance_total' =>  $sub_total,
+		                                'selected_date' => $request->input('date'),  
+		                                'total_qty' => $qty,
+		                            ]);
 
+						$data['status'] = 1;
+						$data['message'] = __('Successfully added item to your cart');
 					}
-
 				}
 				else {
 
+					$data['status'] = 0;
+					$data['message'] = __('Unable to find Attraction please try again.');
 
-					// Adding item into the Cart Details table  
-					// Haveing the same functionality this should be refactor
-					$sub_total = 0;
-	            	$data_variance = array();
-	            	$qty = 0;
-
-	            	foreach($request->input('qty') as $list) {
-
-	            		if ($list['qty']!=0) {
-
-							$attractionRateDetails = AttractionRateDetails::find($list['id']);
-
-							array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
-		                                        'title' => $attractionRateDetails->title,
-		                                        'price' => $attractionRateDetails->getPrice(),
-		                                        'qty' => $list['qty'],
-		                                        'currency' => $currency,
-
-		                                    ));  
-
-							$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
-							$qty = $qty + $list['qty'];
-
-						}
-
-					}
-
-					$cartItem = CartDetails::updateOrCreate(['cart_id'=>$cart->id, 
-															'attraction_id' => $attraction->id, 'attraction_detail_id' => $attractionRateDetails->id],	
-									[ 
-									'cart_id'=>$cart->id, 
-	                                'attraction_id' => $attraction->id, 
-	                                'attraction_detail_id' => $attractionRateDetails->id,
-									'variance_details' => serialize($data_variance),
-									'variance_total' =>  $sub_total,
-	                                'selected_date' => $request->input('date'),  
-	                                'total_qty' => $qty,
-	                            ]);
-
-					$data['status'] = 1;
-					$data['message'] = __('Successfully added item to your cart');
 				}
-			}
-        }
+
+        	} catch (Exception $e) {
+        		\Log::error('Error on BasketController Add to Cart' . $e);
+        	}
+
+
+        }  // end of the withAddValue 
 		
 		return response()->json($data, 200);
 

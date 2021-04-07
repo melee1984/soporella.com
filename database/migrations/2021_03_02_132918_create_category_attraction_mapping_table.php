@@ -43,3 +43,7 @@ class CreateCategoryAttractionMappingTable extends Migration
 
     }
 }
+
+/// php artisan make:migration create_cart_table
+/// php artisan make:migration cart_details 
+/// /// php artisan make:migration cart_transaction 
