@@ -159,8 +159,6 @@
       computed: {
             formOkay: function () {
 
-              this.validate();
-              
               if (!this.field.chooseTicket)  {
                 return false;
               }
@@ -194,7 +192,7 @@
             }); 
       	},
         validate: function() {
-
+         
           ('#departure').removeClass('is-invalid')
           ('#category').removeClass('is-invalid')
 

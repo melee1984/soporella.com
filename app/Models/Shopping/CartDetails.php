@@ -26,13 +26,8 @@ class CartDetails extends Model
 
      public function attractiondetails() 
     {
-         return $this->hasOne('App\Models\Attraction\AttractionRateDetails', 'id', 'attraction_detail_id')->with('rateHeader');
-    }
-
-
-
-    public function summary() {
-    	dd($this);
+         return $this->hasOne('App\Models\Attraction\AttractionRateDetails', 'id', 'attraction_detail_id')
+                        ->with('rateHeader');
     }
 
 }

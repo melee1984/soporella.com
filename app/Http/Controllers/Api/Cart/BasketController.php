@@ -159,11 +159,6 @@ class BasketController extends Controller
 
     }
 
-    public function updateCart($category, Attraction $attraction) 
-    {   
-		die('TEST');
-    }
-
     /**
      * Display the cart information / Basket 
      * @return [type] [description]
@@ -196,7 +191,7 @@ class BasketController extends Controller
 
 					$copied_array = array('rate_detail_id' => $variance['rate_detail_id'],
 	                                        'title' => $variance['title'],
-	                                        'price' => number_format($variance['price'], 2) . " " . $variance['currency'],
+	                                        'price' => number_format((float)$variance['price'], 2) . " " . $variance['currency'],
 	                                        'qty' => $variance['qty'],
 	                                        'currency' => $variance['currency']);
 
@@ -230,9 +225,81 @@ class BasketController extends Controller
     	return response()->json($data, 200);
     }
 
-    public function delete(Request $request) {
-    	
-    	die();	
+    public function deleteDetail(CartDetails $cartDetail) {
+    		
+    	$data = array();
+    	$data['status'] = 0;
+		$data['message'] = "Sucessfully delete item detail";
+
+
+    	if ($cartDetail) {
+    		$status = $cartDetail->delete();
+
+    		if ($status) {
+ 				$data['status'] = 1;
+ 				$data['message'] = "Sucessfully delete item detail";
+    		}
+    	}
+
+    	return response()->json($data, 200);
+    }
+
+    public function updateDetail(Request $request, CartDetails $cartDetail) {
+
+    	$variance_formated = unserialize($cartDetail->variance_details);
+
+    	$new_format_variance = array();
+    	$sub_total = 0;
+    	$qty = 0;
+    	$data['status'] = 0;
+
+    	foreach($variance_formated as $variance) {
+
+    		if ($request->input('rate_detail_id') == $variance['rate_detail_id']) {
+
+    			if ($request->input('qty')!=0) {
+    				$new_format = array('rate_detail_id' => $variance['rate_detail_id'],
+	                                        'title' => $variance['title'],
+	                                        'price' => $variance['price'],
+	                                        'qty' => $request->input('qty'),
+	                                        'currency' => $variance['currency']);
+    			}
+
+				$sub_total = $sub_total + $variance['price'] * $request->input('qty');    
+				$qty = $qty + $request->input('qty');
+
+    		}
+    		else {
+
+    			$new_format = array('rate_detail_id' => $variance['rate_detail_id'],
+	                                        'title' => $variance['title'],
+	                                        'price' => $variance['price'],
+	                                        'qty' => $variance['qty'],
+	                                        'currency' => $variance['currency']);
+
+    			$sub_total = $sub_total + $variance['price'] * $variance['qty'];  
+				$qty = $qty + $variance['qty'];
+  
+    		}
+
+			array_push($new_format_variance, $new_format);
+
+    	}
+
+		$cartDetail->variance_details = serialize($new_format_variance);
+		$cartDetail->variance_total = $sub_total;
+		$cartDetail->total_qty = $qty;
+		// Update Cart Details 
+    	$status = $cartDetail->save();
+
+    	$cart = Cart::with('details')->whereSessionId(Session::getID())->first();
+
+    	if ($status) {
+    		$data['summary'] = $cart->summary();
+    		$data['status'] = 1;
+    	}
+
+		return response()->json($data, 200);
     }
 
 }

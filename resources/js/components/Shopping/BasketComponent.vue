@@ -27,7 +27,6 @@
                   <a href="javascript:void(0)" v-on:click="removeItem(item)" title="Delete Item">
                       <span class="material-icons">delete_forever</span>
                   </a>
-
               </div>
               <div class="col-md-3 col-sm-6">
                     <h3 class="">{{ item.attraction.title }}</h3>
@@ -38,7 +37,7 @@
                            <div class="col-md-4 col-xs-6"><strong>{{ variance.title }}</strong></div>
                            <div class="col-md-4 col-xs-6 text-left">{{ variance.price }} </div>
                             <div class="col-md-4">
-                              <select class="form-control" v-model="variance.qty">
+                              <select class="form-control" v-model="variance.qty" @change="updateVariant(variance, item.id)">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -58,7 +57,39 @@
               <div class="col-md-2 col-sm-12 text-center"><strong>{{ item.variance_total }} {{ item.currency }}</strong></div>
           </div>  
         </div>
-        
+
+        <div class="border-box">
+            <div class="row">
+              <div class="col-md-6"></div>
+              <div class="col-md-6">
+                  <div v-if="refreshSummaryLoading" class="text-center p-20"> 
+                       <img src="/images/ajax-loader.gif" alt="">
+                  </div>
+                  <table class="table" cellpadding="2" cellspacing="2" v-if="!refreshSummaryLoading">
+                    <tr class="basket-summary-total">
+                      <td>Sub Total</td>
+                      <td>{{  summary.subTotal }}</td>
+                    </tr>
+                    <tr>
+                    <tr class="basket-summary-total">
+                      <td>Discount</td>
+                      <td>{{ summary.discount }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <hr>
+                      </td>
+                    </tr>
+                    <tr class="basket-summary-total-1">
+                      <td>
+                      Total (tax included)</td>
+                      <td>{{  summary.total }}</td>
+                    </tr>
+                  </table> 
+              </div>
+            </div>
+        </div>
+
         <br>
         <div class="row" v-if="totalQuantity!=0">
             <div class="col-md-6 col-lg-6 col-xs-12 text-left">
@@ -86,7 +117,6 @@
               </div>
               </div>
               <div v-if="formLogin.loading" v-bind:class="'alert '+formLogin.errorDisplay">{{ formLogin.message }}</div>
-
               <div class="modal-body">
                     <div class="form-group">
                       <label for="username">Email address</label>
@@ -120,6 +150,7 @@
         return {
             cart: {},
             totalQuantity: 0,
+            summary: {},
             loading: true,
             formLogin: {
               loading: false,
@@ -128,7 +159,8 @@
               username: "",
               password: "",
               remember: "",
-            }
+            },
+            refreshSummaryLoading: true,
         }
       },
       mounted() {
@@ -148,19 +180,31 @@
           }
         },
         removeItem: function(item) {
-          console.log(item);
+            var self = this;
+            self.refreshSummaryLoading = true;
+            axios.post('/api/cart/item/'+item.id+'/delete').then(function (response) {
+              if (response.data.status) {
+                  self.fetchData();
+              }
+              self.refreshSummaryLoading = false;
+            }).catch(function (error) {
+              
+            });
         },
         fetchData: function() {
           var self = this;
-          axios.get('/api/cart').then(function (response) {
 
+          self.refreshSummaryLoading = true;
+          self.loading = true;  
+
+          axios.get('/api/cart').then(function (response) {
             if (response.data.status) {
               self.cart = response.data.cart;
+              self.summary = response.data.summary;
               self.totalQuantity = response.data.summary.totalQty;
             }
-            
+            self.refreshSummaryLoading = false;
             self.loading = false;  
-
           }).catch(function (error) {
               console.log(error);
           });
@@ -180,19 +224,15 @@
           }).then(function (response) {
             
             if (response.data.status) {
-
               self.formLogin.loading = false;
               self.formLogin.errorDisplay = response.data.errorDisplay;  
               self.formLogin.message = response.data.message;
               self.redirect(response.data.redirectURL);
-
             }
             else {
-
               self.formLogin.loading = true;
               self.formLogin.errorDisplay = response.data.errorDisplay;
               self.formLogin.message = response.data.message;
-
             } 
 
           }).catch(function (error) {
@@ -225,6 +265,21 @@
         redirect: function(url) {
               window.location.href = url;
         },
+        updateVariant: function(variance_details, detail) {
+
+          var self = this;
+          self.refreshSummaryLoading = true;
+          axios.post('/api/cart/item/'+detail+'/update', variance_details ).then(function (response) {
+            if (response.data.status) {
+               self.summary = response.data.summary;
+                self.totalQuantity = response.data.summary.totalQty;
+            }
+            self.refreshSummaryLoading = false;
+          }).catch(function (error) {
+            
+          });
+
+        }
 
       }
 

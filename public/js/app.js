@@ -2221,8 +2221,6 @@ __webpack_require__.r(__webpack_exports__);
   props: ['attraction'],
   computed: {
     formOkay: function formOkay() {
-      this.validate();
-
       if (!this.field.chooseTicket) {
         return false;
       } else if (!this.field.calendar) {
@@ -2410,11 +2408,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       cart: {},
       totalQuantity: 0,
+      summary: {},
       loading: true,
       formLogin: {
         loading: false,
@@ -2423,7 +2452,8 @@ __webpack_require__.r(__webpack_exports__);
         username: "",
         password: "",
         remember: ""
-      }
+      },
+      refreshSummaryLoading: true
     };
   },
   mounted: function mounted() {
@@ -2440,16 +2470,28 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     removeItem: function removeItem(item) {
-      console.log(item);
+      var self = this;
+      self.refreshSummaryLoading = true;
+      axios.post('/api/cart/item/' + item.id + '/delete').then(function (response) {
+        if (response.data.status) {
+          self.fetchData();
+        }
+
+        self.refreshSummaryLoading = false;
+      })["catch"](function (error) {});
     },
     fetchData: function fetchData() {
       var self = this;
+      self.refreshSummaryLoading = true;
+      self.loading = true;
       axios.get('/api/cart').then(function (response) {
         if (response.data.status) {
           self.cart = response.data.cart;
+          self.summary = response.data.summary;
           self.totalQuantity = response.data.summary.totalQty;
         }
 
+        self.refreshSummaryLoading = false;
         self.loading = false;
       })["catch"](function (error) {
         console.log(error);
@@ -2501,6 +2543,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     redirect: function redirect(url) {
       window.location.href = url;
+    },
+    updateVariant: function updateVariant(variance_details, detail) {
+      var self = this;
+      self.refreshSummaryLoading = true;
+      axios.post('/api/cart/item/' + detail + '/update', variance_details).then(function (response) {
+        if (response.data.status) {
+          self.summary = response.data.summary;
+          self.totalQuantity = response.data.summary.totalQty;
+        }
+
+        self.refreshSummaryLoading = false;
+      })["catch"](function (error) {});
     }
   }
 });
@@ -39725,23 +39779,29 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  variance,
-                                  "qty",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    variance,
+                                    "qty",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                function($event) {
+                                  return _vm.updateVariant(variance, item.id)
+                                }
+                              ]
                             }
                           },
                           [
@@ -39812,11 +39872,61 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
+    _c("div", { staticClass: "border-box" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _vm.refreshSummaryLoading
+            ? _c("div", { staticClass: "text-center p-20" }, [
+                _c("img", {
+                  attrs: { src: "/images/ajax-loader.gif", alt: "" }
+                })
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.refreshSummaryLoading
+            ? _c(
+                "table",
+                {
+                  staticClass: "table",
+                  attrs: { cellpadding: "2", cellspacing: "2" }
+                },
+                [
+                  _c("tr", { staticClass: "basket-summary-total" }, [
+                    _c("td", [_vm._v("Sub Total")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.summary.subTotal))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr"),
+                  _c("tr", { staticClass: "basket-summary-total" }, [
+                    _c("td", [_vm._v("Discount")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.summary.discount))])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("tr", { staticClass: "basket-summary-total-1" }, [
+                    _c("td", [
+                      _vm._v("\n                  Total (tax included)")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.summary.total))])
+                  ])
+                ]
+              )
+            : _vm._e()
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c("br"),
     _vm._v(" "),
     _vm.totalQuantity != 0
       ? _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6 col-lg-6 col-xs-12 text-right" }, [
             _c(
@@ -39860,7 +39970,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _vm.formLogin.loading
                 ? _c("div", { class: "alert " + _vm.formLogin.errorDisplay }, [
@@ -40002,7 +40112,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(2)
+              _vm._m(3)
             ])
           ]
         )
@@ -40011,6 +40121,12 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [_c("td", { attrs: { colspan: "2" } }, [_c("hr")])])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
