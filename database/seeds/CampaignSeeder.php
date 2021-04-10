@@ -22,6 +22,9 @@ class CampaignSeeder extends Seeder
             'active' => 1,
             'discount_string' => '10%',
             'display_option' => 2,
+            'img_2' => 'placeholder-1.jpg',
+            'img_1' => 'placeholder-2.jpg',
+            'large_img' => 'placeholder-banner-1.jpg'
         ],
 
         [
@@ -38,6 +41,22 @@ class CampaignSeeder extends Seeder
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
             'active' => 1,
             'discount_string' => '50%',
+            'display_option' => 2,
+        ],
+        [
+            'title' => 'Testing Title 3',
+            'attraction_id' => 5,
+            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+            'active' => 1,
+            'discount_string' => '20%',
+            'display_option' => 2,
+        ],
+        [
+            'title' => 'Testing Title 3',
+            'attraction_id' => 5,
+            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+            'active' => 1,
+            'discount_string' => '20%',
             'display_option' => 2,
         ],
         [

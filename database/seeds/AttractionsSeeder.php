@@ -60,6 +60,23 @@ Other amenities such as locker rental and towel rental are available at Wild Wad
 Please note that no outside food, drinks and glass are permitted in Wild Wadi Water Park - Bags will be checked for inspection prior to entry.",
 'availability'  => 'Tickets will only be booked upon receiving a confirmation email from Soporella.',
         ],
+        [
+            'title' => 'The Yellow Boats',
+            'description' => "Yellow Boats are top-of-the-line rigid inflatable crafts powered by the latest generation eco-friendly engines, manufactured to exacting specifications",
+            'active' => true,
+            'slug' => 'the-yellow-boat',
+            'photo' => 'yelloboat.jpg',
+            'video' => '',
+
+            'about' => "If you love being on the water, then The Yellow Boats is a great tour for you.
+
+Whether you are looking for a unique sightseeing experience, a leisurely group excursion or a fun-filled off-site with your colleagues, The Yellow Boats can bring a fresh perspective to your day with some of the most interesting and exciting sightseeing.
+
+The Yellow Boats are top-of-the-line rigid inflatable crafts powered by the latest generation eco-friendly engines, manufactured to exacting specifications. In terms of safety, these boats are manned by experienced and fully qualified boat crews. Furthermore, each boat comes equipped with the latest GPS navigation and safety equipment, assuring that the sightseeing trip of your life turns out to be a smooth and safe one.
+
+",
+'availability'  => 'We require advance bookings due to the limited amount of seats per boat. Tickets will only be booked upon receiving a confirmation email from Soporella.',
+        ],
 
     ];
 
