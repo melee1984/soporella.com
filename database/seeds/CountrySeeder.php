@@ -17,8 +17,6 @@ class CountrySeeder extends Seeder
             'active' => 1,
             'flag' => 'german_flag.svg'
         ],
-
-       
     ];
     
 	public function run()
