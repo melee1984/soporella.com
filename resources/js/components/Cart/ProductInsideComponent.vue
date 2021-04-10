@@ -1,4 +1,5 @@
 <template>
+
 <div id="page" class="container attraction">
   <!--Title-->
   <div class="row">
@@ -147,9 +148,40 @@
   		</div>
 
     </div>
-  </div>
-</div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        
+          <div class="modal-body">
+              
+          <div class="jumbotron">
+          <h1 class="display-4 text-center">Success!</h1>
+          <p class="lead">
+             <p class="text-center text-success">
+             <span class="material-icons" style="font-size: 120px;">done</span>
+            </p>
+          </p>
+          <hr class="my-4">
+          <div class="alert alert-success text-center">
+            <strong>Success!</strong> You have added item to your cart</a>.
+          </div>  
+          <p class="text-center">
+            <a class="btn btn-secondary btn-md buy" href="/shopping-cart/basket" role="button" style="color: #fff;">View Basket</a>
+          </p>
+           <p class="text-center">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue</button>
+          </p>
+        </div>
+               
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>
 
 </template>
 
@@ -196,6 +228,7 @@
               if (response.data.status) {
                 this.$toasts.success(response.data.message);
                 this.formOkay = true;
+                $('#successModal').modal();
                 Event.$emit('refreshBasket');
               }
               else {

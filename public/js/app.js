@@ -2217,6 +2217,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2261,6 +2293,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.$toasts.success(response.data.message);
 
           _this.formOkay = true;
+          $('#successModal').modal();
           Event.$emit('refreshBasket');
         } else {
           _this.$toasts.error(response.data.message);
@@ -39819,7 +39852,9 @@ var render = function() {
             )
           ]
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _vm._m(4)
     ]
   )
 }
@@ -39875,6 +39910,90 @@ var staticRenderFns = [
         _c("h3", [_vm._v("You might also be interested in...")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "successModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "jumbotron" }, [
+                  _c("h1", { staticClass: "display-4 text-center" }, [
+                    _vm._v("Success!")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "lead" }),
+                  _c("p", { staticClass: "text-center text-success" }, [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "material-icons",
+                        staticStyle: { "font-size": "120px" }
+                      },
+                      [_vm._v("done")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p"),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "my-4" }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "alert alert-success text-center" },
+                    [
+                      _c("strong", [_vm._v("Success!")]),
+                      _vm._v(" You have added item to your cart"),
+                      _vm._v(".\n          ")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-secondary btn-md buy",
+                        staticStyle: { color: "#fff" },
+                        attrs: { href: "/shopping-cart/basket", role: "button" }
+                      },
+                      [_vm._v("View Basket")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Continue")]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
