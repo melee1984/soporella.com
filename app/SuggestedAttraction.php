@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use URL;
 
 class SuggestedAttraction extends Model
 {
@@ -14,9 +15,9 @@ class SuggestedAttraction extends Model
      * Relationship iwth the category attraction mapping 
      * @return object
      */
-    public function attractions()
+    public function attraction()
     {
-        return $this->hasMany('App\Attraction', 'attraction_id', 'id');
+        return $this->belongsTo('App\Attraction', 'attraction_id', 'id');
     }
 
     /* Extra function */
@@ -26,6 +27,7 @@ class SuggestedAttraction extends Model
      * @return return templated page URL contract in the object
      */
     public function scopePopulateAttractionPageURL($query) {
+
         return $this->attraction->pageUrl = URL::to('visit/'.$this->attraction->slug);
     }
     /**

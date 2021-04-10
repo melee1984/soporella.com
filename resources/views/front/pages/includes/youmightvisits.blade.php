@@ -10,7 +10,7 @@
 	      </a>
 	      <h4><a href="{{ route('page.visit', $attra->attraction ) }}" title="{{ $attra->attraction->title }}">{{ $attra->attraction->title }}</a></h4>
 	      <p>{{ Str::words($attra->attraction->description, 20) }} <a href="{{ $attra->attraction->pageUrl }}"> more</a></p>
-	      <a class="buy" href="{{ route('page.visit', $attra->attraction ) }}">Buy Tickets</a>
+	      <a class="buy" href="{{ route('page.visit', $attra->attraction ) }}">{{ trans('messages.LABEL_BUY_TICKET') }}</a>
 		</div>
 		@endforeach
 	</div>

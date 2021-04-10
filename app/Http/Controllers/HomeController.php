@@ -10,6 +10,7 @@ use Cache;
 use URL;
 use App\Category;
 use App\Campaign;
+use App\SuggestedAttraction;
 
 class HomeController extends Controller
 {
@@ -48,8 +49,8 @@ class HomeController extends Controller
             return $topAttractions;
         });
 
-        $suggestionAttractions = Cache::remember('promotions', 30, function () {
-            $suggestionAttractions = TopAttraction::take(8)->get();
+        $suggestionAttractions = Cache::remember('suggestion', 30, function () {
+            $suggestionAttractions = SuggestedAttraction::take(6)->get();
             foreach($suggestionAttractions as $attractions) {
                 $attractions->populateAttractionPageURL();
                 $attractions->populateAttractionImage();
