@@ -71,22 +71,23 @@
     </div>
     <!--Left-->
     <div class="col-lg-8 col-lg-pull-4">
+
       <div class="row"  v-if="attraction.video!=''">
         <div class="col-lg-12">
           	<!--YouTube-->
-			<div class="video">
-              <iframe frameborder="0" border="0" width="750" height="422" :src="'https://www.youtube.com/embed/'+attraction.video+'?autoplay=1&amp;showinfo=0&amp;controls=0&amp;rel=0'"></iframe>
+			       <div class="video">
+                <iframe frameborder="0" border="0" width="750" height="422" :src="'https://www.youtube.com/embed/'+attraction.video+'?autoplay=1&amp;showinfo=0&amp;controls=0&amp;rel=0'"></iframe>
             </div>
         </div>
       </div>
-       <div class="row">
+       <div class="row" v-else-if="attraction.images.length>0">
         <div class="col-lg-12">
           	<div id="myCarousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
-                <div class="item">
-                      <img :src="pageUrl+'/products/images/'+attraction.photo" :alt="attraction.title" class="img-responsive">
+                    <div  v-for="(image, index) in attraction.images" class="item" v-bind:class="{ 'active': index==1 }">
+                      <img :src="image.img" :alt="attraction.title" class="img-responsive">
                     </div>
-                </div>
+              </div>
               </div>
               <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                 <span class="glyphicon glyphicon-menu-left"></span>
@@ -97,42 +98,51 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
+        </div> 
+        <div class="row" v-else>
+            <div class="col-lg-12">
+                <img :src="attraction.photo" :alt="attraction.title" class="img-responsive">
+            </div>
         </div>
+
       </div>
       <!--Details-->
       <div class="row">
         <div class="col-lg-12">
           <h3>Ticket Details</h3>
-          <p>Ticket Information Here</p>
-	      <section v-if="attraction.availability!=''">
-	          <hr>
-	          <h3>Availability</h3>        
-	          <p>{{ attraction.availability }}</p>
-	      </section>
-          <section v-if="!attraction.redemption">
-          	<hr>
-          	<h3>Redemption</h3>        
-          	<p>{{ attraction.redemption }}</p>
-          </section>
+          <p>{{ rateDescription }}</p>
+  	      <section v-if="attraction.availability!=''">
+  	          <hr>
+  	          <h3>Availability</h3>        
+  	          <p>{{ attraction.availability }}</p>
+  	      </section>
+            <section v-if="!attraction.redemption">
+            	<hr>
+            	<h3>Redemption</h3>        
+            	<p>{{ attraction.redemption }}</p>
+            </section>
+             <section v-if="!attraction.about">
+              <hr>
+              <h3>Redemption</h3>        
+              <p>{{ attraction.redemption }}</p>
+            </section>
         </div>
       </div>
 
       <hr><br><br>
-      <div id="promotions" class="container">
+      <div id="promotions" class="container interested-in">
   		  <div class="row">
 		    <div class="col-lg-12">
 		      <h3>You might also be interested in...</h3>
 		    </div>
 		  </div>
-		  <!--List-->
-		  
         <div class="row">
-  				   <div v-for="interested in attraction.interested_in" class="col-lg-3 promo-single">
-  		          <h4>{{ interested.attraction.title }}</h4>
-  		          <a :href="interested.attraction.pageUrl" :title="interested.attraction.title">
-  		          		<img :src="interested.attraction.photo" :alt="interested.attraction.title" class="img-responsive"></a>
-  		          	<a class="buy" :href="interested.attraction.pageUrl">Buy Tickets</a>
-  		        </div>
+				   <div v-for="interested in attraction.interested_in" class="col-lg-3 promo-single">
+		          <h4>{{ interested.attraction.title }}</h4>
+		          <a :href="interested.attraction.pageUrl" :title="interested.attraction.title">
+		          		<img :src="interested.attraction.photo" :alt="interested.attraction.title" class="img-responsive"></a>
+		          	<a class="buy" :href="interested.attraction.pageUrl">Buy Tickets</a>
+		        </div>
         </div>
   		</div>
 
@@ -152,6 +162,7 @@
             calendar: "mm/dd/yyyy",
             qties: {},
           },
+          rateDescription: "-",
           rateHeader: this.attraction,
           isSubmit: false,
           pageUrl: MAINURL,
@@ -215,6 +226,7 @@
             this.rateDetailsArray = {};
             return;
           }
+          this.rateDescription = this.rateHeader.description;
           this.rateDetailsArray = this.rateHeader.rates[selectedIndex-1];
 
         },

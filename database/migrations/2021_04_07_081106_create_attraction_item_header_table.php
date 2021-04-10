@@ -27,6 +27,7 @@ class CreateAttractionItemHeaderTable extends Migration
             $table->boolean('active')->nullable();
             $table->tinyInteger('is_required')->default(0)->nullable();
             $table->tinyInteger('is_multiple')->default(0)->nullable();
+            $table->text('description')->nullable();
 
             $table->timestamps();
         });

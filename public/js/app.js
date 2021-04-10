@@ -2207,6 +2207,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2215,6 +2225,7 @@ __webpack_require__.r(__webpack_exports__);
         calendar: "mm/dd/yyyy",
         qties: {}
       },
+      rateDescription: "-",
       rateHeader: this.attraction,
       isSubmit: false,
       pageUrl: MAINURL,
@@ -2279,6 +2290,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
+      this.rateDescription = this.rateHeader.description;
       this.rateDetailsArray = this.rateHeader.rates[selectedIndex - 1];
     }
   }
@@ -39662,46 +39674,65 @@ var render = function() {
                   ])
                 ])
               ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-12" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "carousel slide",
-                  attrs: { id: "myCarousel", "data-ride": "carousel" }
-                },
-                [
-                  _c("div", { staticClass: "carousel-inner" }, [
-                    _c("div", { staticClass: "item" }, [
-                      _c("img", {
-                        staticClass: "img-responsive",
-                        attrs: {
-                          src:
-                            _vm.pageUrl +
-                            "/products/images/" +
-                            _vm.attraction.photo,
-                          alt: _vm.attraction.title
-                        }
-                      })
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._m(2)
-            ])
-          ])
+            : _vm.attraction.images.length > 0
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-lg-12" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "carousel slide",
+                      attrs: { id: "myCarousel", "data-ride": "carousel" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "carousel-inner" },
+                        _vm._l(_vm.attraction.images, function(image, index) {
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "item",
+                              class: { active: index == 1 }
+                            },
+                            [
+                              _c("img", {
+                                staticClass: "img-responsive",
+                                attrs: {
+                                  src: image.img,
+                                  alt: _vm.attraction.title
+                                }
+                              })
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ])
+              ])
+            : _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-lg-12" }, [
+                  _c("img", {
+                    staticClass: "img-responsive",
+                    attrs: {
+                      src: _vm.attraction.photo,
+                      alt: _vm.attraction.title
+                    }
+                  })
+                ])
+              ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-lg-12" }, [
             _c("h3", [_vm._v("Ticket Details")]),
             _vm._v(" "),
-            _c("p", [_vm._v("Ticket Information Here")]),
+            _c("p", [_vm._v(_vm._s(_vm.rateDescription))]),
             _vm._v(" "),
             _vm.attraction.availability != ""
               ? _c("section", [
@@ -39721,6 +39752,16 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", [_vm._v(_vm._s(_vm.attraction.redemption))])
                 ])
+              : _vm._e(),
+            _vm._v(" "),
+            !_vm.attraction.about
+              ? _c("section", [
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("Redemption")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.attraction.redemption))])
+                ])
               : _vm._e()
           ])
         ]),
@@ -39729,48 +39770,55 @@ var render = function() {
         _c("br"),
         _c("br"),
         _vm._v(" "),
-        _c("div", { staticClass: "container", attrs: { id: "promotions" } }, [
-          _vm._m(3),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row" },
-            _vm._l(_vm.attraction.interested_in, function(interested) {
-              return _c("div", { staticClass: "col-lg-3 promo-single" }, [
-                _c("h4", [_vm._v(_vm._s(interested.attraction.title))]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: interested.attraction.pageUrl,
-                      title: interested.attraction.title
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "img-responsive",
+        _c(
+          "div",
+          {
+            staticClass: "container interested-in",
+            attrs: { id: "promotions" }
+          },
+          [
+            _vm._m(3),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.attraction.interested_in, function(interested) {
+                return _c("div", { staticClass: "col-lg-3 promo-single" }, [
+                  _c("h4", [_vm._v(_vm._s(interested.attraction.title))]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
                       attrs: {
-                        src: interested.attraction.photo,
-                        alt: interested.attraction.title
+                        href: interested.attraction.pageUrl,
+                        title: interested.attraction.title
                       }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "buy",
-                    attrs: { href: interested.attraction.pageUrl }
-                  },
-                  [_vm._v("Buy Tickets")]
-                )
-              ])
-            }),
-            0
-          )
-        ])
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "img-responsive",
+                        attrs: {
+                          src: interested.attraction.photo,
+                          alt: interested.attraction.title
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "buy",
+                      attrs: { href: interested.attraction.pageUrl }
+                    },
+                    [_vm._v("Buy Tickets")]
+                  )
+                ])
+              }),
+              0
+            )
+          ]
+        )
       ])
     ]
   )
@@ -53742,8 +53790,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
-  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"]; // window.$ = window.jQuery = require('jquery');
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 } catch (e) {}

@@ -18,10 +18,11 @@ class AttractionController extends Controller
         });
 	   
         $attraction->rates;
+        $attraction->images;
 
         foreach($attraction->interestedIn as $interested) {
             $interested->attraction->slug = $interested->populateAttractionPageURL();
-            $interested->attraction->photo = $interested->populateAttractionImage();
+            $interested->attraction->populateAttractionImage();
         }
 
         return view('front.pages.inside', compact('menus', 'attraction'));
@@ -38,12 +39,17 @@ class AttractionController extends Controller
         });
 
         $attraction->rates;
+        $attraction->populateAttractionImage();
 
         foreach($attraction->interestedIn as $interested) {
             $interested->attraction->slug = $interested->populateAttractionPageURL();
-            $interested->attraction->photo = $interested->populateAttractionImage();
+            $interested->attraction->populateAttractionImage();
         }
-        
+
+        foreach($attraction->images as $image) {
+            $image->img = $image->populateAttractionGalleryImage();
+        }
+
         
         return view('front.pages.inside', compact('attraction', 'menus'));
 

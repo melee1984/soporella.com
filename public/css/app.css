@@ -90,3 +90,8 @@
   text-transform: capitalize;
 }
 
+.interested-in a.buy {
+  font-size: 13px;
+  color: #FFF !important;
+}
+

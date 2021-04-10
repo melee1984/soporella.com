@@ -21,9 +21,9 @@ class CategoryController extends Controller
         });
 
         foreach($category->attractionsMapping as $attractions) {
-            $attractions->attraction->photo = asset('products/images/'.$attractions->attraction->photo);
+            $attractions->attraction->populateAttractionImage();
             $attractions->attraction->pageUrl = route('page.attraction', [$category->slug, $attractions->attraction]);
-        }
+        }   
         
         return view('front.pages.listing', compact('menus', 'category'));
     }

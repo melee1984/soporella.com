@@ -62,9 +62,13 @@ class HomeController extends Controller
         });
 
         $campaigns = Cache::remember('campaigns', 30, function () {
-            $campaigns = Campaign::where('slider','=',1)->inRandomOrder()->take(1)->get();
-             foreach($campaigns as $attractions) {
-                $attractions->populateAttractionImage();
+            $campaigns = Campaign::where('slider','=',1)
+                                ->inRandomOrder()
+                                ->take(1)
+                                ->get();
+             foreach($campaigns as $attraction) {
+
+                $attraction->attraction->populateAttractionImage();
             }
             return $campaigns;
         });

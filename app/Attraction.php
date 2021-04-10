@@ -20,7 +20,7 @@ class Attraction extends Model
      * @return return tempalted url for photo
      */
     public function scopePopulateAttractionImage($query) {
-        return asset('uploads/images/'.$this->attraction->id.'/'.$this->attraction->photo);
+        $this->photo = asset('uploads/images/'.$this->id.'/'.$this->photo);
     }
     /**
      * [scopePopulateAttractionPageURL description]
@@ -29,7 +29,7 @@ class Attraction extends Model
      */
     public function scopePopulateAttractionPageURL($query) {
         
-        return $this->attraction->pageUrl = route('page.attraction.view', $this);
+        return $this->pageUrl = route('page.attraction.view', $this);
     }
     /**
      * [rates description]
