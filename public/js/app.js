@@ -2204,6 +2204,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2279,6 +2282,174 @@ __webpack_require__.r(__webpack_exports__);
       this.rateDetailsArray = this.rateHeader.rates[selectedIndex - 1];
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Promotion/CampaignComponents.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Promotion/CampaignComponents.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  props: ['campaigns']
 });
 
 /***/ }),
@@ -39383,11 +39554,30 @@ var render = function() {
                   return _c("div", { staticClass: "col-lg-6 ticket-age" }, [
                     _c("h4", [_vm._v(_vm._s(detail.title))]),
                     _vm._v(" "),
-                    _c("h5", { staticClass: "ticket-price" }, [
-                      _vm._v(
-                        _vm._s(detail.price) + " " + _vm._s(detail.currency)
-                      )
-                    ]),
+                    !detail.markdown_price == 0
+                      ? _c(
+                          "h5",
+                          { staticClass: "ticket-price" },
+                          [
+                            _c("strike", [_vm._v(_vm._s(detail.price))]),
+                            _vm._v(
+                              " " +
+                                _vm._s(detail.markdown_price) +
+                                " " +
+                                _vm._s(detail.currency)
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    detail.markdown_price == 0
+                      ? _c("h5", { staticClass: "ticket-price" }, [
+                          _vm._v(
+                            _vm._s(detail.price) + " " + _vm._s(detail.currency)
+                          )
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("input", {
@@ -39639,6 +39829,516 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Promotion/CampaignComponents.vue?vue&type=template&id=2a6f723d&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Promotion/CampaignComponents.vue?vue&type=template&id=2a6f723d& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.campaigns, function(campaign) {
+        return campaign.display_option == 1
+          ? _c(
+              "div",
+              {
+                staticClass: "container offer hidden-xs",
+                attrs: { id: "offer-one" }
+              },
+              [
+                _c("div", { staticClass: "row v-center" }, [
+                  _c("div", { staticClass: "offer-bgr col-lg-12 v-center" }, [
+                    _c("img", {
+                      staticClass: "img-responsive",
+                      attrs: { src: campaign.large_img, alt: "Offer" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "offer-wrap v-center" }, [
+                      _c("div", { staticClass: "col-lg-8 offer-txt" }, [
+                        _c("h3", [_vm._v(_vm._s(campaign.attraction.title))]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(_vm._s(campaign.attraction.description))
+                        ]),
+                        _vm._v(" "),
+                        _c("table", { staticClass: "table" }, [
+                          _c(
+                            "tbody",
+                            _vm._l(campaign.attraction.rates, function(rates) {
+                              return _c(
+                                "span",
+                                [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(rates.title) +
+                                      "\n                            "
+                                  ),
+                                  _vm._l(rates.details, function(ratesDetail) {
+                                    return _c("tr", [
+                                      _c("td", [
+                                        _vm._v(_vm._s(ratesDetail.title) + " ")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          _c("strike", [
+                                            _vm._v(
+                                              _vm._s(ratesDetail.price) +
+                                                "  " +
+                                                _vm._s(ratesDetail.currency) +
+                                                " "
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(ratesDetail.markdown_price) +
+                                            "  " +
+                                            _vm._s(ratesDetail.currency) +
+                                            " "
+                                        )
+                                      ])
+                                    ])
+                                  })
+                                ],
+                                2
+                              )
+                            }),
+                            0
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "buy",
+                            attrs: { href: campaign.attraction.pageUrl }
+                          },
+                          [_vm._v("Buy Ticket")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-lg-4 offer-img" },
+                        _vm._l(campaign.attraction.images, function(image) {
+                          return _c("span", [
+                            _c("img", {
+                              staticClass: "img-responsive",
+                              attrs: { src: image.img, alt: "" }
+                            })
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "rib-per" }, [
+                  _c("span", [
+                    _c("b", [_vm._v(_vm._s(campaign.discount_string))]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("small", [_vm._v("OFF")])
+                  ])
+                ])
+              ]
+            )
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "container offer" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _vm._l(_vm.campaigns, function(campaign) {
+              return campaign.display_option == 2
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "col-lg-6 offer-single",
+                      attrs: { id: "2" }
+                    },
+                    [
+                      _c("h4", [_vm._v(_vm._s(campaign.attraction.title))]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "carousel slide",
+                          attrs: {
+                            id: "#offer2",
+                            "data-ride": "carousel",
+                            "data-interval": "false"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "carousel-inner" }, [
+                            _c("div", { staticClass: "item active" }, [
+                              _c(
+                                "a",
+                                { attrs: { href: "#", target: "_blank" } },
+                                [
+                                  _c("img", {
+                                    staticClass: "img-responsive",
+                                    attrs: {
+                                      src: campaign.attraction.img,
+                                      alt: campaign.attraction.title,
+                                      width: "100%"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "rib-per" }, [
+                              _c("span", [
+                                _c("b", [
+                                  _vm._v(_vm._s(campaign.discount_string))
+                                ]),
+                                _c("br"),
+                                _c("small", [_vm._v("OFF")])
+                              ])
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(_vm._s(campaign.attraction.description))
+                      ]),
+                      _vm._v(" "),
+                      _c("table", { staticClass: "table" }, [
+                        _c(
+                          "tbody",
+                          _vm._l(campaign.attraction.rates, function(rates) {
+                            return _c(
+                              "span",
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(rates.title) +
+                                    "\n                            "
+                                ),
+                                _vm._l(rates.details, function(ratesDetail) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _vm._v(_vm._s(ratesDetail.title) + " ")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("strike", [
+                                          _vm._v(
+                                            _vm._s(ratesDetail.price) +
+                                              "  " +
+                                              _vm._s(ratesDetail.currency) +
+                                              " "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(ratesDetail.markdown_price) +
+                                          "  " +
+                                          _vm._s(ratesDetail.currency) +
+                                          " "
+                                      )
+                                    ])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          }),
+                          0
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "buy",
+                          attrs: { href: campaign.attraction.pageUrl }
+                        },
+                        [_vm._v("Buy Ticket")]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.campaigns, function(campaign) {
+              return campaign.display_option == 3
+                ? _c("div", { staticClass: "container offer" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-lg-12 offer-last counter_4" },
+                        [
+                          _c("div", { staticClass: "row v-center" }, [
+                            _c("div", { staticClass: "col-lg-4 col-xs-12" }, [
+                              _c("img", {
+                                staticClass: "img-responsive",
+                                attrs: {
+                                  src: campaign.attraction.img,
+                                  alt: campaign.attraction.title
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "rib-per" }, [
+                              _c("span", [
+                                _c("b", [
+                                  _vm._v(_vm._s(campaign.discount_string))
+                                ]),
+                                _c("br"),
+                                _c("small", [_vm._v("OFF")])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-lg-8 col-xs-12" }, [
+                              _c("h4", [
+                                _vm._v(_vm._s(campaign.attraction.title))
+                              ]),
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(campaign.attraction.description) +
+                                  "\n                    "
+                              ),
+                              _c("table", { staticClass: "table" }, [
+                                _c(
+                                  "tbody",
+                                  _vm._l(campaign.attraction.rates, function(
+                                    rates
+                                  ) {
+                                    return _c(
+                                      "span",
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(rates.title) +
+                                            "\n                            "
+                                        ),
+                                        _vm._l(rates.details, function(
+                                          ratesDetail
+                                        ) {
+                                          return _c("tr", [
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(ratesDetail.title) + " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              [
+                                                _c("strike", [
+                                                  _vm._v(
+                                                    _vm._s(ratesDetail.price) +
+                                                      "  " +
+                                                      _vm._s(
+                                                        ratesDetail.currency
+                                                      ) +
+                                                      " "
+                                                  )
+                                                ])
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  ratesDetail.markdown_price
+                                                ) +
+                                                  "  " +
+                                                  _vm._s(ratesDetail.currency) +
+                                                  " "
+                                              )
+                                            ])
+                                          ])
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  }),
+                                  0
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "buy",
+                                  attrs: { href: campaign.attraction.pageUrl }
+                                },
+                                [_vm._v("Buy Ticket")]
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                : _vm._e()
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.campaigns, function(campaign) {
+              return campaign.display_option == 4
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "col-lg-6 offer-single",
+                      attrs: { id: "2" }
+                    },
+                    [
+                      _c("h4", [_vm._v(_vm._s(campaign.attraction.title))]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "carousel slide",
+                          attrs: {
+                            id: "#offer2",
+                            "data-ride": "carousel",
+                            "data-interval": "false"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "carousel-inner" }, [
+                            _c("div", { staticClass: "item active" }, [
+                              _c(
+                                "a",
+                                { attrs: { href: "#", target: "_blank" } },
+                                [
+                                  _c("img", {
+                                    staticClass: "img-responsive",
+                                    attrs: {
+                                      src: campaign.attraction.img,
+                                      alt: campaign.attraction.title,
+                                      width: "100%"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "rib-per" }, [
+                              _c("span", [
+                                _c("b", [
+                                  _vm._v(_vm._s(campaign.discount_string))
+                                ]),
+                                _c("br"),
+                                _c("small", [_vm._v("OFF")])
+                              ])
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(_vm._s(campaign.attraction.description))
+                      ]),
+                      _vm._v(" "),
+                      _c("table", { staticClass: "table" }, [
+                        _c(
+                          "tbody",
+                          _vm._l(campaign.attraction.rates, function(rates) {
+                            return _c(
+                              "span",
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(rates.title) +
+                                    "\n                            "
+                                ),
+                                _vm._l(rates.details, function(ratesDetail) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _vm._v(_vm._s(ratesDetail.title) + " ")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("strike", [
+                                          _vm._v(
+                                            _vm._s(ratesDetail.price) +
+                                              "  " +
+                                              _vm._s(ratesDetail.currency) +
+                                              " "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(ratesDetail.markdown_price) +
+                                          "  " +
+                                          _vm._s(ratesDetail.currency) +
+                                          " "
+                                      )
+                                    ])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          }),
+                          0
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "buy",
+                          attrs: { href: campaign.attraction.pageUrl }
+                        },
+                        [_vm._v("Buy Ticket")]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            })
+          ],
+          2
+        )
+      ])
+    ],
+    2
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -52972,6 +53672,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Cart_ProductInsideComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Cart/ProductInsideComponent.vue */ "./resources/js/components/Cart/ProductInsideComponent.vue");
 /* harmony import */ var _components_Cart_CheckoutComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Cart/CheckoutComponent.vue */ "./resources/js/components/Cart/CheckoutComponent.vue");
 /* harmony import */ var _components_Shopping_BasketComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Shopping/BasketComponent.vue */ "./resources/js/components/Shopping/BasketComponent.vue");
+/* harmony import */ var _components_Promotion_CampaignComponents_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Promotion/CampaignComponents.vue */ "./resources/js/components/Promotion/CampaignComponents.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -53000,10 +53701,12 @@ window.Event = new Vue();
 
 
 
+
 Vue.component('cart-total', _components_TotalItemCount_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.component('product-page', _components_Cart_ProductInsideComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.component('basket-page', _components_Shopping_BasketComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.component('checkout-page', _components_Cart_CheckoutComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('campaign-page', _components_Promotion_CampaignComponents_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -53202,6 +53905,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductInsideComponent_vue_vue_type_template_id_27c92fc6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductInsideComponent_vue_vue_type_template_id_27c92fc6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Promotion/CampaignComponents.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Promotion/CampaignComponents.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CampaignComponents_vue_vue_type_template_id_2a6f723d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CampaignComponents.vue?vue&type=template&id=2a6f723d& */ "./resources/js/components/Promotion/CampaignComponents.vue?vue&type=template&id=2a6f723d&");
+/* harmony import */ var _CampaignComponents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CampaignComponents.vue?vue&type=script&lang=js& */ "./resources/js/components/Promotion/CampaignComponents.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CampaignComponents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CampaignComponents_vue_vue_type_template_id_2a6f723d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CampaignComponents_vue_vue_type_template_id_2a6f723d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Promotion/CampaignComponents.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Promotion/CampaignComponents.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Promotion/CampaignComponents.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignComponents.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Promotion/CampaignComponents.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Promotion/CampaignComponents.vue?vue&type=template&id=2a6f723d&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Promotion/CampaignComponents.vue?vue&type=template&id=2a6f723d& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponents_vue_vue_type_template_id_2a6f723d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignComponents.vue?vue&type=template&id=2a6f723d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Promotion/CampaignComponents.vue?vue&type=template&id=2a6f723d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponents_vue_vue_type_template_id_2a6f723d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponents_vue_vue_type_template_id_2a6f723d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

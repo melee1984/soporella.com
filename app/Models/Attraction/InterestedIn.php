@@ -20,7 +20,7 @@ class InterestedIn extends Model
      * @return return tempalted url for photo
      */
     public function scopePopulateAttractionImage($query) {
-        return $this->attraction->photo = asset('products/images/'.$this->attraction->photo);
+        return $this->attraction->photo = asset('uploads/images/'.$this->attraction->id.'/'.$this->attraction->photo);
     }
     /**
      * [scopePopulateAttractionPageURL description]

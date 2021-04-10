@@ -61,8 +61,8 @@ class HomeController extends Controller
             return Category::forMenu()->active()->get();
         });
 
-        $campaigns = Cache::remember('campaigns', 5, function () {
-            $campaigns = Campaign::inRandomOrder()->take(1)->get();
+        $campaigns = Cache::remember('campaigns', 30, function () {
+            $campaigns = Campaign::where('slider','=',1)->inRandomOrder()->take(1)->get();
              foreach($campaigns as $attractions) {
                 $attractions->populateAttractionImage();
             }

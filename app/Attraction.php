@@ -20,7 +20,7 @@ class Attraction extends Model
      * @return return tempalted url for photo
      */
     public function scopePopulateAttractionImage($query) {
-        return $this->attraction->photo = asset('products/images/'.$this->attraction->photo);
+        return asset('uploads/images/'.$this->attraction->id.'/'.$this->attraction->photo);
     }
     /**
      * [scopePopulateAttractionPageURL description]
@@ -40,6 +40,12 @@ class Attraction extends Model
         return $this->hasMany('App\Models\Attraction\AttractionRateHeader')
             ->with('details');
     }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\Attraction\AttractionImage');
+    }
+
     /**
      * [interestedIn description]
      * @return [type] [description]

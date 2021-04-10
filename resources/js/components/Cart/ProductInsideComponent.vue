@@ -44,7 +44,10 @@
             <div id="att-drops" class="priceRateDisplay">
               <div v-for="(detail, index) in rateDetailsArray.details" class="col-lg-6 ticket-age">
                   <h4>{{ detail.title }}</h4>
-                  <h5 class="ticket-price">{{ detail.price }} {{ detail.currency }}</h5>
+
+                  <h5 class="ticket-price" v-if="!detail.markdown_price==0"><strike>{{ detail.price }}</strike> {{ detail.markdown_price }} {{ detail.currency }}</h5>
+                  <h5 class="ticket-price" v-if="detail.markdown_price==0">{{ detail.price }} {{ detail.currency }}</h5>
+
                   <div class="form-group">
                       <input type="number" min="0" class="form-control" placeholder="0" value="1" :key="index" v-model="detail.qty">
                   </div>
