@@ -25,6 +25,7 @@ class CheckoutController extends Controller
     	$data['user'] = $request->user();
 
     	$cart = Cart::whereSessionId(Session::getID())->first();
+    	
     	if ($cart) {
 
     		$currency = $cart->currency;
@@ -33,8 +34,11 @@ class CheckoutController extends Controller
 
 	    		$detail->attractiondetails;
 	    		$detail->attraction;
-	            $detail->attraction->photo = URL::to("product/image?name=".$detail->attraction->photo."&s=thumb");
+
+	            $detail->attraction->populateAttractionImage();
+
 			    $detail->attraction->url = route('page.attraction.view', $detail->attraction);
+
 				$detail->variance_total = number_format($detail->variance_total, 2)  . " " . $currency;
 			    // Just to format response 
 				$detail->variance_details = unserialize($detail->variance_details);
@@ -82,16 +86,15 @@ class CheckoutController extends Controller
 
 		if ($cart) {
 
-			$cart->fullname = Auth::User()->firstname . " " . Auth::User()->lastname;
+			$cart->fullname = Auth::User()->name;
 			$cart->email = Auth::User()->email;
 			$cart->mobile = Auth::User()->mobile;
 			$cart->ref_no = $cart->generateOrderNo();
-			$cart->currency = trans('messages.CURRENCY_SYMBOL');
+			$cart->currency = trans('messages.CURRENCY_SYMBOL'); // This will save the current currency symbol 
 			$cart->active = 1;
+			$cart->status_id = 1;
 			$cart->submitted_at = now();
-			// $cart->processed_at = now();
 			$status = $cart->save();
-
 
 			if ($status) {
 				$data['status'] = 1;
@@ -100,9 +103,8 @@ class CheckoutController extends Controller
 				// regenerate session 
 				$request->session()->regenerate();
  			}
-
 		}
-
+		
 		return response()->json($data, 200);	
     }
 

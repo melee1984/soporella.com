@@ -46,6 +46,7 @@ class Campaign extends Model
      * @return return tempalted url for photo
      */
     public function scopePopulateCampaignImage($query, $large=false, $im) {
+        
         if ($large) {
             return asset('uploads/campaigns/'.$this->large_img);
         }
@@ -56,12 +57,8 @@ class Campaign extends Model
             else {
                 return  asset('uploads/campaigns/'.$this->attraction->img_2);          
             }
-            
         }
-        
     }
-
-
     
 
 }

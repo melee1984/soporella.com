@@ -17,17 +17,17 @@ class ImageController extends Controller
 	 	$cacheimage = Image::cache(function($image) use ($src, $size) {
 
 		    if ($size == 'thumb') {
-		       return $image->make("products/images/".$src)->resize(250, 250, function ($constraint) {
+		       return $image->make("uploads/images/".$src)->resize(400, 400, function ($constraint) {
 		            $constraint->aspectRatio();
 		        });    
 		    }
 		    elseif ($size == 'banner') {
-		      return $image->make("products/images/".$src)->resize(500, 250, function ($constraint) {
+		      return $image->make("uploads/images/".$src)->resize(500, 250, function ($constraint) {
 		          $constraint->aspectRatio();
 		      }); 
 		    }
 		    elseif ($size == 'orig') {
-		     return $image->make('products/images/'.$src)->resize(500, 350, function ($constraint) {
+		     return $image->make('uploads/images/'.$src)->resize(500, 350, function ($constraint) {
 		          $constraint->aspectRatio();
 		      }); 
 		      // Thumbnail

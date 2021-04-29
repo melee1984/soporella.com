@@ -25,6 +25,7 @@ var DropzoneExample = function () {
                     done("Naha, you don't.");
                 } else {
                     done();
+                    removeFile(file);
                 }
             }
         };

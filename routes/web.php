@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/product/image', 'ImageController@product')->name('product.image');
 
 Route::get('/lang/{locale}', function($locale) {
+
 	session()->put('locale', $locale);
+
+	$country = Country::whereCountryCode($locale)->first();
+	session()->put('conversion', $country->conversion);	
+	session()->put('currency', $country->currency);	
+
 	return redirect()->back();
 });
 
@@ -42,9 +45,7 @@ Route::get('/sitemap', 'PageController@sitemap')->name('sitemap');
 Route::get('/promotions', 'PromotionsController@index')->name('promotions');
 Route::get('/shopping-cart/basket', 'Shopping\CartController@index')->name('shopping.basket');
 Route::get('/logout', 'User\LoginController@userlogout')->name('user.logout');
-
 // Display by Theme Category Type
-
 /* Dashboard */
 Route::post('/dashboard/login/submit', 'Management\DashboardController@validateLogin')
 	->name('dashboard.login.submit');
@@ -57,39 +58,38 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/checkout', 'Shopping\CheckoutController@checkout')->name('checkout');
 	Route::get('/checkout/success', 'Shopping\CheckoutController@success')->name('checkout.success');
 	// Route::get('/checkout', 'Shopping\CheckoutController@checkout')->name('checkout.failed');
-
 	Route::get('/myaccount', 'User\ProfileController@profile')->name('profile.dashboard');
 	Route::get('/myaccount/tickets', 'User\ProfileController@tickets')->name('profile.tickets');
 	Route::get('/myaccount/information', 'User\ProfileController@reset')->name('profile.information');
-
 	Route::get('/myaccount/personal-information', 'User\ProfileController@tickets')->name('profile.personal-information');
 	Route::get('/myaccount/billing-information', 'User\ProfileController@tickets')->name('profile.billing-information');
-
-
 	Route::post('/myaccount/information/submit', 'User\ProfileController@updatePassword')->name('profile.information.submit');
 
 });
 
 // Admin 
 Route::group(['middleware' => 'admin'], function() {
-
 	// Main Dashboard 
 	Route::get('/dashboard', 'Management\DashboardController@index')->name('dashboard.management.dashboard');
 	Route::get('/dashboard/order/{cart:ref_no}', 'Management\DashboardController@view')->name('dashboard.order.view');
 	Route::get('/dashboard/orders', 'Management\DashboardController@list')->name('dashboard.order.list');
-
-	
 	// Attractions 
 	Route::get('/dashboard/attraction', 'Management\AttractionController@index')->name('dashboard.management.attraction');
+	Route::get('/dashboard/attraction/add', 'Management\AttractionController@add')->name('dashboard.management.add');
 	Route::get('/dashboard/attraction/{attraction}', 'Management\AttractionController@show')->name('dashboard.management.edit');
+	Route::post('/dashboard/attraction/add', 'Management\AttractionController@store')->name('dashboard.attraction.submit');
+
 	// promotions
 	Route::get('/dashboard/promotions', 'Management\PromotionController@index')->name('dashboard.management.promotions');
+
+	// dashboard/top-attraction
+	Route::get('/dashboard/top-attraction', 'Management\TopAttractionController@index')->name('dashboard.management.promotions');
 	// coupoons
 	Route::get('/dashboard/coupons', 'Management\CouponsController@index')->name('dashboard.management.coupons');
 	// categories
-	Route::get('/dashboard/categories', 'Management\CategoryController@index')->name('dashboard.management.categories');
+	Route::get('/dashboard/category', 'Management\CategoryController@index')->name('dashboard.management.categories');
 	// campaign
-	Route::get('/dashboard/campaign', 'Management\CategoryController@index')->name('dashboard.management.categories');
+	Route::get('/dashboard/campaign', 'Management\CampaignController@index')->name('dashboard.management.campaign');
 	// campaign
 	Route::get('/dashboard/settings', 'Management\CategoryController@index')->name('dashboard.management.categories');
 	// user 

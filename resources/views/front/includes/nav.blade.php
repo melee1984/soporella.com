@@ -6,7 +6,8 @@
           <div class="col-lg-12">
               <ul> 
                 @foreach($menus as $menu)
-                  <li><a title="{{ $menu->title }}" class="{{ $menu->title }}" href="{{ route('page.category', $menu) }}">{{ $menu->title }}</a></li>
+
+                  <li><a title="{{ $menu->language_string['title'] }}" class="{{  $menu->language_string['title']  }}" href="{{ route('page.category', $menu) }}">{{ $menu->language_string['title'] }}</a></li>
                 @endforeach
                 <li><a title="Promotions" id="promo" class="promo" href="{{ route('promotions') }}">Promotions</a></li>
               </ul>

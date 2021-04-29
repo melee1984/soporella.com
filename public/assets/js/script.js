@@ -354,4 +354,5 @@ $("#flip-btn").click(function(){
 
 $("#flip-back").click(function(){
     $(".flip-card-inner").removeClass("flipped")
-})
+});
+

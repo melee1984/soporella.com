@@ -291,6 +291,8 @@ If you registered to view our promotion, you will have received an email to veri
 'SAVE'                              =>                  'Save',
 'MALE'                              =>                  'Male',
 'FEMALE'                            =>                  'Female',
+'TOP_ATTRACTIONS'                            =>          'Top Attractions',
+
 
 
 //FEAUTURES

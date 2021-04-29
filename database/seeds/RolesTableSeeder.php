@@ -19,5 +19,6 @@ class RolesTableSeeder extends Seeder
 
 		// Assigning roles to user admin 
 		$user->assignRole('admin');
+        
     }
 }

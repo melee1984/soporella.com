@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">                                       <i data-feather="home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#"> <i data-feather="home"></i></a></li>
                     <li class="breadcrumb-item">Home</li>
                     <li class="breadcrumb-item active">Dashboard</li>
                   </ol>
@@ -20,6 +20,7 @@
           </div>
 
           <div class="container-fluid">
+            
             <div class="row">
               <div class="col-sm-4 col-xl-3 col-lg-3">
                 <div class="card o-hidden">
@@ -105,7 +106,6 @@
                               </td>
                             </tr>
                             @empty
-
                                <tr>
                                   <th scope="row" colspan="4">No record found</th>
                                 </tr>

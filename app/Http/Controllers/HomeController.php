@@ -32,19 +32,24 @@ class HomeController extends Controller
     public function index() 
     {   
         $promotions = Cache::remember('promotions', 30, function () {
-            $promotions = Promotion::take(8)->get();
+            $promotions = Promotion::take(4)->get();
             foreach($promotions as $promotion) {
-                $promotion->populateAttractionPageURL();
-                $promotion->populateAttractionImage();
+                $promotion->attraction->populateAttractionPageURL();
+                $promotion->attraction->populateAttractionImage();
+
+                $promotion->attraction->language_string = $promotion->attraction->convertLanguageField();
             }
             return $promotions;
         });
 
-         $topAttractions = Cache::remember('promotions', 30, function () {
-            $topAttractions = TopAttraction::take(8)->get();
+         $topAttractions = Cache::remember('topAttractions', 30, function () {
+            $topAttractions = TopAttraction::take(4)->get();
+
             foreach($topAttractions as $attractions) {
-                $attractions->populateAttractionPageURL();
-                $attractions->populateAttractionImage();
+                $attractions->attraction->populateAttractionPageURL();
+                $attractions->attraction->populateAttractionImage();
+
+                $attractions->attraction->language_string = $attractions->attraction->convertLanguageField();
             }
             return $topAttractions;
         });
@@ -52,15 +57,19 @@ class HomeController extends Controller
         $suggestionAttractions = Cache::remember('suggestion', 30, function () {
             $suggestionAttractions = SuggestedAttraction::take(6)->get();
             foreach($suggestionAttractions as $attractions) {
-                $attractions->populateAttractionPageURL();
-                $attractions->populateAttractionImage();
+                $attractions->attraction->populateAttractionPageURL();
+                $attractions->attraction->populateAttractionImage();
+
+                $attractions->attraction->language_string = $attractions->attraction->convertLanguageField();
             }
             return $suggestionAttractions;
         });
 
-        $menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
-        });
+        $menus = Category::forMenu()->active()->get();
+
+        foreach ($menus as $category) {
+            $category->language_string = $category->convertLanguageField();
+        }
 
         $campaigns = Cache::remember('campaigns', 30, function () {
             $campaigns = Campaign::where('slider','=',1)

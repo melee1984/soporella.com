@@ -8,52 +8,55 @@
   </div>
 </div>
 
-<div class="col-sm-12">
+ <div class="col-sm-12">
   <div class="card">
-    <div class="card-header">
-      <h5>Administrator Products</h5>
-    </div>
-    <div class="card-block row">
-      <div class="col-sm-12 col-lg-12 col-xl-12">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Attraction</th>
-                <th scope="col">Short Description</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Seawings Snapshot</td>
-                <td>OYou’ll enjoy stunning vistas of Dubai’s essential attractions on this short, action-packed 20-minute seaplane flight.    
-tto</td>
-                <td>Active</td>
-              </tr>
-              <tr>
-                <td>Seaplane Tour & Private Discovery Tour</td>
-                <td>You’ll enjoy stunning vistas of Dubai’s essential attractions on this short, action-packed 20-minute seaplane flight.   
-</td>
-                <td>Active</td>
-              </tr>
-              <tr>
-                <td>Seaplane Flight & Private Heritage Tour</td>
-                <td>You’ll enjoy stunning vistas of Dubai’s essential attractions on this short, action-packed 20-minute seaplane flight.   
-</td>
-                <td>Active</td>
-              </tr>
-            </tbody>
-          </table>
+
+      <div class="card-header">
+        <h5>Orders</h5>
+      </div>
+
+      <div class="card-block row">
+        <div class="col-sm-12 col-lg-12 col-xl-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Date Ordered</th>
+                  <th scope="col">Order #</th>
+                  <th scope="col">Merchant Ref no</th>
+                  <th scope="col">No of Tickets</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" width="15%" class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @forelse($orders as $order)
+                <tr>
+                  <th scope="row">{{ date('m/d/Y', strtotime($order->submitted_at) ) }}</th>
+                  <td>{{ $order->ref_no }}</td>
+                  <td>?</td>
+                  <td>10</td>
+                  <td>1200.00 AED</td>
+                  <td><div class="span badge badge-pill pill-badge-secondary">Pending</div></td>
+                  <td  class="text-right">
+                    <a class="btn btn-secondary btn-sm" href="{{ route('dashboard.order.view', $order) }}" data-toggle="tooltip" title="" role="button" data-original-title="View Tickets">View Tickets</a>
+                  </td>
+                </tr>
+                @empty
+                   <tr>
+                      <th scope="row" colspan="4">No record found</th>
+                    </tr>
+                @endforelse
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+
   </div>
 </div>
 
-
-
-  
   
 @endsection
 

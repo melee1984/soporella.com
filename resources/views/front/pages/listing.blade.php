@@ -12,12 +12,15 @@
 	        <div class="item active">
 	          	<div class="row tab-content">
 	          		@forelse($category->attractionsMapping as $promotion) 
-	          				<div class="col-lg-3 col-md-3  col-sm-3 col-xs-12 tab-single" >                 
-			                  <a href="{{ $promotion->attraction->pageUrl }}">
+							@php
+								$attractionText = $promotion->attraction->convertLanguageField();
+							@endphp
+	          				<div class="col-lg-3 col-md-3  col-sm-3 col-xs-12 tab-single" >	                  
+	          					<a href="{{ $promotion->attraction->pageUrl }}">
 			                  <img src="{{ $promotion->attraction->photo }}" alt="{{ $promotion->attraction->title }}" class="img-responsive">
 			                  </a>
 			                  <h4><a href="{{ $promotion->attraction->pageUrl }}" title="At the Top &amp; Sky at Burj Khalifa">{{ $promotion->attraction->title }}</a></h4>
-			                  <p>{{ Str::words($promotion->attraction->description, 20) }} <a href="{{ $promotion->attraction->pageUrl }}"> more</a></p>
+			                  <p>{{ Str::words($attractionText['description'], 20) }} <a href="{{ $promotion->attraction->pageUrl }}"> more</a></p>
 			                  <a class="buy" href="{{ $promotion->attraction->pageUrl }}">Buy Tickets</a>
 	        				</div>
 	          		@empty

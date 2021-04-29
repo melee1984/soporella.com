@@ -944,6 +944,7 @@ var Dropzone = function (_Emitter) {
           if (file.previewElement) {
             return file.previewElement.classList.add("dz-success");
           }
+          
         },
         successmultiple: function successmultiple() {},
 

@@ -19,6 +19,9 @@ class DashboardController extends Controller
     {
 		return view('management.pages.login');
     }
+
+    
+
     /**
      * [logout description]
      * @param  Request $request [description]
@@ -87,7 +90,7 @@ class DashboardController extends Controller
      */
     public function view(Cart $cart) {
 
-    	return view('management.pages.orders.attached', compact('cart'));
+        return view('management.pages.orders.attached', compact('cart'));
 
     }
 
@@ -95,8 +98,14 @@ class DashboardController extends Controller
      * [list description]
      * @return [type] [description]
      */
-   	 public function list() 
-    {	
-		return view('management.pages.orders.orders');
+   	public function list() 
+    {	  
+        $orders = Cart::whereUserId(Auth::User()->id)
+                    ->whereNotNull('submitted_at') 
+                    ->orderBy('created_at', 'asc')->get();
+
+		return view('management.pages.orders.orders', compact('orders') );
     }
+
+    
 }

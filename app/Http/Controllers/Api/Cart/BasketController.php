@@ -193,7 +193,8 @@ class BasketController extends Controller
 
 	    		$detail->attractiondetails;
 	    		$detail->attraction;
-	            $detail->attraction->photo = URL::to("product/image?name=".$detail->attraction->photo."&s=thumb");
+	            $detail->attraction->populateAttractionImage();
+
 			    $detail->attraction->url = route('page.attraction.view', $detail->attraction);
 				$detail->variance_total = number_format($detail->variance_total, 2)  . " " . $currency;
 			    // Just to format response 

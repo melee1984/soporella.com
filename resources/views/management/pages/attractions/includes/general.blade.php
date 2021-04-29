@@ -10,18 +10,18 @@
           <div class="row">
             <div class="form-group col-12">
               <label for="inputEmail4">Title</label>
-              <input class="form-control" id="inputEmail4" type="email" data-original-title="" title="" value="{{ $attraction->title }}">
+              <input class="form-control" id="inputEmail4" type="email" data-original-title="" title="" value="">
             </div>
             <div class="form-group col-12">
               <label for="inputPassword4">Description</label>
-              <textarea class="form-control" id="inputPassword4" data-original-title="" title="" rows="10">{{ $attraction->description }}</textarea> 
+              <textarea class="form-control" id="inputPassword4" data-original-title="" title="" rows="10"></textarea> 
             </div>
           </div>
         </form>
       </div>
        <div class="col-lg-4 col-sm-4">
           <label>Primary Photo</label>
-          <img src="{{ asset('products/images/'.$attraction->photo ) }}" class="img-fluid"> 
+          <img src="" class="img-fluid"> 
        </div>
       </div>
     </div>

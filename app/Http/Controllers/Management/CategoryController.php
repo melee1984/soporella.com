@@ -15,9 +15,16 @@ class CategoryController extends Controller
      */
     public function index() 
     {	
-    	$categories = Category::orderby('sorting', 'desc')->get();
+    	
+      $categories = Category::orderby('sorting', 'asc')->get();
 
-		return view('management.pages.category', compact('categories'));
+    	foreach($categories as $category) {
+    		$category->language_string = $category->convertLanguageField();
+    	}
+
+    	$data['categories'] = $categories;
+  		return view('management.pages.category', compact('categories'));
+      
 	}
 
 }

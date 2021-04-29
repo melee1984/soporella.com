@@ -23,9 +23,9 @@ class PromotionsController extends Controller
         $campaigns = Cache::remember('campaigns', 1, function () {
 
             $campaigns = Campaign::with('attraction')
-                        ->whereActive(1)
-                        ->whereSlider(0)
-                        ->get();
+                            ->whereActive(1)
+                            ->whereSlider(0)
+                            ->get();
 
             foreach($campaigns as $campaign) {
 

@@ -4,20 +4,17 @@
       <div class="com-md-12 text-center p-50" v-if="loading">
         <img src="/images/ajax-loader.gif" alt=""><p class="p-10">Please wait..</p>
       </div>
-        
         <div  v-if="!loading" >
           <div class="row">
             <div class="col-lg-12">
               <h1><span class="red"><span>{{ totalQuantity }}</span></span> Tickets in your Cart</h1>
             </div>
           </div>
-
           <div class="alert alert-info" role="alert" v-if="totalQuantity==0" >
             <h4 class="alert-heading">Hello There,</h4>
             <p>Your cart is currently empty</p>
             <hr>
           </div>
-        
           <div class="row m-t-15 p-40 border-box" v-for="item in cart.details">
               <div class="col-md-2 col-sm-12">
                    <a :href="item.attraction.url" :title="item.attraction.title">

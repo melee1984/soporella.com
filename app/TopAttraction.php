@@ -15,25 +15,8 @@ class TopAttraction extends Model
 	 */
 	public function attraction()
     {
-        return $this->hasMany('App\Attraction', 'attraction_id', 'id');
+        return $this->belongsTo('App\Attraction','attraction_id', 'id');
     }
 
-    /* Extra function */
-    /**
-     * Populate Page URL for the Attractions 
-     * 
-     * @return return templated page URL contract in the object
-     */
-    public function scopePopulateAttractionPageURL($query) {
-        return $this->attraction->pageUrl = route('page.top', $this->attraction);
-    }
-    /**
-     * Populate Photo asset url 
-     * @param  object 
-     * @return return tempalted url for photo
-     */
-    public function scopePopulateAttractionImage($query) {
-        return $this->attraction->photo = asset('uploads/images/'.$this->attraction->id.'/'.$this->attraction->photo);
-    }
-
+   
 }

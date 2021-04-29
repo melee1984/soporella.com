@@ -3,6 +3,7 @@
 namespace App\Models\Attraction;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Country;
 
 class AttractionRateDetails extends Model
 {
@@ -24,5 +25,47 @@ class AttractionRateDetails extends Model
 		return $this->price;
     }
 
+    public function computePricedOnTheCountrySelected() {
+        $conversion = session()->get('conversion');
+        return number_format(ceil((float)$this->price * (float) $conversion), 2);
+    }
+    public function computeMarkdownPricedOnTheCountrySelected() {
+        $conversion = session()->get('conversion');
+        
+        if ($this->markdown_price>1)  {
+            return number_format(ceil((float)$this->markdown_price * (float) $conversion), 2);
+        }
+        else {
+            return 0;
+        }
+
+    }
+    
+    public function getCurrency() {
+        return session()->get('currency');
+    }
+    
+    /**
+     * Get the text based on the selected locale
+     * @return [type] [description]
+     */
+    public function convertLanguageField() 
+    {   
+        $array_string = unserialize($this->language_string);
+  
+        $toBeReturnString = "";
+        $c = session()->get('locale');
+
+        return $array_string[$c];
+    }   
+    /**
+     * Language 
+     * @return [type] [description]
+     */
+    public function languageField() 
+    {
+       return unserialize($this->language_string);
+    }   
+    
 
 }

@@ -20,10 +20,9 @@ class Cart extends Model
         $order = Cart::count();
         $length = 10;
         return $orderNo = substr(str_repeat(0, $length)."0971".$order, - $length);
-     }
+    }
 
     public function summary() {
-
 
     	$data = array();
     	$subTotal = 0;
@@ -49,6 +48,14 @@ class Cart extends Model
     	);
 
     	return $summary;
+    }
+
+    public function payment() {
+        return $this->belongsTo('App\PaymentMethod','payment_id', 'id');
+    }
+
+    public function status() {
+        return $this->belongsTo('App\Status','status_id', 'id');
     }
 
 }

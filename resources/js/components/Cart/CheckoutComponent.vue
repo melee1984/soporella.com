@@ -11,7 +11,7 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-md-11">
-              <strong>{{ userArray.firstname }} {{ userArray.lastname }}</strong><br>
+              <strong>{{ userArray.name }}</strong><br>
                {{ userArray.email }} <br>
               {{ userArray.mobile }}
 
@@ -93,7 +93,6 @@
           var self = this;
 
           self.loading = true;
-
           axios.get('/api/checkout?api_token='+api_token).then(function (response) {
             if (response.data.status) {
               self.paymentGatewayArray = response.data.paymentGatewayList;
@@ -109,14 +108,13 @@
         proceed: function() {
           var self = this;
           self.loading= true;
+          
           axios.post('/api/checkout/submit?api_token='+api_token).then(function (response) {
             if (response.data.status) {
                 self.redirect(response.data.redirectURL);  
             }
             else {
-
                this.$toasts.error(response.data.message);
-
             }
 
             self.loading = false;

@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{{ URL::to('favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::to('favicon.ico') }}" type="image/x-icon">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Soporella  Management</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
@@ -26,12 +28,12 @@
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">
     <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/dropzone.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
-
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/date-picker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/date-picker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/owlcarousel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/prism.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/whether-icon.css') }}">
@@ -39,13 +41,15 @@
     <!-- Bootstrap css-->
     <!-- App css-->
     <!-- Responsive css-->
-    
+    <script src="{{ asset('js/management.js') }}" defer></script>
   </head>
-  <body>
+  <body >
     <!-- tap on top starts-->
     <div class="tap-top"><i data-feather="chevrons-up"></i></div>
     <!-- tap on tap ends-->
     <!-- page-wrapper Start-->
+   
+   <div id="myapp">
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
       <!-- Page Header Start-->
       <div class="page-header">
@@ -69,24 +73,10 @@
           
           </div>
 
-
           <div class="nav-right col-8 pull-right right-header p-0">
             <ul class="nav-menus">
               <li class="language-nav">
-                <div class="translate_wrapper">
-                  <div class="current_lang">
-                    <div class="lang"><i class="flag-icon flag-icon-us"></i><span class="lang-txt">EN</span></div>
-                  </div>
-                  <div class="more_lang">
-                    <div class="lang selected" data-value="en"><i class="flag-icon flag-icon-us"></i><span class="lang-txt">English<span> (US)</span></span></div>
-                    <div class="lang" data-value="de"><i class="flag-icon flag-icon-de"></i><span class="lang-txt">Deutsch</span></div>
-                    <div class="lang" data-value="es"><i class="flag-icon flag-icon-es"></i><span class="lang-txt">Español</span></div>
-                    <div class="lang" data-value="fr"><i class="flag-icon flag-icon-fr"></i><span class="lang-txt">Français</span></div>
-                    <div class="lang" data-value="pt"><i class="flag-icon flag-icon-pt"></i><span class="lang-txt">Português<span> (BR)</span></span></div>
-                    <div class="lang" data-value="cn"><i class="flag-icon flag-icon-cn"></i><span class="lang-txt">简体中文</span></div>
-                    <div class="lang" data-value="ae"><i class="flag-icon flag-icon-ae"></i><span class="lang-txt">لعربية <span> (ae)</span></span></div>
-                  </div>
-                </div>
+                 <language></language>
               </li>
               <li>                         
                 <li class="maximize"><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
@@ -104,17 +94,9 @@
               </li>
             </ul>
           </div>
-          <script id="result-template" type="text/x-handlebars-template">
-            <div class="ProfileCard u-cf">                        
-            <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
-            <div class="ProfileCard-details">
-            <div class="ProfileCard-realName">Name Here</div>
-            </div>
-            </div>
-          </script>
-          <script id="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
         </div>
       </div>
+
       <!-- Page Header Ends                              -->
       <!-- Page Body Start-->
       <div class="page-body-wrapper horizontal-menu">
@@ -143,6 +125,20 @@
         </footer>
       </div>
     </div>
+       </div>
+
+    <script type="text/javascript">
+      var page_url = '{{ Request::path() }}';
+      var isLogged = '{{ Auth::check() }}';
+      var MAINURL = '{{ URL::to('/') }}';
+
+      @if (Auth::check()) 
+        var api_token = '{{ Auth::User()->api_token }}';  
+      @else 
+        var api_token = '';
+      @endif
+    </script>
+
         <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     <!-- Bootstrap js-->
@@ -155,21 +151,27 @@
     <script src="{{ asset('assets/js/config.js') }}"></script>
     <!-- Plugins JS start-->
     <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
-    <script src="{{ asset('assets/js/range-slider/ion.rangeSlider.min.js') }}"></script>
-    <script src="{{ asset('assets/js/range-slider/rangeslider-script.js') }}"></script>
-    <script src="{{ asset('assets/js/touchspin/vendors.min.js') }}"></script>
-    <script src="{{ asset('assets/js/touchspin/touchspin.js') }}"></script>
-    <script src="{{ asset('assets/js/touchspin/input-groups.min.js') }}"></script>
-    <script src="{{ asset('assets/js/owlcarousel/owl.carousel.js') }}"></script>
-    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
-    <script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script>
-    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
-    <script src="{{ asset('assets/js/product-tab.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/range-slider/ion.rangeSlider.min.js') }}"></script>
+    <script src="{{ asset('assets/js/range-slider/rangeslider-script.js') }}"></script> -->
+    <!-- <script src="{{ asset('assets/js/touchspin/vendors.min.js') }}"></script> -->
+    <!-- <script src="{{ asset('assets/js/touchspin/touchspin.js') }}"></script> -->
+    <!-- <script src="{{ asset('assets/js/touchspin/input-groups.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owlcarousel/owl.carousel.js') }}"></script> -->
+    <!-- <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script> -->
+    <!-- <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script src="{{ asset('assets/js/product-tab.js') }}"></script> -->
     <!-- Plugins JS Ends-->
+
+    <script src="{{ asset('assets/js/dropzone/dropzone.js') }}"></script>
+    <script src="{{ asset('assets/js/dropzone/dropzone-script.js') }}"></script>
+
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
     <!-- login js-->
     <!-- Plugin used-->
+
+
   </body>
 </html>

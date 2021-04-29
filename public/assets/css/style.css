@@ -24832,7 +24832,8 @@ body[class*='dark-'] .for-light {
         .page-wrapper.compact-wrapper .page-body-wrapper.sidebar-icon div.sidebar-wrapper .sidebar-main .sidebar-links > li .sidebar-submenu {
           width: 100%;
           padding: 0;
-          position: relative !important; }
+          position: relative !important; 
+          display:block !important;}
           .page-wrapper.compact-wrapper .page-body-wrapper.sidebar-icon div.sidebar-wrapper .sidebar-main .sidebar-links > li .sidebar-submenu > li a {
             padding-left: 40px !important;
             font-weight: 400; }

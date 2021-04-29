@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'sms_code', 'email_verified_at', 'created_at', 'api_token', 'updated_at', 'provider', 'provider_id'
+        'password', 'remember_token', 'sms_code', 'email_verified_at', 'api_token', 'updated_at', 'provider', 'provider_id'
     ];
 
     /**
@@ -41,7 +41,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'datetime:Y-m-d h:m a',
     ];
+
 
 
     /**

@@ -35,7 +35,7 @@
             <div class="form-group">
               <select class="form-control" id="category" v-model="field.chooseTicket"  @change="fetchTimings($event, $event.target.selectedIndex)">>
               	<option value="">Select</option>
-                <option v-for="rate in attraction.rates" :value="rate.id">{{ rate.title }}</option>
+                <option v-for="rate in attraction.rates" :value="rate.id">{{ rate.language_string.title }}</option>
               </select> 
             </div>
           </div>
@@ -43,12 +43,10 @@
         <!--Adult/Junior-->
         <div class="row">
             <div id="att-drops" class="priceRateDisplay">
-              <div v-for="(detail, index) in rateDetailsArray.details" class="col-lg-6 ticket-age">
-                  <h4>{{ detail.title }}</h4>
-
+              <div v-for="(detail, index) in rateDetailsArray.details" class="col-lg-12  col-md-12 ticket-age">
+                  <h4>{{ detail.language_string.title }}</h4>
                   <h5 class="ticket-price" v-if="!detail.markdown_price==0"><strike>{{ detail.price }}</strike> {{ detail.markdown_price }} {{ detail.currency }}</h5>
                   <h5 class="ticket-price" v-if="detail.markdown_price==0">{{ detail.price }} {{ detail.currency }}</h5>
-
                   <div class="form-group">
                       <input type="number" min="0" class="form-control" placeholder="0" value="1" :key="index" v-model="detail.qty">
                   </div>
@@ -73,7 +71,7 @@
     <!--Left-->
     <div class="col-lg-8 col-lg-pull-4">
 
-      <div class="row"  v-if="attraction.video!=''">
+      <div class="row"  v-if="attraction.video">
         <div class="col-lg-12">
           	<!--YouTube-->
 			       <div class="video">
@@ -112,21 +110,21 @@
         <div class="col-lg-12">
           <h3>Ticket Details</h3>
           <p>{{ rateDescription }}</p>
-  	      <section v-if="attraction.availability!=''">
+  	      <section v-if="attraction.language_string.availability">
   	          <hr>
   	          <h3>Availability</h3>        
-  	          <p>{{ attraction.availability }}</p>
+  	          <p>{{ attraction.language_string.availability }}</p>
   	      </section>
-            <section v-if="!attraction.redemption">
-            	<hr>
-            	<h3>Redemption</h3>        
-            	<p>{{ attraction.redemption }}</p>
-            </section>
-             <section v-if="!attraction.about">
-              <hr>
-              <h3>Redemption</h3>        
-              <p>{{ attraction.redemption }}</p>
-            </section>
+          <section v-if="attraction.language_string.redemption">
+          	<hr>
+          	<h3>Redemption</h3>        
+          	<p>{{ attraction.language_string.redemption }}</p>
+          </section>
+          <section v-if="attraction.language_string.about">
+            <hr>
+            <h3>About</h3>        
+            <p>{{ attraction.language_string.about }}</p>
+          </section>
         </div>
       </div>
 
@@ -204,7 +202,6 @@
       props: ['attraction'],
       computed: {
             formOkay: function () {
-
               if (!this.field.chooseTicket)  {
                 return false;
               }
@@ -214,20 +211,17 @@
               else if(this.field.calendar == "mm/dd/yyyy"){
                 return false;
               }
-
               return true;
             }
         },
       methods: {
       	addCart: function() {
-          this.formOkay = false;
           var obj = {};
           obj = this.rateDetailsArray.details;
 
           axios.post('/api/cart/add/'+this.rateHeader.id+'/submit', {qty: obj, date: this.field.calendar}).then((response) => {
               if (response.data.status) {
                 this.$toasts.success(response.data.message);
-                this.formOkay = true;
                 $('#successModal').modal();
                 Event.$emit('refreshBasket');
               }
@@ -259,7 +253,7 @@
             this.rateDetailsArray = {};
             return;
           }
-          this.rateDescription = this.rateHeader.description;
+          this.rateDescription = this.rateHeader.rates[selectedIndex-1].language_string.description;
           this.rateDetailsArray = this.rateHeader.rates[selectedIndex-1];
 
         },

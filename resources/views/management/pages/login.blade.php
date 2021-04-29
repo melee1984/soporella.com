@@ -49,11 +49,11 @@
                   <p>Enter your email & password to login</p>
                   <div class="form-group">
                     <label class="col-form-label">Email Address</label>
-                    <input class="form-control" type="text" required="" name="email" placeholder="Test@domain.com">
+                    <input class="form-control" type="text" required="" name="email" placeholder="Test@domain.com"  value="{{ old('email') }}" >
                   </div>
                   <div class="form-group">
                     <label class="col-form-label">Password</label>
-                    <input class="form-control" type="password" name="password" required="" placeholder="*********">
+                    <input class="form-control" type="password" name="password" required="" placeholder="">
                   </div>
                   <div class="form-group mb-0">
                     <div class="checkbox p-0">

@@ -22,7 +22,11 @@ var DropzoneExample = function () {
                 } else {
                     done();
                 }
+            },
+            removeFile: function(file) {
+
             }
+
         };
         Dropzone.options.fileTypeValidation = {
             paramName: "file",

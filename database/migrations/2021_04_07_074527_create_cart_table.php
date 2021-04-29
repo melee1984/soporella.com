@@ -19,7 +19,6 @@ class CreateCartTable extends Migration
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('CASCADE');
-
             $table->string('session_id', 250)->nullable();
             $table->string('fullname', 150)->nullable();
             $table->string('mobile', 30)->nullable();
@@ -27,16 +26,15 @@ class CreateCartTable extends Migration
             $table->string('ref_no', 20)->nullable();
             $table->boolean('active');
             $table->string('ip_address', 50)->nullable();
-
             $table->timestamp('processed_at')->nullable();
             $table->timestamp('submitted_at')->nullable();
-
             $table->bigInteger('payment_id')->unsigned()->nullable();
+            $table->bigInteger('status_id')->default(0)->nullable();
             $table->string('sms_code', 10)->nullable();
             $table->double('amount', 8, 2)->nullable();
             $table->string('currency', 4)->nullable();
             $table->string('discount_code', 10)->nullable();
-            
+            $table->string('payment_ref_no', 15)->nullable();
             $table->timestamps();
         });
     }

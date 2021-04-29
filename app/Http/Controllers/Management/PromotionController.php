@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Promotion;
+
 class PromotionController extends Controller
 {
     /**
@@ -12,7 +14,10 @@ class PromotionController extends Controller
      * @return view 
      */
     public function index() 
-    {	
-		return view('management.pages.promotions');
+    {		
+    	$promotions = Promotion::paginate(20);
+
+		return view('management.pages.promotions', compact('promotions'));
+		
     }
 }
