@@ -2487,7 +2487,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      messages: this.trans.messages
+    };
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
   },
@@ -40104,7 +40110,7 @@ var render = function() {
                             staticClass: "buy",
                             attrs: { href: campaign.attraction.pageUrl }
                           },
-                          [_vm._v("Buy Ticket")]
+                          [_vm._v(_vm._s(_vm.messages.LABEL_BUY_TICKET))]
                         )
                       ]),
                       _vm._v(" "),
@@ -40258,7 +40264,7 @@ var render = function() {
                         staticClass: "buy",
                         attrs: { href: campaign.attraction.pageUrl }
                       },
-                      [_vm._v("Buy Ticket")]
+                      [_vm._v(_vm._s(_vm.messages.LABEL_BUY_TICKET))]
                     )
                   ])
                 : _vm._e()
@@ -40277,7 +40283,6 @@ var render = function() {
                               _c(
                                 "a",
                                 {
-                                  staticClass: "buy",
                                   attrs: { href: campaign.attraction.pageUrl }
                                 },
                                 [
@@ -40380,7 +40385,7 @@ var render = function() {
                                   staticClass: "buy",
                                   attrs: { href: campaign.attraction.pageUrl }
                                 },
-                                [_vm._v("Buy Ticket")]
+                                [_vm._v(_vm._s(_vm.messages.LABEL_BUY_TICKET))]
                               )
                             ])
                           ])
@@ -40418,7 +40423,6 @@ var render = function() {
                               _c(
                                 "a",
                                 {
-                                  staticClass: "buy",
                                   attrs: { href: campaign.attraction.pageUrl }
                                 },
                                 [
@@ -40510,7 +40514,13 @@ var render = function() {
                           staticClass: "buy",
                           attrs: { href: campaign.attraction.pageUrl }
                         },
-                        [_vm._v("Buy Ticket")]
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm.messages.LABEL_BUY_TICKET.LABEL_BUY_TICKET
+                            )
+                          )
+                        ]
                       )
                     ]
                   )
@@ -53850,24 +53860,31 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_my_toasts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-my-toasts */ "./node_modules/vue-my-toasts/dist/vue-my-toasts.esm.js");
-/* harmony import */ var vue_my_toasts_dist_vue_my_toasts_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-my-toasts/dist/vue-my-toasts.css */ "./node_modules/vue-my-toasts/dist/vue-my-toasts.css");
-/* harmony import */ var vue_my_toasts_dist_vue_my_toasts_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_my_toasts_dist_vue_my_toasts_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_my_toasts_src_components_toasts_BootstrapComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-my-toasts/src/components/toasts/BootstrapComponent */ "./node_modules/vue-my-toasts/src/components/toasts/BootstrapComponent.vue");
-/* harmony import */ var _components_TotalItemCount_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/TotalItemCount.vue */ "./resources/js/components/TotalItemCount.vue");
-/* harmony import */ var _components_Cart_ProductInsideComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Cart/ProductInsideComponent.vue */ "./resources/js/components/Cart/ProductInsideComponent.vue");
-/* harmony import */ var _components_Cart_CheckoutComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Cart/CheckoutComponent.vue */ "./resources/js/components/Cart/CheckoutComponent.vue");
-/* harmony import */ var _components_Shopping_BasketComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Shopping/BasketComponent.vue */ "./resources/js/components/Shopping/BasketComponent.vue");
-/* harmony import */ var _components_Promotion_CampaignComponents_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Promotion/CampaignComponents.vue */ "./resources/js/components/Promotion/CampaignComponents.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_my_toasts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-my-toasts */ "./node_modules/vue-my-toasts/dist/vue-my-toasts.esm.js");
+/* harmony import */ var vue_my_toasts_dist_vue_my_toasts_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-my-toasts/dist/vue-my-toasts.css */ "./node_modules/vue-my-toasts/dist/vue-my-toasts.css");
+/* harmony import */ var vue_my_toasts_dist_vue_my_toasts_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_my_toasts_dist_vue_my_toasts_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_my_toasts_src_components_toasts_BootstrapComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-my-toasts/src/components/toasts/BootstrapComponent */ "./node_modules/vue-my-toasts/src/components/toasts/BootstrapComponent.vue");
+/* harmony import */ var _components_TotalItemCount_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/TotalItemCount.vue */ "./resources/js/components/TotalItemCount.vue");
+/* harmony import */ var _components_Cart_ProductInsideComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Cart/ProductInsideComponent.vue */ "./resources/js/components/Cart/ProductInsideComponent.vue");
+/* harmony import */ var _components_Cart_CheckoutComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Cart/CheckoutComponent.vue */ "./resources/js/components/Cart/CheckoutComponent.vue");
+/* harmony import */ var _components_Shopping_BasketComponent_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Shopping/BasketComponent.vue */ "./resources/js/components/Shopping/BasketComponent.vue");
+/* harmony import */ var _components_Promotion_CampaignComponents_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Promotion/CampaignComponents.vue */ "./resources/js/components/Promotion/CampaignComponents.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+window.Vue = vue__WEBPACK_IMPORTED_MODULE_0___default.a;
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var _ = Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! lodash */ "./node_modules/lodash/lodash.js", 7));
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-window.Event = new Vue();
+window.Event = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 
 
 
@@ -53888,26 +53905,28 @@ window.Event = new Vue();
 
 
 
-Vue.component('cart-total', _components_TotalItemCount_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
-Vue.component('product-page', _components_Cart_ProductInsideComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('basket-page', _components_Shopping_BasketComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
-Vue.component('checkout-page', _components_Cart_CheckoutComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-Vue.component('campaign-page', _components_Promotion_CampaignComponents_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('cart-total', _components_TotalItemCount_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('product-page', _components_Cart_ProductInsideComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('basket-page', _components_Shopping_BasketComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('checkout-page', _components_Cart_CheckoutComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('campaign-page', _components_Promotion_CampaignComponents_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+// Vue.prototype.trans = string => _.get(window.trans, string);
 
-Vue.use(vue_my_toasts__WEBPACK_IMPORTED_MODULE_0__["default"], {
-  component: vue_my_toasts_src_components_toasts_BootstrapComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.trans = window.trans;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_my_toasts__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  component: vue_my_toasts_src_components_toasts_BootstrapComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
   options: {
     width: '400px',
     position: 'top-right',
     padding: '1rem'
   }
 });
-var app = new Vue({
+var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app'
 });
 

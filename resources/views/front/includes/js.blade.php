@@ -1,6 +1,8 @@
 <script src="{{ asset('theme/js/bootstrap.js') }}"></script>
 <script src="{{ asset('theme/js/classie.js') }}"></script>
 
+<script src="/js/lang.js"></script>
+
 
 <script type="text/javascript">
 	var page_url = '{{ Request::path() }}';
@@ -12,5 +14,7 @@
 	@else 
 		var api_token = '';
 	@endif
+
+
 </script>
 

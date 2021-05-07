@@ -22,7 +22,8 @@
                         </span>
                 </tbody>
               </table>
-              <a class="buy" :href="campaign.attraction.pageUrl">Buy Ticket</a>
+              <a class="buy" :href="campaign.attraction.pageUrl">{{ messages.LABEL_BUY_TICKET }}</a> 
+
             </div>
             <div class="col-lg-4 offer-img">
                 <span v-for="image in campaign.attraction.images">
@@ -72,7 +73,7 @@
                         </span>
                 </tbody>
               </table>
-          <a class="buy" :href="campaign.attraction.pageUrl">Buy Ticket</a>
+          <a class="buy" :href="campaign.attraction.pageUrl">{{ messages.LABEL_BUY_TICKET }}</a>
         </div>
         
         <div class="container offer" v-for="campaign in campaigns"  v-if="campaign.display_option == 3">
@@ -80,7 +81,7 @@
               <div class="col-lg-12 offer-last counter_4">
                 <div class="row v-center">
                   <div class="col-lg-4 col-xs-12">
-                     <a class="buy" :href="campaign.attraction.pageUrl">
+                     <a :href="campaign.attraction.pageUrl">
                       <img class="img-responsive" :src="campaign.attraction.img" :alt="campaign.attraction.title">
                     </a>
                   </div>
@@ -102,7 +103,7 @@
                         </span>
                           </tbody>
                       </table>
-                    <a class="buy" :href="campaign.attraction.pageUrl">Buy Ticket</a>
+                    <a class="buy" :href="campaign.attraction.pageUrl">{{ messages.LABEL_BUY_TICKET }}</a>
                   </div>
                 </div>
               </div>
@@ -115,7 +116,7 @@
           <div id="#offer2" class="carousel slide" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
               <div class="item active"> 
-                 <a class="buy" :href="campaign.attraction.pageUrl">
+                 <a  :href="campaign.attraction.pageUrl">
                   <img :src="campaign.attraction.img" :alt="campaign.attraction.title" class="img-responsive" width="100%">
                 </a>
               </div>
@@ -138,7 +139,7 @@
                         </span>
                 </tbody>
               </table>
-          <a class="buy" :href="campaign.attraction.pageUrl">Buy Ticket</a>
+          <a class="buy" :href="campaign.attraction.pageUrl">{{ messages.LABEL_BUY_TICKET.LABEL_BUY_TICKET }}</a>
         </div>
 
       </div>
@@ -150,11 +151,17 @@
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        },
-        props: ['campaigns'],
 
+
+    export default {
+       data() {
+        return {
+            messages: this.trans.messages,
+        }
+      },
+      mounted() {
+          console.log('Component mounted.');
+      },
+      props: ['campaigns'],
     }
 </script>
