@@ -24,7 +24,13 @@ class AttractionRateHeader extends Model
         $array_string = unserialize($this->language_string);
   
         $toBeReturnString = "";
-        $c = session()->get('locale');
+        
+        if (session()->has('locale')) {
+            $c = session()->get('locale');
+        }
+        else {
+            $c = App::getLocale();    
+        }
 
         return $array_string[$c];
     }   

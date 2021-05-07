@@ -2486,6 +2486,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -40040,7 +40041,7 @@ var render = function() {
                         _c("h3", [_vm._v(_vm._s(campaign.attraction.title))]),
                         _vm._v(" "),
                         _c("p", [
-                          _vm._v(_vm._s(campaign.attraction.description))
+                          _vm._v(_vm._s(campaign.language_string.description))
                         ]),
                         _vm._v(" "),
                         _c("table", { staticClass: "table" }, [
@@ -40052,13 +40053,16 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                            " +
-                                      _vm._s(rates.title) +
+                                      _vm._s(rates.language.title) +
                                       "\n                            "
                                   ),
                                   _vm._l(rates.details, function(ratesDetail) {
                                     return _c("tr", [
                                       _c("td", [
-                                        _vm._v(_vm._s(ratesDetail.title) + " ")
+                                        _vm._v(
+                                          _vm._s(ratesDetail.language.title) +
+                                            " "
+                                        )
                                       ]),
                                       _vm._v(" "),
                                       _c(
@@ -40111,7 +40115,7 @@ var render = function() {
                           return _c("span", [
                             _c("img", {
                               staticClass: "img-responsive",
-                              attrs: { src: image.img, alt: "" }
+                              attrs: { src: image.photo, alt: "", width: "340" }
                             })
                           ])
                         }),
@@ -40141,122 +40145,122 @@ var render = function() {
           [
             _vm._l(_vm.campaigns, function(campaign) {
               return campaign.display_option == 2
-                ? _c(
-                    "div",
-                    {
-                      staticClass: "col-lg-6 offer-single",
-                      attrs: { id: "2" }
-                    },
-                    [
-                      _c("h4", [_vm._v(_vm._s(campaign.attraction.title))]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "carousel slide",
-                          attrs: {
-                            id: "#offer2",
-                            "data-ride": "carousel",
-                            "data-interval": "false"
-                          }
-                        },
-                        [
-                          _c("div", { staticClass: "carousel-inner" }, [
-                            _c("div", { staticClass: "item active" }, [
-                              _c(
-                                "a",
-                                { attrs: { href: "#", target: "_blank" } },
-                                [
-                                  _c("img", {
-                                    staticClass: "img-responsive",
-                                    attrs: {
-                                      src: campaign.attraction.img,
-                                      alt: campaign.attraction.title,
-                                      width: "100%"
-                                    }
-                                  })
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "rib-per" }, [
-                              _c("span", [
-                                _c("b", [
-                                  _vm._v(_vm._s(campaign.discount_string))
-                                ]),
-                                _c("br"),
-                                _c("small", [_vm._v("OFF")])
-                              ])
+                ? _c("div", { staticClass: "col-lg-6 offer-single" }, [
+                    _c("h4", [_vm._v(_vm._s(campaign.attraction.title))]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "carousel slide",
+                        attrs: {
+                          id: "#offer2",
+                          "data-ride": "carousel",
+                          "data-interval": "false"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "carousel-inner" }, [
+                          _c("div", { staticClass: "item active" }, [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: campaign.attraction.pageUrl,
+                                  target: "_blank"
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "img-responsive",
+                                  attrs: {
+                                    src: campaign.attraction.img,
+                                    alt: campaign.attraction.title,
+                                    width: "100%"
+                                  }
+                                })
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "rib-per" }, [
+                            _c("span", [
+                              _c("b", [
+                                _vm._v(_vm._s(campaign.discount_string))
+                              ]),
+                              _c("br"),
+                              _c("small", [_vm._v("OFF")])
                             ])
                           ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(_vm._s(campaign.attraction.description))
-                      ]),
-                      _vm._v(" "),
-                      _c("table", { staticClass: "table" }, [
-                        _c(
-                          "tbody",
-                          _vm._l(campaign.attraction.rates, function(rates) {
-                            return _c(
-                              "span",
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(rates.title) +
-                                    "\n                            "
-                                ),
-                                _vm._l(rates.details, function(ratesDetail) {
-                                  return _c("tr", [
-                                    _c("td", [
-                                      _vm._v(_vm._s(ratesDetail.title) + " ")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("strike", [
-                                          _vm._v(
-                                            _vm._s(ratesDetail.price) +
-                                              "  " +
-                                              _vm._s(ratesDetail.currency) +
-                                              " "
-                                          )
-                                        ])
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(ratesDetail.markdown_price) +
-                                          "  " +
-                                          _vm._s(ratesDetail.currency) +
-                                          " "
-                                      )
-                                    ])
-                                  ])
-                                })
-                              ],
-                              2
-                            )
-                          }),
-                          0
-                        )
-                      ]),
-                      _vm._v(" "),
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(_vm._s(campaign.language_string.description))
+                    ]),
+                    _vm._v(" "),
+                    _c("table", { staticClass: "table" }, [
                       _c(
-                        "a",
-                        {
-                          staticClass: "buy",
-                          attrs: { href: campaign.attraction.pageUrl }
-                        },
-                        [_vm._v("Buy Ticket")]
+                        "tbody",
+                        _vm._l(campaign.attraction.rates, function(rates) {
+                          return _c(
+                            "span",
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(rates.language.title) +
+                                  "\n                            "
+                              ),
+                              _vm._l(rates.details, function(ratesDetail) {
+                                return _c("tr", [
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(ratesDetail.language.title) + " "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    [
+                                      _c("strike", [
+                                        _vm._v(
+                                          _vm._s(ratesDetail.price) +
+                                            "  " +
+                                            _vm._s(ratesDetail.currency) +
+                                            " "
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(ratesDetail.markdown_price) +
+                                        "  " +
+                                        _vm._s(ratesDetail.currency) +
+                                        " "
+                                    )
+                                  ])
+                                ])
+                              })
+                            ],
+                            2
+                          )
+                        }),
+                        0
                       )
-                    ]
-                  )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "buy",
+                        attrs: { href: campaign.attraction.pageUrl }
+                      },
+                      [_vm._v("Buy Ticket")]
+                    )
+                  ])
                 : _vm._e()
             }),
             _vm._v(" "),
@@ -40270,13 +40274,22 @@ var render = function() {
                         [
                           _c("div", { staticClass: "row v-center" }, [
                             _c("div", { staticClass: "col-lg-4 col-xs-12" }, [
-                              _c("img", {
-                                staticClass: "img-responsive",
-                                attrs: {
-                                  src: campaign.attraction.img,
-                                  alt: campaign.attraction.title
-                                }
-                              })
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "buy",
+                                  attrs: { href: campaign.attraction.pageUrl }
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "img-responsive",
+                                    attrs: {
+                                      src: campaign.attraction.img,
+                                      alt: campaign.attraction.title
+                                    }
+                                  })
+                                ]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "rib-per" }, [
@@ -40295,7 +40308,7 @@ var render = function() {
                               ]),
                               _vm._v(
                                 "\n                    " +
-                                  _vm._s(campaign.attraction.description) +
+                                  _vm._s(campaign.language_string.description) +
                                   "\n                    "
                               ),
                               _c("table", { staticClass: "table" }, [
@@ -40309,7 +40322,7 @@ var render = function() {
                                       [
                                         _vm._v(
                                           "\n                            " +
-                                            _vm._s(rates.title) +
+                                            _vm._s(rates.language.title) +
                                             "\n                            "
                                         ),
                                         _vm._l(rates.details, function(
@@ -40318,7 +40331,9 @@ var render = function() {
                                           return _c("tr", [
                                             _c("td", [
                                               _vm._v(
-                                                _vm._s(ratesDetail.title) + " "
+                                                _vm._s(
+                                                  ratesDetail.language.title
+                                                ) + " "
                                               )
                                             ]),
                                             _vm._v(" "),
@@ -40402,7 +40417,10 @@ var render = function() {
                             _c("div", { staticClass: "item active" }, [
                               _c(
                                 "a",
-                                { attrs: { href: "#", target: "_blank" } },
+                                {
+                                  staticClass: "buy",
+                                  attrs: { href: campaign.attraction.pageUrl }
+                                },
                                 [
                                   _c("img", {
                                     staticClass: "img-responsive",
@@ -40430,7 +40448,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("p", [
-                        _vm._v(_vm._s(campaign.attraction.description))
+                        _vm._v(_vm._s(campaign.language_string.description))
                       ]),
                       _vm._v(" "),
                       _c("table", { staticClass: "table" }, [
@@ -40442,13 +40460,15 @@ var render = function() {
                               [
                                 _vm._v(
                                   "\n                            " +
-                                    _vm._s(rates.title) +
+                                    _vm._s(rates.language.title) +
                                     "\n                            "
                                 ),
                                 _vm._l(rates.details, function(ratesDetail) {
                                   return _c("tr", [
                                     _c("td", [
-                                      _vm._v(_vm._s(ratesDetail.title) + " ")
+                                      _vm._v(
+                                        _vm._s(ratesDetail.language.title) + " "
+                                      )
                                     ]),
                                     _vm._v(" "),
                                     _c(

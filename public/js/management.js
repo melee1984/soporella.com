@@ -2961,6 +2961,359 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      field: {
+        title: "",
+        active: false,
+        display_option: "",
+        discount_string: "",
+        attraction_id: "",
+        slider: false,
+        file: "",
+        img_1: ""
+      },
+      objArray: {},
+      lang: JSON.parse(localStorage.selectedLanguage).country_code,
+      addForm: false,
+      editForm: false,
+      viewListing: true,
+      displaying: {},
+      attractions: {}
+    };
+  },
+  computed: {},
+  mounted: function mounted() {},
+  created: function created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData: function fetchData() {
+      var self = this;
+      axios.get('/api/management/campaign?api_token=' + api_token).then(function (response) {
+        self.objArray = response.data.campaigns;
+        self.displaying = response.data.display_options;
+        self.attractions = response.data.attractions;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    onFileSelected: function onFileSelected(e) {
+      this.field.file = e.target.files[0];
+    },
+    onFileSelected1: function onFileSelected1(e) {
+      this.field.img_1 = e.target.files[0];
+    },
+    store: function store() {
+      var self = this;
+      self.loading = true;
+      var url = "";
+      var formData = new FormData();
+
+      if (self.addForm) {
+        url = '/api/management/campaign/submit?api_token=' + api_token;
+      } else if (self.editForm) {
+        url = '/api/management/campaign/' + self.field.id + '/update/submit?api_token=' + api_token;
+      }
+
+      if (self.field.display_option == 1) {
+        if (self.field.file) {
+          formData.append('file', self.field.file, self.field.file.name);
+        }
+      }
+
+      if (self.field.display_option == 2) {
+        if (self.field.img_1) {
+          formData.append('file', self.field.img_1, self.field.img_1.name);
+        }
+      }
+
+      formData.append('active', self.field.active);
+      formData.append('attraction_id', self.field.attraction_id);
+      formData.append('display_option', self.field.display_option);
+      formData.append('slider', self.field.slider);
+      formData.append('discount_string', self.field.discount_string);
+      axios.post(url, formData).then(function (response) {
+        if (response.data.status) {
+          self.cancelForm();
+          self.fetchData();
+          self.$toasts.success(response.data.message);
+        } else {
+          self.$toasts.error(response.data.message);
+        }
+
+        self.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    updateStatus: function updateStatus(obj) {
+      var self = this;
+      axios.post('/api/management/campaign/' + obj.id + '/status/submit?api_token=' + api_token).then(function (response) {
+        if (response.data.status) {
+          self.$toasts.success(response.data.message);
+        } else {
+          self.$toasts.error(response.data.message);
+        }
+      })["catch"](function (error) {
+        self.$toasts.error(error.response.data.errors['file'][0]);
+      });
+    },
+    deleteRecord: function deleteRecord(obj) {
+      var self = this;
+      self.loading = true;
+      var txt;
+      var r = confirm("Are you sure you want to delete this record?");
+
+      if (r == true) {
+        axios.post('/api/management/campaign/' + obj.id + '/delete/submit?api_token=' + api_token).then(function (response) {
+          if (response.data.status) {
+            self.fetchData();
+            self.$toasts.success(response.data.message);
+          } else {
+            self.$toasts.error(response.data.message);
+          }
+
+          self.loading = false;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    cancelForm: function cancelForm() {
+      this.addForm = false;
+      this.viewListing = true;
+      this.editForm = false;
+      this.field = {
+        title: "",
+        active: false,
+        sorting: "",
+        display_option: "",
+        discount: "",
+        attraction_id: "",
+        slider: false
+      };
+    },
+    formAdd: function formAdd() {
+      this.addForm = true;
+      this.viewListing = false;
+      this.editForm = false;
+      this.field = {
+        title: "",
+        active: false,
+        sorting: "",
+        display_option: "",
+        discount: "",
+        attraction_id: "",
+        slider: false
+      };
+    },
+    formEdit: function formEdit(obj) {
+      this.addForm = false;
+      this.viewListing = false;
+      this.editForm = true;
+      this.field = obj;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Category/CategoryComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Management/Category/CategoryComponent.vue?vue&type=script&lang=js& ***!
@@ -27042,6 +27395,896 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=template&id=0e1a8902&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=template&id=0e1a8902& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-sm-12 col-xl-12" }, [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6 text-right" }, [
+            !_vm.addForm
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    attrs: { href: "javascript:void(0)" },
+                    on: { click: _vm.formAdd }
+                  },
+                  [_vm._v("Add New")]
+                )
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body megaoptions-border-space-sm" }, [
+        _vm.viewListing
+          ? _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-block row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-sm-12 col-lg-12 col-xl-12" },
+                      [
+                        _c("div", { staticClass: "table-responsive" }, [
+                          _c("table", { staticClass: "table" }, [
+                            _vm._m(1),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              [
+                                !_vm.objArray.length
+                                  ? _c("tr", [
+                                      _c("td", { attrs: { colspan: "4" } }, [
+                                        _vm._v("No record found")
+                                      ])
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(_vm.objArray, function(obj) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _c("div", { staticClass: "media" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "media-body text-left icon-state"
+                                          },
+                                          [
+                                            _c(
+                                              "label",
+                                              { staticClass: "switch" },
+                                              [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: obj.active,
+                                                      expression: "obj.active"
+                                                    }
+                                                  ],
+                                                  attrs: { type: "checkbox" },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      obj.active
+                                                    )
+                                                      ? _vm._i(
+                                                          obj.active,
+                                                          null
+                                                        ) > -1
+                                                      : obj.active
+                                                  },
+                                                  on: {
+                                                    change: [
+                                                      function($event) {
+                                                        var $$a = obj.active,
+                                                          $$el = $event.target,
+                                                          $$c = $$el.checked
+                                                            ? true
+                                                            : false
+                                                        if (
+                                                          Array.isArray($$a)
+                                                        ) {
+                                                          var $$v = null,
+                                                            $$i = _vm._i(
+                                                              $$a,
+                                                              $$v
+                                                            )
+                                                          if ($$el.checked) {
+                                                            $$i < 0 &&
+                                                              _vm.$set(
+                                                                obj,
+                                                                "active",
+                                                                $$a.concat([
+                                                                  $$v
+                                                                ])
+                                                              )
+                                                          } else {
+                                                            $$i > -1 &&
+                                                              _vm.$set(
+                                                                obj,
+                                                                "active",
+                                                                $$a
+                                                                  .slice(0, $$i)
+                                                                  .concat(
+                                                                    $$a.slice(
+                                                                      $$i + 1
+                                                                    )
+                                                                  )
+                                                              )
+                                                          }
+                                                        } else {
+                                                          _vm.$set(
+                                                            obj,
+                                                            "active",
+                                                            $$c
+                                                          )
+                                                        }
+                                                      },
+                                                      function($event) {
+                                                        return _vm.updateStatus(
+                                                          obj
+                                                        )
+                                                      }
+                                                    ]
+                                                  }
+                                                }),
+                                                _c("span", {
+                                                  staticClass: "switch-state"
+                                                })
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0)" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.formEdit(obj)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                  " +
+                                              _vm._s(obj.attraction.title) +
+                                              "\n                                "
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\n                                  " +
+                                          _vm._s(obj.display_option) +
+                                          "\n                              "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\n                                  " +
+                                          _vm._s(obj.discount_string) +
+                                          "\n                              "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\n                                  " +
+                                          _vm._s(obj.slider) +
+                                          "\n                              "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-right" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "btn btn-square btn-light btn-sm",
+                                          attrs: { href: "javascript:void(0)" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.deleteRecord(obj)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Delete")]
+                                      )
+                                    ])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _vm.addForm || _vm.editForm
+            ? _c("div", { staticClass: "col-md-6 col-lg-6" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "collapse show",
+                      attrs: {
+                        "aria-labelledby": "collapseicon",
+                        "data-parent": "#accordion"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-body filter-cards-view animate-chk"
+                        },
+                        [
+                          _c("div", { staticClass: "checkbox-animated mt-0" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "div",
+                                { staticClass: "col-md-12 col-lg-12" },
+                                [
+                                  _c(
+                                    "form",
+                                    { staticClass: "form theme-form" },
+                                    [
+                                      _c("div", { staticClass: "card-body" }, [
+                                        _c("div", { staticClass: "row" }, [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "form-group col-12"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "d-block",
+                                                  attrs: { for: "active" }
+                                                },
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.field.active,
+                                                        expression:
+                                                          "field.active"
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "checkbox_animated",
+                                                    attrs: {
+                                                      value: "1",
+                                                      type: "checkbox",
+                                                      "data-original-title": "",
+                                                      title: ""
+                                                    },
+                                                    domProps: {
+                                                      checked: Array.isArray(
+                                                        _vm.field.active
+                                                      )
+                                                        ? _vm._i(
+                                                            _vm.field.active,
+                                                            "1"
+                                                          ) > -1
+                                                        : _vm.field.active
+                                                    },
+                                                    on: {
+                                                      change: function($event) {
+                                                        var $$a =
+                                                            _vm.field.active,
+                                                          $$el = $event.target,
+                                                          $$c = $$el.checked
+                                                            ? true
+                                                            : false
+                                                        if (
+                                                          Array.isArray($$a)
+                                                        ) {
+                                                          var $$v = "1",
+                                                            $$i = _vm._i(
+                                                              $$a,
+                                                              $$v
+                                                            )
+                                                          if ($$el.checked) {
+                                                            $$i < 0 &&
+                                                              _vm.$set(
+                                                                _vm.field,
+                                                                "active",
+                                                                $$a.concat([
+                                                                  $$v
+                                                                ])
+                                                              )
+                                                          } else {
+                                                            $$i > -1 &&
+                                                              _vm.$set(
+                                                                _vm.field,
+                                                                "active",
+                                                                $$a
+                                                                  .slice(0, $$i)
+                                                                  .concat(
+                                                                    $$a.slice(
+                                                                      $$i + 1
+                                                                    )
+                                                                  )
+                                                              )
+                                                          }
+                                                        } else {
+                                                          _vm.$set(
+                                                            _vm.field,
+                                                            "active",
+                                                            $$c
+                                                          )
+                                                        }
+                                                      }
+                                                    }
+                                                  }),
+                                                  _vm._v(
+                                                    " Active\n                                    "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "form-group col-12"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "d-block",
+                                                  attrs: { for: "active" }
+                                                },
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.field.slider,
+                                                        expression:
+                                                          "field.slider"
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "checkbox_animated",
+                                                    attrs: {
+                                                      value: "1",
+                                                      type: "checkbox",
+                                                      "data-original-title": "",
+                                                      title: ""
+                                                    },
+                                                    domProps: {
+                                                      checked: Array.isArray(
+                                                        _vm.field.slider
+                                                      )
+                                                        ? _vm._i(
+                                                            _vm.field.slider,
+                                                            "1"
+                                                          ) > -1
+                                                        : _vm.field.slider
+                                                    },
+                                                    on: {
+                                                      change: function($event) {
+                                                        var $$a =
+                                                            _vm.field.slider,
+                                                          $$el = $event.target,
+                                                          $$c = $$el.checked
+                                                            ? true
+                                                            : false
+                                                        if (
+                                                          Array.isArray($$a)
+                                                        ) {
+                                                          var $$v = "1",
+                                                            $$i = _vm._i(
+                                                              $$a,
+                                                              $$v
+                                                            )
+                                                          if ($$el.checked) {
+                                                            $$i < 0 &&
+                                                              _vm.$set(
+                                                                _vm.field,
+                                                                "slider",
+                                                                $$a.concat([
+                                                                  $$v
+                                                                ])
+                                                              )
+                                                          } else {
+                                                            $$i > -1 &&
+                                                              _vm.$set(
+                                                                _vm.field,
+                                                                "slider",
+                                                                $$a
+                                                                  .slice(0, $$i)
+                                                                  .concat(
+                                                                    $$a.slice(
+                                                                      $$i + 1
+                                                                    )
+                                                                  )
+                                                              )
+                                                          }
+                                                        } else {
+                                                          _vm.$set(
+                                                            _vm.field,
+                                                            "slider",
+                                                            $$c
+                                                          )
+                                                        }
+                                                      }
+                                                    }
+                                                  }),
+                                                  _vm._v(
+                                                    " Slider\n                                    "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "form-group col-12"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                { attrs: { for: "title" } },
+                                                [_vm._v("Display")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.field
+                                                          .display_option,
+                                                      expression:
+                                                        "field.display_option"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-control",
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        _vm.field,
+                                                        "display_option",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "" } },
+                                                    [_vm._v("Select Display")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._l(
+                                                    _vm.displaying,
+                                                    function(display) {
+                                                      return _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value: display.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              display.value
+                                                            )
+                                                          )
+                                                        ]
+                                                      )
+                                                    }
+                                                  )
+                                                ],
+                                                2
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "form-group col-12"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                { attrs: { for: "title" } },
+                                                [_vm._v("Attraction")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.field.attraction_id,
+                                                      expression:
+                                                        "field.attraction_id"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-control",
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        _vm.field,
+                                                        "attraction_id",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "Select Attraction"
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._l(
+                                                    _vm.attractions,
+                                                    function(attraction) {
+                                                      return _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value: attraction.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              attraction.title
+                                                            )
+                                                          )
+                                                        ]
+                                                      )
+                                                    }
+                                                  )
+                                                ],
+                                                2
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "form-group col-12"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                { attrs: { for: "title" } },
+                                                [_vm._v("Discount Label")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.field.discount_string,
+                                                    expression:
+                                                      "field.discount_string"
+                                                  }
+                                                ],
+                                                staticClass: "form-control",
+                                                attrs: {
+                                                  "data-original-title": "",
+                                                  title: "",
+                                                  placeholder: "eg.  50%"
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.field.discount_string
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.field,
+                                                      "discount_string",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _vm.field.display_option == 1
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "form-group col-12"
+                                                },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    { attrs: { for: "title" } },
+                                                    [_vm._v("Banner Image")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("input", {
+                                                    staticClass: "form-control",
+                                                    attrs: { type: "file" },
+                                                    on: {
+                                                      change: _vm.onFileSelected
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.field.display_option == 2
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "form-group col-12"
+                                                },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    { attrs: { for: "title" } },
+                                                    [_vm._v("Image")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("input", {
+                                                    staticClass: "form-control",
+                                                    attrs: { type: "file" },
+                                                    on: {
+                                                      change:
+                                                        _vm.onFileSelected1
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _vm._m(2)
+                                                ]
+                                              )
+                                            : _vm._e()
+                                        ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "card-footer" },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "btn btn-square btn-primary btn-sm",
+                                              attrs: {
+                                                href: "javascript:void(0)"
+                                              },
+                                              on: { click: _vm.store }
+                                            },
+                                            [_vm._v("Submit")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "btn btn-square btn-light pull-right btn-sm",
+                                              attrs: {
+                                                href: "javascript:void(0)"
+                                              },
+                                              on: { click: _vm.cancelForm }
+                                            },
+                                            [_vm._v("Cancel")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.addForm || _vm.editForm
+            ? _c("div", { staticClass: "col-md-6 col-lg-6" }, [
+                _vm.field.display_option == 1
+                  ? _c("div", [
+                      _c("label", [_vm._v("Banner")]),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "img-fluid",
+                        attrs: { src: _vm.field.large_img, alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _vm.field.large_img
+                        ? _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                            _c("small", [_vm._v("Delete")])
+                          ])
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.field.display_option == 2
+                  ? _c("div", [
+                      _c("label", [_vm._v("Photo")]),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "img-fluid",
+                        attrs: { src: _vm.field.img_1, alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _vm.field.img_1
+                        ? _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                            _c("small", [_vm._v("Delete")])
+                          ])
+                        : _vm._e()
+                    ])
+                  : _vm._e()
+              ])
+            : _vm._e()
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("h5", [_vm._v("Campaign")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col", width: "5%" } }, [_vm._v("Active")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "" } }, [
+          _vm._v("Attraction")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "" } }, [
+          _vm._v("Display Option")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "" } }, [_vm._v("Discount")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "" } }, [_vm._v("Slider")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "5%" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-muted" }, [
+      _c("small", [
+        _vm._v(
+          "If slider is selected then this will be the primary photo display on the homepage."
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Category/CategoryComponent.vue?vue&type=template&id=2c5a47bf&":
 /*!****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Management/Category/CategoryComponent.vue?vue&type=template&id=2c5a47bf& ***!
@@ -41856,6 +43099,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Management/Campaign/CampaignComponent.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Management/Campaign/CampaignComponent.vue ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CampaignComponent_vue_vue_type_template_id_0e1a8902___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CampaignComponent.vue?vue&type=template&id=0e1a8902& */ "./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=template&id=0e1a8902&");
+/* harmony import */ var _CampaignComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CampaignComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CampaignComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CampaignComponent_vue_vue_type_template_id_0e1a8902___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CampaignComponent_vue_vue_type_template_id_0e1a8902___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Management/Campaign/CampaignComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=template&id=0e1a8902&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=template&id=0e1a8902& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponent_vue_vue_type_template_id_0e1a8902___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignComponent.vue?vue&type=template&id=0e1a8902& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Campaign/CampaignComponent.vue?vue&type=template&id=0e1a8902&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponent_vue_vue_type_template_id_0e1a8902___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignComponent_vue_vue_type_template_id_0e1a8902___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Management/Category/CategoryComponent.vue":
 /*!***************************************************************************!*\
   !*** ./resources/js/components/Management/Category/CategoryComponent.vue ***!
@@ -42220,6 +43532,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Management_User_UserComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Management/User/UserComponent.vue */ "./resources/js/components/Management/User/UserComponent.vue");
 /* harmony import */ var _components_Management_Promotion_PromotionComponent_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Management/Promotion/PromotionComponent.vue */ "./resources/js/components/Management/Promotion/PromotionComponent.vue");
 /* harmony import */ var _components_Management_TopAttraction_TopAttractionComponent_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Management/TopAttraction/TopAttractionComponent.vue */ "./resources/js/components/Management/TopAttraction/TopAttractionComponent.vue");
+/* harmony import */ var _components_Management_Campaign_CampaignComponent_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Management/Campaign/CampaignComponent.vue */ "./resources/js/components/Management/Campaign/CampaignComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -42250,12 +43563,14 @@ window.Event = new Vue();
 
 
 
+
 Vue.component('attraction-edit', _components_Management_Attraction_EditComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.component('language', _components_Management_LanguageComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.component('category-list', _components_Management_Category_CategoryComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('user-list', _components_Management_User_UserComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.component('promotion-list', _components_Management_Promotion_PromotionComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
 Vue.component('top-attraction-list', _components_Management_TopAttraction_TopAttractionComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+Vue.component('campaign-list', _components_Management_Campaign_CampaignComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

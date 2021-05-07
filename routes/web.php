@@ -20,11 +20,15 @@ Route::get('/lang/{locale}', function($locale) {
 
 	session()->put('locale', $locale);
 
+	 Artisan::call('cache:clear');
+
+
 	$country = Country::whereCountryCode($locale)->first();
 	session()->put('conversion', $country->conversion);	
 	session()->put('currency', $country->currency);	
 
 	return redirect()->back();
+
 });
 
 Auth::routes();
@@ -78,10 +82,8 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('/dashboard/attraction/add', 'Management\AttractionController@add')->name('dashboard.management.add');
 	Route::get('/dashboard/attraction/{attraction}', 'Management\AttractionController@show')->name('dashboard.management.edit');
 	Route::post('/dashboard/attraction/add', 'Management\AttractionController@store')->name('dashboard.attraction.submit');
-
 	// promotions
 	Route::get('/dashboard/promotions', 'Management\PromotionController@index')->name('dashboard.management.promotions');
-
 	// dashboard/top-attraction
 	Route::get('/dashboard/top-attraction', 'Management\TopAttractionController@index')->name('dashboard.management.promotions');
 	// coupoons

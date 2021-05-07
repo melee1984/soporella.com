@@ -73,11 +73,15 @@ class HomeController extends Controller
 
         $campaigns = Cache::remember('campaigns', 30, function () {
             $campaigns = Campaign::where('slider','=',1)
+                                ->whereActive(1)
                                 ->inRandomOrder()
                                 ->take(1)
                                 ->get();
              foreach($campaigns as $attraction) {
 
+                $attraction->img_1 = $attraction->populateCampaignImage(0,1);
+                $attraction->attraction->language_string = $attraction->attraction->convertLanguageField();
+                
                 $attraction->attraction->populateAttractionImage();
             }
             return $campaigns;

@@ -15,7 +15,7 @@ class Attraction extends Model
 
 	protected $table = 'attractions';
 	public $timestamps = true;
-	protected $fillable = ['title', 'short_description', 'description', 'active', 'photo', 'slug', 'redemption', 'availability'];
+	protected $fillable = ['title', 'short_description', 'description', 'active', 'photo', 'slug', 'redemption', 'availability', 'language_string'];
 
 	/**
      * Populate Photo asset url 
@@ -46,13 +46,26 @@ class Attraction extends Model
     }   
     
     public function convertLanguageField() 
-    {
-        $array_string = unserialize($this->language_string);
+    {   
+        
+        if (!$this->language_string) return; 
 
-        $toBeReturnString = "";
-        
-        $c = App::getLocale();
-        
+            try {
+
+                $array_string = unserialize($this->language_string);
+                $toBeReturnString = "";
+                // Priority the session and then the default// 
+                if (session()->has('locale')) {
+                    $c = session()->get('locale');
+                }
+                else {
+                    $c = App::getLocale();    
+                }
+
+            } catch (Exception $e) {
+                
+            }
+
         return $array_string[$c];
     }   
 

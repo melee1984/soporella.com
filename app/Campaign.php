@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Campaign extends Model
 {
     protected $table = 'campaigns';
-	protected $fillable = ['attraction_id', 'sorting', 'title', 'description'];
+	protected $fillable = ['attraction_id', 'sorting', 'display_option', 'discount_string', 'title', 'active', 'description', 'img_2', 'img_1', 'large_img'];
     public $timestamps = true;
 
     /**
@@ -48,14 +48,17 @@ class Campaign extends Model
     public function scopePopulateCampaignImage($query, $large=false, $im) {
         
         if ($large) {
-            return asset('uploads/campaigns/'.$this->large_img);
+            return asset('uploads/images/'.$this->attraction->id.'/campaign/'.$this->large_img);
         }
         else {
             if ($im==1) {
-                return  asset('uploads/campaigns/'.$this->attraction->img_1);       
+                if ($this->img_1!="") {
+                    return asset('uploads/images/'.$this->attraction->id.'/campaign/'.$this->img_1);    
+                }
+                return "";
             }
             else {
-                return  asset('uploads/campaigns/'.$this->attraction->img_2);          
+                return asset('uploads/images/'.$this->attraction->id.'/campaign/'.$this->img_2);
             }
         }
     }

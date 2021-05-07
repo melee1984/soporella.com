@@ -31,6 +31,7 @@ import Category from './components/Management/Category/CategoryComponent.vue';
 import UserComponent from './components/Management/User/UserComponent.vue';
 import PromotionComponent from './components/Management/Promotion/PromotionComponent.vue';
 import TopAttractionComponent from './components/Management/TopAttraction/TopAttractionComponent.vue';
+import CampaignComponent from './components/Management/Campaign/CampaignComponent.vue';
 
 Vue.component('attraction-edit', AttractionEdit);
 Vue.component('language', Language);
@@ -38,6 +39,7 @@ Vue.component('category-list', Category);
 Vue.component('user-list', UserComponent);
 Vue.component('promotion-list', PromotionComponent);
 Vue.component('top-attraction-list', TopAttractionComponent);
+Vue.component('campaign-list', CampaignComponent);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

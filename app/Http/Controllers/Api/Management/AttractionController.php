@@ -400,7 +400,7 @@ class AttractionController extends Controller
   public function uploadGallery(Request $request, Attraction $attraction ) {
 
     request()->validate([
-      'file' => 'required|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=500,max_height=500',
+      'file' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
       $data = array();

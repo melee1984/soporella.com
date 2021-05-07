@@ -40,12 +40,14 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/{attraction}/gallery/upload', 'Api\Management\AttractionController@uploadGallery');
 	Route::get('management/attraction/{attraction}/category', 'Api\Management\AttractionCategoryController@getCategoryByAttraction');
 	Route::post('management/attraction/{attraction}/category/{category}/map/submit', 'Api\Management\AttractionCategoryController@insertAttractionCategoryMapping');
+
 	Route::get('management/category', 'Api\Management\CategoryController@index');	
 	Route::post('management/category/submit', 'Api\Management\CategoryController@store');	
 	Route::post('management/category/{category}/status/submit', 'Api\Management\CategoryController@updateStatus');	
 	Route::post('management/category/{category}/menu/submit', 'Api\Management\CategoryController@updateMenu');	
 	Route::post('management/category/{category}/delete/submit', 'Api\Management\CategoryController@destroy');	
 	Route::post('management/category/{category}/update/submit', 'Api\Management\CategoryController@update');	
+
 	Route::get('management/user', 'Api\Management\UserController@index');	
 	Route::post('management/user/submit', 'Api\Management\UserController@store');	
 	Route::post('management/user/{category}/status/submit', 'Api\Management\UserController@updateStatus');	
@@ -54,15 +56,26 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/user/{category}/update/submit', 'Api\Management\UserController@update');
 	Route::get('management/{attraction}/upsell', 'Api\Management\AttractionUpSellController@index');	
 	Route::post('management/upsell/{attraction}/add/{refid}/submit', 'Api\Management\AttractionUpSellController@store');	
+
 	Route::get('management/{attraction}/related', 'Api\Management\AttractionRelatedController@index');	
 	Route::post('management/related/{attraction}/add/{refid}/submit', 'Api\Management\AttractionRelatedController@store');	
 	Route::get('management/attraction/{attraction}/gallery', 'Api\Management\AttractionImageController@index');	
 	Route::post('management/{attraction}/gallery/{image}/delete/submit', 'Api\Management\AttractionImageController@destroy');	
+
 	Route::get('management/promotion/list', 'Api\Management\PromotionController@index');	
 	Route::post('management/promotion/{attraction}/add/submit', 'Api\Management\PromotionController@store');	
 	Route::get('management/topattraction/list', 'Api\Management\TopAttractionController@index');	
 	Route::post('management/topattraction/{attraction}/add/submit', 'Api\Management\TopAttractionController@store');	
 
+	Route::get('management/campaign', 'Api\Management\CampaignController@index');	
+	Route::post('management/campaign/submit', 'Api\Management\CampaignController@store');	
+	Route::post('management/campaign/{campaign}/delete/submit', 'Api\Management\CampaignController@destroy');	
+	Route::post('management/campaign/{campaign}/update/submit', 'Api\Management\CampaignController@update');	
+	
+	// Route::post('management/category/{category}/status/submit', 'Api\Management\CategoryController@updateStatus');	
+	// Route::post('management/category/{category}/menu/submit', 'Api\Management\CategoryController@updateMenu');	
+	
+	
 });
 
 // Add to Cart
