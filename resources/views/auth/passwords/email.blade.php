@@ -18,9 +18,9 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf   
                         <div class="form-group row">
-                            <label for="email" class="col-md-12 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-12 col-form-label text-md-right">{{ trans('messages.LABEL_EMAIL_ADRESS') }}</label>
                             <div class="col-md-12   ">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('Enter email address') }}">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ trans('messages.LABEL_EMAIL_ADRESS') }}">
 
                                 @error('email')
                                     <span class="invalid-feedback text-danger" role="alert">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                                <input type="submit" value="Submit" class="form-control btn-block">
+                                <input type="submit" value="{{ trans('messages.BTN_SUBMIT') }}" class="form-control btn-block">
                         </div>
                     </form>
                 </div>

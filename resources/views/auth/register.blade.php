@@ -11,8 +11,8 @@
         </div> -->
         <div class="col-lg-3"></div>
         <div id="login" class="col-lg-6">
-            <h1>Register</h1> <div class="errorWithLogin hide  popup_message_error"></div>            
-            <p>All fields are mandatory.</p>
+            <h1>{{ trans('messages.REGISTER_POPUP_LABEL_REGISTER') }}</h1> <div class="errorWithLogin hide  popup_message_error"></div>            
+            <p>{{ trans('messages.REGISTER_POPUP_TEXT') }}</p>
 
             @include('front.includes.error')
 
@@ -21,11 +21,11 @@
             @csrf
         
            <div class="form-group">
-                <input type="text" name="name" placeholder="Full Name" class="form-control" class="@error('name') is-invalid @enderror" value="{{ old('name') }}"> 
+                <input type="text" name="name" placeholder="{{ trans('messages.LABEL_FULLNAME') }}" class="form-control" class="@error('name') is-invalid @enderror" value="{{ old('name') }}"> 
             </div>
 
             <div class="form-group">
-                <input type="email" name="email" id="email" placeholder="Email Address" class="form-control" class="@error('email') is-invalid @enderror" value="{{ old('email') }}">
+                <input type="email" name="email" id="email" placeholder="{{ trans('messages.LABEL_EMAIL_ADRESS') }}" class="form-control" class="@error('email') is-invalid @enderror" value="{{ old('email') }}">
             </div>
             <div class="form-group">
                 <div class="row">
@@ -33,31 +33,32 @@
                         <input type="tel" name="areacode" placeholder="+971" class="form-control"  class="@error('areacode') is-invalid @enderror" value="{{ old('areacode') }}">
                     </div>
                     <div class="col-lg-9 padding-l0">
-                        <input type="tel" name="mobile" placeholder="Mobile Number" class="form-control"  class="@error('mobile') is-invalid @enderror" value="{{ old('mobile') }}">
+                        <input type="tel" name="mobile" placeholder="{{ trans('messages.CART_CUSTOMER_MOBILE') }}" class="form-control"  class="@error('mobile') is-invalid @enderror" value="{{ old('mobile') }}">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="Password" class="form-control"  class="@error('password') is-invalid @enderror" value="{{ old('password') }}" >
+                <input type="password" name="password" placeholder="{{ trans('messages.PASSWORD') }}" class="form-control"  class="@error('password') is-invalid @enderror" value="{{ old('password') }}" >
             </div>
 
             <div class="form-group">
-                <input class="form-control" type="text" name="street_address" placeholder="Street Building" class="@error('street_address') is-invalid @enderror" value="{{ old('street_address') }}">
+                <input class="form-control" type="text" name="street_address" placeholder="{{ trans('messages.ADDRESS') }}" class="@error('street_address') is-invalid @enderror" value="{{ old('street_address') }}">
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-6 padding-r0">
-                        <input class="form-control" type="text" name="city" placeholder="City" class="@error('city') is-invalid @enderror" value="{{ old('city') }}">
+                        <input class="form-control" type="text" name="city" placeholder="{{ trans('messages.CITY') }}" class="@error('city') is-invalid @enderror" value="{{ old('city') }}">
                     </div>
                     <div class="col-lg-6">
-                        <input class="form-control" type="text" name="postal_code" placeholder="Postal Code"  class="@error('postal_code') is-invalid @enderror" value="{{ old('postal_code') }}">
+                        <input class="form-control" type="text" name="postal_code" placeholder="{{ trans('messages.ZIP_POSTAL_CODE') }}"
+                         class="@error('postal_code') is-invalid @enderror" value="{{ old('postal_code') }}">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-6 padding-r0">
-                        <input class="form-control" type="text" name="state_province" placeholder="State/Province" class="@error('state_province') is-invalid @enderror" value="{{ old('state_province') }}">
+                        <input class="form-control" type="text" name="state_province" placeholder="{{ trans('messages.STATE_PROVINCE') }}"  class="@error('state_province') is-invalid @enderror" value="{{ old('state_province') }}">
                     </div>
                     <div class="col-lg-6">
                         <select required="" id="optCountry" name="optCountry" class="form-control">
@@ -311,13 +312,11 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Submit" class="form-control">
+                <input type="submit" value="{{ trans('messages.BTN_SUBMIT') }}" class="form-control">
             </div>
-
             </form>
 
-            <p>Already registered? <a href="{{ route('login') }}">Click Here</a>.</p>
-
+            <p>{{ trans('messages.ALREADY_REGISTERED') }} <a href="{{ route('login') }}">{{ trans('messages.CLICK_HERE') }}</a></p>
         </div>
         <div class="col-lg-3"></div>
     </div>

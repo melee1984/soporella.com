@@ -20,6 +20,8 @@ return array(
 'REGISTER_POPUP_LABEL_REGISTER'     =>              'Register',
 'REGISTER_POPUP_TEXT'               =>              'All fields are mandatory.',
 
+'REGISTER_STREET_BUILDING'          =>              'Street Building.',
+
 /* TITLE */
 
 'HEADER_TITLE_LOGIN'                =>              'Login',
