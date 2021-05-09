@@ -21,20 +21,20 @@
         <!--When are you going-->
        	<div class="row">
             <div class="col-lg-12 ticket-date">
-              <h4>When are you going?</h4>
+              <h4>{{ messages.ACTIVITY_WHEN_ARE_YOU_GOING }} </h4>
               <div class="form-group">
                 <input type="date" class="calendario form-control hasDatepicker" v-model="field.calendar" name="departure" placeholder="mm/dd/yyyy" id="departure">
-                <div class="action_error_calendario hide">Please select date</div>
+                <div class="action_error_calendario hide">{{ messages.CART_DATE_GOING }}</div>
               </div>
             </div>
          </div>
                 <!--Choose Ticket Type-->
         <div class="row">
           <div class="col-lg-12 ticket-type">
-            <h4>Choose Ticket Type</h4>
+            <h4>{{ messages.TICKET_TYPE }}</h4>
             <div class="form-group">
               <select class="form-control" id="category" v-model="field.chooseTicket"  @change="fetchTimings($event, $event.target.selectedIndex)">>
-              	<option value="">Select</option>
+              	<option value=""> {{ messages.SELECT_RATE }}</option>
                 <option v-for="rate in attraction.rates" :value="rate.id">{{ rate.language_string.title }}</option>
               </select> 
             </div>
@@ -112,17 +112,17 @@
           <p>{{ rateDescription }}</p>
   	      <section v-if="attraction.language_string.availability">
   	          <hr>
-  	          <h3>Availability</h3>        
+  	          <h3>{{ messages.AVAILABILITY }}</h3>        
   	          <p>{{ attraction.language_string.availability }}</p>
   	      </section>
           <section v-if="attraction.language_string.redemption">
           	<hr>
-          	<h3>Redemption</h3>        
+          	<h3>{{ messages.REDEMPTION }}</h3>        
           	<p>{{ attraction.language_string.redemption }}</p>
           </section>
           <section v-if="attraction.language_string.about">
             <hr>
-            <h3>About</h3>        
+            <h3>{{ messages.LABEL_ABOUT }}</h3>        
             <p>{{ attraction.language_string.about }}</p>
           </section>
         </div>
@@ -140,7 +140,7 @@
 		          <h4>{{ interested.attraction.title }}</h4>
 		          <a :href="interested.attraction.pageUrl" :title="interested.attraction.title">
 		          		<img :src="interested.attraction.photo" :alt="interested.attraction.title" class="img-responsive"></a>
-		          	<a class="buy" :href="interested.attraction.pageUrl">Buy Tickets</a>
+		          	<a class="buy" :href="interested.attraction.pageUrl">{{ messages.BTN_BUY_TICKETS }}</a>
 		        </div>
         </div>
   		</div>
@@ -166,10 +166,10 @@
             <strong>Success!</strong> You have added item to your cart</a>.
           </div>  
           <p class="text-center">
-            <a class="btn btn-secondary btn-md buy" href="/shopping-cart/basket" role="button" style="color: #fff;">View Basket</a>
+            <a class="btn btn-secondary btn-md buy" href="/shopping-cart/basket" role="button" style="color: #fff;">{{ messages.PROCEED_TO_PRAYMENT }}</a>
           </p>
            <p class="text-center">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ messages.Continue }}</button>
           </p>
         </div>
                
@@ -197,6 +197,7 @@
           isSubmit: false,
           pageUrl: MAINURL,
           rateDetailsArray: {},
+          messages: this.trans.messages,
         }
       },
       props: ['attraction'],

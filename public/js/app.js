@@ -2259,7 +2259,8 @@ __webpack_require__.r(__webpack_exports__);
       rateHeader: this.attraction,
       isSubmit: false,
       pageUrl: MAINURL,
-      rateDetailsArray: {}
+      rateDetailsArray: {},
+      messages: this.trans.messages
     };
   },
   props: ['attraction'],
@@ -39486,7 +39487,9 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-lg-12 ticket-date" }, [
-                _c("h4", [_vm._v("When are you going?")]),
+                _c("h4", [
+                  _vm._v(_vm._s(_vm.messages.ACTIVITY_WHEN_ARE_YOU_GOING) + " ")
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("input", {
@@ -39517,7 +39520,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "action_error_calendario hide" }, [
-                    _vm._v("Please select date")
+                    _vm._v(_vm._s(_vm.messages.CART_DATE_GOING))
                   ])
                 ])
               ])
@@ -39525,7 +39528,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-lg-12 ticket-type" }, [
-                _c("h4", [_vm._v("Choose Ticket Type")]),
+                _c("h4", [_vm._v(_vm._s(_vm.messages.TICKET_TYPE))]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c(
@@ -39572,7 +39575,7 @@ var render = function() {
                     [
                       _vm._v(">\n              \t"),
                       _c("option", { attrs: { value: "" } }, [
-                        _vm._v("Select")
+                        _vm._v(" " + _vm._s(_vm.messages.SELECT_RATE))
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.attraction.rates, function(rate) {
@@ -39773,7 +39776,7 @@ var render = function() {
               ? _c("section", [
                   _c("hr"),
                   _vm._v(" "),
-                  _c("h3", [_vm._v("Availability")]),
+                  _c("h3", [_vm._v(_vm._s(_vm.messages.AVAILABILITY))]),
                   _vm._v(" "),
                   _c("p", [
                     _vm._v(_vm._s(_vm.attraction.language_string.availability))
@@ -39785,7 +39788,7 @@ var render = function() {
               ? _c("section", [
                   _c("hr"),
                   _vm._v(" "),
-                  _c("h3", [_vm._v("Redemption")]),
+                  _c("h3", [_vm._v(_vm._s(_vm.messages.REDEMPTION))]),
                   _vm._v(" "),
                   _c("p", [
                     _vm._v(_vm._s(_vm.attraction.language_string.redemption))
@@ -39797,7 +39800,7 @@ var render = function() {
               ? _c("section", [
                   _c("hr"),
                   _vm._v(" "),
-                  _c("h3", [_vm._v("About")]),
+                  _c("h3", [_vm._v(_vm._s(_vm.messages.LABEL_ABOUT))]),
                   _vm._v(" "),
                   _c("p", [
                     _vm._v(_vm._s(_vm.attraction.language_string.about))
@@ -39852,7 +39855,7 @@ var render = function() {
                       staticClass: "buy",
                       attrs: { href: interested.attraction.pageUrl }
                     },
-                    [_vm._v("Buy Tickets")]
+                    [_vm._v(_vm._s(_vm.messages.BTN_BUY_TICKETS))]
                   )
                 ])
               }),
@@ -39862,7 +39865,71 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(4)
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "successModal",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "exampleModalLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "jumbotron" }, [
+                    _c("h1", { staticClass: "display-4 text-center" }, [
+                      _vm._v("Success!")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "lead" }),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("p"),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "my-4" }),
+                    _vm._v(" "),
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-center" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-secondary btn-md buy",
+                          staticStyle: { color: "#fff" },
+                          attrs: {
+                            href: "/shopping-cart/basket",
+                            role: "button"
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.messages.PROCEED_TO_PRAYMENT))]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-center" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [_vm._v(_vm._s(_vm.messages.Continue))]
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ]
+      )
     ]
   )
 }
@@ -39923,85 +39990,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "successModal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "jumbotron" }, [
-                  _c("h1", { staticClass: "display-4 text-center" }, [
-                    _vm._v("Success!")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "lead" }),
-                  _c("p", { staticClass: "text-center text-success" }, [
-                    _c(
-                      "span",
-                      {
-                        staticClass: "material-icons",
-                        staticStyle: { "font-size": "120px" }
-                      },
-                      [_vm._v("done")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p"),
-                  _vm._v(" "),
-                  _c("hr", { staticClass: "my-4" }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "alert alert-success text-center" },
-                    [
-                      _c("strong", [_vm._v("Success!")]),
-                      _vm._v(" You have added item to your cart"),
-                      _vm._v(".\n          ")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-center" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-secondary btn-md buy",
-                        staticStyle: { color: "#fff" },
-                        attrs: { href: "/shopping-cart/basket", role: "button" }
-                      },
-                      [_vm._v("View Basket")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-center" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-secondary",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [_vm._v("Continue")]
-                    )
-                  ])
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
-    )
+    return _c("p", { staticClass: "text-center text-success" }, [
+      _c(
+        "span",
+        {
+          staticClass: "material-icons",
+          staticStyle: { "font-size": "120px" }
+        },
+        [_vm._v("done")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "alert alert-success text-center" }, [
+      _c("strong", [_vm._v("Success!")]),
+      _vm._v(" You have added item to your cart"),
+      _vm._v(".\n          ")
+    ])
   }
 ]
 render._withStripped = true
