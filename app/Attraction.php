@@ -79,6 +79,12 @@ class Attraction extends Model
         return $this->hasMany('App\Models\Attraction\AttractionImage');
     }
 
+      public function imagesLimit()
+    {
+        return $this->hasMany('App\Models\Attraction\AttractionImage')
+                        ->limit(2);
+    }
+
     /**
      * [interestedIn description]
      * @return [type] [description]

@@ -26,8 +26,10 @@
 
             </div>
             <div class="col-lg-4 offer-img">
-                <span v-for="image in campaign.attraction.images">
-                    <img class="img-responsive" :src="image.photo" alt="" width="340">    
+                <!-- <span v-for="image in campaign.attraction.images"> -->
+
+                  <span v-for="index in 2" :key="index">
+                    <img class="img-responsive" :src="campaign.attraction.images[index]" alt="" width="340">    
                 </span>
             </div>
           </div>
