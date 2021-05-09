@@ -1,6 +1,6 @@
 <template>
   <span>
-    <a href="/shopping-cart/basket"> My Tickets (<span> {{ item_count }} </span>)</a>
+    <a href="/shopping-cart/basket"> {{ messages.HEADER_LABEL_MY_TICKET }} (<span> {{ item_count }} </span>)</a>
   </span>
  </template>
 <script>
@@ -8,6 +8,7 @@
       data() {
         return {
             item_count: 0,
+             messages: this.trans.messages,
         }
       },
       mounted() {

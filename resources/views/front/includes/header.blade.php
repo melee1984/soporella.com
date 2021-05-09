@@ -14,7 +14,7 @@
         @else 
           <li><a href="{{ route('profile.dashboard') }}">{{trans('messages.HEADER_TITLE_MY_ACCOUNT')}}</a></li>
 
-           <li><a href="{{ route('user.logout') }}">Logout</a></li>
+           <li><a href="{{ route('user.logout') }}">{{ trans('messages.LABEL_LOGOUT') }}</a></li>
           
         @endif
         <li>

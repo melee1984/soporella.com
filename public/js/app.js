@@ -2795,7 +2795,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      item_count: 0
+      item_count: 0,
+      messages: this.trans.messages
     };
   },
   mounted: function mounted() {
@@ -41116,7 +41117,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("span", [
     _c("a", { attrs: { href: "/shopping-cart/basket" } }, [
-      _vm._v(" My Tickets ("),
+      _vm._v(" " + _vm._s(_vm.messages.HEADER_LABEL_MY_TICKET) + " ("),
       _c("span", [_vm._v(" " + _vm._s(_vm.item_count) + " ")]),
       _vm._v(")")
     ])

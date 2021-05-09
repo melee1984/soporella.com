@@ -9,11 +9,10 @@
       <div class="carousel-caption">
         <h2>{{ $campaign->title }}</h2>
         <p>{{ $campaign->description }}</p>
-        <a class="buy" href="{{ route('page.promotion', $campaign->attraction ) }}">Buy Tickets</a>
+        <a class="buy" href="{{ route('page.promotion', $campaign->attraction ) }}">{{ trans('messages.LABEL_BUY_TICKET') }}</a>
       </div>
     </div>
     @endforeach
-   
 
   </div>
 
