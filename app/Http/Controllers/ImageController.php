@@ -18,9 +18,9 @@ class ImageController extends Controller
 
 		    if ($size == 'thumb') {
 
-		    	echo "samoke";
-		    	echo asset('uploads/images/'. $src);
-		    	die();
+		    	// echo "samoke";
+		    	// echo asset('uploads/images/'. $src);
+		    	// die();
 
 		       return $image->make("uploads/images/".$src)->resize(400, 400, function ($constraint) {
 		            $constraint->aspectRatio();
