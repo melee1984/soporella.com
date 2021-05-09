@@ -35,7 +35,7 @@ class ImageController extends Controller
 		      //     $constraint->aspectRatio();
 		      // }); 
 		    }
-	  }, 60, false); // one minute cache expiry'
+	  }, 5, false); // one minute cache expiry'
 
 	  return Response::make($cacheimage, 200, array('Content-Type' => 'image/jpeg'));
 
