@@ -33,6 +33,8 @@ class AttractionController extends Controller
         $attraction->title = $request->input('title');
         $attraction->active =$request->input('active')?1:0;
         $attraction->slug = Str::slug($request->input('title'));
+        $attraction->video = $request->input('video');
+
         $currentData = $attraction->languageField();
 
         foreach($categories as $country) {
