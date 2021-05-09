@@ -44,7 +44,7 @@
                     </div>
                      <div class="col-lg-4 col-sm-4">
                         <label>Primary Photo <span v-if="field.img"><a href="">Delete Photo</a></span></label>
-                        <img :src="field.img" class="img-fluid"> 
+                        <img :src="field.photo" class="img-fluid"> 
                         <p></p>
                         <div class="form-group col-12 m-0 p-0">
                           <div class="input-group">
@@ -177,7 +177,7 @@
             redemption: "",
             about: "",
             active: 0,
-            img: "",
+            photo: "",
           },
           fileImage: null,
           uploadStatus: 'Upload',
@@ -224,7 +224,7 @@
               }).then(function (response) {
                 if (response.data.status) {
                   self.$toasts.success(response.data.message);
-                  self.field.img = response.data.img;
+                  self.field.photo = response.data.img;
                   self.uploadStatus = "Upload";
                 }
                 else   {

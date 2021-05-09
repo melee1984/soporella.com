@@ -2089,7 +2089,7 @@ __webpack_require__.r(__webpack_exports__);
         redemption: "",
         about: "",
         active: 0,
-        img: ""
+        photo: ""
       },
       fileImage: null,
       uploadStatus: 'Upload',
@@ -2131,7 +2131,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.data.status) {
           self.$toasts.success(response.data.message);
-          self.field.img = response.data.img;
+          self.field.photo = response.data.img;
           self.uploadStatus = "Upload";
         } else {
           self.$toasts.info(response.data.message);
@@ -25470,7 +25470,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("img", {
                           staticClass: "img-fluid",
-                          attrs: { src: _vm.field.img }
+                          attrs: { src: _vm.field.photo }
                         }),
                         _vm._v(" "),
                         _c("p"),
