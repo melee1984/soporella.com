@@ -171,21 +171,27 @@ class AttractionController extends Controller
 
       $new_array = array();
 
-      foreach($categories as $country) {
-        if (session()->get('locale')==$country->country_code) {
-          $new_array[$country->country_code] = array (
-                'description' =>  $request->input('description'), 
-                'title' =>  $request->input('title  '), 
-              );
-        }
-        else {
-            $new_array[$country->country_code] = array (
-                'description' =>  "", 
-                'title' => "", 
-            );
-        }
-      }
+      // foreach($categories as $country) {
+      //   if ('en'==$country->country_code) {
+      //     $new_array[$country->country_code] = array (
+      //           'description' =>  $request->input('description'), 
+      //           'title' =>  $request->input('title  '), 
+      //         );
+      //   }
+      //   else {
+      //       $new_array[$country->country_code] = array (
+      //           'description' =>  "", 
+      //           'title' => "", 
+      //       );
+      //   }
+      // }
 
+      foreach($categories as $country) {
+            $new_array[$country->country_code] = array (
+                    'description' =>  $request->input('description'), 
+                    'title' => $request->input('title'), );
+        }
+      
       $attractionRateHeader->language_string = serialize($new_array);
       $attractionRateHeader->save();
 
