@@ -17,7 +17,7 @@ class ImageController extends Controller
 	 	$cacheimage = Image::cache(function($image) use ($src, $size) {
 
 		    if ($size == 'thumb') {
-			    return $image->make("uploads/images/24/".$src)->resize(400, 400, function ($constraint) {
+			    return $image->make("uploads/images/24/2021-05-09-lego4.jpg")->resize(400, 400, function ($constraint) {
 		            $constraint->aspectRatio();
 		        });    
 		    }
