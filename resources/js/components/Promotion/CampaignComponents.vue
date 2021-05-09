@@ -51,7 +51,8 @@
             <div class="carousel-inner">
               <div class="item active"> 
                 <a  :href="campaign.attraction.pageUrl" target="_blank">
-                  <img :src="campaign.attraction.img" :alt="campaign.attraction.title" class="img-responsive" width="100%">
+                  <img :src="campaign.img_1" :alt="campaign.attraction.title" class="img-responsive" width="100%" v-if="campaign.img_1">
+                  <img :src="campaign.attraction.img" :alt="campaign.attraction.title" class="img-responsive" width="100%" v-if="!campaign.img_1">
                 </a>
               </div>
               <div class="rib-per">

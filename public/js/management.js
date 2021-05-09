@@ -3165,8 +3165,7 @@ __webpack_require__.r(__webpack_exports__);
         discount_string: "",
         attraction_id: "",
         slider: false,
-        file: "",
-        img_1: ""
+        file: ""
       },
       objArray: {},
       lang: JSON.parse(localStorage.selectedLanguage).country_code,
@@ -3197,7 +3196,7 @@ __webpack_require__.r(__webpack_exports__);
       this.field.file = e.target.files[0];
     },
     onFileSelected1: function onFileSelected1(e) {
-      this.field.img_1 = e.target.files[0];
+      this.field.file = e.target.files[0];
     },
     store: function store() {
       var self = this;
@@ -3215,11 +3214,12 @@ __webpack_require__.r(__webpack_exports__);
         if (self.field.file) {
           formData.append('file', self.field.file, self.field.file.name);
         }
-      }
+      } // Temp
+
 
       if (self.field.display_option == 2) {
-        if (self.field.img_1) {
-          formData.append('file', self.field.img_1, self.field.img_1.name);
+        if (self.field.file) {
+          formData.append('file', self.field.file, self.field.file.name);
         }
       }
 
@@ -3230,8 +3230,8 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('discount_string', self.field.discount_string);
       axios.post(url, formData).then(function (response) {
         if (response.data.status) {
-          self.cancelForm();
           self.fetchData();
+          self.cancelForm();
           self.$toasts.success(response.data.message);
         } else {
           self.$toasts.error(response.data.message);
@@ -3263,6 +3263,51 @@ __webpack_require__.r(__webpack_exports__);
       if (r == true) {
         axios.post('/api/management/campaign/' + obj.id + '/delete/submit?api_token=' + api_token).then(function (response) {
           if (response.data.status) {
+            self.cancelForm();
+            self.fetchData();
+            self.$toasts.success(response.data.message);
+          } else {
+            self.$toasts.error(response.data.message);
+          }
+
+          self.loading = false;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    deleteBanner: function deleteBanner(obj) {
+      var self = this;
+      self.loading = true;
+      var txt;
+      var r = confirm("Are you sure you want to delete this Banner?");
+
+      if (r == true) {
+        axios.post('/api/management/campaign/' + obj.id + '/delete/banner/submit?api_token=' + api_token).then(function (response) {
+          if (response.data.status) {
+            self.cancelForm();
+            self.fetchData();
+            self.$toasts.success(response.data.message);
+          } else {
+            self.$toasts.error(response.data.message);
+          }
+
+          self.loading = false;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    deleteImg: function deleteImg(obj) {
+      var self = this;
+      self.loading = true;
+      var txt;
+      var r = confirm("Are you sure you want to delete this Banner?");
+
+      if (r == true) {
+        axios.post('/api/management/campaign/' + obj.id + '/delete/image/submit?api_token=' + api_token).then(function (response) {
+          if (response.data.status) {
+            self.cancelForm();
             self.fetchData();
             self.$toasts.success(response.data.message);
           } else {
@@ -27692,9 +27737,7 @@ var render = function() {
                                                       "checkbox_animated",
                                                     attrs: {
                                                       value: "1",
-                                                      type: "checkbox",
-                                                      "data-original-title": "",
-                                                      title: ""
+                                                      type: "checkbox"
                                                     },
                                                     domProps: {
                                                       checked: Array.isArray(
@@ -27790,9 +27833,7 @@ var render = function() {
                                                       "checkbox_animated",
                                                     attrs: {
                                                       value: "1",
-                                                      type: "checkbox",
-                                                      "data-original-title": "",
-                                                      title: ""
+                                                      type: "checkbox"
                                                     },
                                                     domProps: {
                                                       checked: Array.isArray(
@@ -28201,9 +28242,18 @@ var render = function() {
                       _c("br"),
                       _vm._v(" "),
                       _vm.field.large_img
-                        ? _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                            _c("small", [_vm._v("Delete")])
-                          ])
+                        ? _c(
+                            "a",
+                            {
+                              attrs: { href: "javascript:void(0)" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteBanner(_vm.field)
+                                }
+                              }
+                            },
+                            [_c("small", [_vm._v("Delete")])]
+                          )
                         : _vm._e()
                     ])
                   : _vm._e(),
@@ -28220,9 +28270,18 @@ var render = function() {
                       _c("br"),
                       _vm._v(" "),
                       _vm.field.img_1
-                        ? _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                            _c("small", [_vm._v("Delete")])
-                          ])
+                        ? _c(
+                            "a",
+                            {
+                              attrs: { href: "javascript:void(0)" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteImg(_vm.field)
+                                }
+                              }
+                            },
+                            [_c("small", [_vm._v("Delete")])]
+                          )
                         : _vm._e()
                     ])
                   : _vm._e()

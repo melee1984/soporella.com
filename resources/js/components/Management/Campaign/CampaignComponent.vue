@@ -89,13 +89,13 @@
 
                                   <div class="form-group col-12">
                                      <label class="d-block" for="active">
-                                      <input class="checkbox_animated" value="1" type="checkbox" data-original-title="" title="" v-model="field.active" > Active
+                                      <input class="checkbox_animated" value="1" type="checkbox" v-model="field.active" > Active
                                     </label>
                                   </div>
 
                                   <div class="form-group col-12">
                                      <label class="d-block" for="active">
-                                      <input class="checkbox_animated" value="1" type="checkbox" data-original-title="" title="" v-model="field.slider" > Slider
+                                      <input class="checkbox_animated" value="1" type="checkbox"  v-model="field.slider" > Slider
                                     </label>
                                   </div>
                                   
@@ -162,14 +162,14 @@
                   <label>Banner</label>
                   <img :src="field.large_img" alt="" class="img-fluid">
                   <br>
-                  <a href="javascript:void(0)" v-if="field.large_img"><small>Delete</small></a>
+                  <a href="javascript:void(0)" v-if="field.large_img" v-on:click="deleteBanner(field)"><small>Delete</small></a>
                 </div>
 
                  <div v-if="field.display_option == 2">
                   <label>Photo</label>
                   <img :src="field.img_1" alt="" class="img-fluid">
                   <br>
-                  <a href="javascript:void(0)" v-if="field.img_1"><small>Delete</small></a>
+                  <a href="javascript:void(0)" v-if="field.img_1"  v-on:click="deleteImg(field)"><small>Delete</small></a>
                 </div>
 
             </div>
@@ -197,7 +197,6 @@
             attraction_id: "",
             slider: false,
             file: "",
-            img_1: "",
           },
           objArray: {},
           lang: JSON.parse(localStorage.selectedLanguage).country_code,
@@ -232,7 +231,7 @@
             this.field.file = e.target.files[0];
         },
         onFileSelected1: function(e) {
-            this.field.img_1 = e.target.files[0];
+            this.field.file = e.target.files[0];
         },
         store: function() {
           
@@ -240,6 +239,7 @@
           self.loading= true;
           var url = "";
           let formData = new FormData();
+
           if (self.addForm) {
               url = '/api/management/campaign/submit?api_token='+api_token;
           }
@@ -252,10 +252,10 @@
               formData.append('file', self.field.file, self.field.file.name);
             }
           }
-
+          // Temp
           if (self.field.display_option == 2) {
-            if (self.field.img_1) {
-              formData.append('file', self.field.img_1, self.field.img_1.name);
+            if (self.field.file) {
+              formData.append('file', self.field.file, self.field.file.name);
             }
           }
 
@@ -267,9 +267,9 @@
 
           axios.post(url, formData).then(function (response) {
             if (response.data.status) {
-              self.cancelForm();
-              self.fetchData();
-              self.$toasts.success(response.data.message);
+             self.fetchData();
+             self.cancelForm();
+             self.$toasts.success(response.data.message);
             }
             else {
                self.$toasts.error(response.data.message);
@@ -300,6 +300,49 @@
           if (r == true) {
             axios.post('/api/management/campaign/'+obj.id+'/delete/submit?api_token='+api_token).then(function (response) {
               if (response.data.status) {
+                  self.cancelForm();
+                self.fetchData();
+                self.$toasts.success(response.data.message);
+              }
+              else {
+                 self.$toasts.error(response.data.message);
+              }
+              self.loading = false;
+            }).catch(function (error) {
+                console.log(error);
+            });
+          }
+        },
+        deleteBanner: function(obj) {
+          var self = this;
+          self.loading= true;
+          var txt;
+          var r = confirm("Are you sure you want to delete this Banner?");
+          if (r == true) {
+            axios.post('/api/management/campaign/'+obj.id+'/delete/banner/submit?api_token='+api_token).then(function (response) {
+              if (response.data.status) {
+                 self.cancelForm();
+                self.fetchData();
+                self.$toasts.success(response.data.message);
+              }
+              else {
+                 self.$toasts.error(response.data.message);
+              }
+              self.loading = false;
+            }).catch(function (error) {
+                console.log(error);
+            });
+          }
+        },
+        deleteImg: function(obj) {
+          var self = this;
+          self.loading= true;
+          var txt;
+          var r = confirm("Are you sure you want to delete this Banner?");
+          if (r == true) {
+            axios.post('/api/management/campaign/'+obj.id+'/delete/image/submit?api_token='+api_token).then(function (response) {
+              if (response.data.status) {
+               self.cancelForm();
                 self.fetchData();
                 self.$toasts.success(response.data.message);
               }

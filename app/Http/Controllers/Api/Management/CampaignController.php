@@ -38,36 +38,39 @@ class CampaignController extends Controller
 
 		return response()->json($data, 200);
     }
-  //   public function updateStatus(Request $request, Category $category) {
+    
+    public function updateStatus(Request $request, Campaign $campaign) {
     	
-  //   	$data = array();
-  //   	$data['status'] = 0;
+    	$data = array();
+    	$data['status'] = 0;
 
-  //   	$category->active = $category->active?0:1;
-  //   	$status = $category->save();
+      
+    	$campaign->active = $campaign->active?0:1;
+    	$status = $campaign->save();
 
-  //   	if($status) {
-  //   		$data['status'] = 1;
-  //   		$data['message'] = "Successfully update status";
-  //   	}
-  //   	return response()->json($data, 200);
+    	if($status) {
+    		$data['status'] = 1;
+    		$data['message'] = "Successfully update status";
+    	}
+    	return response()->json($data, 200);
 
-  //   }
-  //   public function updateMenu(Request $request, Category $category) {
+    }
+
+    public function updateMenu(Request $request, Category $category) {
     	
-  //   	$data = array();
-  //   	$data['status'] = 0;
+    	$data = array();
+    	$data['status'] = 0;
 
-  //   	$category->is_menu = $category->is_menu?0:1;
-  //   	$status = $category->save();
+    	$category->is_menu = $category->is_menu?0:1;
+    	$status = $category->save();
 
-  //   	if($status) {
-  //   		$data['status'] = 1;
-  //   		$data['message'] = "Successfully update status";
-  //   	}
+    	if($status) {
+    		$data['status'] = 1;
+    		$data['message'] = "Successfully update status";
+    	}
 
-  //   	return response()->json($data, 200);
-  //   }
+    	return response()->json($data, 200);
+    }
     public function store(Request $request) {
 
 		$data = array();
@@ -114,8 +117,9 @@ class CampaignController extends Controller
   		    'attraction_id' => 'required|max:255',
   		]);
 
-  		$campaign->active = $request->input('active')?1:0;
-  		$campaign->slider = $request->input('slider')?1:0;
+      $campaign->active = $request->input('active')=="true"?1:0;
+      $campaign->slider = $request->input('slider')=="true"?1:0;
+
   		$campaign->attraction_id = $request->input('attraction_id');
   		$campaign->display_option = $request->input('display_option');
   		$campaign->discount_string = $request->input('discount_string');
@@ -235,6 +239,37 @@ class CampaignController extends Controller
 
       return response()->json($data, 200);
     }
+
+    public function destroyImg(Request $request, Campaign $campaign, $option) {
+      
+      $data = array();
+
+      $data['status'] = 0;
+      $data['message'] = "Unable to update record. Please try again.";
+
+      if (!$campaign) response()->json($data, 200);
+
+      $camUpdate = Campaign::find($campaign->id);
+      if ($option=='banner') {
+        $this->unlinkImage($campaign, 1);
+        $camUpdate->large_img = "";
+      }
+      else {
+        $this->unlinkImage($campaign, 2);
+        $camUpdate->img_1 = "";
+      }
+
+      $status = $camUpdate->save();
+
+      if ($status) {
+        $data['status'] = 1;
+        $data['message'] = "Successfully updated record";
+      }
+
+      return response()->json($data, 200);
+    }
+
+    
 
 
 }

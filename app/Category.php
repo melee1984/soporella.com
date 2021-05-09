@@ -10,7 +10,7 @@ class Category extends Model
 	use SoftDeletes;
 
 	protected $table = 'categories';
-	protected $fillable = ['title', 'active', 'slug','is_menu'];
+	protected $fillable = ['title', 'active', 'slug','is_menu', 'sorting'];
     public $timestamps = true;
 
     /**

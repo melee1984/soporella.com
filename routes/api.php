@@ -71,9 +71,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/campaign/submit', 'Api\Management\CampaignController@store');	
 	Route::post('management/campaign/{campaign}/delete/submit', 'Api\Management\CampaignController@destroy');	
 	Route::post('management/campaign/{campaign}/update/submit', 'Api\Management\CampaignController@update');	
-	
-	// Route::post('management/category/{category}/status/submit', 'Api\Management\CategoryController@updateStatus');	
-	// Route::post('management/category/{category}/menu/submit', 'Api\Management\CategoryController@updateMenu');	
+	Route::post('management/campaign/{campaign}/status/submit', 'Api\Management\CampaignController@updateStatus');	
+	Route::post('management/campaign/{campaign}/delete/{option}/submit', 'Api\Management\CampaignController@destroyImg');	
 	
 	
 });

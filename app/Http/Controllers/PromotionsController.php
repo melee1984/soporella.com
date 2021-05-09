@@ -30,6 +30,8 @@ class PromotionsController extends Controller
             foreach($campaigns as $campaign) {
 
                 $campaign->large_img = $campaign->populateCampaignImage(1,1);
+                $campaign->img_1 = $campaign->populateCampaignImage(0,1);
+
                 $campaign->language_string = $campaign->attraction->convertLanguageField();
              
                 if ($campaign->attraction->photo!="") {
@@ -38,7 +40,7 @@ class PromotionsController extends Controller
                 
                 // Gallery Image 
                 foreach($campaign->attraction->images as $image) {
-                    $image->photo = $image->populateAttractionGalleryImage();
+                    $image->photo = $image->populateAttractionGalleryImage(); // Attraction Gallary 
                 }
 
                 $campaign->populateAttractionPageURL();
@@ -49,10 +51,8 @@ class PromotionsController extends Controller
 
                     foreach($rate->details as $detail) {
                         $detail->language = $detail->convertLanguageField();
-
                         $detail->price = $detail->computePricedOnTheCountrySelected() . " " . $detail->getCurrency();
                         $detail->markdown_price = $detail->computeMarkdownPricedOnTheCountrySelected() . " " . $detail->getCurrency();
-
                     }
 
                 } 
