@@ -18,6 +18,7 @@ class ImageController extends Controller
 
 		    if ($size == 'thumb') {
 
+		    	echo "samoke";
 		    	echo asset('uploads/images/'. $src);
 		    	die();
 
