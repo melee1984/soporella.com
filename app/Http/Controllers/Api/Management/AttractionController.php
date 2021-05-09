@@ -10,7 +10,7 @@ use App\Country;
 use Str;
 use Image;
 use App\Models\Attraction\AttractionRateHeader;
-use App\Models\Attraction\attractionRateDetails;
+use App\Models\Attraction\AttractionRateDetails;
 use App\Category;
 use DB;
 use App\Models\Category\CategoryAttractionMapping;
