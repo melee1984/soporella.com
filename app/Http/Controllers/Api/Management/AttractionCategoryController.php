@@ -18,10 +18,13 @@ class AttractionCategoryController extends Controller
       $data = array();
       $data['status'] = 1;
 
-      $categories = DB::table('categories')
-                    ->select('id','title', DB::raw('(select count(id) from category_attraction_mapping where category_id = categories.id and attraction_id = '.$attraction->id . ') as mapped'))
+      $categories = Category::select('id','title','language_string', DB::raw('(select count(id) from category_attraction_mapping where category_id = categories.id and attraction_id = '.$attraction->id . ') as mapped'))
                     ->whereActive(1)
                     ->get();
+
+      foreach ($categories as $category) {
+        $category->language_string = $category->convertLanguageField();
+      }
 
       $data['categories'] = $categories;
 

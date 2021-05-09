@@ -2208,7 +2208,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -26083,7 +26082,7 @@ var render = function() {
         [
           !_vm.objArray.length
             ? _c("tr", [
-                _c("td", { attrs: { colspan: "4" } }, [
+                _c("td", { attrs: { colspan: "2" } }, [
                   _vm._v("No record found")
                 ])
               ])
@@ -26153,10 +26152,12 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", [
-                _vm._v("\n            " + _vm._s(obj.title) + "\n          ")
-              ]),
-              _vm._v(" "),
-              _c("td")
+                _vm._v(
+                  "\n            " +
+                    _vm._s(obj.language_string.title) +
+                    "\n          "
+                )
+              ])
             ])
           })
         ],
@@ -26172,11 +26173,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
-        _c("th", { attrs: { scope: "col", width: "10%" } }),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col", width: "10%" } }, [_vm._v("Active")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", width: "40%" } }, [
+        _c("th", { attrs: { scope: "col", width: "90%" } }, [
           _vm._v("Category")
         ])
       ])

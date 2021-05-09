@@ -3,14 +3,13 @@
      <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col" width="10%"></th>
             <th scope="col" width="10%">Active</th>
-            <th scope="col" width="40%">Category</th>
+            <th scope="col" width="90%">Category</th>
           </tr>
         </thead>
         <tbody>
           <tr v-if="!objArray.length">
-            <td colspan="4">No record found</td>
+            <td colspan="2">No record found</td>
           </tr>
           <tr v-for="obj in objArray">
             <td> 
@@ -23,9 +22,9 @@
               </div>
             </td>
             <td>
-              {{ obj.title }}
+              {{ obj.language_string.title }}
             </td>
-            <td></td>
+           
           </tr>
         </tbody>
       </table>
