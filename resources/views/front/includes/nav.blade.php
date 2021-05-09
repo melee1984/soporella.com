@@ -9,7 +9,7 @@
 
                   <li><a title="{{ $menu->language_string['title'] }}" class="{{  $menu->language_string['title']  }}" href="{{ route('page.category', $menu) }}">{{ $menu->language_string['title'] }}</a></li>
                 @endforeach
-                <li><a title="Promotions" id="promo" class="promo" href="{{ route('promotions') }}">Promotions</a></li>
+                <li><a title="Promotions" id="promo" class="promo" href="{{ route('promotions') }}">{{ trans('messages.PROMOTIONS') }}</a></li>
               </ul>
           </div>
         </div>
