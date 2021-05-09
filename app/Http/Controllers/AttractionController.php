@@ -32,7 +32,9 @@ class AttractionController extends Controller
 
         }
 
-        $attraction->images;
+        foreach($attraction->images as $image) {
+            $image->img = $image->populateAttractionGalleryImage();
+        }
 
         foreach($attraction->interestedIn as $interested) {
             $interested->attraction->slug = $interested->populateAttractionPageURL();
