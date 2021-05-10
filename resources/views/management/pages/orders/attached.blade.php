@@ -5,15 +5,13 @@
           <div class="container-fluid">
             <div class="page-title">
               <div class="row">
-                <div class="col-6">
-                  <h3>ORDER # {{ $cart->ref_no }}</h3>
-                </div>
+               
                 <div class="col-6">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
               <a href="index.html" data-original-title="" title="">                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
-                    <li class="breadcrumb-item">Ticket</li>
-                    <li class="breadcrumb-item active">Attach File</li>
+                    <li class="breadcrumb-item">Order</li>
+                    <li class="breadcrumb-item active">Tickets</li>
                   </ol>
                 </div>
               </div>
@@ -27,18 +25,32 @@
               <div class="col-xl-8 box-col-12">
                 <div class="card">
                   <div class="card-header py-4">
-                    <h5>User Information</h5>
+                    <div class="row">
+                            <div class="col-sm-6">
+                              <div class="media">
+                                <div class="media-left"><img class="media-object img-60" src="../assets/images/other-images/logo-login.png" alt="" data-original-title="" title=""></div>
+                                <div class="media-body m-l-20">
+                                  <h4 class="media-heading">{{ $cart->fullname }}</h4>
+                                  <p> {{ $cart->email }}<br><span> {{ $cart->mobile }}</span></p>
+                                </div>
+                              </div>
+                              <!-- End Info-->
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="text-md-right">
+                                <h3>Invoice #<span class="counter">{{ $cart->ref_no }}</span></h3>
+                                <p>Issued: May<span> {{ $cart->created_at->format('Y-m-d H:i:s') }}</span><br>                                                            
+                              </div>
+                              <!-- End Title-->
+                            </div>
+                          </div>
                   </div>
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-12">
-                          Name: {{ $cart->fullname }} <br>
-                          Mobile: {{ $cart->mobile }} <br>
-                          Email: {{ $cart->email }} <br><br>
                           Payment Gateway: {{ $cart->payment->title }}<br>
-                          Payment Reference no: {{ $cart->payment_ref_no }} <br>
+                          Payment Reference no: {{ $cart->payment_ref_no }} 
                           <hr>
-
                           <strong>Tickets: </strong>
                           <ul>
 
