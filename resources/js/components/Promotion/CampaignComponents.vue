@@ -142,7 +142,7 @@
                         </span>
                 </tbody>
               </table>
-          <a class="buy" :href="campaign.attraction.pageUrl">{{ messages.LABEL_BUY_TICKET.LABEL_BUY_TICKET }}</a>
+          <a class="buy" :href="campaign.attraction.pageUrl">{{ messages.LABEL_BUY_TICKET }}</a>
         </div>
 
       </div>

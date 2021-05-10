@@ -40556,13 +40556,7 @@ var render = function() {
                           staticClass: "buy",
                           attrs: { href: campaign.attraction.pageUrl }
                         },
-                        [
-                          _vm._v(
-                            _vm._s(
-                              _vm.messages.LABEL_BUY_TICKET.LABEL_BUY_TICKET
-                            )
-                          )
-                        ]
+                        [_vm._v(_vm._s(_vm.messages.LABEL_BUY_TICKET))]
                       )
                     ]
                   )
