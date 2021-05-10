@@ -10,6 +10,7 @@ use App\Models\Shopping\Cart;
 use App\User;
 use App\Attraction;
 use App\Campaign;
+use App\Status;
 
 class DashboardController extends Controller
 {
@@ -97,7 +98,9 @@ class DashboardController extends Controller
      */
     public function view(Cart $cart) {
 
-        return view('management.pages.orders.attached', compact('cart'));
+        $status = Status::all();
+
+        return view('management.pages.orders.attached', compact('cart', 'status'));
 
     }
 

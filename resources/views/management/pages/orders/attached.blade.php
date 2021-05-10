@@ -73,27 +73,42 @@
 
                 <div class="card">
                   <div class="card-header py-4">
-                    <h5>Ticket</h5>
+                    <h5>Tickets</h5>
                   </div>
                   <div class="card-body">
                     <table class="table">
                       <thead class="thead-light">
                         <tr>
-                          <th scope="col">Image</th>
                           <th scope="col">Attraction Name</th>
-                          <th scope="col">Ticket Attached</th>
+                          <th scope="col">Variant</th>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Price</th>
                           <th scope="col">Upload Ticket</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>
-                            <a class="btn btn-secondary btn-sm" href="http://soporella.com.test/dashboard/order/0000009711" data-toggle="tooltip" title="" role="button" data-original-title="View Tickets">Upload Ticket</a>
-                          </td>
-                        </tr>
+
+                        @foreach($cart->details  as $detail)
+
+                        @php 
+                           $listing = unserialize($detail->variance_details);
+                        @endphp
+
+                          @foreach($listing as $variance)
+                         
+                          <tr>
+                            <td>{{ $detail->attraction->title }}</td>
+                            <td>{{ $variance['title'] }}</td>
+                            <td>{{ $variance['qty'] }}</td>
+                            <td>{{ $variance['price'] }}</td>
+                            <td>
+                              <a class="btn btn-secondary btn-sm" href="#" data-toggle="tooltip" title="" role="button" data-original-title="View Tickets">Upload Ticket</a>
+                            </td>
+                          </tr>
+
+                         @endforeach
+
+                        @endforeach
                        
                       </tbody>
                     </table>
@@ -102,8 +117,6 @@
 
               </div>
 
-              <!-- Individual column searching (text inputs) Ends-->
-              <!-- Offer Ticket Starts-->
               <div class="col-xl-4 col-lg-6 box-col-6 debit-card">
                 <div class="card">
                   <div class="card-header py-4">
@@ -116,11 +129,9 @@
                               <div class="form-group">
                                 <label for="exampleFormControlSelect9">Status</label>
                                 <select class="form-control" id="exampleFormControlSelect9">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                  @foreach($status as $s)
+                                  <option value="{{ $s->id }}">{{ $s->title }}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -140,6 +151,7 @@
                   </div>
                 </div>
               </div>
+
               <!-- Offer Ticket Ends-->
             </div>
           </div>
