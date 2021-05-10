@@ -75,9 +75,11 @@ class BasketController extends Controller
 
 		                    		if ($list['qty']!=0) {
 
+										$attractionRateDetails->language_string = $attractionRateDetails->convertLanguageField();
+
 		                    			$attractionRateDetails = AttractionRateDetails::find($list['id']);
 										array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
-		                                                    'title' => $attractionRateDetails->title,
+		                                                    'title' => $attractionRateDetails->language_string['title'],
 		                                                    'price' => $attractionRateDetails->getPrice(),
 		                                                    'qty' => $list['qty'],
 		                                                    'currency' => $currency
@@ -124,8 +126,11 @@ class BasketController extends Controller
 
 								$attractionRateDetails = AttractionRateDetails::find($list['id']);
 
+								$attractionRateDetails->language_string = $attractionRateDetails->convertLanguageField();
+
+
 								array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
-			                                        'title' => $attractionRateDetails->title,
+			                                        'title' => $attractionRateDetails->language_string['title'],
 			                                        'price' => $attractionRateDetails->getPrice(),
 			                                        'qty' => $list['qty'],
 			                                        'currency' => $currency,
@@ -163,7 +168,7 @@ class BasketController extends Controller
 				}
 
         	} catch (Exception $e) {
-        		\Log::error('Error on BasketController Add to Cart' . $e);
+        		\Log::error('Error on basketController Add to Cart' . $e);
         	}
 
 

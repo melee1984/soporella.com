@@ -2,25 +2,6 @@
 
 @section('content')
   
-          <!--  "id" => 2
-    "user_id" => 1
-    "session_id" => "K1swOSuGnfBzoFAAaIJvXizekKzDSDgdv2PKqezh"
-    "fullname" => " "
-    "mobile" => null
-    "email" => "admin@soporella.com"
-    "ref_no" => "0000009712"
-    "active" => 1
-    "ip_address" => "127.0.0.1"
-    "processed_at" => null
-    "submitted_at" => "2021-04-18 13:24:26"
-    "payment_id" => 1
-    "sms_code" => null
-    "amount" => null
-    "currency" => "AED"
-    "discount_code" => null
-    "created_at" => "2021-04-18 13:24:03"
-    "updated_at" => "2021-04-18 13:24:26" -->
-
           <div class="container-fluid">
             <div class="page-title">
               <div class="row">
@@ -50,7 +31,7 @@
                   </div>
                   <div class="card-body">
                     <div class="row">
-                      <div class="col-md-7">
+                      <div class="col-md-12">
                           Name: {{ $cart->fullname }} <br>
                           Mobile: {{ $cart->mobile }} <br>
                           Email: {{ $cart->email }} <br><br>
@@ -60,10 +41,19 @@
 
                           <strong>Tickets: </strong>
                           <ul>
-                            <li>Ticket 1</li>
-                            <li>Ticket 2</li>
-                          </ul>
 
+                            @foreach($cart->details  as $detail)
+
+                              @php 
+                                $listing = unserialize($detail->variance_details);
+                              @endphp
+
+                              @foreach($listing as $variance)
+                                <li>{{ $variance['qty'] }} x {{ $variance['title'] }} {{ $variance['price'] }}</li>
+                              @endforeach
+
+                            @endforeach
+                          </ul>
                       </div>
                     </div>
                   </div>
