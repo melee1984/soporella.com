@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Models\Shopping\Cart;
+use App\User;
+use App\Attraction;
+use App\Campaign;
 
 class DashboardController extends Controller
 {
@@ -80,7 +83,11 @@ class DashboardController extends Controller
                     ->whereNotNull('submitted_at') 
                     ->orderBy('created_at', 'asc')->get();
 
-    	return view('management.pages.dashboard', compact('orders'));
+        $user = User::all();
+        $attraction = Attraction::whereActive(1)->get();
+        $campaign = Campaign::whereActive(1)->get();
+
+    	return view('management.pages.dashboard', compact('orders','user', 'attraction', 'campaign'));
 
     }
     /**
