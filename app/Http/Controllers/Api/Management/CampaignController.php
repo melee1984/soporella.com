@@ -73,38 +73,44 @@ class CampaignController extends Controller
     }
     public function store(Request $request) {
 
-		$data = array();
+    		$data = array();
 
-		$validated = $request->validate([
-		    'attraction_id' => 'required|max:255',
-		]);
+    		$validated = $request->validate([
+    		    'attraction_id' => 'required|max:255',
+    		]);
 
-		$campaign = Campaign::create([
-		  'active' => $request->input('active')?1:0,
-		  'slider' => $request->input('slider')?1:0,
-		  'attraction_id' =>  $request->input('attraction_id'),
-		  'display_option' =>  $request->input('display_option'),
-		  'discount_string' =>  $request->input('discount_string'),
-		]);
+    		$campaign = Campaign::create([
+    		  'active' => $request->input('active')=='true'?1:0,
+    		  'slider' => $request->input('slider')=='true'?1:0,
+    		  'attraction_id' =>  $request->input('attraction_id'),
+    		  'display_option' =>  $request->input('display_option'),
+    		  'discount_string' =>  $request->input('discount_string'),
+    		]);
 
-		if ($campaign->display_option == 1) {
-			if ($request->has('file')) {
-        $campaign->large_img = $this->upload($request, $campaign); 
-			}
-		}
+    		if ($campaign->display_option == 1) {
+    			if ($request->has('file')) {
+            $campaign->large_img = $this->upload($request, $campaign); 
+    			}
+    		}
 
-    if ($campaign->display_option == 2) {
-      if ($request->has('file')) {
-        $campaign->img_1 = $this->upload($request, $campaign); 
-      }
-    }
+        if ($campaign->display_option == 2) {
+          if ($request->has('file')) {
+            $campaign->img_1 = $this->upload($request, $campaign); 
+          }
+        }
 
-		$campaign->save();
+         if ($campaign->display_option == 4) {
+          if ($request->has('file')) {
+            $campaign->img_1 = $this->upload($request, $campaign); 
+          }
+        }
 
-		if ($campaign) {
-			$data['status'] = 1;
-			$data['message'] = "Successfully added new record";
-		}
+    		$campaign->save();
+
+    		if ($campaign) {
+    			$data['status'] = 1;
+    			$data['message'] = "Successfully added new record";
+    		}
 
 		return response()->json($data, 200);
 
@@ -117,8 +123,8 @@ class CampaignController extends Controller
   		    'attraction_id' => 'required|max:255',
   		]);
 
-      $campaign->active = $request->input('active')=="true"?1:0;
-      $campaign->slider = $request->input('slider')=="true"?1:0;
+      $campaign->active = $request->input('active')=='true'?1:0;
+      $campaign->slider = $request->input('slider')=='true'?1:0;
 
   		$campaign->attraction_id = $request->input('attraction_id');
   		$campaign->display_option = $request->input('display_option');
@@ -131,6 +137,12 @@ class CampaignController extends Controller
   		}
 
       if ($campaign->display_option == 2) {
+        if ($request->has('file')) {
+          $campaign->img_1 = $this->upload($request, $campaign, 2); 
+        }
+      }
+
+      if ($campaign->display_option == 4) {
         if ($request->has('file')) {
           $campaign->img_1 = $this->upload($request, $campaign, 2); 
         }

@@ -3153,7 +3153,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -27735,8 +27734,8 @@ var render = function() {
                                                     staticClass:
                                                       "checkbox_animated",
                                                     attrs: {
-                                                      value: "1",
-                                                      type: "checkbox"
+                                                      type: "checkbox",
+                                                      value: "false"
                                                     },
                                                     domProps: {
                                                       checked: Array.isArray(
@@ -27744,7 +27743,7 @@ var render = function() {
                                                       )
                                                         ? _vm._i(
                                                             _vm.field.active,
-                                                            "1"
+                                                            "false"
                                                           ) > -1
                                                         : _vm.field.active
                                                     },
@@ -27759,7 +27758,7 @@ var render = function() {
                                                         if (
                                                           Array.isArray($$a)
                                                         ) {
-                                                          var $$v = "1",
+                                                          var $$v = "false",
                                                             $$i = _vm._i(
                                                               $$a,
                                                               $$v
@@ -27815,7 +27814,7 @@ var render = function() {
                                                 "label",
                                                 {
                                                   staticClass: "d-block",
-                                                  attrs: { for: "active" }
+                                                  attrs: { for: "slider" }
                                                 },
                                                 [
                                                   _c("input", {
@@ -27831,8 +27830,8 @@ var render = function() {
                                                     staticClass:
                                                       "checkbox_animated",
                                                     attrs: {
-                                                      value: "1",
-                                                      type: "checkbox"
+                                                      type: "checkbox",
+                                                      value: "false"
                                                     },
                                                     domProps: {
                                                       checked: Array.isArray(
@@ -27840,7 +27839,7 @@ var render = function() {
                                                       )
                                                         ? _vm._i(
                                                             _vm.field.slider,
-                                                            "1"
+                                                            "false"
                                                           ) > -1
                                                         : _vm.field.slider
                                                     },
@@ -27855,7 +27854,7 @@ var render = function() {
                                                         if (
                                                           Array.isArray($$a)
                                                         ) {
-                                                          var $$v = "1",
+                                                          var $$v = "false",
                                                             $$i = _vm._i(
                                                               $$a,
                                                               $$v

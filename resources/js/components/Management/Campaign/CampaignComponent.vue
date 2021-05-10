@@ -86,16 +86,15 @@
                             <form class="form theme-form">
                               <div class="card-body">
                                 <div class="row">
-
                                   <div class="form-group col-12">
                                      <label class="d-block" for="active">
-                                      <input class="checkbox_animated" value="1" type="checkbox" v-model="field.active" > Active
+                                      <input class="checkbox_animated" type="checkbox" value="false" v-model="field.active" > Active
                                     </label>
                                   </div>
 
                                   <div class="form-group col-12">
-                                     <label class="d-block" for="active">
-                                      <input class="checkbox_animated" value="1" type="checkbox"  v-model="field.slider" > Slider
+                                     <label class="d-block" for="slider">
+                                      <input class="checkbox_animated" type="checkbox" value="false" v-model="field.slider"> Slider
                                     </label>
                                   </div>
                                   

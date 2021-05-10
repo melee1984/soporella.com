@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Campaign extends Model
 {
     protected $table = 'campaigns';
-	protected $fillable = ['attraction_id', 'sorting', 'display_option', 'discount_string', 'title', 'active', 'description', 'img_2', 'img_1', 'large_img'];
+	protected $fillable = ['attraction_id', 'sorting', 'display_option', 'discount_string', 'title', 'active', 'description', 'img_2', 'img_1', 'large_img', 'slider'];
     public $timestamps = true;
 
     /**
