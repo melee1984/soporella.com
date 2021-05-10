@@ -135,10 +135,10 @@
                                     <span class="text-muted"><small>If slider is selected then this will be the primary photo display on the homepage.</small></span>
                                   </div>
 
-                                <!--   <div class="form-group col-12" v-if="field.display_option == 1">
-                                    <label for="title">Image 2</label>
-                                    <input type="file" class="form-control">
-                                  </div> -->
+                                  <div class="form-group col-12" v-if="field.display_option == 4">
+                                    <label for="title">Image</label>
+                                    <input type="file" class="form-control" @change="onFileSelected1">
+                                  </div>
 
                                 </div>
 
@@ -165,6 +165,13 @@
                 </div>
 
                  <div v-if="field.display_option == 2">
+                  <label>Photo</label>
+                  <img :src="field.img_1" alt="" class="img-fluid">
+                  <br>
+                  <a href="javascript:void(0)" v-if="field.img_1"  v-on:click="deleteImg(field)"><small>Delete</small></a>
+                </div>
+
+                 <div v-if="field.display_option == 4">
                   <label>Photo</label>
                   <img :src="field.img_1" alt="" class="img-fluid">
                   <br>
@@ -253,6 +260,12 @@
           }
           // Temp
           if (self.field.display_option == 2) {
+            if (self.field.file) {
+              formData.append('file', self.field.file, self.field.file.name);
+            }
+          }
+           // Temp
+          if (self.field.display_option == 4) {
             if (self.field.file) {
               formData.append('file', self.field.file, self.field.file.name);
             }

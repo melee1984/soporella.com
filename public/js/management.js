@@ -3153,6 +3153,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3216,6 +3223,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (self.field.display_option == 2) {
+        if (self.field.file) {
+          formData.append('file', self.field.file, self.field.file.name);
+        }
+      } // Temp
+
+
+      if (self.field.display_option == 4) {
         if (self.field.file) {
           formData.append('file', self.field.file, self.field.file.name);
         }
@@ -28177,6 +28191,32 @@ var render = function() {
                                                   _vm._m(2)
                                                 ]
                                               )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.field.display_option == 4
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "form-group col-12"
+                                                },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    { attrs: { for: "title" } },
+                                                    [_vm._v("Image")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("input", {
+                                                    staticClass: "form-control",
+                                                    attrs: { type: "file" },
+                                                    on: {
+                                                      change:
+                                                        _vm.onFileSelected1
+                                                    }
+                                                  })
+                                                ]
+                                              )
                                             : _vm._e()
                                         ])
                                       ]),
@@ -28257,6 +28297,34 @@ var render = function() {
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.field.display_option == 2
+                  ? _c("div", [
+                      _c("label", [_vm._v("Photo")]),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "img-fluid",
+                        attrs: { src: _vm.field.img_1, alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _vm.field.img_1
+                        ? _c(
+                            "a",
+                            {
+                              attrs: { href: "javascript:void(0)" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteImg(_vm.field)
+                                }
+                              }
+                            },
+                            [_c("small", [_vm._v("Delete")])]
+                          )
+                        : _vm._e()
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.field.display_option == 4
                   ? _c("div", [
                       _c("label", [_vm._v("Photo")]),
                       _vm._v(" "),
