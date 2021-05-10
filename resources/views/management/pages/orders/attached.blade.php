@@ -38,8 +38,8 @@
                             </div>
                             <div class="col-sm-6">
                               <div class="text-md-right">
-                                <h3>Invoice #<span class="counter">{{ $cart->ref_no }}</span></h3>
-                                <p>Issued: May<span> {{ $cart->created_at->format('Y-m-d H:i:s') }}</span><br>                                                            
+                                <h3>Order #<span class="counter">{{ $cart->ref_no }}</span></h3>
+                                <p>Created: May<span> {{ $cart->created_at->format('Y-m-d H:i:s') }}</span><br>                                                            
                               </div>
                               <!-- End Title-->
                             </div>
