@@ -7,7 +7,7 @@
         <div  v-if="!loading" >
           <div class="row">
             <div class="col-lg-12">
-              <h1><span class="red"><span>{{ totalQuantity }}</span></span> Tickets in your Cart</h1>
+              <h1><span class="red"><span>{{ totalQuantity }}</span></span> {{messages.TICKET_IN_YOUR_CART}}</h1>
             </div>
           </div>
           <div class="alert alert-info" role="alert" v-if="totalQuantity==0" >
@@ -55,7 +55,7 @@
           </div>  
         </div>
 
-        <div class="border-box">
+        <div class="border-box" v-if="totalQuantity<0">
             <div class="row">
               <div class="col-md-6"></div>
               <div class="col-md-6">
@@ -64,7 +64,7 @@
                   </div>
                   <table class="table" cellpadding="2" cellspacing="2" v-if="!refreshSummaryLoading">
                     <tr class="basket-summary-total">
-                      <td>Sub Total</td>
+                      <td>{{ messages.CART_SUB_TOTAL }}</td>
                       <td>{{  summary.subTotal }}</td>
                     </tr>
                     <tr>
@@ -79,7 +79,7 @@
                     </tr>
                     <tr class="basket-summary-total-1">
                       <td>
-                      Total (tax included)</td>
+                      {{ messages.LABEL_TOTAL }} (tax included)</td>
                       <td>{{  summary.total }}</td>
                     </tr>
                   </table> 
@@ -90,10 +90,10 @@
         <br>
         <div class="row" v-if="totalQuantity!=0">
             <div class="col-md-6 col-lg-6 col-xs-12 text-left">
-                <a href="javascript:void(0)" class="btn btn-secondary sw-btn-next">Continue Shopping</a>
+                <a href="javascript:void(0)" class="btn btn-secondary sw-btn-next">{{ messages.CONTINUE_SHOPPING }}</a>
             </div>
             <div class="col-md-6 col-lg-6 col-xs-12 text-right">
-                <a href="javascript:void(0)" class="btn btn-secondary sw-btn-next" v-on:click="proceed">Proceed to Checkout</a>
+                <a href="javascript:void(0)" class="btn btn-secondary sw-btn-next" v-on:click="proceed">{{ messages.PROCEED_TO_PRAYMENT }}</a>
             </div>
         </div>
 
@@ -105,7 +105,7 @@
             <div class="modal-content">
               <div class="modal-header p-10">
                 <div class="col-md-6">
-                  <h3 class="modal-title">Login</h3>
+                  <h3 class="modal-title">{{ messages.LOGIN_POPUP_LABEL_LOGIN }}</h3>
                 </div>
                 <div class="col-md-6">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -116,18 +116,18 @@
               <div v-if="formLogin.loading" v-bind:class="'alert '+formLogin.errorDisplay">{{ formLogin.message }}</div>
               <div class="modal-body">
                     <div class="form-group">
-                      <label for="username">Email address</label>
-                      <input type="email" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email" v-model="formLogin.username">
+                      <label for="username">{{ messages.LABEL_EMAIL_ADRESS }}</label>
+                      <input type="email" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email-address" v-model="formLogin.username">
                     </div>
                     <div class="form-group">
-                      <label for="password">Password</label>
+                      <label for="password">{{ messages.PASSWORD }}</label>
                       <input type="password" class="form-control" id="password" placeholder="Password" v-model="formLogin.password">
                     </div>
                     <div class="form-check">
                       <input type="checkbox" class="form-check-input" id="remember" value="1" v-model="formLogin.check">
                       <label class="form-check-label" for="remember">Remember me</label>
                     </div>
-                    <button type="button" class="btn btn-secondary sw-btn-next btn-block" v-on:click="login">Submit</button>
+                    <button type="button" class="btn btn-secondary sw-btn-next btn-block" v-on:click="login">{{ messages.BTN_SUBMIT }}</button>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -158,6 +158,7 @@
               remember: "",
             },
             refreshSummaryLoading: true,
+            messages: this.trans.messages,
         }
       },
       mounted() {

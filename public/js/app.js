@@ -2673,7 +2673,8 @@ __webpack_require__.r(__webpack_exports__);
         password: "",
         remember: ""
       },
-      refreshSummaryLoading: true
+      refreshSummaryLoading: true,
+      messages: this.trans.messages
     };
   },
   mounted: function mounted() {
@@ -40610,7 +40611,7 @@ var render = function() {
                   _c("span", { staticClass: "red" }, [
                     _c("span", [_vm._v(_vm._s(_vm.totalQuantity))])
                   ]),
-                  _vm._v(" Tickets in your Cart")
+                  _vm._v(" " + _vm._s(_vm.messages.TICKET_IN_YOUR_CART))
                 ])
               ])
             ]),
@@ -40804,61 +40805,76 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
-    _c("div", { staticClass: "border-box" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _vm.refreshSummaryLoading
-            ? _c("div", { staticClass: "text-center p-20" }, [
-                _c("img", {
-                  attrs: { src: "/images/ajax-loader.gif", alt: "" }
-                })
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          !_vm.refreshSummaryLoading
-            ? _c(
-                "table",
-                {
-                  staticClass: "table",
-                  attrs: { cellpadding: "2", cellspacing: "2" }
-                },
-                [
-                  _c("tr", { staticClass: "basket-summary-total" }, [
-                    _c("td", [_vm._v("Sub Total")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.summary.subTotal))])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr"),
-                  _c("tr", { staticClass: "basket-summary-total" }, [
-                    _c("td", [_vm._v("Discount")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.summary.discount))])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("tr", { staticClass: "basket-summary-total-1" }, [
-                    _c("td", [
-                      _vm._v("\n                  Total (tax included)")
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.summary.total))])
+    _vm.totalQuantity < 0
+      ? _c("div", { staticClass: "border-box" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _vm.refreshSummaryLoading
+                ? _c("div", { staticClass: "text-center p-20" }, [
+                    _c("img", {
+                      attrs: { src: "/images/ajax-loader.gif", alt: "" }
+                    })
                   ])
-                ]
-              )
-            : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.refreshSummaryLoading
+                ? _c(
+                    "table",
+                    {
+                      staticClass: "table",
+                      attrs: { cellpadding: "2", cellspacing: "2" }
+                    },
+                    [
+                      _c("tr", { staticClass: "basket-summary-total" }, [
+                        _c("td", [_vm._v(_vm._s(_vm.messages.CART_SUB_TOTAL))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(_vm.summary.subTotal))])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr"),
+                      _c("tr", { staticClass: "basket-summary-total" }, [
+                        _c("td", [_vm._v("Discount")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(_vm.summary.discount))])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("tr", { staticClass: "basket-summary-total-1" }, [
+                        _c("td", [
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(_vm.messages.LABEL_TOTAL) +
+                              " (tax included)"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(_vm.summary.total))])
+                      ])
+                    ]
+                  )
+                : _vm._e()
+            ])
+          ])
         ])
-      ])
-    ]),
+      : _vm._e(),
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
     _vm.totalQuantity != 0
       ? _c("div", { staticClass: "row" }, [
-          _vm._m(1),
+          _c("div", { staticClass: "col-md-6 col-lg-6 col-xs-12 text-left" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-secondary sw-btn-next",
+                attrs: { href: "javascript:void(0)" }
+              },
+              [_vm._v(_vm._s(_vm.messages.CONTINUE_SHOPPING))]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6 col-lg-6 col-xs-12 text-right" }, [
             _c(
@@ -40868,7 +40884,7 @@ var render = function() {
                 attrs: { href: "javascript:void(0)" },
                 on: { click: _vm.proceed }
               },
-              [_vm._v("Proceed to Checkout")]
+              [_vm._v(_vm._s(_vm.messages.PROCEED_TO_PRAYMENT))]
             )
           ])
         ])
@@ -40902,7 +40918,15 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
+              _c("div", { staticClass: "modal-header p-10" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("h3", { staticClass: "modal-title" }, [
+                    _vm._v(_vm._s(_vm.messages.LOGIN_POPUP_LABEL_LOGIN))
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
               _vm._v(" "),
               _vm.formLogin.loading
                 ? _c("div", { class: "alert " + _vm.formLogin.errorDisplay }, [
@@ -40913,7 +40937,7 @@ var render = function() {
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "username" } }, [
-                    _vm._v("Email address")
+                    _vm._v(_vm._s(_vm.messages.LABEL_EMAIL_ADRESS))
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -40930,7 +40954,7 @@ var render = function() {
                       type: "email",
                       id: "username",
                       "aria-describedby": "emailHelp",
-                      placeholder: "Enter email"
+                      placeholder: "Enter email-address"
                     },
                     domProps: { value: _vm.formLogin.username },
                     on: {
@@ -40946,7 +40970,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "password" } }, [
-                    _vm._v("Password")
+                    _vm._v(_vm._s(_vm.messages.PASSWORD))
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -41040,11 +41064,11 @@ var render = function() {
                     attrs: { type: "button" },
                     on: { click: _vm.login }
                   },
-                  [_vm._v("Submit")]
+                  [_vm._v(_vm._s(_vm.messages.BTN_SUBMIT))]
                 )
               ]),
               _vm._v(" "),
-              _vm._m(3)
+              _vm._m(2)
             ])
           ]
         )
@@ -41063,40 +41087,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 col-lg-6 col-xs-12 text-left" }, [
+    return _c("div", { staticClass: "col-md-6" }, [
       _c(
-        "a",
+        "button",
         {
-          staticClass: "btn btn-secondary sw-btn-next",
-          attrs: { href: "javascript:void(0)" }
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
         },
-        [_vm._v("Continue Shopping")]
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header p-10" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("h3", { staticClass: "modal-title" }, [_vm._v("Login")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "button",
-          {
-            staticClass: "close",
-            attrs: {
-              type: "button",
-              "data-dismiss": "modal",
-              "aria-label": "Close"
-            }
-          },
-          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-        )
-      ])
     ])
   },
   function() {
