@@ -2491,6 +2491,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -40454,14 +40455,27 @@ var render = function() {
                                   attrs: { href: campaign.attraction.pageUrl }
                                 },
                                 [
-                                  _c("img", {
-                                    staticClass: "img-responsive",
-                                    attrs: {
-                                      src: campaign.attraction.img,
-                                      alt: campaign.attraction.title,
-                                      width: "100%"
-                                    }
-                                  })
+                                  campaign.img_1
+                                    ? _c("img", {
+                                        staticClass: "img-responsive",
+                                        attrs: {
+                                          src: campaign.img_1,
+                                          alt: campaign.attraction.title,
+                                          width: "100%"
+                                        }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !campaign.img_1
+                                    ? _c("img", {
+                                        staticClass: "img-responsive",
+                                        attrs: {
+                                          src: campaign.attraction.img,
+                                          alt: campaign.attraction.title,
+                                          width: "100%"
+                                        }
+                                      })
+                                    : _vm._e()
                                 ]
                               )
                             ]),
