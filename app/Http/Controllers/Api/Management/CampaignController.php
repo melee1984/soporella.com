@@ -141,12 +141,12 @@ class CampaignController extends Controller
           $campaign->img_1 = $this->upload($request, $campaign, 2); 
         }
       }
-
+      
       if ($campaign->display_option == 4) {
-        if ($request->has('file')) {
-          $campaign->img_1 = $this->upload($request, $campaign, 2); 
+          if ($request->has('file')) {
+              $campaign->img_1 = $this->upload($request, $campaign, 2); 
+          }
         }
-      }
 		
 		  $campaign->save();
 
