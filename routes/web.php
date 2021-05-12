@@ -5,6 +5,8 @@ use App\Country;
 
 
 use App\Mail\OrderSuccessEmail;
+use App\Mail\TicketAttachEmail;
+
 use App\Models\Shopping\Cart;
 
 
@@ -25,8 +27,13 @@ Route::get('email/{id}', function($id) {
 		$cart = Cart::orderby('created_at', 'desc')->first();
 		return new OrderSuccessEmail($cart);	
 	}
+	elseif ($id == "2") {
+		$cart = Cart::orderby('created_at', 'desc')->first();
+		return new TicketAttachEmail($cart);		
+	}
 	
 	echo "Given Id is invalid.";
+
 	die();
 
 });
