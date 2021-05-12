@@ -19,7 +19,7 @@ class AttractionRateDetails extends Model
     }
 
     public function getPrice() {
-    	if ($this->markdown_price!="") {
+        if ($this->markdown_price!="") {
     		return $this->markdown_price;
     	}
 		return $this->price;

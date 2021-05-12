@@ -60,7 +60,7 @@ class ProfileController extends Controller
 
         $orders = Cart::whereUserId(Auth::User()->id)
                     ->whereNotNull('submitted_at') 
-                    ->orderBy('created_at', 'asc')->get();
+                    ->orderBy('created_at', 'desc')->get();
 
        foreach($orders as $cart) {
 

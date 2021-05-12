@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Country;
 
+
+use App\Mail\OrderSuccessEmail;
+use App\Models\Shopping\Cart;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +18,19 @@ use App\Country;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('email/{id}', function($id) {
+
+	if ($id == 1) {
+		$cart = Cart::orderby('created_at', 'desc')->first();
+		return new OrderSuccessEmail($cart);	
+	}
+	
+	echo "Given Id is invalid.";
+	die();
+
+});
+
 Route::get('/js/lang.js', function () {
     $strings = Cache::rememberForever('lang.js', function () {
         $lang = config('app.locale');

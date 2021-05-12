@@ -30,7 +30,7 @@ class Cart extends Model
     	$discount = 0;
     	$vat = 0;
     	$totalQty = 0;
-
+        
     	foreach($this->details as $item) {
     		$subTotal = $subTotal + $item->variance_total;
     		$totalQty = $totalQty + $item->total_qty;

@@ -78,13 +78,14 @@ class BasketController extends Controller
 										$attractionRateDetails->language_string = $attractionRateDetails->convertLanguageField();
 
 		                    			$attractionRateDetails = AttractionRateDetails::find($list['id']);
+
 										array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
 		                                                    'title' => $attractionRateDetails->language_string['title'],
 		                                                    'price' => $attractionRateDetails->getPrice(),
 		                                                    'qty' => $list['qty'],
 		                                                    'currency' => $currency
 		                                                ));  
-										$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
+										$sub_total = $sub_total + $attractionRateDetails->getPrice() * $list['qty'];    
 										$qty = $qty + $list['qty'];
 
 		                    		}
@@ -137,7 +138,7 @@ class BasketController extends Controller
 
 			                                    ));  
 
-								$sub_total = $sub_total + $attractionRateDetails->price * $list['qty'];    
+								$sub_total = $sub_total + $attractionRateDetails->getPrice() * $list['qty'];    
 								$qty = $qty + $list['qty'];
 
 							}

@@ -11,6 +11,12 @@ use App\Models\Shopping\Cart;
 use Session;
 use URL;
 use Auth;
+use Carbon\Carbon;
+use Mail;
+	
+// Email notification here 
+// 
+use App\Mail\OrderSuccessEmail;
 
 
 class CheckoutController extends Controller
@@ -94,10 +100,31 @@ class CheckoutController extends Controller
 			$cart->active = 1;
 			$cart->status_id = 1;
 			$cart->submitted_at = now();
+			$cart->email_sent = 1;
+			
 			$status = $cart->save();
 
 			if ($status) {
+
+				// Send Email Notification Here 
+				$when = Carbon::now()->addMinutes(5);
+
+				try {
+					
+					// $sentEmail = Mail::to($cart->email)
+					// 		->later($when, new OrderSuccessEmail($cart));
+
+				} catch (Exception $e) {
+					\Log::error('Error when sending email to Order Success CheckoutController Line 116');
+				}
+				finally {
+				 	$cart->email_sent = 0;
+				 	$cart->save();
+				}
+
 				$data['status'] = 1;
+				// $data['emailNotification'] = $sendEmail;
+
 				$data['redirectURL'] = route('checkout.success');
 
 				// regenerate session 
