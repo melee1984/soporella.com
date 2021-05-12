@@ -1,9 +1,8 @@
 @component('mail::message')
 
-# Thank you for your Purchased!
+# Your tickets is now available!
 
-You will receive your tickets within the next 24 hours. <br><br>
-
+Please find the link below to download your tickets <br><br>
 
 # Order # {{ $_cart->ref_no }}
 
@@ -12,7 +11,7 @@ Account: {{ $_cart->fullname }} <br>
 E-mail: {{ $_cart->email }}<br>
 Mobile: {{ $_cart->mobile }} <br>
 Payment: {{ $_cart->payment->title }}
-
+<br>
 # Tickets
 
 <p class="subcopy"></p>
