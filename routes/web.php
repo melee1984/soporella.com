@@ -27,7 +27,7 @@ Route::get('email/{id}', function($id) {
 		$cart = Cart::orderby('created_at', 'desc')->first();
 		return new OrderSuccessEmail($cart);	
 	}
-	elseif ($id == "2") {
+	elseif ($id == 2) {
 		$cart = Cart::orderby('created_at', 'desc')->first();
 		return new TicketAttachEmail($cart);		
 	}
