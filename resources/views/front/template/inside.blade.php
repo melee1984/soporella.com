@@ -13,7 +13,7 @@
      <div id="app">
         <div class="container-fluid">
             @include('front.includes.header')
-            @if (@$menu)
+           @if (@$menus)
               @include('front.includes.nav')
             @endif
         </div>

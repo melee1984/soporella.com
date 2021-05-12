@@ -15,9 +15,15 @@ class CategoryController extends Controller
      * @return [type]             [description]
      */
     public function index(Category $category) 
-    {   
+    {      
         $menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+            $categories = Category::forMenu()->active()->get();
+
+            foreach($categories as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+
+            return $categories;
         });
 
         foreach($category->attractionsMapping as $attractions) {
