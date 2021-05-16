@@ -127,6 +127,9 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('/dashboard/attraction/add', 'Management\AttractionController@add')->name('dashboard.management.add');
 	Route::get('/dashboard/attraction/{attraction}', 'Management\AttractionController@show')->name('dashboard.management.edit');
 	Route::post('/dashboard/attraction/add', 'Management\AttractionController@store')->name('dashboard.attraction.submit');
+
+	Route::get('dashboard/{ticket}/report/attach/delete', 'Api\Management\CartController@deleteFile');	
+
 	// promotions
 	Route::get('/dashboard/promotions', 'Management\PromotionController@index')->name('dashboard.management.promotions');
 	// dashboard/top-attraction

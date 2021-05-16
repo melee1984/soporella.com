@@ -457,8 +457,8 @@ class AttractionController extends Controller
 
     return response()->json($data, 200);
 
-
   }  
   
+ 
 
 }

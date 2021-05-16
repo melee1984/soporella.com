@@ -67,90 +67,55 @@
                             @endforeach
                           </ul>
                       </div>
+
+                      @if (count($tickets)>0)
+                       <div class="col-md-12">
+                          <br><br>
+                         <h4 class="media-heading">Download Tickets</h4>
+                         <div class="row" >
+                           @foreach($tickets as $ticket)
+                              @php
+                                $ticket->downloadURLFile();
+                              @endphp
+                              <div class="col-md-1 text-left" style="padding: 3px;">
+                                  <a href="{{ $ticket->downloadURLFile }}" class="btn btn-xs btn-light" target="_blank">View</a>
+                              </div>
+                             <div class="col-md-9 text-left" style="padding: 3px;">
+                                {{ $ticket->filename }}
+                              </div>
+                             
+                              <div class="col-md-2 text-right" style="padding: 3px;">
+                                  <a href="{{ URL::to('dashboard/'.$ticket->id.'/report/attach/delete') }}" class="btn btn-xs btn-danger">Delete</a>
+                              </div>
+                           @endforeach
+
+                         </div>
+                       </div>
+                       @endif
+
                     </div>
                   </div>
                 </div>
 
-                <div class="card">
-                  <div class="card-header py-4">
-                    <h5>Tickets</h5>
-                  </div>
-                  <div class="card-body">
-                    <table class="table">
-                      <thead class="thead-light">
-                        <tr>
-                          <th scope="col">Attraction Name</th>
-                          <th scope="col">Variant</th>
-                          <th scope="col">Quantity</th>
-                          <th scope="col">Price</th>
-                          <th scope="col">Upload Ticket</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+                @foreach($cart->details  as $detail)
+                  @php 
+                    $detail->attraction;
+                    $detail->variance_details = unserialize($detail->variance_details);
+                  @endphp
+                @endforeach
 
-                        @foreach($cart->details  as $detail)
+                <hr>
 
-                        @php 
-                           $listing = unserialize($detail->variance_details);
-                        @endphp
+                @foreach($tickets as $ticket) 
 
-                          @foreach($listing as $variance)
-                         
-                          <tr>
-                            <td>{{ $detail->attraction->title }}</td>
-                            <td>{{ $variance['title'] }}</td>
-                            <td>{{ $variance['qty'] }}</td>
-                            <td>{{ $variance['price'] }}</td>
-                            <td>
-                              <a class="btn btn-secondary btn-sm" href="#" data-toggle="tooltip" title="" role="button" data-original-title="View Tickets">Upload Ticket</a>
-                            </td>
-                          </tr>
-
-                         @endforeach
-
-                        @endforeach
-                       
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                @endforeach
+                <!-- Details --> 
+                <view-list :details="{{ $cart->details }}" ></view-list>
+                <!-- end Details --> 
 
               </div>
 
-              <div class="col-xl-4 col-lg-6 box-col-6 debit-card">
-                <div class="card">
-                  <div class="card-header py-4">
-                    <h5>Status</h5>
-                  </div>
-                  <div class="card-body">
-                      <form class="form">
-                          <div class="row">
-                            <div class="col">
-                              <div class="form-group">
-                                <label for="exampleFormControlSelect9">Status</label>
-                                <select class="form-control" id="exampleFormControlSelect9">
-                                  @foreach($status as $s)
-                                  <option value="{{ $s->id }}">{{ $s->title }}</option>
-                                  @endforeach
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <div class="form-group mb-0">
-                                <label for="exampleFormControlTextarea4">Message</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
-                              </div>
-                            </div>
-                          </div>
-                        <div class="card-footer text-right">
-                          <button class="btn btn-primary" type="submit" data-original-title="" title="">Submit</button>
-                        </div>
-                      </form>
-                  </div>
-                </div>
-              </div>
+              <attach-list :details="{{ $cart->details }}" :status="{{ $status }}" :cart="{{ $cart }}"></attach-list>
 
               <!-- Offer Ticket Ends-->
             </div>

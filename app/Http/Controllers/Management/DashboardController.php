@@ -11,6 +11,7 @@ use App\User;
 use App\Attraction;
 use App\Campaign;
 use App\Status;
+use App\Models\Shopping\Tickets;
 
 class DashboardController extends Controller
 {
@@ -99,8 +100,9 @@ class DashboardController extends Controller
     public function view(Cart $cart) {
 
         $status = Status::all();
+        $tickets = Tickets::whereCartId($cart->id)->get();
 
-        return view('management.pages.orders.attached', compact('cart', 'status'));
+        return view('management.pages.orders.attached', compact('cart', 'status', 'tickets'));
 
     }
 
