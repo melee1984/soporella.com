@@ -17,7 +17,12 @@ class CheckoutController extends Controller
    	public function checkout() 
     {   
 		$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+           $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 			
 		return view('front.pages.checkout.checkout', compact('menus'));
@@ -32,7 +37,12 @@ class CheckoutController extends Controller
     public function success() {
 
     	$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+           $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 			
 		return view('front.pages.checkout.success', compact('menus'));
