@@ -8,10 +8,12 @@ use App\Category;
 use Cache;
 
 use App\Models\Shopping\Cart;
+use App\Models\Shopping\Tickets;
 use App\Models\Shopping\CartDetails;
 use URL;
 use Auth;
 use Hash;
+use ZipArchive;
 
 class ProfileController extends Controller
 {
@@ -67,12 +69,16 @@ class ProfileController extends Controller
         $currency = "";
 
         $menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+            $menus = Category::forMenu()->active()->get();
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         $orders = Cart::whereUserId(Auth::User()->id)
                     ->whereNotNull('submitted_at') 
-                    ->orderBy('created_at', 'desc')->get();
+                    ->orderBy('created_at', 'asc')->get();
 
        foreach($orders as $cart) {
 
@@ -117,6 +123,42 @@ class ProfileController extends Controller
 
 
         return view('front.pages.user.tickets', compact('menus', 'orders'));
+
+    }
+
+
+    public function download($cartId) {
+
+        $tickets = Tickets::whereCartId($cartId)->get();
+        
+        // Define Dir Folder
+        $public_dir=public_path();
+        // Zip File Name
+        $zipFileName = count($tickets).'-download.zip';
+        // Create ZipArchive Obj
+        $zip = new ZipArchive;
+
+        if ($zip->open($public_dir . '/' . $zipFileName, ZipArchive::CREATE) === TRUE) {
+            // Add File in ZipArchive
+            // 
+            foreach($tickets as $ticket) {
+                $file_path = "uploads/tickets/".$ticket->cart_id."/".$ticket->filename;    
+                $zip->addFile($file_path, $ticket->filename);
+            }
+            // Close ZipArchive     
+            $zip->close();
+        }
+        // Set Header
+        $headers = array(
+            'Content-Type' => 'application/octet-stream',
+        );
+        $filetopath=$public_dir.'/'.$zipFileName;
+        // Create Download Response
+        if(file_exists($filetopath)){
+            return response()->download($filetopath,$zipFileName,$headers);
+        }
+   
+        return view('createZip');
 
     }
     

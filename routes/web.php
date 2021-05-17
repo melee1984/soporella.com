@@ -114,6 +114,8 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/myaccount/billing-information', 'User\ProfileController@tickets')->name('profile.billing-information');
 	Route::post('/myaccount/information/submit', 'User\ProfileController@updatePassword')->name('profile.information.submit');
 
+	Route::get('/myaccount/{cart_id}/download', 'User\ProfileController@download')->name('profile.information.download');
+
 });
 
 // Admin 

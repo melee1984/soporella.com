@@ -690,6 +690,9 @@ b, strong {
 #page a:hover {
 	color: #333;
 }
+#page a.done {
+	background-color: #dc112e !important;
+}
 #page ul {
 	padding-left: 20px;
 }

@@ -21,6 +21,7 @@
   </div>
   
   @forelse($orders as $order) 
+
     @foreach($order->details as $detail)
 
       <div class="row">
@@ -39,12 +40,10 @@
                 <div class="row">
                   <div class="col-lg-8 col-md-8 col-xs-8">
                   <p><strong>{{ $variance['title'] }}</strong> x {{ $variance['qty'] }}<br>
-                {{ date('m/d/Y', strtotime($detail->selected_date)) }}<br>
-               {{ $variance['sub_total'] }}</p>
-               </div>
-                  <!-- @if ($order->processed_at!="")
-                    <div class="col-lg-4 col-md-4 col-xs-4">Download link</div>
-                  @endif -->
+                  {{ date('m/d/Y', strtotime($detail->selected_date)) }}<br>
+                 {{ $variance['sub_total'] }}</p>
+                 </div>
+                
                 </div>
               </div>
             </div>
@@ -57,13 +56,14 @@
             Number of Ticket(s): {{ $detail->total_qty }}<br>
             Order ID: {{ $order->ref_no }}</p>
               <div class="tic-status">
-                @if ($order->processed_at=="")
+
+                @if ($order->status_id!="5")
                   <a class="buy tic-processing" href="javascript: alert('Please wait while we process your Ticket')">Ticket(s) Processing</a>
                   <p><small>You will receive an email when your tickets are ready to download.</small></p>
                 @endif
 
-                @if ($order->processed_at!="")
-                    <a class="buy " href="">Download Ticket(s) </a>
+                @if ($order->status_id==5)
+                    <a class="buy done" href="{{ URL::to('myaccount/'.$order->id.'/download') }}" target="_blank">Download Ticket(s) </a>
                 @endif
                 
               </div>
