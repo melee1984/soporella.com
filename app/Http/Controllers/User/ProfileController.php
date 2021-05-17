@@ -18,8 +18,14 @@ class ProfileController extends Controller
     public function profile() 
 	{
      	$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+            $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
+
 
         return view('front.pages.user.profile', compact('menus'));
     }
@@ -27,7 +33,12 @@ class ProfileController extends Controller
     public function reset() 
     {
         $menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+            $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         return view('front.pages.user.reset', compact('menus'));
@@ -46,6 +57,7 @@ class ProfileController extends Controller
         return redirect()->route('profile.information');
 
     }   
+    
     /**
      * Tickets
      * @return [type] [description]
