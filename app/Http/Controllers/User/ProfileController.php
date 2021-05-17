@@ -136,7 +136,7 @@ class ProfileController extends Controller
             // Define Dir Folder
             $public_dir=public_path();
             // Zip File Name
-            $zipFileName = count($tickets).'-download.zip';
+            $zipFileName = count($tickets).'-'.$cartId.'-download.zip';
             // Create ZipArchive Obj
             $zip = new ZipArchive;
 
