@@ -14,14 +14,18 @@ class AttractionController extends Controller
 	public function show($category, Attraction $attraction) 
     {      
 		$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+            $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 	   
         $rates = $attraction->rates;
 
         foreach($rates as $rate) {
             $rate->language_string = $rate->convertLanguageField();
-
             foreach($rate->details as $detail) {
                 $detail->language_string = $detail->convertLanguageField();
                 $detail->price = $detail->computePricedOnTheCountrySelected();
@@ -54,7 +58,12 @@ class AttractionController extends Controller
     public function inside(Attraction $attraction) 
     {   
         $menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+            $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         $rates = $attraction->rates;
