@@ -130,35 +130,50 @@ class ProfileController extends Controller
     public function download($cartId) {
 
         $tickets = Tickets::whereCartId($cartId)->get();
-        
-        // Define Dir Folder
-        $public_dir=public_path();
-        // Zip File Name
-        $zipFileName = count($tickets).'-download.zip';
-        // Create ZipArchive Obj
-        $zip = new ZipArchive;
 
-        if ($zip->open($public_dir . '/' . $zipFileName, ZipArchive::CREATE) === TRUE) {
-            // Add File in ZipArchive
-            // 
-            foreach($tickets as $ticket) {
-                $file_path = "uploads/tickets/".$ticket->cart_id."/".$ticket->filename;    
-                $zip->addFile($file_path, $ticket->filename);
+        if (count($tickets) > 0) {
+
+            // Define Dir Folder
+            $public_dir=public_path();
+            // Zip File Name
+            $zipFileName = count($tickets).'-download.zip';
+            // Create ZipArchive Obj
+            $zip = new ZipArchive;
+
+            if ($zip->open($public_dir . '/' . $zipFileName, ZipArchive::CREATE) === TRUE) {
+                // Add File in ZipArchive
+                // 
+                foreach($tickets as $ticket) {
+                    $file_path = "uploads/tickets/".$ticket->cart_id."/".$ticket->filename;    
+                    $zip->addFile($file_path, $ticket->filename);
+                }
+                // Close ZipArchive     
+                $zip->close();
             }
-            // Close ZipArchive     
-            $zip->close();
+            // Set Header
+            $headers = array(
+                'Content-Type' => 'application/octet-stream',
+            );
+            $filetopath=$public_dir.'/'.$zipFileName;
+            // Create Download Response
+            if(file_exists($filetopath)){
+                return response()->download($filetopath,$zipFileName,$headers);
+            }
+            else {
+
+                echo "Unable to download file. Please contact system administrator. Thank you";
+                die();
+
+            }
+
+        } 
+        else {
+            echo "Ticket not found";
+            die();
         }
-        // Set Header
-        $headers = array(
-            'Content-Type' => 'application/octet-stream',
-        );
-        $filetopath=$public_dir.'/'.$zipFileName;
-        // Create Download Response
-        if(file_exists($filetopath)){
-            return response()->download($filetopath,$zipFileName,$headers);
-        }
+        
    
-        return view('createZip');
+       // return view('createZip');
 
     }
     
