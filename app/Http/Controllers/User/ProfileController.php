@@ -140,7 +140,7 @@ class ProfileController extends Controller
             // Create ZipArchive Obj
             $zip = new ZipArchive;
 
-            if ($zip->open($public_dir . '/' . $zipFileName, ZipArchive::CREATE) === TRUE) {
+            if ($zip->open($public_dir . '/download/' . $zipFileName, ZipArchive::CREATE) === TRUE) {
                 // Add File in ZipArchive
                 // 
                 foreach($tickets as $ticket) {
@@ -154,7 +154,7 @@ class ProfileController extends Controller
             $headers = array(
                 'Content-Type' => 'application/octet-stream',
             );
-            $filetopath=$public_dir.'/'.$zipFileName;
+            $filetopath=$public_dir.'/download/'.$zipFileName;
             // Create Download Response
             if(file_exists($filetopath)){
                 return response()->download($filetopath,$zipFileName,$headers);
