@@ -1,4 +1,34 @@
 
+<div class="container-fluid footer-header">
+      <div class="container">
+          <div class="row">
+            <div class="col-md-7 text-center">
+                <h3>
+                  <span class="quote">&#8220;</span>
+                    {{ trans('messages.OUR_CLIENTS_TESTI') }}
+                     <span class="quote">&#8221;</span>
+                </h3>
+                <p class="testi-message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+            </div>
+            <div class="col-md-5 text-center newsletter  news-del">
+                <h3>{{trans('messages.SUBSCRIBE_FOOTER_NEWSLETTER')}}</h3>
+                  <form action="" id="formnewsletter" class="form-inline" role="form">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                          <input type="email" class="form-control" name="email" placeholder="{{trans('messages.EMAIL_ADDRESS')}}">
+                        </div>
+                        <div class="form-group" id="cap_send">
+                          <input type="submit" class="buy" value="{{trans('messages.LABEL_SUBSCRIBE')}}">
+                        </div>
+                        <p class="newsletter-text">Signup for our weekly newsletter <br>updates and amazing offers deliver</p>
+
+                    </div>
+                  </form>
+            </div>
+          </div>
+      </div>
+</div>
+
 <!--Pre-Footer-->
 <div id="pre-footer" class="container-fluid">
   <div class="row">
@@ -41,20 +71,16 @@
         </div>
         <!--Trusted-->
         <div class="col-lg-3">
-          <h3>{{trans('messages.FOOTER_NEWSLETTER')}}</h3>
+            <h3>{{ trans('messages.CONNECT_WITH_US') }}</h3>     
 
-            <div class="newslettererrror"></div>
-            <form action="" id="formnewsletter">
-              <div class="form-group">
-                  <input type="text"  class="form-control" name="name" placeholder="{{trans('messages.FULL_NAME')}}">
+               <div id="social2" class="col-lg-12 text-left">
+                <ul>
+                  <li><a target="_blank" href="https://www.facebook.com/Soporella-1342011235913453/"><img src="{{asset('theme/images/facebook.png')}}" alt="Facebook"/></a></li>
+                  <li><a target="_blank" href="https://twitter.com/Soporella_UAE"><img src="{{asset('theme/images/twitter.png')}}" alt="Twitter"/></a></li>
+                  <li><a target="_blank" href="https://www.youtube.com/channel/UC-2-IBVvaVy8ZUX74PJB17w"><img src="{{asset('theme/images/youtube.png')}}" alt="YouTube"/></a></li>
+                  <li><a target="_blank" href="https://www.instagram.com/soporella_uae/"><img src="{{asset('theme/images/instagram.png')}}" alt="Instagram"/></a></li>
+                </ul>
               </div>
-              <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="{{trans('messages.EMAIL_ADDRESS')}}">
-              </div>
-              <div class="form-group" id="cap_send">
-                <input type="submit" class="form-control" value="{{trans('messages.SUBMIT')}}">
-              </div>
-          </form>
         </div>
       </div>
     </div>
@@ -70,14 +96,7 @@
           <p><a href="http://www.soporella.com">{{trans('messages.SOPORELLA_TICKETING_OUTLET')}}</a>. {{trans('messages.ALL_RIGHTS_RESERVED')}} <?php echo date("Y"); ?>.
             <br>{{trans('messages.PART_OF')}} <a href="http://www.creativouae.com">Creativo DMCC</a></p>
         </div>
-        <div id="social" class="col-lg-6 text-right">
-          <ul>
-            <li><a target="_blank" href="https://www.facebook.com/Soporella-1342011235913453/"><img src="{{asset('theme/images/facebook.png')}}" alt="Facebook"/></a></li>
-            <li><a target="_blank" href="https://twitter.com/Soporella_UAE"><img src="{{asset('theme/images/twitter.png')}}" alt="Twitter"/></a></li>
-            <li><a target="_blank" href="https://www.youtube.com/channel/UC-2-IBVvaVy8ZUX74PJB17w"><img src="{{asset('theme/images/youtube.png')}}" alt="YouTube"/></a></li>
-            <li><a target="_blank" href="https://www.instagram.com/soporella_uae/"><img src="{{asset('theme/images/instagram.png')}}" alt="Instagram"/></a></li>
-          </ul>
-        </div>
+       
       </div>
     </div>
   </div>

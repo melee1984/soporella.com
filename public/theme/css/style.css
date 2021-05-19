@@ -641,7 +641,6 @@ b, strong {
 }
 #footer {
 	background: #3e3e3e;
-	padding: 15px 0;
 }
 #footer ul {
 	padding: 0;
@@ -2202,3 +2201,19 @@ ul.step-anchor {
 .f-s-inherit {
   font-style: inherit; }
   
+
+
+
+  .footer-header {
+
+  	border-top: 1px solid grey;
+  	min-height: 200px;
+  	padding: 30px;
+
+  }
+
+  .newsletter-text {
+
+  	margin-top: 20px;
+  }
+

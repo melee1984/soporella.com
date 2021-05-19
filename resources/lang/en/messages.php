@@ -310,5 +310,8 @@ If you registered to view our promotion, you will have received an email to veri
 'CURRENCY_SYMBOL'                   =>                'AED',
 
 'YOU_MIGHT_WANT_TO_VISIT'  => 'You Might Want to Visit',
-
+'OUR_CLIENTS_TESTI'    => 'Our Clients Testimony',
+'LABEL_SUBSCRIBE'    => 'Subscribe',
+'SUBSCRIBE_FOOTER_NEWSLETTER'                 =>               'Subscribe to our Newsletter',
+'CONNECT_WITH_US'                 =>               'Connect with Us',
 );

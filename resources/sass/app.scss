@@ -5,3 +5,48 @@
 // Variables
 @import 'variables';
 @import 'style';
+
+
+.footer-header {
+	border-top: 1px solid #cacaca;
+  	min-height: 259px;
+    padding: 30px;
+
+ -webkit-box-shadow: -1px -6px 9px 1px rgba(199,194,194,0.81); 
+	box-shadow: -1px -6px 9px 1px rgba(199,194,194,0.81);
+
+}
+.newsletter-text {
+	margin-top: 20px;
+}
+
+.quote{ 
+	font-size: 60px;
+}
+
+.footer-header h3 {
+	font-size: 28px;
+    font-weight: bold;
+    background-color: #fdfdfd;
+}
+
+.news-del {
+	border-left: 1px solid #cacaca;
+	height: 233px;
+}
+.testi-message {
+	padding: 30px;
+}
+
+
+#social2 ul {
+	padding: 0;
+    color: #fff;
+    margin-top: 10px;
+}
+
+ #social2 ul li {
+	list-style: none;
+    
+    display: inline-block;
+}
