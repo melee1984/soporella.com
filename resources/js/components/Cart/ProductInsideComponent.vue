@@ -118,12 +118,12 @@
           <section v-if="attraction.language_string.redemption">
           	<hr>
           	<h3>{{ messages.REDEMPTION }}</h3>        
-          	<p>{{ attraction.language_string.redemption }}</p>
+            <span v-html="attraction.language_string.redemption"></span>
           </section>
           <section v-if="attraction.language_string.about">
             <hr>
             <h3>{{ messages.LABEL_ABOUT }}</h3>        
-            <p>{{ attraction.language_string.about }}</p>
+            <span v-html="attraction.language_string.about"></span>
           </section>
         </div>
       </div>

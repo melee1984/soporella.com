@@ -85,25 +85,34 @@
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-lg-12 col-sm-12">
                       <div class="row">
                          <div class="form-group col-12">
                             <label for="description">Redemption</label>
-                            <textarea class="form-control"  data-original-title="" title="" rows="3" v-model="field.redemption"></textarea> 
+                             <wysiwyg v-model="field.redemption"/>
                           </div>
-                            <div class="form-group col-12">
+                          <div class="form-group col-12">
                             <label for="description">Availability</label>
-                            <textarea class="form-control"  data-original-title="" title="" rows="3" v-model="field.availability"></textarea> 
+                              <wysiwyg v-model="field.availability"/>
                           </div>
                            <div class="form-group col-12">
                             <label for="description">About</label>
-                            <textarea class="form-control" data-original-title="" title="" rows="3" v-model="field.about"></textarea> 
+                              <wysiwyg v-model="field.about"/>
                           </div>
                           <div class="form-group col-12">
                             <label for="description">Youtube video</label>
                             <input type="text" class="form-control" v-model="field.video" />
                             <span class="text-muted">This will embed the youtube url into the attraction when video</span>
                           </div>
+
+                          <div class="form-group col-12">
+                            <label for="description">Special Announcement</label>
+                            <wysiwyg v-model="field.special_annoucement"/>
+                            </div>
+
+                          
+
+
 
                         </div>
                     </div>
@@ -178,7 +187,9 @@
             about: "",
             active: 0,
             photo: "",
+            special_annoucement: "<p>123123 123</p>",
           },
+          plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', 'insertdatetime media nonbreaking save table contextmenu directionality','template paste textcolor colorpicker textpattern imagetools toc help emoticons hr codesample'],
           fileImage: null,
           uploadStatus: 'Upload',
           lang: JSON.parse(localStorage.selectedLanguage).country_code,
@@ -201,6 +212,9 @@
         this.field.availability = this.attraction.language_string[this.lang].availability;
         this.field.redemption = this.attraction.language_string[this.lang].redemption;
         this.field.about = this.attraction.language_string[this.lang].about;
+        this.field.special_annoucement = this.attraction.special_annoucement;
+
+
         // this.field.active = this.attraction.active;
         // this.field.img = this.attraction.photo;
       },
@@ -246,6 +260,8 @@
               about: self.field.about,
               active: self.field.active,
               video: self.field.video,
+              special_annoucement: self.field.special_annoucement,
+              
             }).then(function (response) {
               if (response.data.status) {
                   self.$toasts.success(response.data.message);

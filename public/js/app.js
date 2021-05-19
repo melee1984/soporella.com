@@ -39799,9 +39799,13 @@ var render = function() {
                   _vm._v(" "),
                   _c("h3", [_vm._v(_vm._s(_vm.messages.REDEMPTION))]),
                   _vm._v(" "),
-                  _c("p", [
-                    _vm._v(_vm._s(_vm.attraction.language_string.redemption))
-                  ])
+                  _c("span", {
+                    domProps: {
+                      innerHTML: _vm._s(
+                        _vm.attraction.language_string.redemption
+                      )
+                    }
+                  })
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -39811,9 +39815,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("h3", [_vm._v(_vm._s(_vm.messages.LABEL_ABOUT))]),
                   _vm._v(" "),
-                  _c("p", [
-                    _vm._v(_vm._s(_vm.attraction.language_string.about))
-                  ])
+                  _c("span", {
+                    domProps: {
+                      innerHTML: _vm._s(_vm.attraction.language_string.about)
+                    }
+                  })
                 ])
               : _vm._e()
           ])
