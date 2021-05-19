@@ -99,7 +99,7 @@ class RegisterController extends Controller
             'postal_code' => $data['postal_code'],
             'state_province' => $data['state_province'],
             'optCountry' => $data['optCountry'],
-            'access_token' => hash('sha256', $token),
+            'api_token' => hash('sha256', $token),
             'password' => Hash::make($data['password']),
         ]);
     }
