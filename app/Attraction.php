@@ -28,7 +28,7 @@ class Attraction extends Model
             $this->photo = route('product.image') . '?s=thumb&name='.$this->id.'/'.$this->photo;    
         }
         else {
-            $this->photo = "";
+            $this->photo = route('product.image') . '?s=thumb&name=';    
         }
         
     }
