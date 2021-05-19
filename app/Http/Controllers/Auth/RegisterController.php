@@ -102,5 +102,6 @@ class RegisterController extends Controller
             'api_token' => hash('sha256', $token),
             'password' => Hash::make($data['password']),
         ]);
+        
     }
 }
