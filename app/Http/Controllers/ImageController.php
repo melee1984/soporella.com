@@ -16,10 +16,14 @@ class ImageController extends Controller
 
 	 	$cacheimage = Image::cache(function($image) use ($src, $size) {
 
-	 		$url = asset('uploads/images/'.$src); 
+	 		if ($src=="") {
+				$url = "imagaes/soporella-placeholder.jpg";
+	 		}
+	 		else {
+	 			$url = asset('uploads/images/'.$src); 
+	 		}
 
 		    if ($size == 'thumb') {
-
 			    return $image->make($url)->resize(400, 400, function ($constraint) {
 		            $constraint->aspectRatio();
 		        });   

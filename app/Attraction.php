@@ -23,7 +23,14 @@ class Attraction extends Model
      * @return return tempalted url for photo
      */
     public function scopePopulateAttractionImage($query) {
-        $this->photo = route('product.image') . '?s=thumb&name='.$this->id.'/'.$this->photo;
+
+        if ($this->photo!="") {
+            $this->photo = route('product.image') . '?s=thumb&name='.$this->id.'/'.$this->photo;    
+        }
+        else {
+            $this->photo = "";
+        }
+        
     }
     /**
      * [scopePopulateAttractionPageURL description]
