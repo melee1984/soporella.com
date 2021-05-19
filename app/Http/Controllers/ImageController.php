@@ -24,7 +24,7 @@ class ImageController extends Controller
 				   //  $constraint->upsize();
 		     //    });    
 		     	
-		     	$image->make($url)->img->resizeCanvas(400, 350, 'center', false, 'ff00ff');
+		     	$image->make($url)->resizeCanvas(400, 350, 'center', false, 'ff00ff');
 
 		     	// $image->make($url)->resizeCanvas(400, 400, function ($constraint) {
 				    // $constraint->aspectRatio();
