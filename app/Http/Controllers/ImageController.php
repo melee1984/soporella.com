@@ -17,7 +17,7 @@ class ImageController extends Controller
 	 	$cacheimage = Image::cache(function($image) use ($src, $size) {
 
 	 		if ($src=="") {
-				$url = "imagaes/soporella-placeholder.jpg";
+				$url =  asset('images/soporella-placeholder.jpg');
 	 		}
 	 		else {
 	 			$url = asset('uploads/images/'.$src); 
