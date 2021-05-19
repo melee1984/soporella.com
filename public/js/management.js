@@ -25497,10 +25497,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("div", { staticClass: "card-header" }, [
+      _c("h5", [_vm._v(_vm._s(_vm.attraction.title) + " ")])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "div",
@@ -25520,7 +25522,7 @@ var render = function() {
               _c("p", { staticClass: "mb-0 m-t-30" }),
               _c("div", { staticClass: "container-fluid" }, [
                 _c("div", { staticClass: "card" }, [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
                     _c("div", { staticClass: "row" }, [
@@ -25798,7 +25800,7 @@ var render = function() {
             [
               _c("p", { staticClass: "mb-0 m-t-30" }),
               _c("div", { staticClass: "card" }, [
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
                   _c("div", { staticClass: "row" }, [
@@ -26081,14 +26083,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h5", [_vm._v("attraction title ")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

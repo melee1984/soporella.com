@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="card-header">
-        <h5>attraction title </h5>
+        <h5>{{ attraction.title }} </h5>
     </div>
     <div class="card-body">
         <ul class="nav nav-tabs" id="icon-tab" role="tablist">
