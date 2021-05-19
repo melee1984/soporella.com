@@ -34,6 +34,14 @@ class Attraction extends Model
         
         return $this->pageUrl = route('page.attraction.view', $this);
     }
+
+    public function scopePopulateOriginalImage($query) {
+        // $this->photo = route('product.image') . '?s=thumb&name='.$this->id.'/'.$this->photo;
+         // $this->photo = route('product.image') . '?s=thumb&name='.$this->id.'/'.$this->photo;
+         // 
+        $this->photo = asset('uploads/images/'.$this->id.'/'.$this->photo);
+    }
+
     /**
      * [rates description]
      * @return [type] [description]

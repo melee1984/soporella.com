@@ -45,7 +45,7 @@ class AttractionController extends Controller
             $interested->attraction->populateAttractionImage();
         }
 
-        $attraction->populateAttractionImage();
+        $attraction->populateOriginalImage();
         $attraction->language_string = $attraction->convertLanguageField();
 
         return view('front.pages.inside', compact('menus', 'attraction'));
@@ -80,7 +80,7 @@ class AttractionController extends Controller
             }
         }
 
-        $attraction->populateAttractionImage();
+        $attraction->populateOriginalImage();
 
         foreach($attraction->interestedIn as $interested) {
             $interested->attraction->slug = $interested->populateAttractionPageURL();
