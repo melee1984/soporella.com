@@ -91,7 +91,7 @@ class RegisterController extends Controller
         $token = Str::random(60);
 
         return User::create([
-            'firstname' => $data['name'],
+            'name' => $data['name'],
             'email' => $data['email'],
             'mobile' => $data['areacode'] ." ". $data['mobile'],
             'street_address' => $data['street_address'],
@@ -102,6 +102,6 @@ class RegisterController extends Controller
             'api_token' => hash('sha256', $token),
             'password' => Hash::make($data['password']),
         ]);
-        
+
     }
 }
