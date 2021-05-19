@@ -66,7 +66,10 @@ class AttractionController extends Controller
             return $menus;
         });
 
+
+        $attraction->language_string = $attraction->convertLanguageField(); 
         $rates = $attraction->rates;
+
         foreach($rates as $rate) {
             $rate->language_string = $rate->convertLanguageField();
             foreach($rate->details as $detail) {
