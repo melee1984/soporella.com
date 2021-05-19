@@ -1,3 +1,4 @@
+@if (count($suggestionAttractions)>0) 
 <div class="row">
 	<div class="col-12">
 		<h3>{{ trans('messages.YOU_MIGHT_WANT_TO_VISIT') }}</h3>
@@ -15,3 +16,4 @@
 		@endforeach
 	</div>
 </div>
+@endif
