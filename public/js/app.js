@@ -39675,7 +39675,8 @@ var render = function() {
                   ? _c("div", { staticClass: "form-group" }, [
                       _c("input", {
                         staticClass: "form-control",
-                        attrs: { type: "submit", value: "Add to Cart" },
+                        attrs: { type: "submit" },
+                        domProps: { value: _vm.messages.ADD_TO_CART },
                         on: { click: _vm.addCart }
                       })
                     ])
@@ -39685,7 +39686,8 @@ var render = function() {
                   ? _c("div", { staticClass: "form-group" }, [
                       _c("input", {
                         staticClass: "form-control inactive",
-                        attrs: { type: "submit", value: "Add to Cart" },
+                        attrs: { type: "submit" },
+                        domProps: { value: _vm.messages.ADD_TO_CART },
                         on: { click: _vm.validate }
                       })
                     ])

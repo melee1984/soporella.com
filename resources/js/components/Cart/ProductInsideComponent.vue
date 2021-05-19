@@ -59,10 +59,10 @@
           <div class="col-lg-6"></div>
           <div class="col-lg-6 ticket-submit">
             <div class="form-group" v-if="formOkay">
-              <input type="submit" class="form-control" v-on:click="addCart" value="Add to Cart" >
+              <input type="submit" class="form-control" v-on:click="addCart" :value=" messages.ADD_TO_CART" >
             </div>
             <div class="form-group" v-if="!formOkay">
-              <input type="submit" class="form-control inactive"  v-on:click="validate" value="Add to Cart" >
+              <input type="submit" class="form-control inactive"  v-on:click="validate" :value="messages.ADD_TO_CART" >
             </div>
           </div>
         </div>
