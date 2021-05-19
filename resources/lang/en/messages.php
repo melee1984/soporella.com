@@ -309,6 +309,6 @@ If you registered to view our promotion, you will have received an email to veri
 'CURRENCY_MULTIPLIER'               =>                '1',
 'CURRENCY_SYMBOL'                   =>                'AED',
 
-
+'YOU_MIGHT_WANT_TO_VISIT'  => 'You Might Want to Visit',
 
 );

@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-12">
-		<h3>{{ trans('messages.LABEL_BUY_TICKET') }}</h3>
+		<h3>{{ trans('messages.YOU_MIGHT_WANT_TO_VISIT') }}</h3>
 	</div>
 	<div class="row tab-content padding-20">
 		@foreach($suggestionAttractions as $attra)
