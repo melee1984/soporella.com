@@ -44281,7 +44281,11 @@ window.Event = new Vue();
 
 
 
-Vue.use(vue_wysiwyg__WEBPACK_IMPORTED_MODULE_4___default.a, {}); // config is optional. more below
+Vue.use(vue_wysiwyg__WEBPACK_IMPORTED_MODULE_4___default.a, {
+  hideModules: {
+    "image": true
+  }
+}); // config is optional. more below
 
 /**
  * The following block of code may be used to automatically register your

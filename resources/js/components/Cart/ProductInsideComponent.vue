@@ -19,6 +19,12 @@
           </div>
         </div>
         <!--When are you going-->
+        <div class="row" v-if="attraction.special_annoucement!=''">
+          <div class="col-lg-12 alert alert-danger">
+            <p v-html="attraction.special_annoucement"></p>
+          </div>
+        </div>
+
        	<div class="row">
             <div class="col-lg-12 ticket-date">
               <h4>{{ messages.ACTIVITY_WHEN_ARE_YOU_GOING }} </h4>

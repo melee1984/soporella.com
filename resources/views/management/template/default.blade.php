@@ -138,7 +138,6 @@
         var api_token = '';
       @endif
     </script>
-
         <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     <!-- Bootstrap js-->
@@ -163,7 +162,13 @@
     <script src="{{ asset('assets/js/product-tab.js') }}"></script> -->
     <!-- Plugins JS Ends-->
 
-    <script src="{{ asset('assets/js/dropzone/dropzone.js') }}"></script>
+
+    <script src="{{ asset('assets/js/editor/simple-mde/simplemde.min.js') }}"></script>
+    <script src="{{ asset('assets/js/editor/simple-mde/simplemde.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+
+
+      <script src="{{ asset('assets/js/dropzone/dropzone.js') }}"></script>
     <script src="{{ asset('assets/js/dropzone/dropzone-script.js') }}"></script>
 
     <!-- Theme js-->

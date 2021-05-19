@@ -2251,6 +2251,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -39491,6 +39497,18 @@ var render = function() {
         _c("div", { staticClass: "col-lg-4 col-lg-push-8 tickets" }, [
           _c("div", { staticClass: "sticky" }, [
             _vm._m(0),
+            _vm._v(" "),
+            _vm.attraction.special_annoucement != ""
+              ? _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-lg-12 alert alert-danger" }, [
+                    _c("p", {
+                      domProps: {
+                        innerHTML: _vm._s(_vm.attraction.special_annoucement)
+                      }
+                    })
+                  ])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-lg-12 ticket-date" }, [

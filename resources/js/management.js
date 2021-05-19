@@ -15,7 +15,9 @@ import "vue-wysiwyg/dist/vueWysiwyg.css";
 import BootstrapComponent from "vue-my-toasts/src/components/toasts/BootstrapComponent";
 
 import wysiwyg from "vue-wysiwyg";
-Vue.use(wysiwyg, {}); // config is optional. more below
+Vue.use(wysiwyg, {
+	hideModules: { "image": true },
+}); // config is optional. more below
 
 /**
  * The following block of code may be used to automatically register your
