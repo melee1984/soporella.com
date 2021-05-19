@@ -19,10 +19,18 @@ class ImageController extends Controller
 	 		$url = asset('uploads/images/'.$src); 
 
 		    if ($size == 'thumb') {
-			    return $image->make($url)->resize(400, 400, function ($constraint) {
-				    $constraint->aspectRatio();
-				    $constraint->upsize();
-		        });    
+			    // return $image->make($url)->resize(400, 400, function ($constraint) {
+				   //  $constraint->aspectRatio();
+				   //  $constraint->upsize();
+		     //    });    
+		     	
+		     	$image->make($url)->img->resizeCanvas(400, 350, 'center', false, 'ff00ff');
+
+		     	// $image->make($url)->resizeCanvas(400, 400, function ($constraint) {
+				    // $constraint->aspectRatio();
+				    // $constraint->upsize();
+		      //   });    
+
 		    }
 		    elseif ($size == 'banner') {
 		      return $image->make("uploads/images/".$src)->resize(500, 250, function ($constraint) {
