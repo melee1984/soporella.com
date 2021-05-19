@@ -69,14 +69,15 @@ class AttractionController extends Controller
 			'file' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-    	$data = array();
-    	$image = $request->file('file');
-        $filename   = now()->toDateString()."-".$image->getClientOriginalName();
-       
+        $data = array();
+        $image = $request->file('file');
+
+        $file = explode('.', $image->getClientOriginalName());
+        $filename   = Str::slug(now()->toDateString()."-".$file[0]) .".". $image->getClientOriginalExtension();
+
        	try {
 
        		$this->unlinkImage($attraction);
-			
        		$originalDirectory = public_path().'/uploads/images/'.$attraction->id;
 
     		try {
@@ -93,7 +94,7 @@ class AttractionController extends Controller
 				return response()->json($data, 200);
     		}
 
-	       	$image->move($originalDirectory."/",$filename);
+      $image->move($originalDirectory."/",$filename);
 	   			
 			$attraction->photo = $filename;
 
@@ -413,8 +414,10 @@ class AttractionController extends Controller
 
       $data = array();
       $image = $request->file('file');
-        $filename   = now()->toDateString()."-".$image->getClientOriginalName();
-       
+
+        $file = explode('.', $image->getClientOriginalName());
+        $filename   = Str::slug(now()->toDateString()."-".$file[0]) .".". $image->getClientOriginalExtension();
+
         try {
 
           $originalDirectory = public_path().'/uploads/images/'.$attraction->id . "/gallery";
