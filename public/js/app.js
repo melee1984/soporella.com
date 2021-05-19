@@ -2247,6 +2247,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -39819,55 +39820,57 @@ var render = function() {
         _c("br"),
         _c("br"),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "container interested-in",
-            attrs: { id: "promotions" }
-          },
-          [
-            _vm._m(3),
-            _vm._v(" "),
-            _c(
+        _vm.attraction.interested_in
+          ? _c(
               "div",
-              { staticClass: "row" },
-              _vm._l(_vm.attraction.interested_in, function(interested) {
-                return _c("div", { staticClass: "col-lg-3 promo-single" }, [
-                  _c("h4", [_vm._v(_vm._s(interested.attraction.title))]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href: interested.attraction.pageUrl,
-                        title: interested.attraction.title
-                      }
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "img-responsive",
-                        attrs: {
-                          src: interested.attraction.photo,
-                          alt: interested.attraction.title
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "buy",
-                      attrs: { href: interested.attraction.pageUrl }
-                    },
-                    [_vm._v(_vm._s(_vm.messages.BTN_BUY_TICKETS))]
-                  )
-                ])
-              }),
-              0
+              {
+                staticClass: "container interested-in",
+                attrs: { id: "promotions" }
+              },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "row" },
+                  _vm._l(_vm.attraction.interested_in, function(interested) {
+                    return _c("div", { staticClass: "col-lg-3 promo-single" }, [
+                      _c("h4", [_vm._v(_vm._s(interested.attraction.title))]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: interested.attraction.pageUrl,
+                            title: interested.attraction.title
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "img-responsive",
+                            attrs: {
+                              src: interested.attraction.photo,
+                              alt: interested.attraction.title
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "buy",
+                          attrs: { href: interested.attraction.pageUrl }
+                        },
+                        [_vm._v(_vm._s(_vm.messages.BTN_BUY_TICKETS))]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]
             )
-          ]
-        )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c(

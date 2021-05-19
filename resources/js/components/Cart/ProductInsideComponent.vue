@@ -128,8 +128,9 @@
         </div>
       </div>
 
+
       <hr><br><br>
-      <div id="promotions" class="container interested-in">
+      <div id="promotions" class="container interested-in" v-if="attraction.interested_in">
   		  <div class="row">
 		    <div class="col-lg-12">
 		      <h3>You might also be interested in...</h3>
