@@ -87,5 +87,5 @@ Route::post('cart/item/{cartDetail}/update', 'Api\Cart\BasketController@updateDe
 Route::get('cart', 'Api\Cart\BasketController@index')->name('cart');
 
 
-
+Route::post('newsletter/submit', 'NewsletterController@subscribe');
 

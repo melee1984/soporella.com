@@ -35,13 +35,16 @@ import productpage from './components/Cart/ProductInsideComponent.vue';
 import checkout from './components/Cart/CheckoutComponent.vue';
 import basket from './components/Shopping/BasketComponent.vue';
 import campaign from './components/Promotion/CampaignComponents.vue';
+import newsletter from './components/NewsletterSubscribeComponent.vue';
+
+
 
 Vue.component('cart-total', totalcount);
 Vue.component('product-page', productpage);
 Vue.component('basket-page', basket);
 Vue.component('checkout-page', checkout);
 Vue.component('campaign-page', campaign);
-
+Vue.component('newsletter-page', newsletter);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

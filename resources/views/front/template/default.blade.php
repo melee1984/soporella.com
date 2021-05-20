@@ -16,12 +16,13 @@
                 @include('front.includes.nav')
                 @section('slide') @show
             </div>
-        </div>
+      
         
         @yield('content')
-
         @include('front.includes.footer')
+        
         @include('front.includes.js')
+        </div>
     
   </body>
 

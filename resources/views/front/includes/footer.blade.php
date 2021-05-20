@@ -12,18 +12,7 @@
             </div>
             <div class="col-md-5 text-center newsletter  news-del">
                 <h3>{{trans('messages.SUBSCRIBE_FOOTER_NEWSLETTER')}}</h3>
-                  <form action="" id="formnewsletter" class="form-inline" role="form">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                          <input type="email" class="form-control" name="email" placeholder="{{trans('messages.EMAIL_ADDRESS')}}">
-                        </div>
-                        <div class="form-group" id="cap_send">
-                          <input type="submit" class="buy" value="{{trans('messages.LABEL_SUBSCRIBE')}}">
-                        </div>
-                        <p class="newsletter-text">Signup for our weekly newsletter <br>updates and amazing offers deliver</p>
-
-                    </div>
-                  </form>
+                  <newsletter-page></newsletter-page>
             </div>
           </div>
       </div>
