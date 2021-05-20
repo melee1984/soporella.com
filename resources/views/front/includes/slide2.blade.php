@@ -21,8 +21,8 @@
 <div class="container">
   <div class="filter">
     <div class="row">
-      <div class="col-md-3">&nbsp;</div>
-      <div class="col-md-6 searchForm">
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-8 searchForm">
         <form role="form" method="get" action="{{ URL::to('search') }}">
           <div class="row">
             <div class="col-md-4">
@@ -34,7 +34,7 @@
               </select>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" placeholder="" name="v">
+              <input type="text" class="form-control" placeholder="Search for attraction" name="v">
             </div>
             <div class="col-md-2">
               <button type="submit" class="btn btn-filter">Get</button>
@@ -42,7 +42,7 @@
           </div>
         </form>
       </div>
-      <div class="col-md-3">&nbsp;</div>
+      <div class="col-md-2">&nbsp;</div>
     </div>
   </div>
 </div>
