@@ -17,3 +17,32 @@
       @endforeach 
     </div>
 </div>
+
+<div class="container">
+  <div class="filter">
+    <div class="row">
+      <div class="col-md-3">&nbsp;</div>
+      <div class="col-md-6 searchForm">
+        <form role="form" method="get" action="{{ URL::to('search') }}">
+          <div class="row">
+            <div class="col-md-4">
+              <select class="form-control" name="emirate" method="get">
+                <option value="">Select Emirate</option>
+                @foreach($location as $l)
+                  <option value="{{ $l->id }}">{{ $l->title }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="" name="v">
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-filter">Get</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3">&nbsp;</div>
+    </div>
+  </div>
+</div>

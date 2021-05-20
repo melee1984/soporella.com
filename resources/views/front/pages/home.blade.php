@@ -4,6 +4,8 @@
 	@include('front.includes.slide2')
 @endsection
 
+
+
 @section('content')
 	
 <div class="container" id="top">

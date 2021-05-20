@@ -11,6 +11,7 @@ use URL;
 use App\Category;
 use App\Campaign;
 use App\SuggestedAttraction;
+use App\Location;
 
 class HomeController extends Controller
 {
@@ -87,7 +88,11 @@ class HomeController extends Controller
             return $campaigns;
         });
 
-        return view('front.pages.home', compact('menus', 'campaigns', 'promotions', 'topAttractions', 'suggestionAttractions'));
+        $location = Cache::remember('location', 30, function () {
+            return Location::all();
+        });
+
+        return view('front.pages.home', compact('menus', 'campaigns', 'promotions', 'topAttractions', 'suggestionAttractions', 'location'));
 
     }
    

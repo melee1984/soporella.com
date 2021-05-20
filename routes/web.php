@@ -81,6 +81,8 @@ Auth::routes();
 /* Dashboard */
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/search', 'SearchController@index')->name('search');
+
 
 Route::get('/about-us', 'PageController@aboutus')->name('aboutus');
 Route::get('/sell-tickets-with-us', 'PageController@sellticketwithus')->name('sellticketwithus');
