@@ -38,9 +38,23 @@
                             <input class="form-control" id="title" type="email" data-original-title="" title="" v-model="attraction.title">
                           </div>
                           <div class="form-group col-12">
-                            <label for="description">Description</label>
-                            <textarea class="form-control" id="description" data-original-title="" title="" rows="3" v-model="field.description"></textarea></div>
+                            <label for="description">Description asd </label>
+                            <textarea class="form-control" id="description" data-original-title="" title="" rows="3" v-model="field.description"></textarea>
+
+                          </div>
+
+                           <div class="form-group col-12">
+                            <label for="description">Emirate</label>
+                            <select  v-model="field.emirate" class="form-control">
+                              <option value="">Select Emirate</option>
+                              <option :value="location.id" v-for="location in locations">
+                                  {{ location.title }}
+                              </option>
+                            </select>  
+                          </div>
+                         
                         </div>
+
                     </div>
                      <div class="col-lg-4 col-sm-4">
                         <label>Primary Photo <span v-if="field.img"><a href="">Delete Photo</a></span></label>
@@ -109,11 +123,6 @@
                             <label for="description">Special Announcement</label>
                             <wysiwyg v-model="field.special_annoucement"/>
                             </div>
-
-                          
-
-
-
                         </div>
                     </div>
                      <div class="col-lg-4 col-sm-4">
@@ -187,7 +196,8 @@
             about: "",
             active: 0,
             photo: "",
-            special_annoucement: "<p>123123 123</p>",
+            special_annoucement: "<p></p>",
+            emirate: "",
           },
           plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', 'insertdatetime media nonbreaking save table contextmenu directionality','template paste textcolor colorpicker textpattern imagetools toc help emoticons hr codesample'],
           fileImage: null,
@@ -195,7 +205,7 @@
           lang: JSON.parse(localStorage.selectedLanguage).country_code,
         }
       },
-      props:['attraction'],
+      props:['attraction', 'locations'],
       computed: {
         // lang: {
         //     get: function () {
@@ -213,7 +223,7 @@
         this.field.redemption = this.attraction.language_string[this.lang].redemption;
         this.field.about = this.attraction.language_string[this.lang].about;
         this.field.special_annoucement = this.attraction.special_annoucement;
-
+        this.field.emirate = this.attraction.location_id;
 
         // this.field.active = this.attraction.active;
         // this.field.img = this.attraction.photo;
@@ -260,6 +270,7 @@
               about: self.field.about,
               active: self.field.active,
               video: self.field.video,
+              location_id: self.field.emirate,
               special_annoucement: self.field.special_annoucement,
               
             }).then(function (response) {

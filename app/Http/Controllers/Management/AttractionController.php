@@ -9,6 +9,7 @@ use App\Attraction;
 use App\Category;
 use Str;
 use App\Country;
+use App\Location;
 
 class AttractionController extends Controller
 {
@@ -19,7 +20,9 @@ class AttractionController extends Controller
      */
     public function index() 
     {	
+
     	$attractions = Attraction::paginate(50);
+
         return view('management.pages.attraction', compact('attractions'));
     }
     /**
@@ -32,7 +35,10 @@ class AttractionController extends Controller
         $attraction->language_string  = $attraction->languageField();
         $attraction->populateAttractionImage();
 
-        return view('management.pages.attractions.edit', compact('attraction'));
+        $locations = Location::all();
+
+        return view('management.pages.attractions.edit', compact('attraction', 'locations'));
+
     }
     public function add() 
     {   

@@ -2076,6 +2076,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2099,7 +2108,8 @@ __webpack_require__.r(__webpack_exports__);
         about: "",
         active: 0,
         photo: "",
-        special_annoucement: "<p>123123 123</p>"
+        special_annoucement: "<p></p>",
+        emirate: ""
       },
       plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', 'insertdatetime media nonbreaking save table contextmenu directionality', 'template paste textcolor colorpicker textpattern imagetools toc help emoticons hr codesample'],
       fileImage: null,
@@ -2107,7 +2117,7 @@ __webpack_require__.r(__webpack_exports__);
       lang: JSON.parse(localStorage.selectedLanguage).country_code
     };
   },
-  props: ['attraction'],
+  props: ['attraction', 'locations'],
   computed: {// lang: {
     //     get: function () {
     //       return JSON.parse(localStorage.selectedLanguage).country_code;
@@ -2121,7 +2131,8 @@ __webpack_require__.r(__webpack_exports__);
     this.field.availability = this.attraction.language_string[this.lang].availability;
     this.field.redemption = this.attraction.language_string[this.lang].redemption;
     this.field.about = this.attraction.language_string[this.lang].about;
-    this.field.special_annoucement = this.attraction.special_annoucement; // this.field.active = this.attraction.active;
+    this.field.special_annoucement = this.attraction.special_annoucement;
+    this.field.emirate = this.attraction.location_id; // this.field.active = this.attraction.active;
     // this.field.img = this.attraction.photo;
   },
   created: function created() {},
@@ -2164,6 +2175,7 @@ __webpack_require__.r(__webpack_exports__);
         about: self.field.about,
         active: self.field.active,
         video: self.field.video,
+        location_id: self.field.emirate,
         special_annoucement: self.field.special_annoucement
       }).then(function (response) {
         if (response.data.status) {
@@ -25666,7 +25678,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group col-12" }, [
                             _c("label", { attrs: { for: "description" } }, [
-                              _vm._v("Description")
+                              _vm._v("Description asd ")
                             ]),
                             _vm._v(" "),
                             _c("textarea", {
@@ -25699,6 +25711,67 @@ var render = function() {
                                 }
                               }
                             })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group col-12" }, [
+                            _c("label", { attrs: { for: "description" } }, [
+                              _vm._v("Emirate")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.field.emirate,
+                                    expression: "field.emirate"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.field,
+                                      "emirate",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Select Emirate")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.locations, function(location) {
+                                  return _c(
+                                    "option",
+                                    { domProps: { value: location.id } },
+                                    [
+                                      _vm._v(
+                                        "\n                                  " +
+                                          _vm._s(location.title) +
+                                          "\n                              "
+                                      )
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            )
                           ])
                         ])
                       ]),

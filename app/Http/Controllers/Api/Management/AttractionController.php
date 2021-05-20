@@ -35,6 +35,7 @@ class AttractionController extends Controller
         $attraction->slug = Str::slug($request->input('title'));
         $attraction->video = $request->input('video');
         $attraction->special_annoucement = $request->input('special_annoucement');
+        $attraction->location_id = $request->input('location_id');
 
         $currentData = $attraction->languageField();
 

@@ -9,7 +9,7 @@
 <div class="col-sm-12 col-xl-12 xl-100">
   <div class="card">
     @include('management.includes.error')
-    <attraction-edit :attraction="{{ $attraction }}"></attraction-edit>
+    <attraction-edit :attraction="{{ $attraction }}" :locations="{{ $locations }}"></attraction-edit>
   </div>
 </div>
   
