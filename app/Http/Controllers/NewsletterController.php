@@ -18,7 +18,8 @@ class NewsletterController extends Controller
     	$data = array();
 
 		$validated = $request->validate([
-		    'email' => 'required|email',
+		    'email' => 'required|email|unique:newsletter',
+
 		]);
 
        	$newsletter = new Newsletter;
