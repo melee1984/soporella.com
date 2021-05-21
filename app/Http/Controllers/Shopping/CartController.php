@@ -13,7 +13,12 @@ class CartController extends Controller
     public function index() 
     {   
 		$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+            $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 			
 		return view('front.pages.shopping.cart', compact('menus'));

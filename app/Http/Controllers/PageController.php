@@ -16,7 +16,12 @@ class PageController extends Controller
     public function aboutus() 
     {   
         $menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+             $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
     	return view('front.pages.aboutus', compact('menus'));
@@ -27,8 +32,13 @@ class PageController extends Controller
      */
     public function sellticketwithus() 
     {
-    	$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+    	 $menus = Cache::remember('menus', 30, function () {
+             $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         return view('front.pages.sellticketwithus', compact('menus'));
@@ -39,8 +49,13 @@ class PageController extends Controller
      */
     public function disclaimer() 
     {
-    	$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+    	 $menus = Cache::remember('menus', 30, function () {
+             $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         return view('front.pages.disclaimer', compact('menus'));
@@ -51,8 +66,13 @@ class PageController extends Controller
      */
     public function termsandconditions() 
     {
-        $menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+         $menus = Cache::remember('menus', 30, function () {
+             $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         return view('front.pages.termsandconditions', compact('menus'));
@@ -63,8 +83,13 @@ class PageController extends Controller
      */
     public function primvacypolicy() 
     {
-    	$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+    	 $menus = Cache::remember('menus', 30, function () {
+             $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         return view('front.pages.primvacypolicy', compact('menus'));
@@ -75,8 +100,13 @@ class PageController extends Controller
      */
     public function shippingandreturnpolicy() 
     {
-    	$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+    	 $menus = Cache::remember('menus', 30, function () {
+             $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         return view('front.pages.shippingandreturnpolicy', compact('menus'));
@@ -87,8 +117,13 @@ class PageController extends Controller
      */
     public function contactus() 
     {
-    	$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+    	 $menus = Cache::remember('menus', 30, function () {
+             $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         return view('front.pages.contactus', compact('menus'));
@@ -99,8 +134,13 @@ class PageController extends Controller
      */
     public function sitemap() 
     {
-    	$menus = Cache::remember('menus', 30, function () {
-            return Category::forMenu()->active()->get();
+    	 $menus = Cache::remember('menus', 30, function () {
+             $menus = Category::forMenu()->active()->get();
+
+            foreach ($menus as $category) {
+                $category->language_string = $category->convertLanguageField();
+            }
+            return $menus;
         });
 
         return view('front.pages.sitemap', compact('menus'));
