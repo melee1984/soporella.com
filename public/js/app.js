@@ -2270,7 +2270,8 @@ __webpack_require__.r(__webpack_exports__);
       isSubmit: false,
       pageUrl: MAINURL,
       rateDetailsArray: {},
-      messages: this.trans.messages
+      messages: this.trans.messages,
+      dateMin: ""
     };
   },
   props: ['attraction'],
@@ -2286,6 +2287,10 @@ __webpack_require__.r(__webpack_exports__);
 
       return true;
     }
+  },
+  mounted: function mounted() {
+    // this.dateMin = "2021-05-23";
+    this.dateMin = minDate;
   },
   methods: {
     addCart: function addCart() {
@@ -39580,6 +39585,7 @@ var render = function() {
                     staticClass: "calendario form-control hasDatepicker",
                     attrs: {
                       type: "date",
+                      min: _vm.dateMin,
                       name: "departure",
                       placeholder: "mm/dd/yyyy",
                       id: "departure"

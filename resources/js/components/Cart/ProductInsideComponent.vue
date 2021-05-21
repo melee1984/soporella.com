@@ -29,7 +29,7 @@
             <div class="col-lg-12 ticket-date">
               <h4>{{ messages.ACTIVITY_WHEN_ARE_YOU_GOING }} </h4>
               <div class="form-group">
-                <input type="date" class="calendario form-control hasDatepicker" v-model="field.calendar" name="departure" placeholder="mm/dd/yyyy" id="departure">
+                <input type="date" class="calendario form-control hasDatepicker" :min="dateMin" v-model="field.calendar" name="departure" placeholder="mm/dd/yyyy" id="departure">
                 <div class="action_error_calendario hide">{{ messages.CART_DATE_GOING }}</div>
               </div>
             </div>
@@ -208,6 +208,7 @@
           pageUrl: MAINURL,
           rateDetailsArray: {},
           messages: this.trans.messages,
+          dateMin: "",
         }
       },
       props: ['attraction'],
@@ -224,7 +225,11 @@
               }
               return true;
             }
-        },
+      },
+      mounted() {
+        // this.dateMin = "2021-05-23";
+        this.dateMin = minDate;
+      },
       methods: {
       	addCart: function() {
           var obj = {};
