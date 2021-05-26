@@ -39554,7 +39554,7 @@ var render = function() {
           _c("div", { staticClass: "sticky" }, [
             _vm._m(0),
             _vm._v(" "),
-            _vm.attraction.special_annoucement != ""
+            _vm.attraction.special_annoucement
               ? _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-lg-12 alert alert-danger" }, [
                     _c("p", {

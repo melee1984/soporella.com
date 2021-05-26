@@ -19,7 +19,7 @@
           </div>
         </div>
         <!--When are you going-->
-        <div class="row" v-if="attraction.special_annoucement!=''">
+        <div class="row" v-if="attraction.special_annoucement">
           <div class="col-lg-12 alert alert-danger">
             <p v-html="attraction.special_annoucement"></p>
           </div>
