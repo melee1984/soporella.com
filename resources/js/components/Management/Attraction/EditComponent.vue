@@ -38,9 +38,8 @@
                             <input class="form-control" id="title" type="email" data-original-title="" title="" v-model="attraction.title">
                           </div>
                           <div class="form-group col-12">
-                            <label for="description">Description asd </label>
-                            <textarea class="form-control" id="description" data-original-title="" title="" rows="3" v-model="field.description"></textarea>
-
+                            <label for="description">Description </label>
+                            <wysiwyg v-model="field.description"/>
                           </div>
 
                            <div class="form-group col-12">

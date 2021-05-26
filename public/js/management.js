@@ -2084,7 +2084,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -25676,42 +25675,26 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-group col-12" }, [
-                            _c("label", { attrs: { for: "description" } }, [
-                              _vm._v("Description asd ")
-                            ]),
-                            _vm._v(" "),
-                            _c("textarea", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
+                          _c(
+                            "div",
+                            { staticClass: "form-group col-12" },
+                            [
+                              _c("label", { attrs: { for: "description" } }, [
+                                _vm._v("Description ")
+                              ]),
+                              _vm._v(" "),
+                              _c("wysiwyg", {
+                                model: {
                                   value: _vm.field.description,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.field, "description", $$v)
+                                  },
                                   expression: "field.description"
                                 }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "description",
-                                "data-original-title": "",
-                                title: "",
-                                rows: "3"
-                              },
-                              domProps: { value: _vm.field.description },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.field,
-                                    "description",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ]),
+                              })
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group col-12" }, [
                             _c("label", { attrs: { for: "description" } }, [
