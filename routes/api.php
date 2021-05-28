@@ -75,6 +75,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/campaign/{campaign}/delete/{option}/submit', 'Api\Management\CampaignController@destroyImg');	
 		
 	Route::post('management/{cart}/report/attach/submit', 'Api\Management\CartController@uploadFiles');	
+	
+	Route::post('/dashboard/attraction/add', 'Management\AttractionController@store')->name('dashboard.attraction.submit');
 
 });
 

@@ -47,6 +47,9 @@ class AttractionController extends Controller
         return view('management.pages.attractions.add', compact('categories'));
     }
     public function store(Request $request) {
+        
+        $data = array();
+        $data['status'] = 0;
 
         $validated = $request->validate([
             'title' => 'required|max:255',
@@ -75,13 +78,19 @@ class AttractionController extends Controller
 
         if ($status) {
 
+            $data['status'] = 1;
+            $data['redirect'] = route('dashboard.management.edit', $attraction);
+            $data['message'] = "Successfully added new attraction";
+
             // if you have any other process that you need to include you may add below line
             // 
         }
 
-        return redirect(route('dashboard.management.edit', $attraction))
-                ->with('display', 'alert alert-success')
-                ->with('message','Successfully added new attraction.');
+        return response()->json($data, 200);
+
+        // return redirect(route('dashboard.management.edit', $attraction))
+        //         ->with('display', 'alert alert-success')
+        //         ->with('message','Successfully added new attraction.');
 
     }
 
