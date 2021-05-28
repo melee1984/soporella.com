@@ -73,10 +73,10 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'min:8'],
             'mobile' => ['required'],
-            'street_address' => ['required'],
-            'city' => ['required'],
-            'postal_code' => ['required'],
-            'state_province' => ['required'],
+            // 'street_address' => ['required'],
+            // 'city' => ['required'],
+            // 'postal_code' => ['required'],
+            // 'state_province' => ['required'],
         ]);
     }
 
@@ -94,11 +94,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'mobile' => $data['areacode'] ." ". $data['mobile'],
-            'street_address' => $data['street_address'],
-            'city' => $data['city'],
-            'postal_code' => $data['postal_code'],
-            'state_province' => $data['state_province'],
-            'optCountry' => $data['optCountry'],
+            // 'street_address' => $data['street_address'],
+            // 'city' => $data['city'],
+            // 'postal_code' => $data['postal_code'],
+            // 'state_province' => $data['state_province'],
+            // 'optCountry' => $data['optCountry'],
             'api_token' => hash('sha256', $token),
             'password' => Hash::make($data['password']),
         ]);
