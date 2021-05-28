@@ -25760,7 +25760,7 @@ var render = function() {
         "a",
         {
           staticClass: "btn btn-light",
-          attrs: { href: "dashboard/attraction" }
+          attrs: { href: "/dashboard/attraction" }
         },
         [_vm._v("Cancel")]
       )
