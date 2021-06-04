@@ -141,7 +141,7 @@
             country_code: "",
             conversion: "",
             currency: "",
-            fla_icon: "",
+            fla_icon2: "",
           },
           languageArray: {},
           addForm: false,
@@ -184,7 +184,7 @@
           formData.append('active', self.field.active);
           formData.append('country_code', self.field.country_code);
           formData.append('country_name', self.field.country_name);
-          formData.append('fla_icon', self.field.fla_icon);
+          formData.append('fla_icon', self.field.fla_icon2);
           formData.append('conversion', self.field.conversion);
           formData.append('currency', self.field.currency);
           
@@ -253,7 +253,7 @@
           this.viewListing = false;
           this.editForm = true;
           this.field = obj;
-          this.field.fla_icon = obj.fla_icon;
+          this.field.fla_icon2 = obj.fla_icon;
           this.field.title = "";
         },
       }
