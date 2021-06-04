@@ -3928,7 +3928,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('active', self.field.active);
       formData.append('country_code', self.field.country_code);
       formData.append('country_name', self.field.country_name);
-      formData.append('fla_icon', self.field.flag);
+      formData.append('fla_icon', self.field.fla_icon);
       formData.append('conversion', self.field.conversion);
       formData.append('currency', self.field.currency);
       axios.post(url, formData).then(function (response) {
