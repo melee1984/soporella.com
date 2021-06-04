@@ -75,8 +75,13 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/campaign/{campaign}/delete/{option}/submit', 'Api\Management\CampaignController@destroyImg');	
 		
 	Route::post('management/{cart}/report/attach/submit', 'Api\Management\CartController@uploadFiles');	
-	
 	Route::post('/dashboard/attraction/add', 'Management\AttractionController@store')->name('dashboard.attraction.submit');
+
+	Route::get('management/language', 'Api\Management\LanguageController@index');	
+	Route::post('management/language/submit', 'Api\Management\LanguageController@store');	
+	Route::post('management/language/{country}/status/submit', 'Api\Management\LanguageController@updateStatus');	
+	Route::post('management/language/{country}/delete/submit', 'Api\Management\LanguageController@destroy');	
+	Route::post('management/language/{country}/update/submit', 'Api\Management\LanguageController@update');	
 
 });
 

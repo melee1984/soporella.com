@@ -43,11 +43,13 @@
                 <td>{{ $order->summary()['discount'] }}</td>
                 <td>{{ $order->summary()['total'] }}</td>
                 
-                 @if ($order->status->id == 1)
+               <td>
+                   @if ($order->status->id == 1)
                     <div class="span badge badge-pill pill-badge-secondary">{{ $order->status->title }}</div>
                   @else
-                  <div class="span badge badge-pill">{{ $order->status->title }}</div>
+                  <div class=" ">{{ $order->status->title }}</div>
                   @endif
+               </td>
                   
                 <td  class="text-right">
                   <a class="btn btn-secondary btn-sm" href="{{ route('dashboard.order.view', $order) }}" data-toggle="tooltip" title="" role="button" data-original-title="View Tickets">View Tickets</a>

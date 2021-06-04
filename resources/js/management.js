@@ -42,6 +42,7 @@ import CampaignComponent from './components/Management/Campaign/CampaignComponen
 import ListingComponent from './components/Management/Report/ListingComponent.vue';
 import AttachComponent from './components/Management/Report/AttachmentComponent.vue';
 import AddAttraction from './components/Management/Attraction/AddComponent.vue';
+import LanguageList from './components/Management/Language/LanguageComponent.vue';
 
 Vue.component('attraction-edit', AttractionEdit);
 Vue.component('language', Language);
@@ -53,6 +54,7 @@ Vue.component('campaign-list', CampaignComponent);
 Vue.component('view-list', ListingComponent);
 Vue.component('attach-list', AttachComponent);
 Vue.component('add-attraction', AddAttraction);
+Vue.component('language-list', LanguageList);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

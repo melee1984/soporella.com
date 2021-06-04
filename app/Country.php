@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     protected $table = 'countries';
-	protected $fillable = ['title', 'active'];
+	protected $fillable = ['country_code', 'active', 'country_name', 'fla_icon', 'conversion', 'currency', 'flag'];
     public $timestamps = true;
 }

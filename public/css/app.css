@@ -178,3 +178,13 @@
   display: inline-block;
 }
 
+.flag-icon {
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+a .flag-active {
+  font-size: 18px;
+  margin-left: 5px;
+}
+

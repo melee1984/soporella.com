@@ -147,6 +147,8 @@ Route::group(['middleware' => 'admin'], function() {
 	//. Logout
 	Route::get('/data/dashboard/logout', 'Management\DashboardController@logout')
 		->name('dashboard.logout');
+
+	Route::get('/dashboard/language', 'Management\LanguageController@index')->name('dashboard.management.language');
 });
 
 Route::get('promotion/{attraction:slug}', 'AttractionController@inside')->name('page.promotion');

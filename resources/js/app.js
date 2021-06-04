@@ -36,7 +36,7 @@ import checkout from './components/Cart/CheckoutComponent.vue';
 import basket from './components/Shopping/BasketComponent.vue';
 import campaign from './components/Promotion/CampaignComponents.vue';
 import newsletter from './components/NewsletterSubscribeComponent.vue';
-
+import language from './components/LanguageComponent.vue';
 
 
 Vue.component('cart-total', totalcount);
@@ -45,6 +45,7 @@ Vue.component('basket-page', basket);
 Vue.component('checkout-page', checkout);
 Vue.component('campaign-page', campaign);
 Vue.component('newsletter-page', newsletter);
+Vue.component('language-list', language);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

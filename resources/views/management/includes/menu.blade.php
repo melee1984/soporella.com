@@ -14,6 +14,7 @@
                     <li><a href="{{ URL::to('dashboard/top-attraction') }}">Top Attraction</a></li>
                     <li><a href="{{ URL::to('dashboard/category') }}">Category</a></li>
                     <li><a href="{{ URL::to('dashboard/campaign') }}">Campaign</a></li>
+
                   </ul>
           </li>
            <li class="sidebar-list">
@@ -32,13 +33,18 @@
                   <li><a href="{{ URL::to('dashboard/orders') }}">Orders</a></li>
                 </ul>
           </li>
+
              <!-- <li class="sidebar-list"><a class="sidebar-link sidebar-title active" href="#"><i data-feather="book"></i><span>Report</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="#">Attraction</a></li>
                     <li><a href="#">Product page</a></li>
                   </ul>
           </li> -->
-            <!--   <li class="sidebar-list"><a class="nav-link sidebar-title" href="" target="_blank"><i data-feather="globe"></i><span>Language</span></a></li> -->
+              <li class="sidebar-list">
+                <a class="nav-link" href="{{ URL::to('dashboard/language') }}">
+                    <i data-feather="globe"></i><span>Language</span>
+                </a>
+              </li>
            <li class="sidebar-list"><a class="nav-link sidebar-title" href="{{ route('dashboard.logout') }}" target="_blank"><i data-feather="log-out"></i><span>Logout</span></a></li>
       </ul>
     </div>

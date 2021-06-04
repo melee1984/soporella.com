@@ -5,9 +5,10 @@
     @include('front.includes.meta')
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://soporella.com.test/assets/css/vendors/flag-icon.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    
 </head>
   <body>
         <div id="app">

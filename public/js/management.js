@@ -3742,6 +3742,266 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      field: {
+        title: "",
+        active: false,
+        country_name: "",
+        country_code: "",
+        conversion: "",
+        currency: "",
+        fla_icon: ""
+      },
+      languageArray: {},
+      addForm: false,
+      editForm: false,
+      viewListing: true
+    };
+  },
+  computed: {},
+  mounted: function mounted() {},
+  created: function created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData: function fetchData() {
+      var self = this;
+      axios.get('/api/management/language?api_token=' + api_token).then(function (response) {
+        self.languageArray = response.data.languages;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    store: function store() {
+      var self = this;
+      self.loading = true;
+      var url = "";
+      var formData = new FormData();
+
+      if (self.addForm) {
+        url = '/api/management/language/submit?api_token=' + api_token;
+      } else if (self.editForm) {
+        url = '/api/management/language/' + self.field.id + '/update/submit?api_token=' + api_token;
+      }
+
+      formData.append('active', self.field.active);
+      formData.append('country_code', self.field.country_code);
+      formData.append('country_name', self.field.country_name);
+      formData.append('fla_icon', self.field.flag);
+      formData.append('conversion', self.field.conversion);
+      formData.append('currency', self.field.currency);
+      axios.post(url, formData).then(function (response) {
+        if (response.data.status) {
+          self.cancelForm();
+          self.fetchData();
+          self.$toasts.success(response.data.message);
+        } else {
+          self.$toasts.error(response.data.message);
+        }
+
+        self.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    updateStatus: function updateStatus(obj) {
+      var self = this;
+      axios.post('/api/management/language/' + obj.id + '/status/submit?api_token=' + api_token).then(function (response) {
+        if (response.data.status) {
+          self.$toasts.success(response.data.message);
+        } else {
+          self.$toasts.error(response.data.message);
+        }
+      })["catch"](function (error) {
+        self.$toasts.error(error.response.data.errors['file'][0]);
+      });
+    },
+    deleteRecord: function deleteRecord(obj) {
+      var self = this;
+      self.loading = true;
+      var txt;
+      var r = confirm("Are you sure you want to delete this record?");
+
+      if (r == true) {
+        axios.post('/api/management/language/' + obj.id + '/delete/submit?api_token=' + api_token).then(function (response) {
+          if (response.data.status) {
+            self.fetchData();
+            self.$toasts.success(response.data.message);
+          } else {
+            self.$toasts.error(response.data.message);
+          }
+
+          self.loading = false;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    cancelForm: function cancelForm() {
+      this.addForm = false;
+      this.viewListing = true;
+      this.editForm = false;
+      this.field = {};
+    },
+    formAdd: function formAdd() {
+      this.addForm = true;
+      this.viewListing = false;
+      this.editForm = false;
+      this.field = {};
+    },
+    formEdit: function formEdit(obj) {
+      this.addForm = false;
+      this.viewListing = false;
+      this.editForm = true;
+      this.field = obj;
+      this.field.title = "";
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/LanguageComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Management/LanguageComponent.vue?vue&type=script&lang=js& ***!
@@ -29601,6 +29861,697 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=template&id=0ceb6b02&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=template&id=0ceb6b02& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-sm-12 col-xl-12" }, [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6 text-right" }, [
+            !_vm.addForm
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    attrs: { href: "javascript:void(0)" },
+                    on: { click: _vm.formAdd }
+                  },
+                  [_vm._v("Add New")]
+                )
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body megaoptions-border-space-sm" }, [
+        _vm.viewListing
+          ? _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-block row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-sm-12 col-lg-12 col-xl-12" },
+                      [
+                        _c("div", { staticClass: "table-responsive" }, [
+                          _c("table", { staticClass: "table" }, [
+                            _vm._m(1),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              [
+                                !_vm.languageArray.length
+                                  ? _c("tr", [
+                                      _c("td", { attrs: { colspan: "6" } }, [
+                                        _vm._v("No record found")
+                                      ])
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._l(_vm.languageArray, function(langauge) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _c("div", { staticClass: "media" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "media-body text-left icon-state"
+                                          },
+                                          [
+                                            _c(
+                                              "label",
+                                              { staticClass: "switch" },
+                                              [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: langauge.active,
+                                                      expression:
+                                                        "langauge.active"
+                                                    }
+                                                  ],
+                                                  attrs: { type: "checkbox" },
+                                                  domProps: {
+                                                    checked: Array.isArray(
+                                                      langauge.active
+                                                    )
+                                                      ? _vm._i(
+                                                          langauge.active,
+                                                          null
+                                                        ) > -1
+                                                      : langauge.active
+                                                  },
+                                                  on: {
+                                                    change: [
+                                                      function($event) {
+                                                        var $$a =
+                                                            langauge.active,
+                                                          $$el = $event.target,
+                                                          $$c = $$el.checked
+                                                            ? true
+                                                            : false
+                                                        if (
+                                                          Array.isArray($$a)
+                                                        ) {
+                                                          var $$v = null,
+                                                            $$i = _vm._i(
+                                                              $$a,
+                                                              $$v
+                                                            )
+                                                          if ($$el.checked) {
+                                                            $$i < 0 &&
+                                                              _vm.$set(
+                                                                langauge,
+                                                                "active",
+                                                                $$a.concat([
+                                                                  $$v
+                                                                ])
+                                                              )
+                                                          } else {
+                                                            $$i > -1 &&
+                                                              _vm.$set(
+                                                                langauge,
+                                                                "active",
+                                                                $$a
+                                                                  .slice(0, $$i)
+                                                                  .concat(
+                                                                    $$a.slice(
+                                                                      $$i + 1
+                                                                    )
+                                                                  )
+                                                              )
+                                                          }
+                                                        } else {
+                                                          _vm.$set(
+                                                            langauge,
+                                                            "active",
+                                                            $$c
+                                                          )
+                                                        }
+                                                      },
+                                                      function($event) {
+                                                        return _vm.updateStatus(
+                                                          langauge
+                                                        )
+                                                      }
+                                                    ]
+                                                  }
+                                                }),
+                                                _c("span", {
+                                                  staticClass: "switch-state"
+                                                })
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0)" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.formEdit(langauge)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(langauge.country_name))]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0)" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.formEdit(langauge)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(langauge.country_code))]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0)" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.formEdit(langauge)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(langauge.conversion))]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0)" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.formEdit(langauge)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(langauge.currency))]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "text-right" }, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "btn btn-square btn-light btn-sm",
+                                          attrs: { href: "javascript:void(0)" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.deleteRecord(langauge)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Delete")]
+                                      )
+                                    ])
+                                  ])
+                                })
+                              ],
+                              2
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.addForm || _vm.editForm
+          ? _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse show",
+                    attrs: {
+                      "aria-labelledby": "collapseicon",
+                      "data-parent": "#accordion"
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card-body filter-cards-view animate-chk"
+                      },
+                      [
+                        _c("div", { staticClass: "checkbox-animated mt-0" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c("form", { staticClass: "form theme-form" }, [
+                                _c("div", { staticClass: "card-body" }, [
+                                  _c("div", { staticClass: "row" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "form-group col-12" },
+                                      [
+                                        _c(
+                                          "label",
+                                          {
+                                            staticClass: "d-block",
+                                            attrs: { for: "active" }
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.field.active,
+                                                  expression: "field.active"
+                                                }
+                                              ],
+                                              staticClass: "checkbox_animated",
+                                              attrs: {
+                                                id: "active",
+                                                name: "active",
+                                                value: "1",
+                                                type: "checkbox",
+                                                "data-original-title": "",
+                                                title: ""
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.field.active
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.field.active,
+                                                      "1"
+                                                    ) > -1
+                                                  : _vm.field.active
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a = _vm.field.active,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = "1",
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.field,
+                                                          "active",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.field,
+                                                          "active",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.field,
+                                                      "active",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(
+                                              " Active\n                                    "
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "form-group col-12" },
+                                      [
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "title" } },
+                                          [_vm._v("Country")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.field.country_name,
+                                              expression: "field.country_name"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            "data-original-title": "",
+                                            title: ""
+                                          },
+                                          domProps: {
+                                            value: _vm.field.country_name
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.field,
+                                                "country_name",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "form-group col-12" },
+                                      [
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "title" } },
+                                          [_vm._v("Country Code")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.field.country_code,
+                                              expression: "field.country_code"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            "data-original-title": "",
+                                            title: "",
+                                            placeholder: "eg. EN"
+                                          },
+                                          domProps: {
+                                            value: _vm.field.country_code
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.field,
+                                                "country_code",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "form-group col-12" },
+                                      [
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "title" } },
+                                          [_vm._v("Conversion")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.field.conversion,
+                                              expression: "field.conversion"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            "data-original-title": "",
+                                            title: ""
+                                          },
+                                          domProps: {
+                                            value: _vm.field.conversion
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.field,
+                                                "conversion",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "form-group col-12" },
+                                      [
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "title" } },
+                                          [_vm._v("Currency")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.field.currency,
+                                              expression: "field.currency"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            "data-original-title": "",
+                                            title: "",
+                                            placeholder: "eg. AED"
+                                          },
+                                          domProps: {
+                                            value: _vm.field.currency
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.field,
+                                                "currency",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "form-group col-12" },
+                                      [
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "title" } },
+                                          [_vm._v("Flag Icon ")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.field.fla_icon,
+                                              expression: "field.fla_icon"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            placeholder: "eg. flag-icon-us"
+                                          },
+                                          domProps: {
+                                            value: _vm.field.fla_icon
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.field,
+                                                "fla_icon",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm._m(2)
+                                      ]
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "card-footer" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "btn btn-square btn-primary btn-sm",
+                                      attrs: { href: "javascript:void(0)" },
+                                      on: { click: _vm.store }
+                                    },
+                                    [_vm._v("Submit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "btn btn-square btn-light pull-right btn-sm",
+                                      attrs: { href: "javascript:void(0)" },
+                                      on: { click: _vm.cancelForm }
+                                    },
+                                    [_vm._v("Cancel")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("h5", [_vm._v("Language")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col", width: "5%" } }, [_vm._v("Active")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "20%" } }, [
+          _vm._v("Country")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "10%" } }, [_vm._v("Code")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "10%" } }, [
+          _vm._v("Conversion")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "10%" } }, [
+          _vm._v("Currency")
+        ]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col", width: "5%" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-muted" }, [
+      _c("small", [
+        _vm._v("You may add the following flag icon in this url. "),
+        _c(
+          "a",
+          {
+            attrs: {
+              target: "_blank",
+              href: "https://alexsobolenko.github.io/flag-icons/"
+            }
+          },
+          [_vm._v("Flag Icons")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/LanguageComponent.vue?vue&type=template&id=7679b704&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Management/LanguageComponent.vue?vue&type=template&id=7679b704& ***!
@@ -44202,6 +45153,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Management/Language/LanguageComponent.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Management/Language/LanguageComponent.vue ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LanguageComponent_vue_vue_type_template_id_0ceb6b02___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LanguageComponent.vue?vue&type=template&id=0ceb6b02& */ "./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=template&id=0ceb6b02&");
+/* harmony import */ var _LanguageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LanguageComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LanguageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LanguageComponent_vue_vue_type_template_id_0ceb6b02___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LanguageComponent_vue_vue_type_template_id_0ceb6b02___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Management/Language/LanguageComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LanguageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LanguageComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LanguageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=template&id=0ceb6b02&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=template&id=0ceb6b02& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LanguageComponent_vue_vue_type_template_id_0ceb6b02___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LanguageComponent.vue?vue&type=template&id=0ceb6b02& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Management/Language/LanguageComponent.vue?vue&type=template&id=0ceb6b02&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LanguageComponent_vue_vue_type_template_id_0ceb6b02___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LanguageComponent_vue_vue_type_template_id_0ceb6b02___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Management/LanguageComponent.vue":
 /*!******************************************************************!*\
   !*** ./resources/js/components/Management/LanguageComponent.vue ***!
@@ -44643,6 +45663,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Management_Report_ListingComponent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Management/Report/ListingComponent.vue */ "./resources/js/components/Management/Report/ListingComponent.vue");
 /* harmony import */ var _components_Management_Report_AttachmentComponent_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Management/Report/AttachmentComponent.vue */ "./resources/js/components/Management/Report/AttachmentComponent.vue");
 /* harmony import */ var _components_Management_Attraction_AddComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Management/Attraction/AddComponent.vue */ "./resources/js/components/Management/Attraction/AddComponent.vue");
+/* harmony import */ var _components_Management_Language_LanguageComponent_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Management/Language/LanguageComponent.vue */ "./resources/js/components/Management/Language/LanguageComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -44685,6 +45706,7 @@ Vue.use(vue_wysiwyg__WEBPACK_IMPORTED_MODULE_4___default.a, {
 
 
 
+
 Vue.component('attraction-edit', _components_Management_Attraction_EditComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 Vue.component('language', _components_Management_LanguageComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.component('category-list', _components_Management_Category_CategoryComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
@@ -44695,6 +45717,7 @@ Vue.component('campaign-list', _components_Management_Campaign_CampaignComponent
 Vue.component('view-list', _components_Management_Report_ListingComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
 Vue.component('attach-list', _components_Management_Report_AttachmentComponent_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
 Vue.component('add-attraction', _components_Management_Attraction_AddComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
+Vue.component('language-list', _components_Management_Language_LanguageComponent_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
