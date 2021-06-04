@@ -2364,7 +2364,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       countries: {},
-      selectedLanguage: {}
+      selectedLanguage: {},
+      mainURL: MAINURL
     };
   },
   mounted: function mounted() {
@@ -2378,7 +2379,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchData: function fetchData() {
       var self = this;
-      axios.get('get/countries').then(function (response) {
+      axios.get(MAINURL + '/get/countries').then(function (response) {
         self.countries = response.data.countries;
 
         if (!localStorage.selectedLanguage) {
@@ -40208,7 +40209,7 @@ var render = function() {
         "a",
         {
           staticClass: "flag-active",
-          attrs: { href: "lang/" + country.country_code }
+          attrs: { href: _vm.mainURL + "/lang/" + country.country_code }
         },
         [_c("i", { class: "flag-icon " + country.fla_icon })]
       )

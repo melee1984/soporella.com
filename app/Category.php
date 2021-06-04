@@ -49,16 +49,22 @@ class Category extends Model
         $array_string = unserialize($this->language_string);
   
         $toBeReturnString = "";
-         // Priority the session and then the default// 
-            if (session()->has('locale')) {
-                $c = session()->get('locale');
-            }
-            else {
-                $c = App::getLocale();    
-            }
-            
 
-        return $array_string[$c];
+        // Priority the session and then the default// 
+        if (session()->has('locale')) {
+            $c = session()->get('locale');
+        }
+        else {
+            $c = App::getLocale();    
+        }
+
+        if (array_key_exists($c, $array_string)) {
+            return $array_string[$c];
+        }
+        else {
+           return  array('title' => '-empty-');
+        }
+            
     }   
     /**
      * Language 

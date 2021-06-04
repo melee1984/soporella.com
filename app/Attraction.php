@@ -62,13 +62,11 @@ class Attraction extends Model
     
     public function convertLanguageField() 
     {   
-        
         if (!$this->language_string) return; 
-
             try {
-
+                
                 $array_string = unserialize($this->language_string);
-                $toBeReturnString = "";
+
                 // Priority the session and then the default// 
                 if (session()->has('locale')) {
                     $c = session()->get('locale');
@@ -77,11 +75,25 @@ class Attraction extends Model
                     $c = App::getLocale();    
                 }
 
+                if (array_key_exists($c, $array_string)) {
+                    return $array_string[$c];
+                }
+                else {
+                    return  array(
+                            'description' => '',
+                            'about' => '',
+                            'availability' => '',
+                            'redemption' => '',
+                    );
+                }
+
+                $toBeReturnString = "";
+                
             } catch (Exception $e) {
                 
             }
 
-        return $array_string[$c];
+        return "";
     }   
 
     public function languageField() 

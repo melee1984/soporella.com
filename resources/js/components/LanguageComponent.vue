@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a v-for="country in countries" :href="'lang/'+ country.country_code" class="flag-active">
+        <a v-for="country in countries" :href="mainURL+'/lang/'+ country.country_code" class="flag-active">
             <i :class="'flag-icon ' + country.fla_icon"></i>
         </a>
     </div>
@@ -11,7 +11,8 @@
        data() {
         return {
           countries: {},
-          selectedLanguage: {}
+          selectedLanguage: {},
+          mainURL: MAINURL,
         }
       },
       mounted() {
@@ -25,7 +26,7 @@
       methods: {
         fetchData: function() {
           var self = this;
-          axios.get('get/countries').then(function (response) {
+          axios.get(MAINURL+'/get/countries').then(function (response) {
               self.countries = response.data.countries;
               if (!localStorage.selectedLanguage) {
                 self.selectedLanguage = self.countries[0];

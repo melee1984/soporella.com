@@ -124,7 +124,10 @@ class CategoryController extends Controller
 			      );
 			}
 			else {
-			    $new_array[$country->country_code] =   $currentData[$country->country_code];
+			    // $new_array[$country->country_code] =   $currentData[$country->country_code];
+			    if (array_key_exists($country->country_code, $currentData)) {
+		              $new_array[$country->country_code] =   $currentData[$country->country_code];
+		          }
 			}
 		}
 

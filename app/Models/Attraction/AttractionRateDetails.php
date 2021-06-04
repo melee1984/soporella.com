@@ -61,7 +61,12 @@ class AttractionRateDetails extends Model
             $c = App::getLocale();    
         }
 
-        return $array_string[$c];
+        if (array_key_exists($c, $array_string)) {
+            return $array_string[$c];
+        }
+        else {
+            return  array('title' => '');
+        }
     }   
     /**
      * Language 

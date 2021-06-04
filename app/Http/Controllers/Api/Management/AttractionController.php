@@ -48,7 +48,14 @@ class AttractionController extends Controller
 	                'description' => $request->input('description'), );
         	}
         	else {
-				    $new_array[$country->country_code] =   $currentData[$country->country_code];
+
+            if (array_key_exists($country->country_code, $currentData)) {
+                $new_array[$country->country_code] =   $currentData[$country->country_code];
+            }
+            else {
+
+
+            }
         	}
         }
 
@@ -226,15 +233,21 @@ class AttractionController extends Controller
 
       $new_array = array();
 
+
       foreach($categories as $country) {
         if (session()->get('locale')==$country->country_code) {
+          
           $new_array[$country->country_code] = array (
                 'description' =>  $request->input('description'), 
                 'title' =>  $request->input('title'), 
               );
         }
         else {
-          $new_array[$country->country_code] =   $currentData[$country->country_code];
+
+          if (array_key_exists($country->country_code, $currentData)) {
+              $new_array[$country->country_code] =   $currentData[$country->country_code];
+          }
+          
         }
       }
 
@@ -355,7 +368,10 @@ class AttractionController extends Controller
               );
         }
         else {
-          $new_array[$country->country_code] =   $currentData[$country->country_code];
+          
+          if (array_key_exists($country->country_code, $currentData)) {
+              $new_array[$country->country_code] =   $currentData[$country->country_code];
+          }
         }
       }
 
