@@ -3995,6 +3995,7 @@ __webpack_require__.r(__webpack_exports__);
       this.viewListing = false;
       this.editForm = true;
       this.field = obj;
+      this.field.fla_icon = obj.fla_icon;
       this.field.title = "";
     }
   }

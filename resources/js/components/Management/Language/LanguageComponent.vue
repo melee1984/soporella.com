@@ -253,6 +253,7 @@
           this.viewListing = false;
           this.editForm = true;
           this.field = obj;
+          this.field.fla_icon = obj.fla_icon;
           this.field.title = "";
         },
       }
