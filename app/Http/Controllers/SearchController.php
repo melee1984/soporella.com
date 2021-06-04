@@ -12,8 +12,6 @@ class SearchController extends Controller
 {
     public function index(Request $request) {
 
-    	// echo $request->input('emirate');
-    	// echo $request->input('v');
     	
     	$menus = Cache::remember('menus', 30, function () {
             $categories = Category::forMenu()->active()->get();
@@ -23,7 +21,15 @@ class SearchController extends Controller
             return $categories;
         });	
 
-    	$results = Attraction::whereActive(2)->get();
+    	$results = Attraction::whereActive(1)
+                    ->whereLocationId($request->input('emirate'))
+                    ->where('slug','like','%'.$request->input('v').'%')
+                    ->get();
+
+        foreach($results as $attraction) {
+            $attraction->populateOriginalImage();
+            $attraction->language_string = $attraction->convertLanguageField();                
+        }
 
     	return view('front.pages.search', compact('menus', 'results'));
 
