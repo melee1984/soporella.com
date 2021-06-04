@@ -25,7 +25,7 @@
       methods: {
         fetchData: function() {
           var self = this;
-          axios.get('/api/management/get/countries?api_token='+api_token).then(function (response) {
+          axios.get('get/countries').then(function (response) {
               self.countries = response.data.countries;
               if (!localStorage.selectedLanguage) {
                 self.selectedLanguage = self.countries[0];

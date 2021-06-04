@@ -101,6 +101,7 @@ Route::get('/logout', 'User\LoginController@userlogout')->name('user.logout');
 Route::post('/dashboard/login/submit', 'Management\DashboardController@validateLogin')
 	->name('dashboard.login.submit');
 Route::get('/dashboard/login', 'Management\DashboardController@login');
+Route::get('get/countries', 'Api\Management\CountriesController@getList');
 
 // Diriah nako display sa iyaha Ticket s
 // 
