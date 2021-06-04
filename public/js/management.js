@@ -30421,8 +30421,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.field.fla_icon,
-                                              expression: "field.fla_icon"
+                                              value: _vm.field.fla_icon2,
+                                              expression: "field.fla_icon2"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -30431,7 +30431,7 @@ var render = function() {
                                             placeholder: "eg. flag-icon-us"
                                           },
                                           domProps: {
-                                            value: _vm.field.fla_icon
+                                            value: _vm.field.fla_icon2
                                           },
                                           on: {
                                             input: function($event) {
@@ -30440,7 +30440,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.field,
-                                                "fla_icon",
+                                                "fla_icon2",
                                                 $event.target.value
                                               )
                                             }

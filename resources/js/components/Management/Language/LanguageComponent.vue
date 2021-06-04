@@ -100,7 +100,7 @@
 
                                   <div class="form-group col-12">
                                     <label for="title">Flag Icon </label>
-                                    <input class="form-control" type="text" placeholder="eg. flag-icon-us" v-model="field.fla_icon">
+                                    <input class="form-control" type="text" placeholder="eg. flag-icon-us" v-model="field.fla_icon2">
                                     <span class="text-muted"><small>You may add the following flag icon in this url. <a target="_blank" href="https://alexsobolenko.github.io/flag-icons/">Flag Icons</a></small></span>
                                   </div>
                                   
