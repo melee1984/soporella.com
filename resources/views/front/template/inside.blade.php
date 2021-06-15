@@ -20,10 +20,10 @@
             @endif
         </div>
         @yield('content')    
-     </div> 
+     
       @include('front.includes.footer')
       @include('front.includes.js')
-    
+      </div>
   </body>
 
 </html>

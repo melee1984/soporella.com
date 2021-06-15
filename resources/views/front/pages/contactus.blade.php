@@ -9,10 +9,6 @@
       <h1>Contact Us</h1>
       <p>If you woultd like to know more about Soporella.com, please send us a message and we will get back to you shortly.</p>
 
-    
-
-    
-
 
        <form method="POST" action="https://soporella.com/contact-us/submit" accept-charset="UTF-8"><input name="_token" type="hidden" value="TlA6tuZ3KRbUF4x4GnDlHeLDa2EhIBmt6XHphtiy">
        <div class="form-group">
@@ -28,8 +24,6 @@
             <div class="col-lg-9 padding-l0"><input type="tel" class="form-control" placeholder="Mobile Number" name="mobile"></div>
           </div>
         </div>
-
-
        <div class="form-group">
         <textarea placeholder="Message" class="form-control" name="txtMessage" required=""></textarea>
       </div>
@@ -39,8 +33,7 @@
      </form>
       <br><br>
       <p>Soporella is part of Creativo DMCC<br>
-      Office 1508, Platinum Tower, Jumeirah Lake Towers, Cluster I,<br> Dubai, UAE<br>
-      Tel +971 4 568 4882, info@soporella.com</p>
+        <a href="mailto:info@soporella.com">info@soporella.com</a></p>
     </div>
 
      <div class="col-lg-7">
