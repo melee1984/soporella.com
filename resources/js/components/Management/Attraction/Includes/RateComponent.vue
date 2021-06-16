@@ -21,7 +21,10 @@
                 </div>
                  <div class="form-group">
                   <label for="exampleFormControlTextarea1">Description</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Description" v-model="field.description"></textarea>
+                  <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Description" v-model="field.description"></textarea>
+ -->
+                  <wysiwyg v-model="field.description"/>
+                  
                 </div>
 
                 <div class="form-group">

@@ -2677,6 +2677,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -27226,7 +27229,7 @@ var render = function() {
                               }
                             }
                           }),
-                          _vm._v(" Active\n                ")
+                          _vm._v(" Active\n                 ")
                         ]
                       )
                     ]),
@@ -27264,43 +27267,28 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c(
-                        "label",
-                        { attrs: { for: "exampleFormControlTextarea1" } },
-                        [_vm._v("Description")]
-                      ),
-                      _vm._v(" "),
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c(
+                          "label",
+                          { attrs: { for: "exampleFormControlTextarea1" } },
+                          [_vm._v("Description")]
+                        ),
+                        _vm._v(" "),
+                        _c("wysiwyg", {
+                          model: {
                             value: _vm.field.description,
+                            callback: function($$v) {
+                              _vm.$set(_vm.field, "description", $$v)
+                            },
                             expression: "field.description"
                           }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          id: "exampleFormControlTextarea1",
-                          rows: "3",
-                          placeholder: "Enter Description"
-                        },
-                        domProps: { value: _vm.field.description },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.field,
-                              "description",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]),
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { attrs: { for: "exampleInputEmail1" } }, [
