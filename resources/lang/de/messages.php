@@ -309,5 +309,7 @@ return array(
 'CURRENCY_SYMBOL'                               =>              'EUR',
 
 'CHECKOUT' => 'Checkout',
+'HOME_BEST_HEADER' => 'HOME_BEST_HEADER -> Best Safety Standards!',
+'HOME_BEST_CONTENT' => 'HOME_BEST_CONTENT -> All attractions are following strict Covid-19 safety protocols and adhere to the guidelines set by their relevant Health Department.',
 
 );

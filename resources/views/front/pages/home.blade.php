@@ -11,9 +11,8 @@
 <div class="container" id="top">
 
 	<div class="jumbotron">
-		  <h3>Best Safety Standards!</h3>
-		  <p>All attractions are following strict Covid-19 safety protocols and adhere to the guidelines set by their relevant Health Department.</p>
-		  <!-- <p><a class="btn buy" href="#" role="button">Learn more</a></p> -->
+		  <h3>{{ trans('messages.HOME_BEST_HEADER') }}</h3>
+		  <p>{{ trans('messages.HOME_BEST_CONTENT') }}</p>
 	</div>
 
 	@include('front.pages.includes.display', 

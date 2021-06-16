@@ -317,4 +317,8 @@ If you registered to view our promotion, you will have received an email to veri
 'CONNECT_WITH_US'                 =>               'Connect with Us',
 
 'CHECKOUT' => 'Checkout',
+
+'HOME_BEST_HEADER' => 'Best Safety Standards!',
+'HOME_BEST_CONTENT' => 'All attractions are following strict Covid-19 safety protocols and adhere to the guidelines set by their relevant Health Department.',
+
 );
