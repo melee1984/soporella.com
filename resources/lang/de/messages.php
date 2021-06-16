@@ -308,7 +308,6 @@ return array(
 'CURRENCY_MULTIPLIER'                           =>              '0.24',
 'CURRENCY_SYMBOL'                               =>              'EUR',
 
-
-
+'CHECKOUT' => 'Checkout',
 
 );

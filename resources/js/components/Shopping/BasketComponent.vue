@@ -90,7 +90,7 @@
         <br>
         <div class="row" v-if="totalQuantity!=0">
             <div class="col-md-6 col-lg-6 col-xs-12 text-left">
-                <a href="javascript:void(0)" class="btn btn-secondary sw-btn-next">{{ messages.CONTINUE_SHOPPING }}</a>
+                <a href="/" class="btn btn-secondary sw-btn-next">{{ messages.CONTINUE_SHOPPING }}</a>
             </div>
             <div class="col-md-6 col-lg-6 col-xs-12 text-right">
                 <a href="javascript:void(0)" class="btn btn-secondary sw-btn-next" v-on:click="proceed">{{ messages.PROCEED_TO_PRAYMENT }}</a>

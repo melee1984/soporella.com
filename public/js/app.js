@@ -40078,7 +40078,7 @@ var render = function() {
                             role: "button"
                           }
                         },
-                        [_vm._v(_vm._s(_vm.messages.PROCEED_TO_PRAYMENT))]
+                        [_vm._v(_vm._s(_vm.messages.CHECKOUT))]
                       )
                     ]),
                     _vm._v(" "),
@@ -41150,7 +41150,7 @@ var render = function() {
               "a",
               {
                 staticClass: "btn btn-secondary sw-btn-next",
-                attrs: { href: "javascript:void(0)" }
+                attrs: { href: "/" }
               },
               [_vm._v(_vm._s(_vm.messages.CONTINUE_SHOPPING))]
             )

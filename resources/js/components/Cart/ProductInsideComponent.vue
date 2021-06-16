@@ -176,7 +176,7 @@
             <strong>Success!</strong> You have added item to your cart</a>.
           </div>  
           <p class="text-center">
-            <a class="btn btn-secondary btn-md buy" href="/shopping-cart/basket" role="button" style="color: #fff;">{{ messages.PROCEED_TO_PRAYMENT }}</a>
+            <a class="btn btn-secondary btn-md buy" href="/shopping-cart/basket" role="button" style="color: #fff;">{{ messages.CHECKOUT }}</a>
           </p>
            <p class="text-center">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ messages.Continue }}</button>
