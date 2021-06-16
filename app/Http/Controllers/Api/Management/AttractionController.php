@@ -20,7 +20,7 @@ class AttractionController extends Controller
 {
    public function update(Request $request, Attraction $attraction) {
 
-   		$language_array = array();
+   		 $language_array = array();
         $new_array = array();
 
         $categories = Country::whereActive(1)->get();
@@ -74,7 +74,7 @@ class AttractionController extends Controller
 
     public function upload(Request $request, Attraction $attraction) {
 
-    request()->validate([
+      request()->validate([
 			'file' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -152,11 +152,11 @@ class AttractionController extends Controller
     $rates = $attraction->rates;
 
     foreach($rates as $rate) {
-      $rate->language_string = $rate->convertLanguageField();
+        $rate->language_string = $rate->convertLanguageField();
 
-      foreach($rate->details as $detail) {
-          $detail->language_string = $detail->convertLanguageField();
-      }
+        foreach($rate->details as $detail) {
+            $detail->language_string = $detail->convertLanguageField();
+        }
   } 
 
     $data['rates'] = $rates;
@@ -481,5 +481,28 @@ class AttractionController extends Controller
   }  
   
  
+
+  public function seoUpdate(Request $request, Attraction $attraction) {
+
+        $validated = $request->validate([
+            'meta_title' => 'required|max:255',
+            'meta_description' => 'required',
+        ]);
+
+        $attraction->meta_title = $request->input('meta_title');
+        $attraction->meta_description = $request->input('meta_description');
+        $attraction->meta_keyword = $request->input('meta_keyword');
+
+        $status = $attraction->save();
+
+        if ($status) {
+          $data['status'] = 1;
+          $data['message'] = "Successfully updated meta information";
+        }
+
+        return response()->json($data, 200);
+
+  }
+
 
 }

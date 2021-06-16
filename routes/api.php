@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/{attraction}/gallery/upload', 'Api\Management\AttractionController@uploadGallery');
 	Route::get('management/attraction/{attraction}/category', 'Api\Management\AttractionCategoryController@getCategoryByAttraction');
 	Route::post('management/attraction/{attraction}/category/{category}/map/submit', 'Api\Management\AttractionCategoryController@insertAttractionCategoryMapping');
+	Route::post('management/seo/{attraction}/submit', 'Api\Management\AttractionController@seoUpdate');	
+
 
 	Route::get('management/category', 'Api\Management\CategoryController@index');	
 	Route::post('management/category/submit', 'Api\Management\CategoryController@store');	
@@ -61,6 +63,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/related/{attraction}/add/{refid}/submit', 'Api\Management\AttractionRelatedController@store');	
 	Route::get('management/attraction/{attraction}/gallery', 'Api\Management\AttractionImageController@index');	
 	Route::post('management/{attraction}/gallery/{image}/delete/submit', 'Api\Management\AttractionImageController@destroy');	
+
 
 	Route::get('management/promotion/list', 'Api\Management\PromotionController@index');	
 	Route::post('management/promotion/{attraction}/add/submit', 'Api\Management\PromotionController@store');	

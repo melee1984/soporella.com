@@ -13,6 +13,8 @@
 
           <li class="nav-item"><a class="nav-link" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Gallery</a></li>
           <li class="nav-item"><a class="nav-link" id="up-selling-tab" data-toggle="tab" href="#up-selling" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Up Selling</a></li>
+          <li class="nav-item"><a class="nav-link" id="seo-tab" data-toggle="tab" href="#seo" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>SEO</a></li>
+
           <!-- <li class="nav-item"><a class="nav-link" id="related-item-tab" data-toggle="tab" href="#related-item" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Related Item</a></li> -->
         </ul>
         <div class="tab-content" id="icon-tabContent">
@@ -163,6 +165,11 @@
                 <related-display :attraction=attraction></related-display>
             </p>
           </div>
+          <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
+            <p class="mb-0 m-t-30">
+               <seo-display :attraction=attraction></seo-display>
+            </p>
+          </div>
         </div>
     </div>
 </div>
@@ -176,6 +183,7 @@
     import imageComponent from '../../Management/Attraction/Includes/ImageComponent.vue';
     import upSellComponent from '../../Management/Attraction/Includes/UpSellComponent.vue';
     import relatedComponent from '../../Management/Attraction/Includes/RelatedComponent.vue';
+    import SeoComponent from '../../Management/Attraction/Includes/SeoComponent.vue';
 
     export default {
       components: {
@@ -184,6 +192,7 @@
           'image-display': imageComponent,
           'upsell-display': upSellComponent,
           'related-display': relatedComponent,
+          'seo-display': SeoComponent,
       },
       data() {
         return {
