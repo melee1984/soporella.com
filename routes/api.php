@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/attraction/{attraction}/category/{category}/map/submit', 'Api\Management\AttractionCategoryController@insertAttractionCategoryMapping');
 	Route::post('management/seo/{attraction}/submit', 'Api\Management\AttractionController@seoUpdate');	
 
+	Route::post('management/{attraction}/attraction/delete/submit', 'Api\Management\AttractionController@destroy');	
 
 	Route::get('management/category', 'Api\Management\CategoryController@index');	
 	Route::post('management/category/submit', 'Api\Management\CategoryController@store');	

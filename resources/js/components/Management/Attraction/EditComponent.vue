@@ -14,6 +14,7 @@
           <li class="nav-item"><a class="nav-link" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Gallery</a></li>
           <li class="nav-item"><a class="nav-link" id="up-selling-tab" data-toggle="tab" href="#up-selling" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Up Selling</a></li>
           <li class="nav-item"><a class="nav-link" id="seo-tab" data-toggle="tab" href="#seo" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>SEO</a></li>
+          <li class="nav-item"><a class="nav-link" id="setting-tab" data-toggle="tab" href="#setting" role="tab" aria-controls="setting-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Setting</a></li>
 
           <!-- <li class="nav-item"><a class="nav-link" id="related-item-tab" data-toggle="tab" href="#related-item" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Related Item</a></li> -->
         </ul>
@@ -170,6 +171,11 @@
                <seo-display :attraction=attraction></seo-display>
             </p>
           </div>
+           <div class="tab-pane fade" id="setting" role="tabpanel" aria-labelledby="setting-tab">
+            <p class="mb-0 m-t-30">
+              <a href="javascript:void(0)" class="btn btn-danger" v-on:click="deleteAttraction()">Delete Attraction</a>
+            </p>
+          </div>
         </div>
     </div>
 </div>
@@ -292,6 +298,26 @@
               self.$toasts.error(error.response.data.errors['file'][0]);
           });
 
+        },
+        deleteAttraction: function() {
+
+          var r = confirm("Are you sure you want to delete this attraction?");
+          if (r == true) {
+
+              var self = this;
+              axios.post('/api/management/'+self.attraction.id+'/attraction/delete/submit?api_token='+api_token).then(function (response) {
+                if (response.data.status) {
+                    self.$toasts.success(response.data.message);
+                    window.location.href = MAINURL+"/dashboard/attraction";
+              }
+                else {
+                   self.$toasts.error(response.data.message);
+                }
+            }).catch(function (error) {
+                self.$toasts.error(error.response.data.errors['file'][0]);
+            });
+
+        }
         },
       }
     }

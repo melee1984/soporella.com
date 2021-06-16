@@ -504,5 +504,23 @@ class AttractionController extends Controller
 
   }
 
+  public function destroy(Request $request, Attraction $attraction) {
+
+        $status = 0;
+        
+        if ($attraction) {
+          $deleteAttraction = Attraction::find($attraction->id);
+          $status = $deleteAttraction->delete();
+        }
+        
+        if ($status) {
+            $data['status'] = 1;
+            $data['message'] = "Successfully deleted attraction";
+        }
+
+        return response()->json($data, 200);
+
+  }
+
 
 }

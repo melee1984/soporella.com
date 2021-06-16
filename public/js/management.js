@@ -2180,6 +2180,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2283,6 +2289,23 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         self.$toasts.error(error.response.data.errors['file'][0]);
       });
+    },
+    deleteAttraction: function deleteAttraction() {
+      var r = confirm("Are you sure you want to delete this attraction?");
+
+      if (r == true) {
+        var self = this;
+        axios.post('/api/management/' + self.attraction.id + '/attraction/delete/submit?api_token=' + api_token).then(function (response) {
+          if (response.data.status) {
+            self.$toasts.success(response.data.message);
+            window.location.href = MAINURL + "/dashboard/attraction";
+          } else {
+            self.$toasts.error(response.data.message);
+          }
+        })["catch"](function (error) {
+          self.$toasts.error(error.response.data.errors['file'][0]);
+        });
+      }
     }
   }
 });
@@ -26772,6 +26795,35 @@ var render = function() {
                 1
               )
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade",
+              attrs: {
+                id: "setting",
+                role: "tabpanel",
+                "aria-labelledby": "setting-tab"
+              }
+            },
+            [
+              _c("p", { staticClass: "mb-0 m-t-30" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteAttraction()
+                      }
+                    }
+                  },
+                  [_vm._v("Delete Attraction")]
+                )
+              ])
+            ]
           )
         ]
       )
@@ -26932,6 +26984,27 @@ var staticRenderFns = [
             [
               _c("i", { staticClass: "icofont icofont-contacts" }),
               _vm._v("SEO")
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "setting-tab",
+                "data-toggle": "tab",
+                href: "#setting",
+                role: "tab",
+                "aria-controls": "setting-icon",
+                "aria-selected": "false"
+              }
+            },
+            [
+              _c("i", { staticClass: "icofont icofont-contacts" }),
+              _vm._v("Setting")
             ]
           )
         ])
