@@ -6,11 +6,11 @@
   <!--Title-->
   <div class="row">
     <div class="col-lg-12">
-      <h3>Search Results</h3>
+      <h3>{{ trans('messages.SEARCH_RESULTS') }}</h3>
       
       @if (count($results)<=0) 
         <div class="alert alert-danger">
-          No record found
+         {{ trans('messages.NO_RECORD_FOUND') }}
         </div>
       @endif 
 
@@ -33,14 +33,11 @@
                   </div>
                 @empty
             <div class="col-lg-3 col-md-3  col-sm-3 col-xs-12 tab-single" >
-              {{ trans('messages.NO_RECORD_FOUND') }}
             </div>
                 @endforelse
           </div>
           </div>
         </div>
-
-
 
     </div>
   </div>

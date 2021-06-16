@@ -12,7 +12,6 @@ class SearchController extends Controller
 {
     public function index(Request $request) {
 
-    	
     	$menus = Cache::remember('menus', 30, function () {
             $categories = Category::forMenu()->active()->get();
             foreach($categories as $category) {
@@ -21,10 +20,19 @@ class SearchController extends Controller
             return $categories;
         });	
 
-    	$results = Attraction::whereActive(1)
+        if ($request->input('v')!="") {
+            
+            $results = Attraction::whereActive(1)
                     ->whereLocationId($request->input('emirate'))
                     ->where('slug','like','%'.$request->input('v').'%')
-                    ->get();
+                    ->get();    
+        }
+        else {
+
+            $results = Attraction::whereActive(1)
+                    ->whereLocationId($request->input('emirate'))
+                    ->get();   
+        }
 
         foreach($results as $attraction) {
             $attraction->populateOriginalImage();
