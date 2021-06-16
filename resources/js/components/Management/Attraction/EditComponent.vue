@@ -13,7 +13,7 @@
 
           <li class="nav-item"><a class="nav-link" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Gallery</a></li>
           <li class="nav-item"><a class="nav-link" id="up-selling-tab" data-toggle="tab" href="#up-selling" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Up Selling</a></li>
-          <li class="nav-item"><a class="nav-link" id="related-item-tab" data-toggle="tab" href="#related-item" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Related Item</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" id="related-item-tab" data-toggle="tab" href="#related-item" role="tab" aria-controls="contact-icon" aria-selected="false"><i class="icofont icofont-contacts"></i>Related Item</a></li> -->
         </ul>
         <div class="tab-content" id="icon-tabContent">
           <div class="tab-pane fade show active" id="icon-home" role="tabpanel" aria-labelledby="icon-home-tab">

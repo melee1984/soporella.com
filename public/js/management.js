@@ -26799,27 +26799,6 @@ var staticRenderFns = [
               _vm._v("Up Selling")
             ]
           )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                id: "related-item-tab",
-                "data-toggle": "tab",
-                href: "#related-item",
-                role: "tab",
-                "aria-controls": "contact-icon",
-                "aria-selected": "false"
-              }
-            },
-            [
-              _c("i", { staticClass: "icofont icofont-contacts" }),
-              _vm._v("Related Item")
-            ]
-          )
         ])
       ]
     )
