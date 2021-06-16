@@ -119,7 +119,7 @@
   	      <section v-if="attraction.language_string.availability">
   	          <hr>
   	          <h3>{{ messages.AVAILABILITY }}</h3>        
-  	          <p>{{ attraction.language_string.availability }}</p>
+  	          <p v-html="attraction.language_string.availability"></p>
   	      </section>
           <section v-if="attraction.language_string.redemption">
           	<hr>

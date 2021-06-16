@@ -39939,9 +39939,13 @@ var render = function() {
                   _vm._v(" "),
                   _c("h3", [_vm._v(_vm._s(_vm.messages.AVAILABILITY))]),
                   _vm._v(" "),
-                  _c("p", [
-                    _vm._v(_vm._s(_vm.attraction.language_string.availability))
-                  ])
+                  _c("p", {
+                    domProps: {
+                      innerHTML: _vm._s(
+                        _vm.attraction.language_string.availability
+                      )
+                    }
+                  })
                 ])
               : _vm._e(),
             _vm._v(" "),
