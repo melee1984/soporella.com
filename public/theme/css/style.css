@@ -2217,3 +2217,12 @@ ul.step-anchor {
   	margin-top: 20px;
   }
 
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-width: thin;
+}
