@@ -22,9 +22,12 @@
 			                  <h4>
 			                  	<a href="{{ $promotion->attraction->pageUrl }}" title="{{ $promotion->attraction->title }}">{{ $promotion->attraction->title }}</a>
 			                  </h4>
-			                  <p>{{ Str::words($attractionText['description'], 15) }} <a href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.MORE')}}</a></p>
+			                  <p>{!! Str::words($attractionText['description'], 15) !!} <a href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.MORE')}}</a></p>
 			                  <a class="buy" href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.LABEL_BUY_TICKET' )}}</a>
 	        				</div>
+
+	        				
+	        				
 	          		@empty
 						<div class="col-lg-3 col-md-3  col-sm-3 col-xs-12 tab-single" >
 							{{ trans('messages.NO_RECORD_FOUND') }}
