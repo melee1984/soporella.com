@@ -2291,6 +2291,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     // this.dateMin = "2021-05-23";
     this.dateMin = minDate;
+
+    if (this.attraction.rates[0]) {
+      this.field.chooseTicket = this.attraction.rates[0].id;
+      this.rateDescription = this.rateHeader.rates[0].language_string.description;
+      this.rateDetailsArray = this.rateHeader.rates[0];
+    }
   },
   methods: {
     addCart: function addCart() {

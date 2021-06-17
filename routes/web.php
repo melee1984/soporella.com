@@ -62,28 +62,35 @@ Route::get('/js/lang.js', function () {
 Route::get('/product/image', 'ImageController@product')->name('product.image');
 
 Route::get('/lang/{locale}', function($locale) {
-
+	
 	session()->put('locale', $locale);
-
-	 Artisan::call('cache:clear');
-
+	Artisan::call('cache:clear');
 
 	$country = Country::whereCountryCode($locale)->first();
 	session()->put('conversion', $country->conversion);	
 	session()->put('currency', $country->currency);	
 
 	return redirect()->back();
-
 });
 
 Auth::routes();
 
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
 /* Dashboard */
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([
+  'prefix' => '{locale}', 
+  'where' => ['locale' => '[a-zA-Z]{2}'], 
+  'middleware' => 'setlocale'], function() { 
+
+	Route::get('/', 'HomeController@index')->name('home');
+	Route::get('/home', 'HomeController@index')->name('home');
+
+});
+
 Route::get('/search', 'SearchController@index')->name('search');
-
-
 Route::get('/about-us', 'PageController@aboutus')->name('aboutus');
 Route::get('/sell-tickets-with-us', 'PageController@sellticketwithus')->name('sellticketwithus');
 Route::get('/disclaimer', 'PageController@disclaimer')->name('disclaimer');
@@ -93,15 +100,19 @@ Route::get('/shipping-and-return-policy', 'PageController@shippingandreturnpolic
 Route::get('/contact-us', 'PageController@contactus')->name('contactus');
 Route::get('/sitemap', 'PageController@sitemap')->name('sitemap');
 
-Route::get('/promotions', 'PromotionsController@index')->name('promotions');
-Route::get('/shopping-cart/basket', 'Shopping\CartController@index')->name('shopping.basket');
-Route::get('/logout', 'User\LoginController@userlogout')->name('user.logout');
+
+
 // Display by Theme Category Type
 /* Dashboard */
 Route::post('/dashboard/login/submit', 'Management\DashboardController@validateLogin')
 	->name('dashboard.login.submit');
 Route::get('/dashboard/login', 'Management\DashboardController@login');
 Route::get('get/countries', 'Api\Management\CountriesController@getList');
+
+Route::get('/shopping-cart/basket', 'Shopping\CartController@index')->name('shopping.basket');
+Route::get('/logout', 'User\LoginController@userlogout')->name('user.logout');
+
+
 
 // Diriah nako display sa iyaha Ticket s
 // 
@@ -152,10 +163,22 @@ Route::group(['middleware' => 'admin'], function() {
 	Route::get('/dashboard/language', 'Management\LanguageController@index')->name('dashboard.management.language');
 });
 
-Route::get('promotion/{attraction:slug}', 'AttractionController@inside')->name('page.promotion');
-Route::get('visit/{attraction:slug}', 'AttractionController@inside')->name('page.visit');
-Route::get('top/{attraction:slug}', 'AttractionController@inside')->name('page.top');
-Route::get('attraction/{attraction:slug}', 'AttractionController@inside')->name('page.attraction.view');
-Route::get('{category:slug}/{attraction:slug}', 'AttractionController@show')->name('page.attraction');
-Route::get('{category:slug}', 'CategoryController@index')->name('page.category');
+
+Route::group([
+  'prefix' => '{locale}', 
+  'where' => ['locale' => '[a-zA-Z]{2}'], 
+  'middleware' => 'setlocale'], function() { 
+
+  		Route::get('/promotions', 'PromotionsController@index')->name('promotions');
+
+  });
+
+	Route::get('promotion/{attraction:slug}', 'AttractionController@inside')->name('page.promotion');
+	Route::get('visit/{attraction:slug}', 'AttractionController@inside')->name('page.visit');
+	Route::get('top/{attraction:slug}', 'AttractionController@inside')->name('page.top');
+	Route::get('attraction/{attraction:slug}', 'AttractionController@inside')->name('page.attraction.view');
+	Route::get('{category:slug}/{attraction:slug}', 'AttractionController@show')->name('page.attraction');
+	Route::get('{category:slug}', 'CategoryController@index')->name('page.category');
+
+
 
