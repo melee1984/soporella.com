@@ -75,20 +75,22 @@ Route::get('/lang/{locale}', function($locale) {
 
 Auth::routes();
 
-Route::get('/', function () {
-    return redirect(app()->getLocale());
-});
+// Route::get('/', function () {
+//     return redirect(app()->getLocale());
+// });
 /* Dashboard */
 
-Route::group([
-  'prefix' => '{locale}', 
-  'where' => ['locale' => '[a-zA-Z]{2}'], 
-  'middleware' => 'setlocale'], function() { 
-
-	Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 	Route::get('/home', 'HomeController@index')->name('home');
+	
+// Route::group([
+//   'prefix' => '{locale}', 
+//   'where' => ['locale' => '[a-zA-Z]{2}'], 
+//   'middleware' => 'setlocale'], function() { 
 
-});
+	
+
+// });
 
 Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/about-us', 'PageController@aboutus')->name('aboutus');
