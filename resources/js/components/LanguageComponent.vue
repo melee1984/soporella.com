@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a v-for="country in countries" :href="mainURL+'/lang/'+ country.country_code" class="flag-active">
+        <a v-for="country in countries" :href="mainURL+'/lang/'+ country.country_code+'?r='+page_url" class="flag-active">
             <i :class="'flag-icon ' + country.fla_icon"></i>
         </a>
     </div>
@@ -13,6 +13,7 @@
           countries: {},
           selectedLanguage: {},
           mainURL: MAINURL,
+          page_url: page_url,
         }
       },
       mounted() {

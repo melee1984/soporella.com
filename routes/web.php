@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Country;
 
-
 use App\Mail\OrderSuccessEmail;
 use App\Mail\TicketAttachEmail;
 
@@ -60,18 +59,7 @@ Route::get('/js/lang.js', function () {
 
 
 Route::get('/product/image', 'ImageController@product')->name('product.image');
-
-Route::get('/lang/{locale}', function($locale) {
-	
-	session()->put('locale', $locale);
-	Artisan::call('cache:clear');
-
-	$country = Country::whereCountryCode($locale)->first();
-	session()->put('conversion', $country->conversion);	
-	session()->put('currency', $country->currency);	
-
-	return redirect()->back();
-});
+Route::get('/lang/{locale}', 'LanguageController@url')->name('urlRedirect');
 
 Auth::routes();
 
@@ -81,14 +69,14 @@ Auth::routes();
 /* Dashboard */
 
 Route::get('/', 'HomeController@index')->name('home');
-	Route::get('/home', 'HomeController@index')->name('home');
+
+// dd(Request::path());
+Route::get('/home', 'HomeController@index')->name('home');
 	
 // Route::group([
 //   'prefix' => '{locale}', 
 //   'where' => ['locale' => '[a-zA-Z]{2}'], 
 //   'middleware' => 'setlocale'], function() { 
-
-	
 
 // });
 
@@ -171,7 +159,7 @@ Route::group([
   'where' => ['locale' => '[a-zA-Z]{2}'], 
   'middleware' => 'setlocale'], function() { 
 
-  		Route::get('/promotions', 'PromotionsController@index')->name('promotions');
+  	Route::get('/promotions', 'PromotionsController@index')->name('promotions');
 
   });
 

@@ -2371,7 +2371,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       countries: {},
       selectedLanguage: {},
-      mainURL: MAINURL
+      mainURL: MAINURL,
+      page_url: page_url
     };
   },
   mounted: function mounted() {
@@ -40219,7 +40220,14 @@ var render = function() {
         "a",
         {
           staticClass: "flag-active",
-          attrs: { href: _vm.mainURL + "/lang/" + country.country_code }
+          attrs: {
+            href:
+              _vm.mainURL +
+              "/lang/" +
+              country.country_code +
+              "?r=" +
+              _vm.page_url
+          }
         },
         [_c("i", { class: "flag-icon " + country.fla_icon })]
       )
