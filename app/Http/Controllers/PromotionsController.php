@@ -16,56 +16,56 @@ class PromotionsController extends Controller
      */
     public function index() 
     {
-        $menus = Cache::remember('menus', 30, function () {
-            $categories = Category::forMenu()->active()->get();
-            foreach($categories as $category) {
-                $category->language_string = $category->convertLanguageField();
-            }
-            return $categories;
-        });
+            $menus = Cache::remember('menus', 30, function () {
+                $categories = Category::forMenu()->active()->get();
+                foreach($categories as $category) {
+                    $category->language_string = $category->convertLanguageField();
+                }
+                return $categories;
+            });
 
-         $campaigns = Cache::remember('campaigns', 0, function () {
+         // $campaigns = Cache::remember('campaigns', 0, function () {
             
             $campaigns = Campaign::with('attraction')
                             ->whereActive(1)
                             ->whereSlider(0)
                             ->get();
 
-            foreach($campaigns as $campaign) {
+                foreach($campaigns as $campaign) {
 
-                $campaign->large_img = $campaign->populateCampaignImage(1,1);
-                $campaign->img_1 = $campaign->populateCampaignImage(0,1);
+                    $campaign->large_img = $campaign->populateCampaignImage(1,1);
+                    $campaign->img_1 = $campaign->populateCampaignImage(0,1);
 
-                $campaign->language_string = $campaign->attraction->convertLanguageField();
-             
-                if ($campaign->attraction->photo!="") {
-                    $campaign->attraction->img = $campaign->populateAttractionImage();    
-                }
-                
-                // Gallery Image 
-                foreach($campaign->attraction->images as $image) {
-                    $image->photo = $image->populateAttractionGalleryImage(); // Attraction Gallary 
-                }
-
-                $campaign->populateAttractionPageURL();
-
-                foreach($campaign->attraction->rates as $rate) {
-
-                    $rate->language = $rate->convertLanguageField();
-
-                    foreach($rate->details as $detail) {
-                        $detail->language = $detail->convertLanguageField();
-                        $detail->price = $detail->computePricedOnTheCountrySelected() . " " . $detail->getCurrency();
-                        $detail->markdown_price = $detail->computeMarkdownPricedOnTheCountrySelected() . " " . $detail->getCurrency();
+                    $campaign->language_string = $campaign->attraction->convertLanguageField();
+                 
+                    if ($campaign->attraction->photo!="") {
+                        $campaign->attraction->img = $campaign->populateAttractionImage();    
+                    }
+                    
+                    // Gallery Image 
+                    foreach($campaign->attraction->images as $image) {
+                        $image->photo = $image->populateAttractionGalleryImage(); // Attraction Gallary 
                     }
 
-                } 
+                    $campaign->populateAttractionPageURL();
 
-            }
-        
-            return $campaigns;
+                    foreach($campaign->attraction->rates as $rate) {
+
+                        $rate->language = $rate->convertLanguageField();
+
+                        foreach($rate->details as $detail) {
+                            $detail->language = $detail->convertLanguageField();
+                            $detail->price = $detail->computePricedOnTheCountrySelected() . " " . $detail->getCurrency();
+                            $detail->markdown_price = $detail->computeMarkdownPricedOnTheCountrySelected() . " " . $detail->getCurrency();
+                        }
+
+                    } 
+
+                }
             
-        });
+        //     return $campaigns;
+            
+        // });
 
     	return view('front.pages.promotions.view', compact('menus', 'campaigns'));
 
