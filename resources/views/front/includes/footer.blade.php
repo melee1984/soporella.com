@@ -8,11 +8,16 @@
                     {{ trans('messages.OUR_CLIENTS_TESTI') }}
                      <span class="quote">&#8221;</span>
                 </h3>
-                <p class="testi-message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                <p class="testi-message">
+                  @php
+                    $testi = App\Testimonials::inRandomOrder()->first();
+                    echo $testi->message . ", " .$testi->name;
+                  @endphp 
+                </p>
             </div>
             <div class="col-md-5 text-center newsletter  news-del">
                 <h3>{{trans('messages.SUBSCRIBE_FOOTER_NEWSLETTER')}}</h3>
-                  <newsletter-page></newsletter-page>
+                <newsletter-page></newsletter-page>
             </div>
           </div>
       </div>
