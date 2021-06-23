@@ -18,8 +18,9 @@
           <div class="item active">
               <div class="row tab-content">
               @forelse($results as $attraction) 
-              @php
               
+              @php
+           
               @endphp
                     <div class="col-lg-3 col-md-3  col-sm-3 col-xs-12 tab-single">
                       <a href="{{ $attraction->pageUrl }}">
@@ -28,7 +29,12 @@
                         <h4>
                           <a href="{{ $attraction->pageUrl }}" title="{{ $attraction->title }}">{{ $attraction->title }}</a>
                         </h4>
-                        <p><a href="{{ $attraction->pageUrl }}">{{ trans('messages.MORE')}}</a></p>
+                        <p>
+
+                          {!! Str::words($attraction->language_string['description'], 15) !!}
+
+                          <a href="{{ $attraction->pageUrl }}">{{ trans('messages.MORE')}}</a>
+                        </p>
                         <a class="buy" href="{{ $attraction->pageUrl }}">{{ trans('messages.LABEL_BUY_TICKET' )}}</a>
                   </div>
                 @empty
