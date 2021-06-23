@@ -96,7 +96,13 @@
                             <tr>
                               <th scope="row">{{ date('m/d/Y', strtotime($order->submitted_at) ) }}</th>
                               <td>{{ $order->ref_no }}</td>
-                              <td>{{ $order->payment->title }}</td>
+                              <td>
+                                @if ($order->payment)
+                                  {{ $order->payment->title }}
+                                @else 
+                                 - 
+                                @endif
+                              </td>
                               <td>{{ $order->summary()['totalQty'] }}</td>
                               <td>{{ $order->summary()['subTotal'] }}</td>
                               <td>{{ $order->summary()['discount'] }}</td>
