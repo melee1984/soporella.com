@@ -75,10 +75,14 @@ class BasketController extends Controller
 
 		                    		if ($list['qty']!=0) {
 
-										$attractionRateDetails->language_string = $attractionRateDetails->convertLanguageField();
-
 		                    			$attractionRateDetails = AttractionRateDetails::find($list['id']);
 
+		                    			if ($attractionRateDetails) {
+
+		                    				$attractionRateDetails->language_string = $attractionRateDetails->convertLanguageField();	
+		                    				
+		                    			}
+		                    			
 										array_push($data_variance, array('rate_detail_id' => $attractionRateDetails->id,
 		                                                    'title' => $attractionRateDetails->language_string['title'],
 		                                                    'price' => $attractionRateDetails->getPrice(),
