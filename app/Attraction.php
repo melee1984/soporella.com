@@ -59,6 +59,15 @@ class Attraction extends Model
                         ->with('details')
                         ->orderBy('sorting', 'asc');
     }   
+
+     /**
+     * [rates description]
+     * @return [type] [description]
+     */
+    public function location()
+    {
+        return $this->BelongsTo('App\Location');
+    }  
     
     public function convertLanguageField() 
     {   
