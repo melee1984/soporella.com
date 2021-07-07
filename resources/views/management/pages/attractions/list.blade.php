@@ -12,10 +12,8 @@
          <tbody>
 
         @foreach($attractions as $attraction) 
-
           @php
             $attraction->language_string  = $attraction->convertLanguageField();
-          
           @endphp
           <tr>
             <td>
@@ -41,9 +39,7 @@
               <a href="{{ route('dashboard.management.edit', $attraction) }}" class="btn btn-success btn-sm" >Edit</a>
             </td>
           </tr>
-
     @endforeach
-
         </tbody>
       </table>
   </div>

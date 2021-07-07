@@ -39938,7 +39938,7 @@ var render = function() {
           _c("div", { staticClass: "col-lg-12" }, [
             _c("h3", [_vm._v("Ticket Details")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.rateDescription))]),
+            _c("p", { domProps: { innerHTML: _vm._s(_vm.rateDescription) } }),
             _vm._v(" "),
             _vm.attraction.language_string.availability
               ? _c("section", [

@@ -115,7 +115,7 @@
       <div class="row">
         <div class="col-lg-12">
           <h3>Ticket Details</h3>
-          <p>{{ rateDescription }}</p>
+          <p v-html="rateDescription"></p>
   	      <section v-if="attraction.language_string.availability">
   	          <hr>
   	          <h3>{{ messages.AVAILABILITY }}</h3>        
