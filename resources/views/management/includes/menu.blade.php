@@ -14,7 +14,7 @@
                     <li><a href="{{ URL::to('dashboard/top-attraction') }}">Top Attraction</a></li>
                     <li><a href="{{ URL::to('dashboard/category') }}">Category</a></li>
                     <li><a href="{{ URL::to('dashboard/campaign') }}">Campaign</a></li>
-
+                    <li><a href="{{ URL::to('dashboard/coupon') }}">Coupon</a></li>
                   </ul>
           </li>
            <li class="sidebar-list">

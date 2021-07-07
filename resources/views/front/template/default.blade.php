@@ -23,6 +23,7 @@
         @include('front.includes.footer')
         
         @include('front.includes.js')
+
         </div>
     
   </body>

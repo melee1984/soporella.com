@@ -35,6 +35,7 @@ Vue.use(wysiwyg, {
 import AttractionEdit from './components/Management/Attraction/EditComponent.vue';
 import Language from './components/Management/LanguageComponent.vue';
 import Category from './components/Management/Category/CategoryComponent.vue';
+import Coupon from './components/Management/Coupon/CouponComponent.vue';
 import UserComponent from './components/Management/User/UserComponent.vue';
 import PromotionComponent from './components/Management/Promotion/PromotionComponent.vue';
 import TopAttractionComponent from './components/Management/TopAttraction/TopAttractionComponent.vue';
@@ -47,6 +48,7 @@ import LanguageList from './components/Management/Language/LanguageComponent.vue
 Vue.component('attraction-edit', AttractionEdit);
 Vue.component('language', Language);
 Vue.component('category-list', Category);
+Vue.component('coupon-list', Coupon);
 Vue.component('user-list', UserComponent);
 Vue.component('promotion-list', PromotionComponent);
 Vue.component('top-attraction-list', TopAttractionComponent);

@@ -16,5 +16,6 @@
 		var api_token = '';
 	@endif
 	var minDate = '{{$date}}';
+
 </script>
 

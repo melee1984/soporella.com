@@ -175,8 +175,20 @@ class AttractionController extends Controller
             'description' => 'required',
         ]);
 
+      $active = false;
+
+      if($request->input('active') == 'true') {
+        $active = 1;
+      }
+      elseif ($request->input('active') == 'false') {
+         $active = 0;
+      }
+      else {
+        $active = $request->input('active')?1:0;
+      }
+
       $attractionRateHeader = AttractionRateHeader::create([
-          'active' => $request->input('active')?1:0,
+          'active' => $active,
           'sorting' =>  $request->input('sorting'),
           'attraction_id' => $attraction->id,
       ]);
@@ -226,7 +238,19 @@ class AttractionController extends Controller
             'description' => 'required',
         ]);
 
-      $attractionRateHeader->active = $request->input('active')?1:0;
+      $active = 0;
+
+      if($request->input('active') == 'true') {
+        $active = 1;
+      }
+      elseif ($request->input('active') == 'false') {
+         $active = 0;
+      }
+      else {
+        $active = $request->input('active')?1:0;
+      }
+
+      $attractionRateHeader->active = $active;
       $attractionRateHeader->sorting =  $request->input('sorting');
     
       $currentData = $attractionRateHeader->languageField();

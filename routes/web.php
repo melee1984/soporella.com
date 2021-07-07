@@ -48,10 +48,8 @@ Route::get('/js/lang.js', function () {
             $name           = basename($file, '.php');
             $strings[$name] = require $file;
         }
-
         return $strings;
     });
-
     header('Content-Type: text/javascript');
     echo('window.trans = ' . json_encode($strings) . ';');
     exit();
@@ -151,6 +149,8 @@ Route::group(['middleware' => 'admin'], function() {
 		->name('dashboard.logout');
 
 	Route::get('/dashboard/language', 'Management\LanguageController@index')->name('dashboard.management.language');
+
+		Route::get('/dashboard/coupon', 'Management\CouponController@index')->name('dashboard.management.coupon');
 });
 
 

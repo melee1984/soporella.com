@@ -196,7 +196,7 @@
        data() {
         return {
           field: {
-            active: false,
+            active: 0,
             title: "",
             description: "",
             sorting: "",

@@ -138,6 +138,7 @@
         var api_token = '';
       @endif
     </script>
+
         <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     <!-- Bootstrap js-->
