@@ -11,7 +11,7 @@ use App\Models\Attraction\AttractionRateHeader;
 
 class AttractionController extends Controller
 {
-	public function show($category, Attraction $attraction) 
+	public function show($locale, $category, Attraction $attraction) 
     {      
 		$menus = Cache::remember('menus', 30, function () {
             $menus = Category::forMenu()->active()->get();
@@ -55,17 +55,20 @@ class AttractionController extends Controller
      * @param  Category $category [description]
      * @return [type]             [description]
      */
-    public function inside(Attraction $attraction) 
+    public function inside($locale, Attraction $attraction) 
     {   
+
         $menus = Cache::remember('menus', 30, function () {
-            $menus = Category::forMenu()->active()->get();
+
+            $menus = Category::forMenu()
+                        ->active()->get();
 
             foreach ($menus as $category) {
                 $category->language_string = $category->convertLanguageField();
             }
             return $menus;
-        });
 
+        });
 
         $attraction->language_string = $attraction->convertLanguageField(); 
         $rates = $attraction->rates;

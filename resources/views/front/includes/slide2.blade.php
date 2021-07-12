@@ -10,7 +10,7 @@
             <div class="carousel-caption">
               <h2>{{ $campaign->attraction->title }}</h2>
               <p>{{ Str::words($campaign->attraction->language_string['description'] , 30) }} </p>
-              <a class="buy" href="{{ route('page.promotion', $campaign->attraction) }}">{{ trans('messages.LABEL_BUY_TICKET') }}</a>
+              <a class="buy" href="{{ route('page.promotion', [app()->getLocale(), $campaign->attraction]) }}">{{ trans('messages.LABEL_BUY_TICKET') }}</a>
             </div>
         </div>    
       </div>

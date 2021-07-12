@@ -14,7 +14,7 @@ class CategoryController extends Controller
      * @param  Category $category [description]
      * @return [type]             [description]
      */
-    public function index(Category $category) 
+    public function index($locale, Category $category) 
     {      
         $menus = Cache::remember('menus', 30, function () {
             $categories = Category::forMenu()->active()->get();
@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
         foreach($category->attractionsMapping as $attractions) {
             $attractions->attraction->populateAttractionImage();
-            $attractions->attraction->pageUrl = route('page.attraction', [$category->slug, $attractions->attraction]);
+            $attractions->attraction->pageUrl = route('page.attraction', [app()->getLocale(), $category->slug, $attractions->attraction->slug]);
         }   
         
         return view('front.pages.listing', compact('menus', 'category'));

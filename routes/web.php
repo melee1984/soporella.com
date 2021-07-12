@@ -61,22 +61,24 @@ Route::get('/lang/{locale}', 'LanguageController@url')->name('urlRedirect');
 
 Auth::routes();
 
-// Route::get('/', function () {
-//     return redirect(app()->getLocale());
-// });
+Route::get('/', function () {
+    return redirect(app()->getLocale());
+});
 /* Dashboard */
 
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
 
 // dd(Request::path());
 Route::get('/home', 'HomeController@index')->name('home');
 	
-// Route::group([
-//   'prefix' => '{locale}', 
-//   'where' => ['locale' => '[a-zA-Z]{2}'], 
-//   'middleware' => 'setlocale'], function() { 
+Route::group([
+  'prefix' => '{locale}', 
+  'where' => ['locale' => '[a-zA-Z]{2}'], 
+  'middleware' => 'setlocale'], function() { 
 
-// });
+  	 Route::get('/', 'HomeController@index')->name('home');
+
+});
 
 Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/about-us', 'PageController@aboutus')->name('aboutus');
@@ -150,25 +152,28 @@ Route::group(['middleware' => 'admin'], function() {
 
 	Route::get('/dashboard/language', 'Management\LanguageController@index')->name('dashboard.management.language');
 
-		Route::get('/dashboard/coupon', 'Management\CouponController@index')->name('dashboard.management.coupon');
+	Route::get('/dashboard/coupon', 'Management\CouponController@index')->name('dashboard.management.coupon');
 });
 
 
 Route::group([
-  'prefix' => '{locale}', 
-  'where' => ['locale' => '[a-zA-Z]{2}'], 
-  'middleware' => 'setlocale'], function() { 
+	  'prefix' => '{locale}', 
+	  'where' => ['locale' => '[a-zA-Z]{2}'], 
+	  'middleware' => 'setlocale'], function() { 
 
-  	Route::get('/promotions', 'PromotionsController@index')->name('promotions');
-
-  });
-
-	Route::get('promotion/{attraction:slug}', 'AttractionController@inside')->name('page.promotion');
+	Route::get('/promotions', 'PromotionsController@index')->name('promotions');
+	Route::get('/promotion/{attraction:slug}', 'AttractionController@inside')->name('page.promotion');
+	Route::get('{category:slug}', 'CategoryController@index')->name('page.category');
+	Route::get('{category:slug}/{attraction:slug}', 'AttractionController@show')->name('page.attraction');
 	Route::get('visit/{attraction:slug}', 'AttractionController@inside')->name('page.visit');
 	Route::get('top/{attraction:slug}', 'AttractionController@inside')->name('page.top');
 	Route::get('attraction/{attraction:slug}', 'AttractionController@inside')->name('page.attraction.view');
-	Route::get('{category:slug}/{attraction:slug}', 'AttractionController@show')->name('page.attraction');
-	Route::get('{category:slug}', 'CategoryController@index')->name('page.category');
+});
 
 
+	
+	
+
+
+	
 

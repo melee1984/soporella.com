@@ -12,7 +12,7 @@
     Having trouble? <a href="{{ route('contactus') }}">Contact us</a>
   </p>
   <p class="lead">
-    <a class="btn btn-primary btn-md buy" href="{{ route('home') }}" role="button">Continue to homepage</a>
+    <a class="btn btn-primary btn-md buy" href="{{ route('home', app()->getLocale()) }}" role="button">Continue to homepage</a>
   </p>
 </div>
 

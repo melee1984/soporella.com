@@ -39,7 +39,7 @@ class Attraction extends Model
      */
     public function scopePopulateAttractionPageURL($query) {
         
-        return $this->pageUrl = route('page.attraction.view', $this);
+        return $this->pageUrl = route('page.attraction.view', [app()->getLocale(), $this->slug]);
     }
 
     public function scopePopulateOriginalImage($query) {

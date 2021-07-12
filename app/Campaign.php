@@ -37,7 +37,7 @@ class Campaign extends Model
      * @return return templated page URL contract in the object
      */
     public function scopePopulateAttractionPageURL($query) {
-        return $this->attraction->pageUrl = route('page.promotion', $this->attraction);
+        return $this->attraction->pageUrl = route('page.promotion', [app()->getLocale(), $this->attraction->slug]);
     }
 
     /**

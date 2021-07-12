@@ -16,6 +16,7 @@
 		var api_token = '';
 	@endif
 	var minDate = '{{$date}}';
-
+	
+	var locale = '{{app()->getLocale()}}';
 </script>
 
