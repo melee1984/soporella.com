@@ -22,6 +22,7 @@ class BasketController extends Controller
 		$data = array();
         $data['status'] = 0;
         $data['message'] = __('Unable to process your request. Please try again.');
+
         $withAddValue = false;
         $currency = "AED";
 
@@ -32,10 +33,9 @@ class BasketController extends Controller
         }
 
         if (!$withAddValue) {
-        	$data['message'] = __('Sorry, unable to process your request. You have added a item without quantity.');
+        	$data['message'] = __('Sorry, unable to process your request. You have added an item without quantity.');
         }
         else {
-
         		
         	try {
         		
@@ -45,17 +45,17 @@ class BasketController extends Controller
 
 		             if (!$cart) {
 
-		                if (Auth::check()) {
+		                // if (Auth::check()) {
 
-		                    $cart = new Cart;
-		                    $cart->session_id = Session::getId();
-		                    $cart->user_id = Auth::User()->id;
-		                    $cart->ip_address  = $_SERVER['REMOTE_ADDR'];
-		                    $cart->active = 0;
-		                    $cart->save();
+		                //     $cart = new Cart;
+		                //     $cart->session_id = Session::getId();
+		                //     $cart->user_id = Auth::User()->id;
+		                //     $cart->ip_address  = $_SERVER['REMOTE_ADDR'];
+		                //     $cart->active = 0;
+		                //     $cart->save();
 
-		                }
-		                else {
+		                // }
+		                // else {
 
 		                    $cart = Cart::updateOrCreate(
 		                        ['session_id' => Session::getId(), 'ip_address' => $_SERVER['REMOTE_ADDR'], 'active' => 0],
@@ -64,6 +64,13 @@ class BasketController extends Controller
 
 		                    if ($cart) {
 		                    	
+
+		                    	if (Auth::check()) {
+				                    $cart->user_id = Auth::User()->id;
+				                    $cart->active = 0;
+				                    $cart->save();
+				                }
+
 		                    	// Adding item into the Cart Details table 
 								// Haveing the same functionality this should be refactor
 
@@ -113,12 +120,14 @@ class BasketController extends Controller
 								$data['status'] = 1;
 								$data['message'] = __('Successfully Updated cart');
 
-						}
+						// }
+
 
 					}
 					else {
 
-
+		             	dd($cart);
+		             	
 						// Adding item into the Cart Details table  
 						// Haveing the same functionality this should be refactor
 						$sub_total = 0;
@@ -164,6 +173,8 @@ class BasketController extends Controller
 						$data['status'] = 1;
 						$data['message'] = __('Successfully added item to your cart');
 					}
+
+
 				}
 				else {
 
