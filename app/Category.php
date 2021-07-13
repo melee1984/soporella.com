@@ -20,6 +20,7 @@ class Category extends Model
     public function attractionsMapping()
     {
         return $this->hasMany('App\Models\Category\CategoryAttractionMapping', 'category_id', 'id');
+
     }
     /**
      * Menu with active status 

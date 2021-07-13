@@ -27,8 +27,12 @@ class CategoryController extends Controller
         });
 
         foreach($category->attractionsMapping as $attractions) {
-            $attractions->attraction->populateAttractionImage();
-            $attractions->attraction->pageUrl = route('page.attraction', [app()->getLocale(), $category->slug, $attractions->attraction->slug]);
+
+            if ($attractions->attraction) {
+                $attractions->attraction->populateAttractionImage();
+                $attractions->attraction->pageUrl = route('page.attraction', [app()->getLocale(), $category->slug, $attractions->attraction->slug]);    
+            }
+            
         }   
         
         return view('front.pages.listing', compact('menus', 'category'));

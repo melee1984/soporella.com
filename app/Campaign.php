@@ -17,6 +17,7 @@ class Campaign extends Model
     public function attraction()
     {
         return $this->hasOne('App\Attraction', 'id', 'attraction_id')
+                        ->whereActive(1)
                         ->with('rates')
                         ->with('images');
     }

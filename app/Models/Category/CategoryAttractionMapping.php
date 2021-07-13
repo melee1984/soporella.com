@@ -16,7 +16,8 @@ class CategoryAttractionMapping extends Model
      */
     public function attraction()
     {
-        return $this->belongsTo('App\Attraction', 'attraction_id', 'id');
+        return $this->belongsTo('App\Attraction', 'attraction_id', 'id')
+                    ->whereActive(1);
     }	
     
 

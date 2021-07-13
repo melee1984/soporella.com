@@ -12,6 +12,7 @@
 	        <div class="item active">
 	          	<div class="row tab-content">
 	          		@forelse($category->attractionsMapping as $promotion) 
+	          			@if ($promotion->attraction)
 							@php
 								$attractionText = $promotion->attraction->convertLanguageField();
 							@endphp
@@ -25,9 +26,7 @@
 			                  <p>{!! Str::words($attractionText['description'], 15) !!} <a href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.MORE')}}</a></p>
 			                  <a class="buy" href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.LABEL_BUY_TICKET' )}}</a>
 	        				</div>
-
-	        				
-	        				
+        				@endif
 	          		@empty
 						<div class="col-lg-3 col-md-3  col-sm-3 col-xs-12 tab-single" >
 							{{ trans('messages.NO_RECORD_FOUND') }}
