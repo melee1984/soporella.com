@@ -6,6 +6,7 @@
             <th>Image</th>
             <th>Details</th>
             <th>Emirates</th>
+            <th>Active</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -34,6 +35,9 @@
               @else 
                 - 
               @endif
+            </td>
+            <td>
+              {{ $attraction->active?'Active':'Inactive'}}
             </td>
             <td>
               <a href="{{ route('dashboard.management.edit', $attraction) }}" class="btn btn-success btn-sm" >Edit</a>

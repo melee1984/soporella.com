@@ -24,37 +24,34 @@
                           <thead class="thead-dark">
                             <tr>
                               <th scope="col" width="5%">Active</th>
-                              <th scope="col" width="70%">Category</th>
-                              <th scope="col" width="10%">Menu display</th>
+                              <th scope="col" width="70%">Coupon</th>
+                              <th scope="col" width="10%">Amount</th>
                               <th scope="col" width="5%"></th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr v-if="!categoryArray.length">
+                            <tr v-if="!objArray.length">
                               <td colspan="4">No record found</td>
                             </tr>
-                            <tr v-for="category in categoryArray">
+                            <tr v-for="coupon in objArray">
                               <td> 
                                 <div class="media">
                                   <div class="media-body text-left icon-state">
                                     <label class="switch">
-                                      <input type="checkbox" v-model="category.active" @change="updateStatus(category)"><span class="switch-state"></span>
+                                      <input type="checkbox" v-model="coupon.active" @change="updateStatus(coupon)"><span class="switch-state"></span>
                                     </label>
                                   </div>
                                 </div>
                               </td>
-                              <td><a href="javascript:void(0)" v-on:click="formEdit(category)">{{ category.language_string.title?category.language_string.title:'Edit' }}</a></td>
-                              <td> 
-                                <div class="media">
-                                  <div class="media-body text-left icon-state">
-                                    <label class="switch">
-                                      <input type="checkbox" v-model="category.is_menu" @change="updateMenu(category)"><span class="switch-state"></span>
-                                    </label>
-                                  </div>
-                                </div>
+                              <td>
+                                {{ coupon.coupon }}
                               </td>
+                               <td>
+                                {{ coupon.discount_amount }}
+                              </td>
+                             
                               <td class="text-right">
-                                <a href="javascript:void(0)" class="btn btn-square btn-light btn-sm" v-on:click="deleteRecord(category)">Delete</a>
+                                <a href="javascript:void(0)" class="btn btn-square btn-light btn-sm" v-on:click="deleteRecord(coupon)">Delete</a>
                               </td>
                             </tr>
                           </tbody>
@@ -82,18 +79,14 @@
                                       <input class="checkbox_animated" id="active" name="active" value="1" type="checkbox" data-original-title="" title="" v-model="field.active" > Active
                                     </label>
                                   </div>
-                                   <div class="form-group col-12">
-                                     <label class="d-block" for="isMenu">
-                                      <input class="checkbox_animated" id="isMenu" name="isMenu" value="1" type="checkbox" data-original-title="" title="" v-model="field.is_menu" > Display in the Menu
-                                    </label>
-                                  </div>
+                               
                                   <div class="form-group col-12">
-                                    <label for="title">Title</label>
-                                    <input class="form-control" id="title" type="text" data-original-title="" title="" v-model="field.title">
+                                    <label for="title">Coupon</label>
+                                    <input class="form-control" id="title" type="text" data-original-title="" title="" v-model="field.coupon">
                                   </div>
-                                    <div class="form-group col-12">
-                                    <label for="title">Sorting</label>
-                                    <input class="form-control" id="title" type="text" data-original-title="" title="" v-model="field.sorting">
+                                     <div class="form-group col-12">
+                                    <label for="title">Amount</label>
+                                    <input class="form-control" id="title" type="text" data-original-title="" title="" v-model="field.discount_amount">
                                   </div>
                                 </div>
                               </div>
@@ -128,10 +121,10 @@
           field: {
             title: "",
             active: false,
-            is_menu: false,
-            sorting: "",
+            discount_amount: "",
+            coupon: "",
           },
-          categoryArray: {},
+          objArray: {},
           lang: JSON.parse(localStorage.selectedLanguage).country_code,
           addForm: false,
           editForm: false,
@@ -150,8 +143,8 @@
       methods: {
         fetchData: function() {
           var self = this;
-          axios.get('/api/management/category?api_token='+api_token).then(function (response) {
-              self.categoryArray = response.data.categories;
+          axios.get('/api/management/coupon?api_token='+api_token).then(function (response) {
+              self.objArray = response.data.coupons;
              
           }).catch(function (error) {
               console.log(error);
@@ -171,9 +164,8 @@
 
           }
           formData.append('active', self.field.active);
-          formData.append('title', self.field.title);
-          formData.append('is_menu', self.field.is_menu);
-          formData.append('sorting', self.field.sorting);
+          formData.append('amount', self.field.amount);
+          formData.append('coupon', self.field.coupon);
 
           axios.post(url, formData).then(function (response) {
             if (response.data.status) {
@@ -202,26 +194,14 @@
               self.$toasts.error(error.response.data.errors['file'][0]);
           });
         },
-        updateMenu: function(obj) {
-          var self = this;
-          axios.post('/api/management/category/'+obj.id+'/menu/submit?api_token='+api_token).then(function (response) {
-            if (response.data.status) {
-              self.$toasts.success(response.data.message);
-            }
-            else {
-               self.$toasts.error(response.data.message);
-            }
-          }).catch(function (error) {
-              self.$toasts.error(error.response.data.errors['file'][0]);
-          });
-        },
+        
         deleteRecord(obj) {
           var self = this;
           self.loading= true;
           var txt;
           var r = confirm("Are you sure you want to delete this record?");
           if (r == true) {
-            axios.post('/api/management/category/'+obj.id+'/delete/submit?api_token='+api_token).then(function (response) {
+            axios.post('/api/management/coupon/'+obj.id+'/delete/submit?api_token='+api_token).then(function (response) {
               if (response.data.status) {
                 self.fetchData();
                 self.$toasts.success(response.data.message);
@@ -252,7 +232,6 @@
           this.viewListing = false;
           this.editForm = true;
           this.field = obj;
-          this.field.title = obj.language_string.title;
         },
       }
     }

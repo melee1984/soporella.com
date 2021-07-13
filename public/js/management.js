@@ -3392,6 +3392,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3402,7 +3410,8 @@ __webpack_require__.r(__webpack_exports__);
         discount_string: "",
         attraction_id: "",
         slider: false,
-        file: ""
+        file: "",
+        country_code: ""
       },
       objArray: {},
       lang: JSON.parse(localStorage.selectedLanguage).country_code,
@@ -3410,7 +3419,8 @@ __webpack_require__.r(__webpack_exports__);
       editForm: false,
       viewListing: true,
       displaying: {},
-      attractions: {}
+      attractions: {},
+      languageList: {}
     };
   },
   computed: {},
@@ -3425,6 +3435,7 @@ __webpack_require__.r(__webpack_exports__);
         self.objArray = response.data.campaigns;
         self.displaying = response.data.display_options;
         self.attractions = response.data.attractions;
+        self.languageList = response.data.language;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -3472,6 +3483,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('display_option', self.field.display_option);
       formData.append('slider', self.field.slider);
       formData.append('discount_string', self.field.discount_string);
+      formData.append('country_code', self.field.country_code);
       axios.post(url, formData).then(function (response) {
         if (response.data.status) {
           self.fetchData();
@@ -3985,23 +3997,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       field: {
         title: "",
         active: false,
-        is_menu: false,
-        sorting: ""
+        discount_amount: "",
+        coupon: ""
       },
-      categoryArray: {},
+      objArray: {},
       lang: JSON.parse(localStorage.selectedLanguage).country_code,
       addForm: false,
       editForm: false,
@@ -4016,8 +4021,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchData: function fetchData() {
       var self = this;
-      axios.get('/api/management/category?api_token=' + api_token).then(function (response) {
-        self.categoryArray = response.data.categories;
+      axios.get('/api/management/coupon?api_token=' + api_token).then(function (response) {
+        self.objArray = response.data.coupons;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -4035,9 +4040,8 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       formData.append('active', self.field.active);
-      formData.append('title', self.field.title);
-      formData.append('is_menu', self.field.is_menu);
-      formData.append('sorting', self.field.sorting);
+      formData.append('amount', self.field.amount);
+      formData.append('coupon', self.field.coupon);
       axios.post(url, formData).then(function (response) {
         if (response.data.status) {
           self.cancelForm();
@@ -4064,18 +4068,6 @@ __webpack_require__.r(__webpack_exports__);
         self.$toasts.error(error.response.data.errors['file'][0]);
       });
     },
-    updateMenu: function updateMenu(obj) {
-      var self = this;
-      axios.post('/api/management/category/' + obj.id + '/menu/submit?api_token=' + api_token).then(function (response) {
-        if (response.data.status) {
-          self.$toasts.success(response.data.message);
-        } else {
-          self.$toasts.error(response.data.message);
-        }
-      })["catch"](function (error) {
-        self.$toasts.error(error.response.data.errors['file'][0]);
-      });
-    },
     deleteRecord: function deleteRecord(obj) {
       var self = this;
       self.loading = true;
@@ -4083,7 +4075,7 @@ __webpack_require__.r(__webpack_exports__);
       var r = confirm("Are you sure you want to delete this record?");
 
       if (r == true) {
-        axios.post('/api/management/category/' + obj.id + '/delete/submit?api_token=' + api_token).then(function (response) {
+        axios.post('/api/management/coupon/' + obj.id + '/delete/submit?api_token=' + api_token).then(function (response) {
           if (response.data.status) {
             self.fetchData();
             self.$toasts.success(response.data.message);
@@ -4114,7 +4106,6 @@ __webpack_require__.r(__webpack_exports__);
       this.viewListing = false;
       this.editForm = true;
       this.field = obj;
-      this.field.title = obj.language_string.title;
     }
   }
 });
@@ -29273,6 +29264,92 @@ var render = function() {
                                               _c(
                                                 "label",
                                                 { attrs: { for: "title" } },
+                                                [_vm._v("Language")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.field.country_code,
+                                                      expression:
+                                                        "field.country_code"
+                                                    }
+                                                  ],
+                                                  staticClass: "form-control",
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        _vm.field,
+                                                        "country_code",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    { attrs: { value: "" } },
+                                                    [_vm._v("Select Language")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._l(
+                                                    _vm.languageList,
+                                                    function(language) {
+                                                      return _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value:
+                                                              language.country_code
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              language.country_name
+                                                            )
+                                                          )
+                                                        ]
+                                                      )
+                                                    }
+                                                  )
+                                                ],
+                                                2
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "form-group col-12"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                { attrs: { for: "title" } },
                                                 [_vm._v("Display")]
                                               ),
                                               _vm._v(" "),
@@ -30493,7 +30570,7 @@ var render = function() {
                             _c(
                               "tbody",
                               [
-                                !_vm.categoryArray.length
+                                !_vm.objArray.length
                                   ? _c("tr", [
                                       _c("td", { attrs: { colspan: "4" } }, [
                                         _vm._v("No record found")
@@ -30501,7 +30578,7 @@ var render = function() {
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
-                                _vm._l(_vm.categoryArray, function(category) {
+                                _vm._l(_vm.objArray, function(coupon) {
                                   return _c("tr", [
                                     _c("td", [
                                       _c("div", { staticClass: "media" }, [
@@ -30521,27 +30598,26 @@ var render = function() {
                                                     {
                                                       name: "model",
                                                       rawName: "v-model",
-                                                      value: category.active,
+                                                      value: coupon.active,
                                                       expression:
-                                                        "category.active"
+                                                        "coupon.active"
                                                     }
                                                   ],
                                                   attrs: { type: "checkbox" },
                                                   domProps: {
                                                     checked: Array.isArray(
-                                                      category.active
+                                                      coupon.active
                                                     )
                                                       ? _vm._i(
-                                                          category.active,
+                                                          coupon.active,
                                                           null
                                                         ) > -1
-                                                      : category.active
+                                                      : coupon.active
                                                   },
                                                   on: {
                                                     change: [
                                                       function($event) {
-                                                        var $$a =
-                                                            category.active,
+                                                        var $$a = coupon.active,
                                                           $$el = $event.target,
                                                           $$c = $$el.checked
                                                             ? true
@@ -30557,7 +30633,7 @@ var render = function() {
                                                           if ($$el.checked) {
                                                             $$i < 0 &&
                                                               _vm.$set(
-                                                                category,
+                                                                coupon,
                                                                 "active",
                                                                 $$a.concat([
                                                                   $$v
@@ -30566,7 +30642,7 @@ var render = function() {
                                                           } else {
                                                             $$i > -1 &&
                                                               _vm.$set(
-                                                                category,
+                                                                coupon,
                                                                 "active",
                                                                 $$a
                                                                   .slice(0, $$i)
@@ -30579,7 +30655,7 @@ var render = function() {
                                                           }
                                                         } else {
                                                           _vm.$set(
-                                                            category,
+                                                            coupon,
                                                             "active",
                                                             $$c
                                                           )
@@ -30587,7 +30663,7 @@ var render = function() {
                                                       },
                                                       function($event) {
                                                         return _vm.updateStatus(
-                                                          category
+                                                          coupon
                                                         )
                                                       }
                                                     ]
@@ -30604,126 +30680,19 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "javascript:void(0)" },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.formEdit(category)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            _vm._s(
-                                              category.language_string.title
-                                                ? category.language_string.title
-                                                : "Edit"
-                                            )
-                                          )
-                                        ]
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(coupon.coupon) +
+                                          "\n                              "
                                       )
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _c("div", { staticClass: "media" }, [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "media-body text-left icon-state"
-                                          },
-                                          [
-                                            _c(
-                                              "label",
-                                              { staticClass: "switch" },
-                                              [
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: category.is_menu,
-                                                      expression:
-                                                        "category.is_menu"
-                                                    }
-                                                  ],
-                                                  attrs: { type: "checkbox" },
-                                                  domProps: {
-                                                    checked: Array.isArray(
-                                                      category.is_menu
-                                                    )
-                                                      ? _vm._i(
-                                                          category.is_menu,
-                                                          null
-                                                        ) > -1
-                                                      : category.is_menu
-                                                  },
-                                                  on: {
-                                                    change: [
-                                                      function($event) {
-                                                        var $$a =
-                                                            category.is_menu,
-                                                          $$el = $event.target,
-                                                          $$c = $$el.checked
-                                                            ? true
-                                                            : false
-                                                        if (
-                                                          Array.isArray($$a)
-                                                        ) {
-                                                          var $$v = null,
-                                                            $$i = _vm._i(
-                                                              $$a,
-                                                              $$v
-                                                            )
-                                                          if ($$el.checked) {
-                                                            $$i < 0 &&
-                                                              _vm.$set(
-                                                                category,
-                                                                "is_menu",
-                                                                $$a.concat([
-                                                                  $$v
-                                                                ])
-                                                              )
-                                                          } else {
-                                                            $$i > -1 &&
-                                                              _vm.$set(
-                                                                category,
-                                                                "is_menu",
-                                                                $$a
-                                                                  .slice(0, $$i)
-                                                                  .concat(
-                                                                    $$a.slice(
-                                                                      $$i + 1
-                                                                    )
-                                                                  )
-                                                              )
-                                                          }
-                                                        } else {
-                                                          _vm.$set(
-                                                            category,
-                                                            "is_menu",
-                                                            $$c
-                                                          )
-                                                        }
-                                                      },
-                                                      function($event) {
-                                                        return _vm.updateMenu(
-                                                          category
-                                                        )
-                                                      }
-                                                    ]
-                                                  }
-                                                }),
-                                                _c("span", {
-                                                  staticClass: "switch-state"
-                                                })
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ])
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(coupon.discount_amount) +
+                                          "\n                              "
+                                      )
                                     ]),
                                     _vm._v(" "),
                                     _c("td", { staticClass: "text-right" }, [
@@ -30735,7 +30704,7 @@ var render = function() {
                                           attrs: { href: "javascript:void(0)" },
                                           on: {
                                             click: function($event) {
-                                              return _vm.deleteRecord(category)
+                                              return _vm.deleteRecord(coupon)
                                             }
                                           }
                                         },
@@ -30874,94 +30843,8 @@ var render = function() {
                                       [
                                         _c(
                                           "label",
-                                          {
-                                            staticClass: "d-block",
-                                            attrs: { for: "isMenu" }
-                                          },
-                                          [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.field.is_menu,
-                                                  expression: "field.is_menu"
-                                                }
-                                              ],
-                                              staticClass: "checkbox_animated",
-                                              attrs: {
-                                                id: "isMenu",
-                                                name: "isMenu",
-                                                value: "1",
-                                                type: "checkbox",
-                                                "data-original-title": "",
-                                                title: ""
-                                              },
-                                              domProps: {
-                                                checked: Array.isArray(
-                                                  _vm.field.is_menu
-                                                )
-                                                  ? _vm._i(
-                                                      _vm.field.is_menu,
-                                                      "1"
-                                                    ) > -1
-                                                  : _vm.field.is_menu
-                                              },
-                                              on: {
-                                                change: function($event) {
-                                                  var $$a = _vm.field.is_menu,
-                                                    $$el = $event.target,
-                                                    $$c = $$el.checked
-                                                      ? true
-                                                      : false
-                                                  if (Array.isArray($$a)) {
-                                                    var $$v = "1",
-                                                      $$i = _vm._i($$a, $$v)
-                                                    if ($$el.checked) {
-                                                      $$i < 0 &&
-                                                        _vm.$set(
-                                                          _vm.field,
-                                                          "is_menu",
-                                                          $$a.concat([$$v])
-                                                        )
-                                                    } else {
-                                                      $$i > -1 &&
-                                                        _vm.$set(
-                                                          _vm.field,
-                                                          "is_menu",
-                                                          $$a
-                                                            .slice(0, $$i)
-                                                            .concat(
-                                                              $$a.slice($$i + 1)
-                                                            )
-                                                        )
-                                                    }
-                                                  } else {
-                                                    _vm.$set(
-                                                      _vm.field,
-                                                      "is_menu",
-                                                      $$c
-                                                    )
-                                                  }
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(
-                                              " Display in the Menu\n                                    "
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "form-group col-12" },
-                                      [
-                                        _c(
-                                          "label",
                                           { attrs: { for: "title" } },
-                                          [_vm._v("Title")]
+                                          [_vm._v("Coupon")]
                                         ),
                                         _vm._v(" "),
                                         _c("input", {
@@ -30969,8 +30852,8 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.field.title,
-                                              expression: "field.title"
+                                              value: _vm.field.coupon,
+                                              expression: "field.coupon"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -30980,7 +30863,7 @@ var render = function() {
                                             "data-original-title": "",
                                             title: ""
                                           },
-                                          domProps: { value: _vm.field.title },
+                                          domProps: { value: _vm.field.coupon },
                                           on: {
                                             input: function($event) {
                                               if ($event.target.composing) {
@@ -30988,7 +30871,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.field,
-                                                "title",
+                                                "coupon",
                                                 $event.target.value
                                               )
                                             }
@@ -31004,7 +30887,7 @@ var render = function() {
                                         _c(
                                           "label",
                                           { attrs: { for: "title" } },
-                                          [_vm._v("Sorting")]
+                                          [_vm._v("Amount")]
                                         ),
                                         _vm._v(" "),
                                         _c("input", {
@@ -31012,8 +30895,9 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.field.sorting,
-                                              expression: "field.sorting"
+                                              value: _vm.field.discount_amount,
+                                              expression:
+                                                "field.discount_amount"
                                             }
                                           ],
                                           staticClass: "form-control",
@@ -31024,7 +30908,7 @@ var render = function() {
                                             title: ""
                                           },
                                           domProps: {
-                                            value: _vm.field.sorting
+                                            value: _vm.field.discount_amount
                                           },
                                           on: {
                                             input: function($event) {
@@ -31033,7 +30917,7 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.field,
-                                                "sorting",
+                                                "discount_amount",
                                                 $event.target.value
                                               )
                                             }
@@ -31099,13 +30983,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col", width: "5%" } }, [_vm._v("Active")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", width: "70%" } }, [
-          _vm._v("Category")
-        ]),
+        _c("th", { attrs: { scope: "col", width: "70%" } }, [_vm._v("Coupon")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", width: "10%" } }, [
-          _vm._v("Menu display")
-        ]),
+        _c("th", { attrs: { scope: "col", width: "10%" } }, [_vm._v("Amount")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col", width: "5%" } })
       ])

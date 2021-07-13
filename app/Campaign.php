@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Campaign extends Model
 {
     protected $table = 'campaigns';
-	protected $fillable = ['attraction_id', 'sorting', 'display_option', 'discount_string', 'title', 'active', 'description', 'img_2', 'img_1', 'large_img', 'slider'];
+	protected $fillable = ['attraction_id', 'sorting', 'display_option', 'discount_string', 'title', 'active', 'description', 'img_2', 'img_1', 'large_img', 'slider', 'country_code'];
     public $timestamps = true;
 
     /**
      * Relationship iwth the category attraction mapping 
      * @return object
      */
-    public function attraction()
-    {
+    public function attraction() {
+        
         return $this->hasOne('App\Attraction', 'id', 'attraction_id')
                         ->whereActive(1)
                         ->with('rates')
@@ -62,6 +62,7 @@ class Campaign extends Model
                 return asset('uploads/images/'.$this->attraction->id.'/campaign/'.$this->img_2);
             }
         }
+
     }
     
 

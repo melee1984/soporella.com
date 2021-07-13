@@ -87,6 +87,11 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('management/language/{country}/delete/submit', 'Api\Management\LanguageController@destroy');	
 	Route::post('management/language/{country}/update/submit', 'Api\Management\LanguageController@update');	
 
+	Route::get('management/coupon', 'Api\Management\CouponController@index');
+	Route::post('management/coupon/{coupon}/delete/submit', 'Api\Management\CouponController@destroy');	
+	Route::post('management/coupon/submit', 'Api\Management\CategoryController@store');	
+	Route::post('management/coupon/{coupon}/status/submit', 'Api\Management\CategoryController@updateStatus');	
+	Route::post('management/coupon/{coupon}/update/submit', 'Api\Management\CategoryController@update');	
 });
 
 // Add to Cart

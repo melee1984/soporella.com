@@ -98,6 +98,14 @@
                                     </label>
                                   </div>
                                   
+                                   <div class="form-group col-12">
+                                    <label for="title">Language</label>
+                                    <select class="form-control" v-model="field.country_code">
+                                      <option value="">Select Language</option>
+                                      <option v-for="language in languageList" :value="language.country_code">{{ language.country_name }}</option>
+                                    </select>
+                                  </div>
+
                                   <div class="form-group col-12">
                                     <label for="title">Display</label>
                                     <select class="form-control" v-model="field.display_option">
@@ -203,6 +211,7 @@
             attraction_id: "",
             slider: false,
             file: "",
+            country_code: "",
           },
           objArray: {},
           lang: JSON.parse(localStorage.selectedLanguage).country_code,
@@ -211,6 +220,7 @@
           viewListing: true,
           displaying: {},
           attractions: {},
+          languageList: {}
         }
       },
       computed: {
@@ -229,6 +239,7 @@
               self.objArray = response.data.campaigns;
               self.displaying = response.data.display_options;
               self.attractions = response.data.attractions;
+              self.languageList = response.data.language;
           }).catch(function (error) {
               console.log(error);
           });
@@ -276,7 +287,8 @@
           formData.append('display_option', self.field.display_option);
           formData.append('slider', self.field.slider);
           formData.append('discount_string', self.field.discount_string);
-
+          formData.append('country_code', self.field.country_code);
+          
           axios.post(url, formData).then(function (response) {
             if (response.data.status) {
              self.fetchData();

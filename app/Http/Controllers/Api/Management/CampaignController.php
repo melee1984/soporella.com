@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Campaign;
 use App\Attraction;
+use App\Country;
 
 class CampaignController extends Controller
 {
@@ -17,13 +18,16 @@ class CampaignController extends Controller
 
     	foreach($campaigns as $campaign) {
 
-    		$campaign->large_img = $campaign->populateCampaignImage(1,1);
-        $campaign->img_1 = $campaign->populateCampaignImage(0,1); // display the image 
-
-    		$campaign->attraction->language_string = $campaign->attraction->convertLanguageField();
+        if ($campaign->attraction) {
+          $campaign->large_img = $campaign->populateCampaignImage(1,1);
+          $campaign->img_1 = $campaign->populateCampaignImage(0,1); // display the image 
+          $campaign->attraction->language_string = $campaign->attraction->convertLanguageField();
+        }
+    		
     	}
 
     	$data['campaigns'] = $campaigns;
+
     	$data['display_options'] = array(
     							array('id'=>1, 'value'=>'Option 1'),
     							array('id'=>2, 'value'=>'Option 2'),
@@ -35,6 +39,9 @@ class CampaignController extends Controller
     							->whereActive(1)
     							->get();
 
+      $data['language'] = Country::select('id', 'country_code', 'country_name')
+                              ->whereActive(1)
+                              ->get();
 
 		return response()->json($data, 200);
     }
@@ -79,12 +86,26 @@ class CampaignController extends Controller
     		    'attraction_id' => 'required|max:255',
     		]);
 
+        $active = false;
+
+        if($request->input('active') == 'true') {
+          $active = 1;
+        }
+        elseif ($request->input('active') == 'false') {
+           $active = 0;
+        }
+        else {
+          $active = $request->input('active')?1:0;
+        }
+
     		$campaign = Campaign::create([
-    		  'active' => $request->input('active')=='true'?1:0,
+    		  'active' => $active,
     		  'slider' => $request->input('slider')=='true'?1:0,
     		  'attraction_id' =>  $request->input('attraction_id'),
     		  'display_option' =>  $request->input('display_option'),
     		  'discount_string' =>  $request->input('discount_string'),
+          'country_code' =>  $request->input('country_code'),
+          
     		]);
 
     		if ($campaign->display_option == 1) {
@@ -123,12 +144,24 @@ class CampaignController extends Controller
   		    'attraction_id' => 'required|max:255',
   		]);
 
-      $campaign->active = $request->input('active')=='true'?1:0;
-      $campaign->slider = $request->input('slider')=='true'?1:0;
+      $active = false;
 
+      if($request->input('active') == 'true') {
+        $active = 1;
+      }
+      elseif ($request->input('active') == 'false') {
+         $active = 0;
+      }
+      else {
+        $active = $request->input('active')?1:0;
+      }
+
+      $campaign->active = $active;
+      $campaign->slider = $request->input('slider')=='true'?1:0;
   		$campaign->attraction_id = $request->input('attraction_id');
   		$campaign->display_option = $request->input('display_option');
   		$campaign->discount_string = $request->input('discount_string');
+      $campaign->country_code = $request->input('country_code');
 
   		if ($campaign->display_option == 1) {
   			if ($request->has('file')) {
