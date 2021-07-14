@@ -21,7 +21,7 @@
 			                  		<img src="{{ $promotion->attraction->photo }}" alt="{{ $promotion->attraction->title }}" class="img-responsive">
 			                  	</a>
 			                  <h4>
-			                  	<a href="{{ $promotion->attraction->pageUrl }}" title="{{ $promotion->attraction->title }}">{{ $promotion->attraction->title }}</a>
+			                  	<a href="{{ $promotion->attraction->pageUrl }}" title="{{ $promotion->attraction->title }}">{{ Str::words($promotion->attraction->title,3) }}</a>
 			                  </h4>
 			                  <p>{!! Str::words(strip_tags($attractionText['description']), 15) !!} <a href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.MORE')}}</a></p>
 
