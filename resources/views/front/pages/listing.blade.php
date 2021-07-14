@@ -23,7 +23,7 @@
 			                  <h4>
 			                  	<a href="{{ $promotion->attraction->pageUrl }}" title="{{ $promotion->attraction->title }}">{{ $promotion->attraction->title }}</a>
 			                  </h4>
-			                  <p>{!! Str::words(nl2br($attractionText['description']), 15) !!} <a href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.MORE')}}</a></p>
+			                  <p>{!! Str::words(strip_tags($attractionText['description']), 15) !!} <a href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.MORE')}}</a></p>
 
 
 			                  <a class="buy" href="{{ $promotion->attraction->pageUrl }}">{{ trans('messages.LABEL_BUY_TICKET' )}}</a>
