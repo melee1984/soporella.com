@@ -27,13 +27,13 @@
                             <img src="{{ $attraction->photo }}" alt="{{ $attraction->title }}" class="img-responsive">
                           </a>
                         <h4>
-                          <a href="{{ $attraction->pageUrl }}" title="{{ $attraction->title }}">{{ $attraction->title }}</a>
+                          <a href="{{ $attraction->pageUrl }}" title="{{ $attraction->title }}">
+                              {{ Str::limit($attraction->title, 30) }}
+                          </a>
                         </h4>
                         <p>
-
-                          {!! Str::words($attraction->language_string['description'], 15) !!}
-
-                          <a href="{{ $attraction->pageUrl }}">{{ trans('messages.MORE')}}</a>
+                        {!! Str::words(strip_tags($attraction->language_string['description']), 15) !!}
+                        <a href="{{ $attraction->pageUrl }}">{{ trans('messages.MORE')}}</a>
                         </p>
                         <a class="buy" href="{{ $attraction->pageUrl }}">{{ trans('messages.LABEL_BUY_TICKET' )}}</a>
                   </div>
