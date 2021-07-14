@@ -2814,6 +2814,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2877,6 +2882,23 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    submitCouponCode: function submitCouponCode() {
+      var self = this;
+      self.applyCouponCode = true;
+      self.refreshSummaryLoading = true;
+      axios.post('/api/cart/coupon/').then(function (response) {
+        if (response.data.status) {
+          self.couponcode = "";
+        }
+
+        self.refreshSummaryLoading = false;
+        self.applyCouponCode = false;
+      })["catch"](function (error) {
+        self.applyCouponCode = false;
+        self.couponcode = "";
+        self.refreshSummaryLoading = false;
+      });
+    },
     login: function login() {
       var self = this;
       self.formLogin.loading = true;
@@ -2937,10 +2959,6 @@ __webpack_require__.r(__webpack_exports__);
         self.refreshSummaryLoading = false;
       })["catch"](function (error) {});
     }
-  },
-  applyCode: function applyCode() {
-    conosle.log('TEST');
-    this.applyCouponCode = true;
   }
 });
 
@@ -41117,48 +41135,59 @@ var render = function() {
       ? _c("div", { staticClass: "border-box" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-7" }, [
-              !_vm.applyCouponCode
-                ? _c("h3", { staticClass: "coupon" }, [
-                    _vm._v("\n              DO YOU HAVE A COUPON CODE? "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.couponcode,
-                          expression: "couponcode"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        value: "",
-                        placeholder: "Enter your coupon code"
-                      },
-                      domProps: { value: _vm.couponcode },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.couponcode = $event.target.value
-                        }
+              _c("h3", { staticClass: "coupon" }, [
+                _vm._v("\n              DO YOU HAVE A COUPON CODE? "),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.couponcode,
+                      expression: "couponcode"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    value: "",
+                    placeholder: "Enter your coupon code"
+                  },
+                  domProps: { value: _vm.couponcode },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
                       }
-                    }),
-                    _vm._v(" "),
-                    _c(
+                      _vm.couponcode = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                !_vm.applyCouponCode
+                  ? _c(
                       "a",
                       {
                         staticClass: "btn btn-info btn-sm",
                         attrs: { href: "javascript:void(0)" },
-                        on: { click: _vm.applyCode }
+                        on: { click: _vm.submitCouponCode }
                       },
                       [_vm._v("Apply Coupon Code")]
                     )
-                  ])
-                : _vm._e()
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.applyCouponCode
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-info btn-sm",
+                        attrs: { href: "javascript:void(0)" }
+                      },
+                      [_vm._v("Please wait..")]
+                    )
+                  : _vm._e()
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-5" }, [

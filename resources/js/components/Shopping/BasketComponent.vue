@@ -57,11 +57,16 @@
         <div class="border-box" v-if="totalQuantity>0">
             <div class="row">
               <div class="col-md-7">
-                <h3 class="coupon" v-if="!applyCouponCode">
+                <h3 class="coupon">
                   DO YOU HAVE A COUPON CODE? <br>
+                  
                   <input type="text" value="" placeholder="Enter your coupon code" class="form-control" v-model="couponcode">
-                  <a href="javascript:void(0)"  v-on:click="applyCode" class="btn btn-info btn-sm">Apply Coupon Code</a>
+
+                  <a href="javascript:void(0)"  v-if="!applyCouponCode" v-on:click="submitCouponCode"  class="btn btn-info btn-sm">Apply Coupon Code</a>
+                  <a href="javascript:void(0)" v-if="applyCouponCode" class="btn btn-info btn-sm">Please wait..</a>
                 </h3>
+                
+
               </div>
 
               <div class="col-md-5">
@@ -217,6 +222,23 @@
               console.log(error);
           });
         },
+        submitCouponCode: function() {
+           var self = this;
+            self.applyCouponCode = true;
+            self.refreshSummaryLoading = true;
+            axios.post('/api/cart/coupon/').then(function (response) {
+              if (response.data.status) {
+                self.couponcode = "";
+              }
+              self.refreshSummaryLoading = false;
+               self.applyCouponCode = false;
+            }).catch(function (error) {
+               self.applyCouponCode = false;
+               self.couponcode = "";
+                self.refreshSummaryLoading = false;
+            });
+
+        },
         login: function() {
           var self = this;
           
@@ -287,11 +309,7 @@
             });
           }
         },
-        applyCode: function() {
-
-          conosle.log('TEST');
-          this.applyCouponCode = true;
-        },
+        
 
     }
 </script>
