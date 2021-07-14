@@ -2808,6 +2808,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2824,7 +2830,10 @@ __webpack_require__.r(__webpack_exports__);
         remember: ""
       },
       refreshSummaryLoading: true,
-      messages: this.trans.messages
+      messages: this.trans.messages,
+      applyCouponCode: false,
+      couponCodeMessage: "",
+      couponcode: ""
     };
   },
   mounted: function mounted() {
@@ -2922,11 +2931,16 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.status) {
           self.summary = response.data.summary;
           self.totalQuantity = response.data.summary.totalQty;
+          self.fetchData();
         }
 
         self.refreshSummaryLoading = false;
       })["catch"](function (error) {});
     }
+  },
+  applyCode: function applyCode() {
+    conosle.log('TEST');
+    this.applyCouponCode = true;
   }
 });
 
@@ -41036,10 +41050,6 @@ var render = function() {
                             }
                           },
                           [
-                            _c("option", { attrs: { value: "0" } }, [
-                              _vm._v("0")
-                            ]),
-                            _vm._v(" "),
                             _c("option", { attrs: { value: "1" } }, [
                               _vm._v("1")
                             ]),
@@ -41103,12 +41113,55 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
-    _vm.totalQuantity < 0
+    _vm.totalQuantity > 0
       ? _c("div", { staticClass: "border-box" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-6" }),
+            _c("div", { staticClass: "col-md-7" }, [
+              !_vm.applyCouponCode
+                ? _c("h3", { staticClass: "coupon" }, [
+                    _vm._v("\n              DO YOU HAVE A COUPON CODE? "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.couponcode,
+                          expression: "couponcode"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        value: "",
+                        placeholder: "Enter your coupon code"
+                      },
+                      domProps: { value: _vm.couponcode },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.couponcode = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-info btn-sm",
+                        attrs: { href: "javascript:void(0)" },
+                        on: { click: _vm.applyCode }
+                      },
+                      [_vm._v("Apply Coupon Code")]
+                    )
+                  ])
+                : _vm._e()
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "col-md-5" }, [
               _vm.refreshSummaryLoading
                 ? _c("div", { staticClass: "text-center p-20" }, [
                     _c("img", {

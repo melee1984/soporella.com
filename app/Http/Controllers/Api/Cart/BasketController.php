@@ -126,7 +126,6 @@ class BasketController extends Controller
 					}
 					else {
 
-		             	dd($cart);
 		             	
 						// Adding item into the Cart Details table  
 						// Haveing the same functionality this should be refactor

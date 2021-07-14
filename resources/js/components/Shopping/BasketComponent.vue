@@ -35,7 +35,6 @@
                            <div class="col-md-4 col-xs-6 text-left">{{ variance.price }} </div>
                             <div class="col-md-4">
                               <select class="form-control" v-model="variance.qty" @change="updateVariant(variance, item.id)">
-                                <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -55,10 +54,17 @@
           </div>  
         </div>
 
-        <div class="border-box" v-if="totalQuantity<0">
+        <div class="border-box" v-if="totalQuantity>0">
             <div class="row">
-              <div class="col-md-6"></div>
-              <div class="col-md-6">
+              <div class="col-md-7">
+                <h3 class="coupon" v-if="!applyCouponCode">
+                  DO YOU HAVE A COUPON CODE? <br>
+                  <input type="text" value="" placeholder="Enter your coupon code" class="form-control" v-model="couponcode">
+                  <a href="javascript:void(0)"  v-on:click="applyCode" class="btn btn-info btn-sm">Apply Coupon Code</a>
+                </h3>
+              </div>
+
+              <div class="col-md-5">
                   <div v-if="refreshSummaryLoading" class="text-center p-20"> 
                        <img src="/images/ajax-loader.gif" alt="">
                   </div>
@@ -159,6 +165,10 @@
             },
             refreshSummaryLoading: true,
             messages: this.trans.messages,
+
+            applyCouponCode: false,
+            couponCodeMessage: "",
+            couponcode: "",
         }
       },
       mounted() {
@@ -256,7 +266,6 @@
             $('#password').addClass('border-danger ding');
             return false;
           }
-          
           return true;
           
         },
@@ -264,22 +273,25 @@
               window.location.href = url;
         },
         updateVariant: function(variance_details, detail) {
-
-          var self = this;
-          self.refreshSummaryLoading = true;
-          axios.post('/api/cart/item/'+detail+'/update', variance_details ).then(function (response) {
-            if (response.data.status) {
-               self.summary = response.data.summary;
+            var self = this;
+            self.refreshSummaryLoading = true;
+            axios.post('/api/cart/item/'+detail+'/update', variance_details ).then(function (response) {
+              if (response.data.status) {
+                self.summary = response.data.summary;
                 self.totalQuantity = response.data.summary.totalQty;
-            }
-            self.refreshSummaryLoading = false;
-          }).catch(function (error) {
-            
-          });
+                self.fetchData();
+              }
+              self.refreshSummaryLoading = false;
+            }).catch(function (error) {
+              
+            });
+          }
+        },
+        applyCode: function() {
 
-        }
-
-      }
+          conosle.log('TEST');
+          this.applyCouponCode = true;
+        },
 
     }
 </script>

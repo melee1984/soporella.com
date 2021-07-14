@@ -105,20 +105,16 @@
 </div>
 
 <script>
-function myFunction(x) {
-  // x.classList.toggle("change");
-  w3_open();
-}
-</script>
+  function myFunction(x) {
+    w3_open();
+  }
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
 
-<script>
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
 </script>
 
 
