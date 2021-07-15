@@ -15,6 +15,7 @@ use App\Category;
 use DB;
 use App\Models\Category\CategoryAttractionMapping;
 use App\Models\Attraction\AttractionImage;
+use App\Campaign;
 
 class AttractionController extends Controller
 {
@@ -535,6 +536,15 @@ class AttractionController extends Controller
         if ($attraction) {
           $deleteAttraction = Attraction::find($attraction->id);
           $status = $deleteAttraction->delete();
+
+          if ($status) {
+
+            // Cleaning up Campaign database 
+            $deleteAttractionCampaign = Campaign::whereAttractionId($attraction->id);
+            $deleteAttractionCampaign->delete();
+
+          }
+
         }
         
         if ($status) {
