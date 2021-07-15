@@ -93,7 +93,7 @@ class ProfileController extends Controller
                 $detail->attraction->populateAttractionImage();
                 $detail->attraction->populateAttractionPageURL();
 
-                $detail->attraction->url = route('page.attraction.view', $detail->attraction);
+                $detail->attraction->url = route('page.attraction.view', [app()->getLocale(), $detail->attraction->slug]);
                 $detail->variance_total = number_format($detail->variance_total, 2)  . " " . $currency;
                 // Just to format response 
                 $detail->variance_details = unserialize($detail->variance_details);

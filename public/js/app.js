@@ -2816,9 +2816,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2886,7 +2883,9 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       self.applyCouponCode = true;
       self.refreshSummaryLoading = true;
-      axios.post('/api/cart/coupon/').then(function (response) {
+      axios.post('/api/cart/coupon/submit', {
+        coupon: self.couponcode
+      }).then(function (response) {
         if (response.data.status) {
           self.couponcode = "";
         }
@@ -41135,9 +41134,10 @@ var render = function() {
       ? _c("div", { staticClass: "border-box" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-7" }, [
-              _c("h3", { staticClass: "coupon" }, [
-                _vm._v("\n              DO YOU HAVE A COUPON CODE? "),
-                _c("br"),
+              _c("div", { staticClass: "coupon-form" }, [
+                _c("h3", { staticClass: "coupon" }, [
+                  _vm._v("DO YOU HAVE A COUPON CODE?")
+                ]),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -41215,7 +41215,22 @@ var render = function() {
                       _vm._v(" "),
                       _c("tr"),
                       _c("tr", { staticClass: "basket-summary-total" }, [
-                        _c("td", [_vm._v("Discount")]),
+                        _c("td", [
+                          _vm._v("\n                    Discount "),
+                          _vm.summary.discount_code != ""
+                            ? _c(
+                                "span",
+                                { staticClass: "coupon_code_highlight" },
+                                [
+                                  _vm._v(
+                                    "(" +
+                                      _vm._s(_vm.summary.discount_code) +
+                                      ")"
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(_vm.summary.discount))])
                       ]),

@@ -132,15 +132,18 @@
 	min-height: 400px;
 }
 
-.coupon {
-	font-size: 15px !important;
-    margin-bottom: 20px !important;
-    padding: 10px;
-	span	 {
-		font-size: 14px;
-	}
+.coupon-form {
 	a {
-	margin-top: 10px;
+		margin-top: 10px;
 		color: #fff !important;
 	}
+	.coupon {
+		font-size: 15px !important;
+	    margin-bottom: 12px !important;
+	}
+}
+
+.coupon_code_highlight {
+	color: red;
+	font-size: 12px;
 }

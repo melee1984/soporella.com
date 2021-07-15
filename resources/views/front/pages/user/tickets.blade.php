@@ -48,13 +48,23 @@
               </div>
             </div>
              @endforeach
-            <p>Total:  {{ $detail->variance_total }}  (VAT included)</p>
+            <p>
+                Amount:  {{ $detail->variance_total }}  (VAT included)
+            </p>
           </div>
        
           <div class="col-lg-3 text-right tic-date">
             <p>Date of Purchase: {{ date('m/d/Y', strtotime($order->submitted_at) ) }}<br>
             Number of Ticket(s): {{ $detail->total_qty }}<br>
-            Order ID: {{ $order->ref_no }}</p>
+            Order ID: {{ $order->ref_no }} <br>
+            @if ($order->discount_code!="")
+              <span class="coupon_code_highlight">
+                Coupon: {{ $order->discount_code }} <br>
+              Discount: {{ $order->discount_amount }} <br>
+              </span>
+            @endif
+        </p>
+
               <div class="tic-status">
 
                 @if ($order->status_id!="5")

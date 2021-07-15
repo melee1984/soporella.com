@@ -57,18 +57,13 @@
         <div class="border-box" v-if="totalQuantity>0">
             <div class="row">
               <div class="col-md-7">
-                <h3 class="coupon">
-                  DO YOU HAVE A COUPON CODE? <br>
-                  
+                <div class="coupon-form">
+                  <h3 class="coupon">DO YOU HAVE A COUPON CODE?</h3>
                   <input type="text" value="" placeholder="Enter your coupon code" class="form-control" v-model="couponcode">
-
                   <a href="javascript:void(0)"  v-if="!applyCouponCode" v-on:click="submitCouponCode"  class="btn btn-info btn-sm">Apply Coupon Code</a>
                   <a href="javascript:void(0)" v-if="applyCouponCode" class="btn btn-info btn-sm">Please wait..</a>
-                </h3>
-                
-
+                </div>
               </div>
-
               <div class="col-md-5">
                   <div v-if="refreshSummaryLoading" class="text-center p-20"> 
                        <img src="/images/ajax-loader.gif" alt="">
@@ -80,7 +75,9 @@
                     </tr>
                     <tr>
                     <tr class="basket-summary-total">
-                      <td>Discount</td>
+                      <td>
+                        Discount <span class="coupon_code_highlight" v-if="summary.discount_code !=''">({{ summary.discount_code }})</span>
+                      </td>
                       <td>{{ summary.discount }}</td>
                     </tr>
                     <tr>
@@ -226,7 +223,9 @@
            var self = this;
             self.applyCouponCode = true;
             self.refreshSummaryLoading = true;
-            axios.post('/api/cart/coupon/').then(function (response) {
+            axios.post('/api/cart/coupon/submit', {
+              coupon: self.couponcode
+            }).then(function (response) {
               if (response.data.status) {
                 self.couponcode = "";
               }

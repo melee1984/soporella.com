@@ -24,10 +24,11 @@ class Cart extends Model
 
     public function summary() {
 
+     
     	$data = array();
     	$subTotal = 0;
     	$total = 0;
-    	$discount = 0;
+    	$discount = $this->discount_amount;
     	$vat = 0;
     	$totalQty = 0;
         
@@ -45,6 +46,7 @@ class Cart extends Model
     		'vat' => number_format($vat,2). " " . $currency,
     		'total' => number_format($total, 2). " " . $currency,
     		'totalQty' => $totalQty,
+            'discount_code' => $this->discount_code,
     	);
 
     	return $summary;

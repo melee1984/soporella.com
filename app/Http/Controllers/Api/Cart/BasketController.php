@@ -12,6 +12,7 @@ use App\Models\Attraction\AttractionRateDetails;
 
 use App\Attraction;
 use Session;
+use App\Coupon;
 use Auth;
 use URL;
 
@@ -335,6 +336,37 @@ class BasketController extends Controller
     	}
 
 		return response()->json($data, 200);
+    }
+
+    public function applyCoupon(Request $request) {
+
+    	$data = array();
+
+
+    	$coupon = Coupon::whereCoupon($request->input('coupon'))
+    					->whereActive(1)->first();
+
+		if ($coupon) {
+
+			
+			$cart = Cart::whereSessionId(Session::getID())
+    				->first();
+
+    		$cart->discount_amount = $coupon->discount_amount;
+    		$cart->discount_code =  $coupon->coupon;
+
+			$cart->save();
+
+		}
+		else {
+
+			$data['message'] = "Coupon code is invalid";
+			$data['status'] = 0;
+
+		}
+
+		return response()->json($data, 200);
+
     }
 
 }

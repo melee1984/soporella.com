@@ -99,9 +99,7 @@ Route::post('cart/add/{attraction}/submit', 'Api\Cart\BasketController@addCart')
 Route::get('cart/summary', 'Api\Cart\BasketController@summary')->name('cart.summary');
 Route::post('cart/item/{cartDetail}/delete', 'Api\Cart\BasketController@deleteDetail')->name('cart.summary.deletedetails');
 Route::post('cart/item/{cartDetail}/update', 'Api\Cart\BasketController@updateDetail')->name('cart.summary.updateDetail');
-
 Route::get('cart', 'Api\Cart\BasketController@index')->name('cart');
-
-
 Route::post('newsletter/submit', 'NewsletterController@subscribe');
+Route::post('cart/coupon/submit', 'Api\Cart\BasketController@applyCoupon');
 
