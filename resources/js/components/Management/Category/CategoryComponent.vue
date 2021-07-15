@@ -43,7 +43,8 @@
                                   </div>
                                 </div>
                               </td>
-                              <td><a href="javascript:void(0)" v-on:click="formEdit(category)">{{ category.language_string.title?category.language_string.title:'Edit' }}</a></td>
+                              <td>
+                                  <a href="javascript:void(0)" v-on:click="formEdit(category)">{{ category.language_string.title?category.language_string.title:'Edit' }}</a></td>
                               <td> 
                                 <div class="media">
                                   <div class="media-body text-left icon-state">

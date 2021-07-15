@@ -89,9 +89,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 
 	Route::get('management/coupon', 'Api\Management\CouponController@index');
 	Route::post('management/coupon/{coupon}/delete/submit', 'Api\Management\CouponController@destroy');	
-	Route::post('management/coupon/submit', 'Api\Management\CategoryController@store');	
-	Route::post('management/coupon/{coupon}/status/submit', 'Api\Management\CategoryController@updateStatus');	
-	Route::post('management/coupon/{coupon}/update/submit', 'Api\Management\CategoryController@update');	
+	Route::post('management/coupon/submit', 'Api\Management\CouponController@store');	
+	Route::post('management/coupon/{coupon}/status/submit', 'Api\Management\CouponController@updateStatus');	
+	Route::post('management/coupon/{coupon}/update/submit', 'Api\Management\CouponController@update');	
 });
 
 // Add to Cart

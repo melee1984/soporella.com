@@ -3745,6 +3745,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3995,8 +3996,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4034,13 +4033,13 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
 
       if (self.addForm) {
-        url = '/api/management/category/submit?api_token=' + api_token;
+        url = '/api/management/coupon/submit?api_token=' + api_token;
       } else if (self.editForm) {
-        url = '/api/management/category/' + self.field.id + '/update/submit?api_token=' + api_token;
+        url = '/api/management/coupon/' + self.field.id + '/update/submit?api_token=' + api_token;
       }
 
       formData.append('active', self.field.active);
-      formData.append('amount', self.field.amount);
+      formData.append('discount_amount', self.field.discount_amount);
       formData.append('coupon', self.field.coupon);
       axios.post(url, formData).then(function (response) {
         if (response.data.status) {
@@ -4058,7 +4057,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateStatus: function updateStatus(obj) {
       var self = this;
-      axios.post('/api/management/category/' + obj.id + '/status/submit?api_token=' + api_token).then(function (response) {
+      axios.post('/api/management/coupon/' + obj.id + '/status/submit?api_token=' + api_token).then(function (response) {
         if (response.data.status) {
           self.$toasts.success(response.data.message);
         } else {
@@ -30680,19 +30679,28 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(coupon.coupon) +
-                                          "\n                              "
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:void(0)" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.formEdit(coupon)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                  " +
+                                              _vm._s(coupon.coupon) +
+                                              "\n                                "
+                                          )
+                                        ]
                                       )
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(coupon.discount_amount) +
-                                          "\n                              "
-                                      )
+                                      _vm._v(_vm._s(coupon.discount_amount))
                                     ]),
                                     _vm._v(" "),
                                     _c("td", { staticClass: "text-right" }, [

@@ -44,12 +44,11 @@
                                 </div>
                               </td>
                               <td>
-                                {{ coupon.coupon }}
+                                <a href="javascript:void(0)" v-on:click="formEdit(coupon)">
+                                  {{ coupon.coupon }}
+                                </a>
                               </td>
-                               <td>
-                                {{ coupon.discount_amount }}
-                              </td>
-                             
+                              <td>{{ coupon.discount_amount }}</td>
                               <td class="text-right">
                                 <a href="javascript:void(0)" class="btn btn-square btn-light btn-sm" v-on:click="deleteRecord(coupon)">Delete</a>
                               </td>
@@ -63,7 +62,6 @@
                 <!-- end here -->
              </div>
           </div>
-
             <div class="col-md-6" v-if="addForm || editForm">
               <div class="card">
                 <div class="collapse show" aria-labelledby="collapseicon" data-parent="#accordion">
@@ -157,14 +155,14 @@
           var url = "";
           let formData = new FormData();
           if (self.addForm) {
-              url = '/api/management/category/submit?api_token='+api_token;
+              url = '/api/management/coupon/submit?api_token='+api_token;
           }
           else if (self.editForm) {
-              url = '/api/management/category/'+self.field.id+'/update/submit?api_token='+api_token;
+              url = '/api/management/coupon/'+self.field.id+'/update/submit?api_token='+api_token;
 
           }
           formData.append('active', self.field.active);
-          formData.append('amount', self.field.amount);
+          formData.append('discount_amount', self.field.discount_amount);
           formData.append('coupon', self.field.coupon);
 
           axios.post(url, formData).then(function (response) {
@@ -183,7 +181,7 @@
         },
         updateStatus: function(obj) {
           var self = this;
-          axios.post('/api/management/category/'+obj.id+'/status/submit?api_token='+api_token).then(function (response) {
+          axios.post('/api/management/coupon/'+obj.id+'/status/submit?api_token='+api_token).then(function (response) {
             if (response.data.status) {
               self.$toasts.success(response.data.message);
             }

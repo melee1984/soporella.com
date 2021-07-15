@@ -22,13 +22,13 @@ class CouponController extends Controller
 
 		return response()->json($data, 200);
     }
-    public function updateStatus(Request $request, Category $category) {
+    public function updateStatus(Request $request, Coupon $coupon) {
     	
     	$data = array();
     	$data['status'] = 0;
 
-    	$category->active = $category->active?0:1;
-    	$status = $category->save();
+    	$coupon->active = $coupon->active?0:1;
+    	$status = $coupon->save();
 
     	if($status) {
     		$data['status'] = 1;
@@ -41,30 +41,28 @@ class CouponController extends Controller
     public function store(Request $request) {
 
 		$data = array();
-		$categories = Country::whereActive(1)->get();
 
 		$validated = $request->validate([
 		    'coupon' => 'required|max:255',
 		]);
 
-		 $active = false;
+		$active = false;
 
-	      if($request->input('active') == 'true') {
-	        $active = 1;
-	      }
-	      elseif ($request->input('active') == 'false') {
-	         $active = 0;
-	      }
-	      else {
-	        $active = $request->input('active')?1:0;
-	      }
+		if($request->input('active') == 'true') {
+			$active = 1;
+		}
+		elseif ($request->input('active') == 'false') {
+		 	$active = 0;
+		}
+		else {
+			$active = $request->input('active')?1:0;
+		}
 
 		$category = Coupon::create([
 		  'active' => $active,
 		  'coupon' => $request->input('coupon'),
 		  'discount_amount' =>  $request->input('discount_amount'),
 		]);
-
 
 		if ($category) {
 			$data['status'] = 1;
@@ -77,19 +75,18 @@ class CouponController extends Controller
     public function update(Request $request, Coupon $coupon) {
     	
     	$data = array();
-		$categories = Country::whereActive(1)->get();
 
 		$validated = $request->validate([
-		    'title' => 'required|max:255',
+		    'coupon' => 'required|max:255',
 		]);
 
-		$category->active = $request->input('active')?1:0;
-		$category->coupon = $request->input('coupon');
-		$category->discount_amount = $request->input('discount_amount');
+		$coupon->active = $request->input('active')?1:0;
+		$coupon->coupon = $request->input('coupon');
+		$coupon->discount_amount = $request->input('discount_amount');
 
-		$category->save();
+		$coupon->save();
 
-		if ($category) {
+		if ($coupon) {
 			$data['status'] = 1;
 			$data['message'] = "Successfully updated record";
 		}
@@ -97,16 +94,16 @@ class CouponController extends Controller
 		return response()->json($data, 200);
 
     }
-    public function destroy(Request $request, Coupon $Coupon) {
+    public function destroy(Request $request, Coupon $coupon) {
     	
       $data = array();
 
       $data['status'] = 0;
       $data['message'] = "Unable to delete record. Please try again.";
 
-      if (!$category) response()->json($data, 200);
+      if (!$coupon) response()->json($data, 200);
 
-      $coupon = Coupon::find($category->id);
+      $coupon = Coupon::find($coupon->id);
       $status = $coupon->delete();
 
       if ($status) {
