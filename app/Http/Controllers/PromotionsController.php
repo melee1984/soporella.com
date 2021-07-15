@@ -41,7 +41,7 @@ class PromotionsController extends Controller
                 foreach($campaigns as $campaign) {
 
 
-                    if ($campaign->attraction->active) {
+                    if ($campaign->attraction) {
 
                         $campaign->large_img = $campaign->populateCampaignImage(1,1);
                         $campaign->img_1 = $campaign->populateCampaignImage(0,1);
