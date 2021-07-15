@@ -14,8 +14,14 @@ class PromotionsController extends Controller
      * About us 
      * @return return view
      */
-    public function index() 
-    {
+    public function index($locale) 
+    {       
+
+            if ($locale=='') {
+                echo "Locale is not found. Please try to refresh your page."; 
+                die();
+            }
+
             $menus = Cache::remember('menus', 30, function () {
                 $categories = Category::forMenu()->active()->get();
                 foreach($categories as $category) {
@@ -29,6 +35,7 @@ class PromotionsController extends Controller
             $campaigns = Campaign::with('attraction')
                             ->whereActive(1)
                             ->whereSlider(0)
+                            ->whereCountryCode($locale)
                             ->get();
 
                 foreach($campaigns as $campaign) {
