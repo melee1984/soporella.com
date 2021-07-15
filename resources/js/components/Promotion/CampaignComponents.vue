@@ -8,14 +8,14 @@
      
           <div class="offer-wrap v-center">
             <div class="col-lg-8 offer-txt">
-              <h3>{{ campaign.attraction.title }}</h3>
-              <p>{{ campaign.language_string.description }}</p>
+              <h3 v-html="campaign.attraction.title"></h3>
+              <p v-html="campaign.language_string.description"></p>
               <table class="table">
                     <tbody>
                         <span v-for="rates in campaign.attraction.rates">
-                            {{ rates.language.title }}
+                           <span v-html="rates.language.title"></span>
                             <tr v-for="ratesDetail in rates.details">
-                              <td>{{ ratesDetail.language.title }} </td>
+                              <td><span v-html="ratesDetail.language.title"></span></td>
                               <td><strike>{{ ratesDetail.price }}  {{ ratesDetail.currency }} </strike></td>
                               <td>{{ ratesDetail.markdown_price  }}  {{ ratesDetail.currency }} </td>
                             </tr>
@@ -62,7 +62,7 @@
               <!--To be auto populated-->
             </div>
           </div>
-          <p>{{ campaign.language_string.description }}</a></p>
+          <p v-html="campaign.language_string.description"></a></p>
               <table class="table">
                     <tbody>
                        <span v-for="rates in campaign.attraction.rates">
@@ -92,7 +92,7 @@
                     </div>
                   <div class="col-lg-8 col-xs-12">
                     <h4>{{ campaign.attraction.title }}</h4>
-                    {{ campaign.language_string.description }}
+                   <span v-html="campaign.language_string.description"></span>
                     <table class="table">
                         <tbody>
                             <span v-for="rates in campaign.attraction.rates">
@@ -129,7 +129,7 @@
               <!--To be auto populated-->
             </div>
           </div>
-          <p>{{ campaign.language_string.description }}</a></p>
+          <p v-html="campaign.language_string.description"></p>
               <table class="table">
                     <tbody>
                        <span v-for="rates in campaign.attraction.rates">

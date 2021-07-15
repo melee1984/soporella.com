@@ -40386,11 +40386,19 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "offer-wrap v-center" }, [
                       _c("div", { staticClass: "col-lg-8 offer-txt" }, [
-                        _c("h3", [_vm._v(_vm._s(campaign.attraction.title))]),
+                        _c("h3", {
+                          domProps: {
+                            innerHTML: _vm._s(campaign.attraction.title)
+                          }
+                        }),
                         _vm._v(" "),
-                        _c("p", [
-                          _vm._v(_vm._s(campaign.language_string.description))
-                        ]),
+                        _c("p", {
+                          domProps: {
+                            innerHTML: _vm._s(
+                              campaign.language_string.description
+                            )
+                          }
+                        }),
                         _vm._v(" "),
                         _c("table", { staticClass: "table" }, [
                           _c(
@@ -40399,18 +40407,22 @@ var render = function() {
                               return _c(
                                 "span",
                                 [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(rates.language.title) +
-                                      "\n                            "
-                                  ),
+                                  _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(rates.language.title)
+                                    }
+                                  }),
+                                  _vm._v(" "),
                                   _vm._l(rates.details, function(ratesDetail) {
                                     return _c("tr", [
                                       _c("td", [
-                                        _vm._v(
-                                          _vm._s(ratesDetail.language.title) +
-                                            " "
-                                        )
+                                        _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              ratesDetail.language.title
+                                            )
+                                          }
+                                        })
                                       ]),
                                       _vm._v(" "),
                                       _c(
@@ -40560,9 +40572,11 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c("p", [
-                      _vm._v(_vm._s(campaign.language_string.description))
-                    ]),
+                    _c("p", {
+                      domProps: {
+                        innerHTML: _vm._s(campaign.language_string.description)
+                      }
+                    }),
                     _vm._v(" "),
                     _c("table", { staticClass: "table" }, [
                       _c(
@@ -40670,11 +40684,15 @@ var render = function() {
                               _c("h4", [
                                 _vm._v(_vm._s(campaign.attraction.title))
                               ]),
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(campaign.language_string.description) +
-                                  "\n                    "
-                              ),
+                              _vm._v(" "),
+                              _c("span", {
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    campaign.language_string.description
+                                  )
+                                }
+                              }),
+                              _vm._v(" "),
                               _c("table", { staticClass: "table" }, [
                                 _c(
                                   "tbody",
@@ -40823,9 +40841,13 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c("p", [
-                        _vm._v(_vm._s(campaign.language_string.description))
-                      ]),
+                      _c("p", {
+                        domProps: {
+                          innerHTML: _vm._s(
+                            campaign.language_string.description
+                          )
+                        }
+                      }),
                       _vm._v(" "),
                       _c("table", { staticClass: "table" }, [
                         _c(
