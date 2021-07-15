@@ -33,10 +33,10 @@ class PromotionsController extends Controller
          // $campaigns = Cache::remember('campaigns', 0, function () {
             
             $campaigns = Campaign::with('attraction')
-                            ->whereActive(1)
-                            ->whereSlider(0)
-                            ->whereCountryCode($locale)
-                            ->get();
+                        ->whereActive(1)
+                        ->whereSlider(0)
+                        ->whereCountryCode($locale)
+                        ->get();
 
                 foreach($campaigns as $campaign) {
 
